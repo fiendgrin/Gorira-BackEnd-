@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link src="~/assets/jquerry/jquerry.js" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css"
+          integrity="sha512-CIYsJUa3pr1eoXlZFroEI0mq0UIMUqNouNinjpCkSWo3Bx5NRlQ0OuC6DtEB/bDqUWnzXc1gs2X/g52l36N5iw=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="~/assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet" />
+    <link rel="icon"
+          href="~/assets/images/favicon/favicon-32x32.png"
+          type="image/x-icon" />
+
+    <link rel="stylesheet" href="~/assets/scss/style.css" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <!--APlayer-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+    <!--Start-->
+    <!--Header start-->
+    <header>
+        <div class="boxTop">
+            <div class="boxContent">
+                <div class="left">
+                    <img class="burger" src="~/assets/images/icons/burger.svg" alt="" />
+                    <a href="">
+                        <img class="logo" src="~/assets/images/logo/Logo.png" alt="" />
+                    </a>
+                    <form class="mySearchForm">
+                        <input type="text"
+                               autocomplete="off"
+                               class="inputField"
+                               name="search"
+                               id="search"
+                               placeholder="Search" />
+                        <label class="inputLabel">Search</label>
+
+                        <button class="searchIcon">
+                            <img class="theSearchIcon" src="~/assets/images/icons/search.svg" alt="" />
+                        </button>
+                    </form>
+                </div>
+
+                <div class="right">
+                    <a href="upload.html" class="myBtn">
+                        <img class="btnImg"
+                             src="~/assets/images/icons/upload.svg"
+                             alt="" />Upload
+                    </a>
+                    <!--Account-->
+                    <div class="accountHolder">
+                        <img class="pfp" src="~/assets/images/pfp/1.jpg" alt="" />
+                        <!-- <img class="loginIcon" src="~/assets/images/icons/user.svg" alt=""> -->
+                        <img class="chevronAcc"
+                             src="~/assets/images/icons/chevron-down.svg"
+                             alt="" />
+                        <div class="accountContent">
+                            <!--Single Line start-->
+                            <a href="myProfile.html" class="accountLine">
+                                <img src="~/assets/images/icons/user.svg" alt="" />
+                                <p>My Profile</p>
+                            </a>
+                            <div class="divider"></div>
+                            <!--Single Line End-->
+                            <!--Single Line start-->
+                            <a href="myPlaylists.html" class="accountLine">
+                                <img src="~/assets/images/icons/play-list-5.svg" alt="" />
+                                <p>My Playlists</p>
+                            </a>
+                            <div class="divider"></div>
+                            <!--Single Line End-->
+                            <!--Single Line start-->
+                            <a href="messanger.html" class="accountLine">
+                                <img src="~/assets/images/icons/message.svg" alt="" />
+                                <p>Messages</p>
+                            </a>
+                            <div class="divider"></div>
+                            <!--Single Line End-->
+                            <!--Single Line start-->
+                            <a href="myTracks.html" class="accountLine">
+                                <img src="~/assets/images/icons/music.svg" alt="" />
+                                <p>My Tracks</p>
+                            </a>
+                            <div class="divider"></div>
+                            <!--Single Line End-->
+                            <!--Single Line start-->
+                            <a href="login.html" class="accountLine">
+                                <img src="~/assets/images/icons/lock-open.svg" alt="" />
+                                <p>Sign In</p>
+                            </a>
+                            <div class="divider"></div>
+                            <!--Single Line End-->
+                            <!--Single Line start-->
+                            <a href="register.html" class="accountLine">
+                                <img src="~/assets/images/icons/squareAndPencil.svg" alt="" />
+                                <p>Sign Up</p>
+                            </a>
+                            <div class="divider"></div>
+                            <!--Single Line end-->
+                            <!--Single Line start-->
+                            <a href="logOut.html" class="accountLine">
+                                <img src="~/assets/images/icons/power.svg" alt="" />
+                                <p>Sign Out</p>
+                            </a>
+                            <div class="divider"></div>
+                            <!--Single Line End-->
+                        </div>
+                    </div>
+                    <!--Basket-->
+                    <div class="basketHolder">
+                        <div class="basketCounter">3</div>
+                        <img class="basketIcon"
+                             src="~/assets/images/icons/shopping-cart.svg"
+                             alt="" />
+                        <img class="chevronBasket"
+                             src="~/assets/images/icons/chevron-down.svg"
+                             alt="" />
+                        <div class="basketContent">
+                            <div class="cartCount"></div>
+                            <!--One Beat Start-->
+                            <div class="oneBeat">
+                                <a class="beatDetail" href="">
+                                    <img class="beatCover"
+                                         src="~/assets/images/covers/youngThug.jpg"
+                                         alt="" />
+                                    <p class="title">my Beat Title 2023</p>
+                                </a>
+                                <p class="price">$20.99</p>
+                                <a class="removeBasket" href="">
+                                    <img class="ex"
+                                         src="~/assets/images/icons/plus.svg"
+                                         alt="" />
+                                </a>
+                            </div>
+                            <div class="divider"></div>
+                            <!--One Beat End-->
+                            <!--One Beat Start-->
+                            <div class="oneBeat">
+                                <a class="beatDetail" href="">
+                                    <img class="beatCover"
+                                         src="~/assets/images/covers/kevinGates.jpg"
+                                         alt="" />
+                                    <p class="title">my Beat Title 2023</p>
+                                </a>
+                                <p class="price">$20.99</p>
+                                <a class="removeBasket" href="">
+                                    <img class="ex"
+                                         src="~/assets/images/icons/plus.svg"
+                                         alt="" />
+                                </a>
+                            </div>
+                            <div class="divider"></div>
+                            <!--One Beat End-->
+                            <!--One Beat Start-->
+                            <div class="oneBeat">
+                                <a class="beatDetail" href="">
+                                    <img class="beatCover"
+                                         src="~/assets/images/covers/kevinGates.jpg"
+                                         alt="" />
+                                    <p class="title">my Beat Title 2023</p>
+                                </a>
+                                <p class="price">$20.99</p>
+                                <a class="removeBasket" href="">
+                                    <img class="ex"
+                                         src="~/assets/images/icons/plus.svg"
+                                         alt="" />
+                                </a>
+                            </div>
+                            <div class="divider"></div>
+                            <!--One Beat End-->
+                            <a class="checkout" href="">
+                                <img src="~/assets/images/icons/credit-card.svg"
+                                     alt="" />Checkout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav class="navBar">
+        <div class="boxBottom">
+            <div class="bottomBoxContent">
+                <a id="feed" asp-controller="Feed" asp-action="Index">Feed</a>
+                <a id="playlists" asp-controller="Playlist" asp-action="Index">Playlists</a>
+                <a id="home" asp-controller="Home" asp-action="Index">Home</a>
+                <a id="tracks" asp-controller="Track" asp-action="Index">Tracks</a>
+                <a id="artists" asp-controller="Artist" asp-action="Index">Artists</a>
+            </div>
+        </div>
+    </nav>
+    <!--Header End-->
+        @RenderBody()
+
+        <!--Footer start-->
+        <footer>
+            <div class="box">
+                <div class="top">
+                    <a href="">
+                        <img class="footerLogo" src="~/assets/images/logo/Logo.png" alt="" />
+                    </a>
+                    <!--Contact Start-->
+                    <div class="left infoCard">
+                        <h5>Contact Information</h5>
+                        <div class="info inside">
+                            <div class="emailGorira text">
+                                <h6>Email:</h6>
+                                <p>Gorira@gmail.com</p>
+                            </div>
+                            <div class="phoneGorira text">
+                                <h6>Phone:</h6>
+                                <p>+7-(999)-99-99</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Contact End-->
+                    <!--location Start-->
+                    <div class="mid infoCard">
+                        <h5>Where we located</h5>
+                        <div class="location inside">
+                            <div class="locationGorira text">
+                                <h6>Location:</h6>
+                                <p>Mountain View, California, United States</p>
+                            </div>
+                            <div class="addressGorira text">
+                                <h6>Address:</h6>
+                                <p>1600 Amphitheatre Parkway Mountain View, CA 94043</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--location End-->
+                    <!--Social Media Links Start-->
+                    <div class="right infoCard">
+                        <h5>Social Media Links</h5>
+                        <div class="links inside">
+                            <div class="sMlinks">
+                                <a href="https://soundcloud.com/">
+                                    <img class="sMLogo"
+                                         src="~/assets/images/socialMedia/soundcloud-logo.svg"
+                                         alt="" />
+                                </a>
+                                <a href="https://www.youtube.com/">
+                                    <img class="sMLogo"
+                                         src="~/assets/images/socialMedia/youtube-clip-logo.svg"
+                                         alt="" />
+                                </a>
+                                <a href="https://www.instagram.com/">
+                                    <img class="sMLogo"
+                                         src="~/assets/images/socialMedia/instagram-logo-2.svg"
+                                         alt="" />
+                                </a>
+                                <a href="https://www.twitter.com/">
+                                    <img class="sMLogo"
+                                         src="~/assets/images/socialMedia/twitter-logo-1.svg"
+                                         alt="" />
+                                </a>
+                                <a href="https://www.vk.com/">
+                                    <img class="sMLogo"
+                                         src="~/assets/images/socialMedia/v-kontakte-logo.svg"
+                                         alt="" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Social Media Links End-->
+                </div>
+                <div class="line"></div>
+                <p class="bottom">© 2024 Gorira, Inc. • Version: 1</p>
+            </div>
+        </footer>
+        <!--Footer End-->
+        <!--Script For Bootstrap-->
+        <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+        <!--Script for Swiper-->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+        <!--Script Custom Header-->
+        <script src="~/assets/javascript/header.js"></script>
+        <!--Script Custom Swiper-->
+        <script src="~/assets/javascript/swiper.js"></script>
+        <!--End-->
+</body>
+</html>

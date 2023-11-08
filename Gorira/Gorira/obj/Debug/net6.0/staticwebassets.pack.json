@@ -1,0 +1,845 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tracks\\Future - WAIT FOR U (Instrumental) ft. Drake, Tems.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tracks\\Future - WAIT FOR U (Instrumental) ft. Drake, Tems.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tracks\\Kevin Gates - 2 Phones (Official Instrumental).mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tracks\\Kevin Gates - 2 Phones (Official Instrumental).mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tracks\\Lil Baby & Gunna - Drip Too Hard (Official Instrumental).mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tracks\\Lil Baby & Gunna - Drip Too Hard (Official Instrumental).mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tracks\\Yung Lean - Yoshi City [Instrumental].mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tracks\\Yung Lean - Yoshi City [Instrumental].mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\trendingInstrumentals\\21 Savage - No Heart Instrumental.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\trendingInstrumentals\\21 Savage - No Heart Instrumental.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\trendingInstrumentals\\Travis Scott - Goosebumps (Official Instrumental).mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\trendingInstrumentals\\Travis Scott - Goosebumps (Official Instrumental).mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\trendingInstrumentals\\Young Thug - Check (Instrumental).mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\trendingInstrumentals\\Young Thug - Check (Instrumental).mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\trendingInstrumentals\\Young Thug Hot Instrumental Ft. Gunna BEST QUALITY.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\trendingInstrumentals\\Young Thug Hot Instrumental Ft. Gunna BEST QUALITY.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\Load\\tube-spinner.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\Load\\tube-spinner.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\WhyGorira\\Doja-Cat.png",
+      "PackagePath": "staticwebassets\\assets\\images\\WhyGorira\\Doja-Cat.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\WhyGorira\\Joji.png",
+      "PackagePath": "staticwebassets\\assets\\images\\WhyGorira\\Joji.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\WhyGorira\\Kenny-Beats.png",
+      "PackagePath": "staticwebassets\\assets\\images\\WhyGorira\\Kenny-Beats.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\WhyGorira\\Yeat.png",
+      "PackagePath": "staticwebassets\\assets\\images\\WhyGorira\\Yeat.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\21.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\21.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\drake.png",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\drake.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\future.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\future.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\gunna.png",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\gunna.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\kevinGates.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\kevinGates.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\lilBaby.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\lilBaby.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\travisScott.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\travisScott.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\youngThug.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\youngThug.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\youngThug2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\youngThug2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\yungLean.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\yungLean.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\favicon\\android-chrome-192x192.png",
+      "PackagePath": "staticwebassets\\assets\\images\\favicon\\android-chrome-192x192.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\favicon\\android-chrome-512x512.png",
+      "PackagePath": "staticwebassets\\assets\\images\\favicon\\android-chrome-512x512.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\favicon\\apple-touch-icon.png",
+      "PackagePath": "staticwebassets\\assets\\images\\favicon\\apple-touch-icon.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\favicon\\favicon-16x16.png",
+      "PackagePath": "staticwebassets\\assets\\images\\favicon\\favicon-16x16.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\favicon\\favicon-32x32.png",
+      "PackagePath": "staticwebassets\\assets\\images\\favicon\\favicon-32x32.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\favicon\\favicon.ico",
+      "PackagePath": "staticwebassets\\assets\\images\\favicon\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\favicon\\site.webmanifest",
+      "PackagePath": "staticwebassets\\assets\\images\\favicon\\site.webmanifest"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\genres\\electronic-music.jpeg",
+      "PackagePath": "staticwebassets\\assets\\images\\genres\\electronic-music.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\genres\\hip-hop.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\genres\\hip-hop.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\genres\\pop.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\genres\\pop.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\genres\\r&b.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\genres\\r&b.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\genres\\reggae.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\genres\\reggae.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\genres\\rock.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\genres\\rock.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\gif\\2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\gif\\2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\gif\\3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\gif\\3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\gif\\4.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\gif\\4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\arrow-left.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\arrow-left.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\arrow-right.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\arrow-right.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\burger.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\burger.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\camera-video-cute.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\camera-video-cute.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\camera-video.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\camera-video.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\cart-full.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\cart-full.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\chat-bubble-text-square.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\chat-bubble-text-square.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\check-circle.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\check-circle.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\check.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\check.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\chevron-down.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\chevron-down.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\chevron-lefticonImage24px.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\chevron-lefticonImage24px.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\credit-card.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\credit-card.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\dollar-bill.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\dollar-bill.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\dollar-coin.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\dollar-coin.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\dot.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\dot.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\download.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\download.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\ear-hearing.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\ear-hearing.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\edit-image-photo.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\edit-image-photo.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\email.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\email.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\filtersiconImage24px.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\filtersiconImage24px.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\handle-cart.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\handle-cart.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\happy-face-cute.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\happy-face-cute.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\happy-face.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\happy-face.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\headphones.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\headphones.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\heartbeat.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\heartbeat.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\layers-1.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\layers-1.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\lock-open.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\lock-open.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\message-bubbleiconImage24px.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\message-bubbleiconImage24px.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\message.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\message.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\microphoneiconImage24px.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\microphoneiconImage24px.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\music-note-trebble-clef.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\music-note-trebble-clef.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\music-note.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\music-note.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\music.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\music.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\pause.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\pause.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\pencil.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\pencil.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\play-list-5.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\play-list-5.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\play.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\play.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\plus.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\plus.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\power.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\power.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\radio.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\radio.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\save-cute.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\save-cute.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\search.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\search.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\send-cute.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\send-cute.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\send.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\send.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\sharingiconImage24px.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\sharingiconImage24px.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\shopping-cart.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\shopping-cart.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\sliders-v_10435308.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\sliders-v_10435308.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\sort-cute.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\sort-cute.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\sort.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\sort.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\squareAndPencil.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\squareAndPencil.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\theater-mask.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\theater-mask.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\threeDots.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\threeDots.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\trash.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\trash.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\upload.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\upload.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\user.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\user.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\voice-mail-2.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\voice-mail-2.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\voice-mail.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\voice-mail.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\logo\\Logo.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo\\Logo.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\pfp\\1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\pfp\\1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\pfp\\2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\pfp\\2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\pfp\\default.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\pfp\\default.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\playlistCovers\\raindrops.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\playlistCovers\\raindrops.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\setting\\mikeDean.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\setting\\mikeDean.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\setting\\mikeDeanAndKanyeWest.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\setting\\mikeDeanAndKanyeWest.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\slider\\easy-access.png",
+      "PackagePath": "staticwebassets\\assets\\images\\slider\\easy-access.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\slider\\producers.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\slider\\producers.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\slider\\producers.png",
+      "PackagePath": "staticwebassets\\assets\\images\\slider\\producers.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\slider\\work-from-home.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\slider\\work-from-home.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\socialMedia\\facebook-logo-2.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\socialMedia\\facebook-logo-2.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\socialMedia\\instagram-logo-2.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\socialMedia\\instagram-logo-2.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\socialMedia\\soundcloud-logo.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\socialMedia\\soundcloud-logo.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\socialMedia\\twitter-logo-1.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\socialMedia\\twitter-logo-1.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\socialMedia\\v-kontakte-logo.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\socialMedia\\v-kontakte-logo.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\socialMedia\\youtube-clip-logo.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\socialMedia\\youtube-clip-logo.svg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\artists.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\artists.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\createPlaylist.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\createPlaylist.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\editProfile.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\editProfile.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\feed.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\feed.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\header.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\header.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\messanger.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\messanger.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\modal.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\modal.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\myPlaylist.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\myPlaylist.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\myPlaylists.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\myPlaylists.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\myProfile.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\myProfile.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\myTracks.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\myTracks.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\play.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\play.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\playlist.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\playlist.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\playlists.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\playlists.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\profile.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\profile.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\swiper.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\swiper.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\track.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\track.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\tracks.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\tracks.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\upload.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\upload.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\jquerry\\jquerry.js",
+      "PackagePath": "staticwebassets\\assets\\jquerry\\jquerry.js"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\base\\_reset.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\base\\_reset.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\base\\_typography.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\base\\_typography.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\layout\\_footer.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\layout\\_footer.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\layout\\_header.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\layout\\_header.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\layout\\_toast.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\layout\\_toast.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_cart.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_cart.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_createPlaylist.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_createPlaylist.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_editProfile.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_editProfile.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_feed.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_feed.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_home.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_home.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_login.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_login.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_messanger.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_messanger.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_musicians.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_musicians.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_myPlaylist.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_myPlaylist.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_myPlaylists.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_myPlaylists.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_myProfile.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_myProfile.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_myTracks.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_myTracks.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_playlist.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_playlist.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_playlists.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_playlists.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_profile.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_profile.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_register.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_register.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_track.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_track.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_tracks.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_tracks.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\pages\\_upload.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_upload.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\style.css",
+      "PackagePath": "staticwebassets\\assets\\scss\\style.css"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\style.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\style.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\utilities\\_animations.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\utilities\\_animations.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\utilities\\_mixins.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\utilities\\_mixins.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\utilities\\_variables.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\utilities\\_variables.scss"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.Gorira.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.Gorira.props",
+      "PackagePath": "build\\Gorira.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.Gorira.props",
+      "PackagePath": "buildMultiTargeting\\Gorira.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.Gorira.props",
+      "PackagePath": "buildTransitive\\Gorira.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

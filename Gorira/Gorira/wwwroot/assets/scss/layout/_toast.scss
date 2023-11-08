@@ -1,0 +1,105 @@
+#toastBox {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    overflow: hidden;
+    .invalid {
+      @include toast(#ff0015);
+      left: calc(100% + 30px);
+    }
+    .success {
+      @include toast(#4fc232);
+      left: calc(100% + 30px);
+    }
+    .animated {
+      animation: toastSlide 0.5s ease-out forwards;
+      &::after {
+        animation: toastTimer 1.5s linear 0.5s forwards;
+      }
+    }
+  }
+  
+  @include for-type(tablet) {
+    #toastBox {
+      gap: 12px;
+      right: 25px;
+      top: 25px;
+      .invalid {
+        width: 200px;
+        height: 55px;
+        font-size: 12px;
+        padding: 0px 0px 0px 12px;
+        gap: 10px;
+        left: calc(100% + 25px);
+        .imageBox {
+          > img {
+            height: 20px;
+          }
+        }
+  
+        &::after {
+          height: 3px;
+        }
+      }
+      .success {
+        width: 200px;
+        height: 55px;
+        font-size: 12px;
+        padding: 0px 0px 0px 12px;
+        gap: 10px;
+        left: calc(100% + 25px);
+        .imageBox {
+          > img {
+            height: 20px;
+          }
+        }
+  
+        &::after {
+          height: 3px;
+        }
+      }
+    }
+  }
+  
+  @include for-type(mobile) {
+    #toastBox {
+      gap: 8px;
+      right: 10px;
+      top: 10px;
+      .invalid {
+        height: 45px;
+        font-size: 12px;
+        padding: 0px 0px 0px 2px;
+        gap: 10px;
+        left: calc(100% + 25px);
+        .imageBox {
+          > img {
+            height: 18px;
+          }
+        }
+  
+        &::after {
+          height: 2px;
+        }
+      }
+      .success {
+        height: 45px;
+        font-size: 12px;
+        padding: 0px 0px 0px 2px;
+        gap: 10px;
+        left: calc(100% + 25px);
+        .imageBox {
+          > img {
+            height: 18px;
+          }
+        }
+  
+        &::after {
+          height: 2px;
+        }
+      }
+    }
+  }

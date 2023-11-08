@@ -1,0 +1,35 @@
+@keyframes toastSlide {
+  80% {
+    left: -15px;
+  }
+  90% {
+    left: 15px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+@keyframes modalSlide {
+  100% {
+    opacity: 1;
+    bottom: 0px;
+
+  }
+}
+@keyframes toastTimer {
+  100% {
+    width: 0px;
+  }
+}
+
+@keyframes checkAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

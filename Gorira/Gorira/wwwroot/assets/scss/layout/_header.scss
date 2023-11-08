@@ -1,0 +1,903 @@
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 20px;
+  margin-block: 5px;
+  background-color: rgba(22, 5, 44, 0.788);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: rgba(214, 142, 255, 0.781);
+}
+
+* {
+  box-sizing: border-box;
+
+  @supports (-webkit-appearance: none) or (-moz-appearance: none) {
+    .checkbox-wrapper-13 input[type="checkbox"] {
+      --active: $button-purple-color;
+      --active-inner: #fff;
+      --focus: 2px rgba(162, 16, 247, 0.3);
+      --border: #bbc1e1;
+      --border-hover: #8c01cf;
+      --background: #fff;
+      --disabled: #f6f8ff;
+      --disabled-inner: #e1e6f9;
+      appearance: inherit;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      height: 20px;
+      outline: none;
+      display: inline-block;
+      vertical-align: top;
+      position: relative;
+      margin: 0;
+      cursor: pointer;
+      border: 1px solid var(--bc, var(--border));
+      background: var(--b, var(--background));
+      transition: --background 0.3s, border-color 0.3s, box-shadow 0.2s;
+      @include for-type(mobile) {
+        height: 18px;
+      }
+    }
+    .checkbox-wrapper-13 input[type="checkbox"]:after {
+      content: "";
+      display: block;
+      left: 0;
+      top: 0;
+      position: absolute;
+      transition: transform var(--d-t, 0.3s) var(--d-t-e, ease),
+        opacity var(--d-o, 0.2s);
+    }
+    .checkbox-wrapper-13 input[type="checkbox"]:checked {
+      --bc: var(--active);
+      --d-o: 0.3s;
+      --d-t: 0.6s;
+      --d-t-e: cubic-bezier(0.2, 0.85, 0.32, 1.2);
+    }
+    .checkbox-wrapper-13 input[type="checkbox"]:disabled {
+      --b: var(--disabled);
+      cursor: not-allowed;
+      opacity: 0.9;
+    }
+    .checkbox-wrapper-13 input[type="checkbox"]:disabled:checked {
+      --b: var(--disabled-inner);
+      --bc: var(--border);
+    }
+    .checkbox-wrapper-13 input[type="checkbox"]:disabled + label {
+      cursor: not-allowed;
+    }
+    .checkbox-wrapper-13
+      input[type="checkbox"]:hover:not(:checked):not(:disabled) {
+      --bc: var(--border-hover);
+    }
+    .checkbox-wrapper-13 input[type="checkbox"]:focus {
+      box-shadow: 0 0 0 var(--focus);
+    }
+    .checkbox-wrapper-13 input[type="checkbox"]:not(.switch) {
+      width: 20px;
+      @include for-type(mobile) {
+        width: 18px;
+      }
+    }
+    .checkbox-wrapper-13 input[type="checkbox"]:not(.switch):after {
+      opacity: var(--o, 0);
+    }
+    .checkbox-wrapper-13 input[type="checkbox"]:not(.switch):checked {
+      --o: 1;
+    }
+    .checkbox-wrapper-13 input[type="checkbox"] + label {
+      display: inline-block;
+      vertical-align: middle;
+      cursor: pointer;
+      margin-left: 4px;
+    }
+
+    .checkbox-wrapper-13 input[type="checkbox"]:not(.switch) {
+      border-radius: 7px;
+    }
+    .checkbox-wrapper-13 input[type="checkbox"]:not(.switch):after {
+      width: 5px;
+      height: 9px;
+      border: 2px solid var(--active-inner);
+      border-top: 0;
+      border-left: 0;
+      left: 7px;
+      top: 4px;
+      transform: rotate(var(--r, 20deg));
+    }
+    .checkbox-wrapper-13 input[type="checkbox"]:not(.switch):checked {
+      --r: 43deg;
+    }
+  }
+
+  .checkbox-wrapper-13 * {
+    box-sizing: inherit;
+  }
+  .checkbox-wrapper-13 *:before,
+  .checkbox-wrapper-13 *:after {
+    box-sizing: inherit;
+  }
+
+  .checkLabel {
+    transform: translateY(-2px);
+    @include for-type(tablet) {
+      transform: translateY(-1px);
+    }
+    @include for-type(mobile) {
+      transform: translateY(0.2px);
+    }
+  }
+}
+
+body {
+  background-color: $back-color-web;
+}
+header {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: $top-color-web;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .boxTop {
+    @include container();
+    .boxContent {
+      padding: 10px 0px;
+      height: 66px;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .left {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        .burger {
+          display: none;
+        }
+        .logo {
+          position: absolute;
+          height: 100px;
+          top: 0px;
+          left: -20px;
+          z-index: 3;
+        }
+        .mySearchForm {
+          margin-left: 80px;
+          @include input(400px);
+          position: relative;
+          .searchIcon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            border: none;
+            height: 23px;
+            width: 23px;
+            opacity: 0.8;
+            position: absolute;
+            right: 6px;
+            bottom: 6px;
+            cursor: pointer;
+            .theSearchIcon {
+              height: 23px;
+              width: 23px;
+            }
+          }
+        }
+      }
+      .right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        .myBtn {
+          @include niceButton(104px, 37px);
+        }
+
+        .accountHolder {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 3px;
+          background-color: transparent;
+          cursor: pointer;
+          padding: 4px;
+          transition: 0.2s;
+          position: relative;
+          border-radius: 20px;
+          .loginIcon {
+            height: 28px;
+            width: 28px;
+          }
+          .pfp {
+            height: 33px;
+            width: 33px;
+            border-radius: 50%;
+            border: 2px solid $purple-color-web;
+          }
+          .chevronAcc {
+            width: 14px;
+            height: 14px;
+            opacity: 0.6;
+            transition: 0.1s;
+          }
+          &:hover {
+            .chevronAcc {
+              opacity: 1;
+            }
+            background-color: rgba(137, 43, 226, 0.3);
+          }
+          .accountContent {
+            position: absolute;
+            z-index: 10;
+            top: 50px;
+            right: 0px;
+            padding: 20px;
+            background-color: $grey-color-web;
+            border-radius: $border-radius-default;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+              0 3px 6px rgba(0, 0, 0, 0.23);
+            flex-direction: column;
+            border: 2px solid $purple-color-web;
+            display: none;
+            transition: 0.1s;
+            &.active {
+              display: flex;
+            }
+            .accountLine {
+              text-decoration: none;
+              &:not(:first-child) {
+                margin-top: 10px;
+              }
+              width: max-content;
+
+              margin-bottom: 8px;
+              display: flex;
+              justify-content: center;
+              align-items: flex-end;
+              gap: 10px;
+              > p {
+                @include text(16px, 600, 120%);
+              }
+              > img {
+                height: 22px;
+              }
+              &:first-child {
+                margin-top: 0;
+                align-self: flex-start;
+              }
+            }
+
+            .divider {
+              background-color: rgb(95, 95, 95);
+              height: 1px;
+              width: 120%;
+              align-self: center;
+            }
+          }
+        }
+
+        .basketHolder {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 3px;
+          background-color: transparent;
+          cursor: pointer;
+          padding: 4px;
+          transition: 0.2s;
+          position: relative;
+          border-radius: 20px;
+          .basketCounter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            @include text(12px, 100, 100%);
+            background-color: #8c01cf;
+            padding: 4px;
+            height: 16px;
+            width: 16px;
+            top: 3px;
+            right: 17px;
+            border-radius: 50%;
+          }
+          .basketIcon {
+            width: 30px;
+            height: 30px;
+          }
+          .chevronBasket {
+            width: 14px;
+            height: 14px;
+            opacity: 0.6;
+            transition: 0.1s;
+          }
+          &:hover {
+            .chevronBasket {
+              opacity: 1;
+            }
+            background-color: rgba(137, 43, 226, 0.3);
+          }
+          .basketContent {
+            position: absolute;
+            z-index: 10;
+            top: 50px;
+            right: 0px;
+            padding: 20px;
+            background-color: $grey-color-web;
+            border-radius: $border-radius-default;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+              0 3px 6px rgba(0, 0, 0, 0.23);
+            flex-direction: column;
+            border: 2px solid $purple-color-web;
+            display: none;
+            transition: 0.1s;
+            max-height: 437px;
+            overflow: auto;
+            &.active {
+              display: flex;
+            }
+            .oneBeat {
+              box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+                rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+                rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+              &:not(:first-child) {
+                margin-top: 16px;
+              }
+              width: max-content;
+              margin-bottom: 10px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 10px;
+              .beatDetail {
+                text-decoration: none;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                gap: 10px;
+                width: 300px;
+                .title {
+                  @include text(20px, 600, 40px);
+                  height: 40px;
+                  width: fit-content;
+                  opacity: 0.8;
+                  &:hover {
+                    opacity: 1;
+                  }
+                }
+                overflow: hidden;
+                .beatCover {
+                  height: 40px;
+                  border: 1px solid transparent;
+                  transition: 0.2s;
+                  &:hover {
+                    border: 1px solid $purple-color-web;
+                  }
+                }
+              }
+              .price {
+                @include text(14px, 800, 40px);
+                cursor: text;
+              }
+              .removeBasket {
+                .ex {
+                  transform: rotate(45deg);
+                  transition: 0.3s;
+                  &:hover {
+                    transform: rotate(225deg);
+                  }
+                }
+              }
+            }
+
+            .divider {
+              background-color: rgba(95, 95, 95, 0.445);
+              height: 2px;
+              width: 100%;
+              align-self: center;
+            }
+            .checkout {
+              margin-top: 16px;
+              @include buttonMain(100%, 37px);
+              padding: 10px;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+nav {
+  background-color: $grey-color-web;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 66px;
+  left: 0px;
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+  box-shadow: 0 20px 10px -20px rgba(0, 0, 0, 0.986) inset;
+  .boxBottom {
+    @include container();
+    .bottomBoxContent {
+      padding: 10px 30px;
+      height: 50px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 35px;
+      > a {
+        text-decoration: none;
+        @include text(16px, 800, 100%);
+        color: rgb(151, 151, 151);
+        transition: 0.3s;
+        &:hover {
+          color: rgb(216, 216, 216);
+          transform: translateY(-5px);
+          scale: 1.05;
+          box-shadow: rgba(162, 16, 247, 0.4) 0px 5px,
+            rgba(162, 16, 247, 0.3) 0px 10px, rgba(162, 16, 247, 0.2) 0px 15px,
+            rgba(162, 16, 247, 0.1) 0px 20px, rgba(162, 16, 247, 0.05) 0px 25px;
+        }
+      }
+      #home {
+        font-size: 28px;
+        &:hover {
+          box-shadow: rgba(162, 16, 247, 0.4) 0px 5px,
+            rgba(162, 16, 247, 0.3) 0px 10px, rgba(162, 16, 247, 0.2) 0px 15px,
+            rgba(162, 16, 247, 0.1) 0px 20px, rgba(162, 16, 247, 0.05) 0px 25px;
+        }
+      }
+      #playlists,
+      #tracks {
+        font-size: 20px;
+      }
+      #tracks,
+      #artists {
+        transform: translateY(1px);
+        &:last-child {
+          transform: translateY(2px);
+        }
+
+        &:hover {
+          transform: translateX(-3px);
+          &:first-child {
+            transform: translateX(-5px);
+            transform: translateY(-2px);
+          }
+          box-shadow: rgba(162, 16, 247, 0.4) 5px 5px,
+            rgba(162, 16, 247, 0.3) 10px 10px, rgba(162, 16, 247, 0.2) 15px 15px,
+            rgba(162, 16, 247, 0.1) 20px 20px,
+            rgba(162, 16, 247, 0.05) 25px 25px;
+        }
+      }
+      #playlists,
+      #feed {
+        transform: translateY(1px);
+        &:first-child {
+          transform: translateY(2px);
+        }
+
+        &:hover {
+          transform: translateX(3px);
+          &:last-child {
+            transform: translateX(5px);
+            transform: translateY(-2px);
+          }
+          box-shadow: rgba(162, 16, 247, 0.4) -5px 5px,
+            rgba(162, 16, 247, 0.3) -10px 10px,
+            rgba(162, 16, 247, 0.2) -15px 15px,
+            rgba(162, 16, 247, 0.1) -20px 20px,
+            rgba(162, 16, 247, 0.05) -25px 25px;
+        }
+      }
+    }
+  }
+}
+
+@include for-type(tablet) {
+  header {
+    .boxTop {
+      width: 768px;
+      .boxContent {
+        padding: 8px 0px;
+        height: 56px;
+        .left {
+          .mySearchForm {
+            margin-left: 70px;
+            width: 300px;
+            .searchIcon {
+              height: 18px;
+              width: 18px;
+              opacity: 0.8;
+              position: absolute;
+              right: 4px;
+              bottom: 6px;
+              cursor: pointer;
+              .theSearchIcon {
+                height: 18px;
+                width: 18px;
+              }
+            }
+          }
+        }
+        .right {
+          gap: 18px;
+          .myBtn {
+            width: 94px;
+            height: 32px;
+          }
+
+          .accountHolder {
+            width: 51px;
+            height: 36px;
+            .loginIcon {
+              height: 27px;
+              width: 27px;
+              align-self: center;
+            }
+            .pfp {
+              height: 30px;
+              width: 30px;
+            }
+            .chevronAcc {
+              width: 12px;
+              height: 12px;
+            }
+            .accountContent {
+              top: 44px;
+              right: 0px;
+              padding: 14px;
+              .accountLine {
+                &:not(:first-child) {
+                  margin-top: 6px;
+                }
+
+                margin-bottom: 6px;
+                gap: 4px;
+                > p {
+                  @include text(14px, 400, 100%);
+                }
+                > img {
+                  height: 16px;
+                }
+              }
+
+              .divider {
+                background-color: rgb(95, 95, 95);
+                height: 1px;
+                width: 120%;
+                align-self: center;
+              }
+            }
+          }
+
+          .basketHolder {
+            .basketIcon {
+              width: 28px;
+              height: 28px;
+            }
+            .chevronBasket {
+              width: 12px;
+              height: 12px;
+            }
+            .basketContent {
+              top: 44px;
+              padding: 14px;
+              max-height: 220px;
+              .oneBeat {
+                &:not(:first-child) {
+                  margin-top: 10px;
+                }
+                width: max-content;
+                margin-bottom: 6px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 6px;
+                .beatDetail {
+                  text-decoration: none;
+                  display: flex;
+                  justify-content: start;
+                  align-items: center;
+                  gap: 8px;
+                  width: 200px;
+                  .title {
+                    @include text(16px, 300, 30px);
+                    height: 30px;
+                  }
+                  overflow: hidden;
+                  .beatCover {
+                    height: 30px;
+                  }
+                }
+                .price {
+                  @include text(12px, 400, 30px);
+                  cursor: text;
+                }
+                .removeBasket {
+                  .ex {
+                    height: 18px;
+                    transform: rotate(45deg);
+                    transition: 0.3s;
+                    &:hover {
+                      transform: rotate(225deg);
+                    }
+                  }
+                }
+              }
+
+              .divider {
+                height: 1px;
+              }
+              .checkout {
+                margin-top: 8px;
+                height: 30px;
+                padding: 8px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  nav {
+    background-color: $grey-color-web;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    top: 56px;
+
+    .boxBottom {
+      @include container();
+      .bottomBoxContent {
+        padding: 10px 30px;
+        height: 40px;
+        gap: 25px;
+        > a {
+          @include text(14px, 800, 100%);
+          color: rgb(151, 151, 151);
+        }
+        #home {
+          font-size: 22px;
+        }
+        #playlists,
+        #tracks {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+@include for-type(mobile) {
+  header {
+    .boxTop {
+      width: 960px;
+      .boxContent {
+        padding: 8px 0px;
+        height: 52px;
+        .left {
+          width: 60%;
+          display: flex;
+          align-items: center;
+
+          .burger {
+            transform: translateX(8px);
+            display: inline-block;
+            transition: 0.3s;
+            &:hover {
+              border-radius: 10px;
+              background-color: rgba(137, 43, 226, 0.3);
+            }
+          }
+          .logo {
+            width: 98px;
+            z-index: 3;
+            left: calc(50% + 5px);
+            transform: translateX(-50%);
+            top: -2px;
+          }
+          .mySearchForm {
+            margin-left: 20px;
+            width: 52%;
+            .searchIcon {
+              height: 16px;
+              width: 16px;
+              opacity: 0.8;
+              position: absolute;
+              right: 3px;
+              bottom: 7px;
+              cursor: pointer;
+              .theSearchIcon {
+                height: 16px;
+                width: 16px;
+              }
+            }
+          }
+        }
+        .right {
+          gap: 6px;
+          .myBtn {
+            width: 70px;
+            height: 28px;
+          }
+
+          .accountHolder {
+            gap: 2px;
+            width: 38px;
+            height: 28px;
+
+            .loginIcon {
+              height: 19px;
+              width: 19px;
+              align-self: center;
+            }
+            .pfp {
+              height: 22px;
+              width: 22px;
+            }
+            .chevronAcc {
+              width: 8px;
+              height: 8px;
+            }
+            .accountContent {
+              border: 1px solid $purple-color-web;
+              top: 41px;
+              right: 0px;
+              padding: 12px;
+              .accountLine {
+                &:not(:first-child) {
+                  margin-top: 6px;
+                }
+
+                margin-bottom: 6px;
+                gap: 4px;
+                > p {
+                  @include text(14px, 400, 100%);
+                }
+                > img {
+                  height: 16px;
+                }
+              }
+
+              .divider {
+                background-color: rgb(95, 95, 95);
+                height: 1px;
+                width: 120%;
+                align-self: center;
+              }
+            }
+          }
+
+          .basketHolder {
+            gap: 2px;
+            .basketCounter {
+              height: 12px;
+              width: 12px;
+              right: 11px;
+              padding: 0px;
+              font-size: 10px;
+            }
+            .basketIcon {
+              width: 20px;
+              height: 20px;
+            }
+            .chevronBasket {
+              width: 8px;
+              height: 8px;
+            }
+            .basketContent {
+              border: 1px solid $purple-color-web;
+
+              top: 44px;
+              padding: 14px;
+              max-height: 220px;
+              .oneBeat {
+                &:not(:first-child) {
+                  margin-top: 10px;
+                }
+                width: max-content;
+                margin-bottom: 6px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 6px;
+                .beatDetail {
+                  text-decoration: none;
+                  display: flex;
+                  justify-content: start;
+                  align-items: center;
+                  gap: 8px;
+                  width: 200px;
+                  .title {
+                    @include text(16px, 300, 30px);
+                    height: 30px;
+                  }
+                  overflow: hidden;
+                  .beatCover {
+                    height: 30px;
+                  }
+                }
+                .price {
+                  @include text(12px, 400, 30px);
+                  cursor: text;
+                }
+                .removeBasket {
+                  .ex {
+                    height: 18px;
+                    transform: rotate(45deg);
+                    transition: 0.3s;
+                    &:hover {
+                      transform: rotate(225deg);
+                    }
+                  }
+                }
+              }
+
+              .divider {
+                height: 1px;
+              }
+              .checkout {
+                margin-top: 8px;
+                height: 30px;
+                padding: 8px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  nav {
+    top: 52px;
+    left: 0;
+    z-index: 3;
+    width: 100px;
+    height: 160px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid $purple-color-web;
+    border-top: none;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    position: absolute;
+    .boxBottom {
+      margin-bottom: 6px;
+      .bottomBoxContent {
+        width: max-content;
+        flex-direction: column;
+        padding: 5px 10px;
+        height: 20px;
+        gap: 10px;
+        > a {
+          @include text(14px, 800, 100%);
+          width: 80px;
+          align-self: center;
+          border-bottom: 1px solid rgb(51, 51, 51);
+          padding-bottom: 5px;
+          font-size: 14px !important;
+          color: rgb(151, 151, 151) !important;
+          transform: translateX(0) !important;
+          transform: translateY(0) !important;
+          &:hover {
+            transform: translateX(0) !important;
+            transform: translateY(0) !important;
+            box-shadow: none !important;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,814 @@
+#myPlaylistsMain {
+    background-color: $back-color-web;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .divider {
+      height: 1px;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.144);
+    }
+    .box {
+      @include container();
+      padding: 80px 30px 40px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-direction: row;
+      .content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 20px;
+        width: 100%;
+        .topText {
+          position: relative;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .leftName {
+            @include text(34px, 600, 100%);
+            img {
+              display: none;
+            }
+          }
+          text-decoration: none;
+          .sort {
+            @include text(16px, 500, 100%);
+            transition: 0.3s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px;
+  
+            border-radius: 20px;
+            &:hover {
+              background-color: $lightestGrey-color-web;
+            }
+          }
+          .sortHolder {
+            z-index: 3;
+            position: absolute;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+              0 3px 6px rgba(0, 0, 0, 0.23);
+            display: none;
+            flex-direction: column;
+            padding: 4px 2px;
+            gap: 6px;
+            right: 0;
+            top: 43px;
+            width: 120px;
+            background-color: $top-color-web;
+            border: 1px solid gray;
+            cursor: pointer;
+            &.active {
+              display: flex;
+            }
+            a {
+              @include text(20px, 400, 100%);
+  
+              width: 100%;
+              text-decoration: none;
+              &:hover {
+                background-color: $lightGrey-color-web;
+              }
+            }
+          }
+        }
+        .searchTracks {
+          position: relative;
+          width: 400px;
+          .inputLabel {
+            @include text(20px, 400, 100%);
+          }
+          gap: 6px;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          flex-direction: column;
+          .inputIcon {
+            height: 16px;
+            opacity: 0.8;
+            bottom: 1px;
+            align-self: center;
+            font-weight: 600;
+            cursor: pointer;
+            color: rgb(219, 219, 219);
+          }
+          .inputField {
+            background-color: $top-color-web;
+            outline: none;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            padding: 10px 10px;
+            padding-right: 40px;
+            @include text(16px, 600, 100%);
+            transition: 0.2s;
+            width: 100%;
+            &:hover {
+              border: 1px solid $lightestGrey-color-web;
+            }
+            &:focus {
+              border: 1px solid rgba(162, 16, 247, 0.8);
+            }
+          }
+          button {
+            width: fit-content;
+            height: fit-content;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            img {
+              height: 25px;
+              position: absolute;
+              top: 10px;
+              right: 10px;
+              opacity: 0.6;
+            }
+          }
+        }
+        .createPlaylist{
+          width: 100%;
+          display: flex;
+          justify-content: flex-end;
+          a{
+            @include niceButton(200px,40px)
+          }
+        }
+        .theTracks {
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-wrap: wrap;
+          width: 100%;
+          gap: 52px;
+          row-gap: 30px;
+          .myCard {
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+              0 3px 6px rgba(0, 0, 0, 0.23);
+            border-radius: $border-radius-default;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 18px;
+            padding-top: 34px;
+            transition: 0.3s;
+            position: relative;
+            height: fit-content;
+            .coverHolder {
+              position: relative;
+              height: 250px;
+              width: 250px;
+              margin-bottom: 10px;
+              .cover {
+                object-fit: cover;
+                object-position: center;
+                height: 250px;
+                width: 250px;
+                position: absolute !important;
+                border-radius: $border-radius-default;
+                box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+                  rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+                  rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+                z-index: 2;
+              }
+              &::before {
+                content: "";
+                position: absolute !important;
+                border: 1px solid silver !important;
+                background-color: rgb(36, 36, 36) !important;
+                border-radius: $border-radius-default;
+                height: 230px;
+                width: 230px;
+                top: -8px !important;
+                left: 10px !important;
+                z-index: 1;
+                opacity: 1 !important;
+                filter: blur(0.1px);
+              }
+              &::after {
+                content: "";
+                position: absolute !important;
+                border: 1px solid silver !important;
+                background-color: rgb(36, 36, 36) !important;
+                border-radius: $border-radius-default;
+                height: 210px;
+                width: 210px;
+                top: -14px !important;
+                left: 20px !important;
+                z-index: 0;
+                opacity: 0.8 !important;
+                filter: blur(0.4px);
+              }
+            }
+            .bottomText {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              width: 100%;
+              gap: 2px;
+              .titleHolder {
+                display: flex;
+                gap: 4px;
+                align-items: center;
+                text-decoration: none;
+                .title {
+                  margin-top: 4px;
+                  width: 200px;
+                  @include text(20px, 800, 28px);
+                  height: 28px;
+                  overflow: hidden;
+                }
+              }
+              .authorHolder {
+                display: flex;
+                gap: 4px;
+                align-items: center;
+                text-decoration: none;
+                .author {
+                  width: 200px;
+                  @include text(20px, 400, 28px);
+                  color: #c7c7c7c7;
+                  height: 28px;
+                  overflow: hidden;
+                }
+              }
+              .songCount {
+                margin-top: 4px;
+                width: 200px;
+                @include text(20px, 400, 28px);
+                color: #c7c7c7c7;
+                height: 28px;
+                overflow: hidden;
+              }
+            }
+            &:hover {
+              background-color: $lightGrey-color-web;
+              .play,
+              .pause {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @include for-type(tablet) {
+    #myPlaylistsMain {
+      background-color: $back-color-web;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .divider {
+        height: 1px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.144);
+      }
+      .box {
+        width: 768px;
+        padding: 60px 10px 30px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: row;
+        .content {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          gap: 20px;
+          width: 100%;
+          .createPlaylist{
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            a{
+             width: 190px;
+             height: 36px;
+            }
+          }
+          .topText {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .leftName {
+              @include text(34px, 600, 100%);
+              img {
+                display: none;
+              }
+            }
+            text-decoration: none;
+            .sort {
+              @include text(16px, 500, 100%);
+              transition: 0.3s;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              padding: 8px;
+  
+              border-radius: 20px;
+              &:hover {
+                background-color: $lightestGrey-color-web;
+              }
+            }
+            .sortHolder {
+              z-index: 3;
+              position: absolute;
+              box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+                0 3px 6px rgba(0, 0, 0, 0.23);
+              display: none;
+              flex-direction: column;
+              padding: 4px 2px;
+              gap: 6px;
+              right: 0;
+              top: 43px;
+              width: 120px;
+              background-color: $top-color-web;
+              border: 1px solid gray;
+              cursor: pointer;
+              &.active {
+                display: flex;
+              }
+              a {
+                @include text(20px, 400, 100%);
+  
+                width: 100%;
+                text-decoration: none;
+                &:hover {
+                  background-color: $lightGrey-color-web;
+                }
+              }
+            }
+          }
+          .searchTracks {
+            position: relative;
+            width: 400px;
+            .inputLabel {
+              @include text(20px, 400, 100%);
+            }
+            gap: 6px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            .inputIcon {
+              height: 16px;
+              opacity: 0.8;
+              bottom: 1px;
+              align-self: center;
+              font-weight: 600;
+              cursor: pointer;
+              color: rgb(219, 219, 219);
+            }
+            .inputField {
+              background-color: $top-color-web;
+              outline: none;
+              border: 1px solid transparent;
+              border-radius: 6px;
+              padding: 10px 10px;
+              padding-right: 40px;
+              @include text(16px, 600, 100%);
+              transition: 0.2s;
+              width: 100%;
+              &:hover {
+                border: 1px solid $lightestGrey-color-web;
+              }
+              &:focus {
+                border: 1px solid rgba(162, 16, 247, 0.8);
+              }
+            }
+            button {
+              width: fit-content;
+              height: fit-content;
+              border: none;
+              outline: none;
+              background-color: transparent;
+              img {
+                height: 25px;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                opacity: 0.6;
+              }
+            }
+          }
+          .theTracks {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            flex-direction: row;
+            width: 100%;
+            gap: 20px;
+            row-gap: 20px;
+            .myCard {
+              box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+                0 3px 6px rgba(0, 0, 0, 0.23);
+              border-radius: $border-radius-default;
+              display: flex;
+              justify-content: flex-start;
+              align-items: flex-start;
+              flex-direction: row;
+              padding-top: 0px;
+              padding: 10px;
+              transition: 0.3s;
+              position: relative;
+              height: fit-content;
+              width: 364px;
+              .coverHolder {
+                position: relative;
+                height: 100px;
+                width: 0px;
+                margin-bottom: 0px;
+                .cover {
+                  object-fit: cover;
+                  object-position: center;
+                  height: 100px;
+                  width: 100px;
+                  position: absolute !important;
+                  border-radius: $border-radius-default;
+                  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+                    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+                    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+                  z-index: 2;
+                }
+                &::before {
+                  content: "";
+                  position: absolute !important;
+                  border: 1px solid silver !important;
+                  background-color: rgb(36, 36, 36) !important;
+                  border-radius: $border-radius-default;
+                  height: 90px;
+                  width: 90px;
+                  top: -4px !important;
+                  left: 5px !important;
+                  z-index: 1;
+                  opacity: 1 !important;
+                  filter: blur(0.1px);
+                }
+                &::after {
+                  content: "";
+                  position: absolute !important;
+                  border: 1px solid silver !important;
+                  background-color: rgb(36, 36, 36) !important;
+                  border-radius: $border-radius-default;
+                  height: 80px;
+                  width: 80px;
+                  top: -7px !important;
+                  left: 10px !important;
+                  z-index: 0;
+                  opacity: 0.8 !important;
+                  filter: blur(0.4px);
+                }
+              }
+              .bottomText {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                width: 100%;
+                height: 100px;
+                gap: 8px;
+                margin-left: 110px;
+                .titleHolder {
+                  display: flex;
+                  gap: 4px;
+                  align-items: center;
+                  text-decoration: none;
+                  .title {
+                    margin-top: 0px;
+                    width: 190px;
+                    @include text(16px, 600, 20px);
+                    height: 20px;
+                    overflow: hidden;
+                  }
+                  img{
+                    height: 20px;
+                  }
+                }
+                .authorHolder {
+                  display: flex;
+                  gap: 4px;
+                  align-items: center;
+                  text-decoration: none;
+                  .author {
+                    width: 200px;
+                    @include text(16px, 400, 18px);
+                    color: #c7c7c7c7;
+                    height: 18px;
+                    overflow: hidden;
+                  }
+                }
+                .songCount {
+                  margin-top: 0px;
+                  width: 200px;
+                  @include text(14px, 400, 16px);
+                  color: #c7c7c7c7;
+                  height: 16px;
+                  overflow: hidden;
+                }
+              }
+              &:hover {
+                background-color: $lightGrey-color-web;
+                .play,
+                .pause {
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  
+  @include for-type(mobile) {
+    #myPlaylistsMain {
+      background-color: $back-color-web;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .divider {
+        height: 1px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.144);
+      }
+      .box {
+        width: 380px;
+        padding: 40px 0px 20px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: row;
+        .content {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          gap: 20px;
+          width: 100%;
+          .createPlaylist{
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            a{
+             width: fit-content;
+             height: 30px;
+            }
+          }
+          .createPlaylist{
+            button{
+              width: fit-content;
+              height: 30px;
+            }
+          }
+          .topText {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .leftName {
+              @include text(28px, 600, 100%);
+              img {
+                display: none;
+              }
+            }
+            text-decoration: none;
+            .sort {
+              @include text(14px, 500, 100%);
+              transition: 0.3s;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              padding: 8px;
+  
+              border-radius: 20px;
+              &:hover {
+                background-color: $lightestGrey-color-web;
+              }
+              img{
+                height: 18px;
+              }
+            }
+            .sortHolder {
+              z-index: 3;
+              position: absolute;
+              box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+                0 3px 6px rgba(0, 0, 0, 0.23);
+              display: none;
+              flex-direction: column;
+              padding: 4px 2px;
+              gap: 6px;
+              right: 0;
+              top: 36px;
+              width: 120px;
+              background-color: $top-color-web;
+              border: 1px solid gray;
+              cursor: pointer;
+              &.active {
+                display: flex;
+              }
+              a {
+                @include text(20px, 400, 100%);
+  
+                width: 100%;
+                text-decoration: none;
+                &:hover {
+                  background-color: $lightGrey-color-web;
+                }
+              }
+            }
+          }
+          .searchTracks {
+            position: relative;
+            width: 380px;
+            .inputLabel {
+              @include text(20px, 400, 100%);
+            }
+            gap: 6px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            .inputIcon {
+              height: 16px;
+              opacity: 0.8;
+              bottom: 1px;
+              align-self: center;
+              font-weight: 600;
+              cursor: pointer;
+              color: rgb(219, 219, 219);
+            }
+            .inputField {
+              background-color: $top-color-web;
+              outline: none;
+              border: 1px solid transparent;
+              border-radius: 6px;
+              padding: 10px 10px;
+              padding-right: 40px;
+              @include text(16px, 600, 100%);
+              transition: 0.2s;
+              width: 100%;
+              &:hover {
+                border: 1px solid $lightestGrey-color-web;
+              }
+              &:focus {
+                border: 1px solid rgba(162, 16, 247, 0.8);
+              }
+            }
+            button {
+              width: fit-content;
+              height: fit-content;
+              border: none;
+              outline: none;
+              background-color: transparent;
+              img {
+                height: 25px;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                opacity: 0.6;
+              }
+            }
+          }
+          
+          .theTracks {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            width: 100%;
+            gap: 20px;
+            .myCard {
+              box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+                0 3px 6px rgba(0, 0, 0, 0.23);
+              border-radius: $border-radius-default;
+              display: flex;
+              justify-content: flex-start;
+              align-items: flex-start;
+              flex-direction: row;
+              padding-top: 0px;
+              padding: 10px;
+              transition: 0.3s;
+              position: relative;
+              height: fit-content;
+              width: 100%;
+              .coverHolder {
+                position: relative;
+                height: 100px;
+                width: 0px;
+                margin-bottom: 0px;
+                .cover {
+                  object-fit: cover;
+                  object-position: center;
+                  height: 100px;
+                  width: 100px;
+                  position: absolute !important;
+                  border-radius: $border-radius-default;
+                  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+                    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+                    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+                  z-index: 2;
+                }
+                &::before {
+                  content: "";
+                  position: absolute !important;
+                  border: 1px solid silver !important;
+                  background-color: rgb(36, 36, 36) !important;
+                  border-radius: $border-radius-default;
+                  height: 90px;
+                  width: 90px;
+                  top: -4px !important;
+                  left: 5px !important;
+                  z-index: 1;
+                  opacity: 1 !important;
+                  filter: blur(0.1px);
+                }
+                &::after {
+                  content: "";
+                  position: absolute !important;
+                  border: 1px solid silver !important;
+                  background-color: rgb(36, 36, 36) !important;
+                  border-radius: $border-radius-default;
+                  height: 80px;
+                  width: 80px;
+                  top: -7px !important;
+                  left: 10px !important;
+                  z-index: 0;
+                  opacity: 0.8 !important;
+                  filter: blur(0.4px);
+                }
+              }
+              .bottomText {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                width: 100%;
+                height: 100px;
+                gap: 8px;
+                margin-left: 110px;
+                .titleHolder {
+                  display: flex;
+                  gap: 4px;
+                  align-items: center;
+                  text-decoration: none;
+                  .title {
+                    margin-top: 0px;
+                    width: 210px;
+                    @include text(16px, 600, 20px);
+                    height: 20px;
+                    overflow: hidden;
+                  }
+                  img{
+                    height: 20px;
+                  }
+                }
+                .authorHolder {
+                  display: flex;
+                  gap: 4px;
+                  align-items: center;
+                  text-decoration: none;
+                  .author {
+                    width: 220px;
+                    @include text(16px, 400, 18px);
+                    color: #c7c7c7c7;
+                    height: 18px;
+                    overflow: hidden;
+                  }
+                }
+                .songCount {
+                  margin-top: 0px;
+                  width: 220px;
+                  @include text(14px, 400, 16px);
+                  color: #c7c7c7c7;
+                  height: 16px;
+                  overflow: hidden;
+                }
+              }
+              &:hover {
+                background-color: $lightGrey-color-web;
+                .play,
+                .pause {
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

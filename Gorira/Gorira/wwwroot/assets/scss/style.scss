@@ -1,0 +1,30 @@
+@import "./base/reset";
+@import "./base/typography";
+
+@import "./utilities/variables";
+@import "./utilities/animations";
+@import "./utilities/mixins";
+
+@import "./layout/header";
+@import "./layout/footer";
+@import "./layout/toast";
+
+@import "./pages/home";
+@import "./pages/register.scss";
+@import "./pages/login.scss";
+@import "./pages/upload.scss";
+@import "./pages/profile.scss";
+@import "./pages/myProfile.scss";
+@import "./pages/editProfile.scss";
+@import "./pages/musicians.scss";
+@import "./pages/tracks.scss";
+@import "./pages/cart.scss";
+@import "./pages/track.scss";
+@import "./pages/feed.scss";
+@import "./pages/myTracks";
+@import "./pages/messanger";
+@import "./pages/playlist";
+@import "./pages/myPlaylist";
+@import "./pages/playlists";
+@import "./pages/myPlaylists";
+@import "./pages/createPlaylist";

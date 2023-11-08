@@ -1,0 +1,1017 @@
+#uploadMain {
+  background-color: $back-color-web;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .box {
+    @include container();
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 30px 40px 30px;
+    flex-direction: column;
+    gap: 40px;
+    .title {
+      @include text(40px, 600, 100%);
+      align-self: flex-start;
+    }
+    .uploadForms {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      height: 100%;
+      section {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        .sectionName {
+          align-self: flex-start;
+          @include text(26px, 600, 100%);
+          margin-bottom: 20px;
+        }
+        .theForm {
+          background-color: $top-color-web;
+          width: 100%;
+          border: 2px solid rgb(80, 80, 80);
+          border-radius: 6px;
+          padding: 30px 20px 40px 20px;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          gap: 20px;
+          .regular {
+            &:not(:first-child) {
+              margin-top: 20px;
+            }
+            width: 100%;
+            .inputLabel {
+              @include text(20px, 400, 100%);
+            }
+            gap: 6px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            .inputIcon {
+              height: 16px;
+              opacity: 0.8;
+              bottom: 1px;
+              align-self: center;
+              font-weight: 600;
+              cursor: pointer;
+              color: rgb(219, 219, 219);
+            }
+            .inputField {
+              background-color: $back-color-web;
+              outline: none;
+              border: 2px solid rgb(80, 80, 80);
+              border-radius: 6px;
+              padding: 10px 10px;
+              @include text(16px, 600, 100%);
+              transition: 0.2s;
+              width: 100%;
+              &:hover {
+                border: 2px solid rgb(163, 163, 163);
+              }
+              &:focus {
+                border: 2px solid rgba(162, 16, 247, 0.8);
+              }
+            }
+          }
+          .trackTags {
+            .tagsAndBtn {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              gap: 20px;
+              width: 100%;
+              .addBtn {
+                @include niceButton(200px, 45px);
+              }
+            }
+            .tagHolder {
+              display: flex;
+              justify-content: flex-start;
+              align-items: flex-start;
+              flex-direction: column;
+              gap: 10px;
+              .theTag {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 2px;
+
+                background-color: rgb(51, 51, 51);
+                border: 1px solid #c7c7c7c7;
+                border-radius: 20px;
+                @include text(16px, 600, 12px);
+                color: rgb(182, 182, 182);
+                padding: 6px;
+                img {
+                  transform: rotate(45deg) translateX(1px);
+                  height: 16px;
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .general {
+        align-items: flex-start;
+        justify-content: flex-start;
+        .left {
+          width: 600px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+        .right {
+          width: 600px;
+          display: flex;
+          gap: 40px;
+          align-items: center;
+          .audioButtons {
+            width: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-direction: center;
+            .dwnbtns {
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              flex-direction: flex-start;
+              .wrapper-btn {
+                transform: translateY(10px);
+                position: relative;
+                width: 100%;
+                .uploadIcon {
+                  position: absolute;
+                  z-index: 2;
+                  left: 14px;
+                  top: 24px;
+                  text-align: start;
+                  pointer-events: none;
+                  height: 32px;
+                }
+                .desc {
+                  width: 100%;
+                  position: absolute;
+                  @include text(16px, 800, 100%);
+                  z-index: 2;
+                  left: 58px;
+                  top: 32px;
+                  text-align: start;
+                  pointer-events: none;
+                  color: rgb(160, 160, 160);
+                }
+                .fileUpload {
+                  height: 60px;
+                  margin-top: 40px;
+                  color: transparent;
+                  color: transparent;
+                  width: 200px;
+                  cursor: pointer;
+                  &:after {
+                    content: "                                   ";
+                    border-radius: 10px;
+                    background-color: $back-color-web;
+                    position: absolute;
+                    opacity: 1;
+                    border: 1px solid grey;
+                    color: #c7c7c7c7;
+                    left: 0;
+                    top: 0;
+                    text-align: center;
+                    padding: 30px;
+                    @include text(20px, 600, 100%);
+                  }
+                }
+              }
+
+              h3 {
+                @include text(20px, 400, 100%);
+              }
+            }
+          }
+          .pfpUpload {
+            padding: 20px;
+            width: 280px;
+            height: 340px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            .coverImage {
+              height: 200px;
+              width: 200px;
+              transform: translateY(-20px);
+              border: 1px solid grey;
+              img {
+                width: 198px;
+                height: 198px;
+              }
+            }
+            .wrapper-btn {
+              transform: translateY(28px);
+              position: relative;
+              width: 100%;
+              .uploadIcon {
+                position: absolute;
+                z-index: 2;
+                left: 14px;
+                top: 24px;
+                text-align: start;
+                pointer-events: none;
+                height: 32px;
+              }
+              .desc {
+                width: 100%;
+                position: absolute;
+                @include text(16px, 800, 100%);
+                z-index: 2;
+                left: 58px;
+                top: 32px;
+                text-align: start;
+                pointer-events: none;
+                color: rgb(160, 160, 160);
+              }
+              .fileUpload {
+                height: 60px;
+                margin-top: 40px;
+                color: transparent;
+                color: transparent;
+                width: 200px;
+                cursor: pointer;
+                &:after {
+                  content: "                                   ";
+                  border-radius: 10px;
+                  background-color: $back-color-web;
+                  position: absolute;
+                  opacity: 1;
+                  border: 1px solid grey;
+                  color: #c7c7c7c7;
+                  left: 0;
+                  top: 0;
+                  text-align: center;
+                  padding: 30px;
+                  @include text(20px, 600, 100%);
+                }
+              }
+            }
+          }
+        }
+      }
+      .selling {
+        .theForm {
+          justify-content: center;
+          align-items: flex-start;
+          flex-direction: column;
+          .licenses {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row !important;
+            gap: 20px;
+          }
+          .regular {
+            margin-top: 0px !important;
+          }
+        }
+      }
+      .details {
+        .theForm {
+          justify-content: center;
+          align-items: flex-start;
+          flex-direction: row;
+          .left {
+            width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .regular {
+              .selectList {
+                width: 100%;
+                cursor: pointer;
+                option {
+                  cursor: pointer;
+                }
+              }
+              textarea {
+                max-height: 136px;
+                resize: none;
+              }
+            }
+          }
+          .right {
+            width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .regular {
+              .selectList {
+                width: 100%;
+                cursor: pointer;
+                option {
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+      }
+      @include checkboxInput();
+    }
+  }
+  position: relative;
+  .submitHolder {
+    background-color: $lightestGrey-color-web;
+    border-top-left-radius: 10px;
+    padding: 20px 40px;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45),
+      25px 0 20px -20px rgba(0, 0, 0, 0.45),
+      0px 25px 20px -20px rgba(0, 0, 0, 0.45),
+      -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+    button {
+      @include niceButton(100px, 40px);
+    }
+  }
+}
+//================================================================
+@include for-type(tablet) {
+  #uploadMain {
+    .box {
+      width: 768px;
+      padding: 80px 10px 40px 10px;
+      .title {
+        @include text(40px, 600, 100%);
+      }
+      .uploadForms {
+        section {
+          .theForm {
+            padding: 30px 20px 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 30px;
+            .regular {
+              &:not(:first-child) {
+                margin-top: 20px;
+              }
+              width: 100%;
+              .inputLabel {
+                @include text(14px, 300, 100%);
+              }
+              gap: 6px;
+              display: flex;
+              align-items: flex-start;
+              justify-content: center;
+              flex-direction: column;
+              .inputIcon {
+                height: 16px;
+                opacity: 0.8;
+                bottom: 1px;
+                align-self: center;
+                font-weight: 600;
+                cursor: pointer;
+                color: rgb(219, 219, 219);
+              }
+              .inputField {
+                background-color: $back-color-web;
+                outline: none;
+                border: 2px solid rgb(80, 80, 80);
+                border-radius: 6px;
+                padding: 10px 10px;
+                @include text(16px, 600, 100%);
+                transition: 0.2s;
+                width: 100%;
+                &:hover {
+                  border: 2px solid rgb(163, 163, 163);
+                }
+                &:focus {
+                  border: 2px solid rgba(162, 16, 247, 0.8);
+                }
+              }
+            }
+            .trackTags {
+              .tagsAndBtn {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+                width: 100%;
+                .addBtn {
+                  @include niceButton(200px, 45px);
+                }
+              }
+              .tagHolder {
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 10px;
+                .theTag {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 2px;
+
+                  background-color: rgb(51, 51, 51);
+                  border: 1px solid #c7c7c7c7;
+                  border-radius: 20px;
+                  @include text(16px, 600, 12px);
+                  color: rgb(182, 182, 182);
+                  padding: 6px;
+                  img {
+                    transform: rotate(45deg) translateX(1px);
+                    height: 16px;
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .general {
+          align-items: flex-start;
+          justify-content: flex-start;
+          .left {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          }
+          .right {
+            width: 600px;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            justify-content: space-between;
+            .audioButtons {
+              transform: translateX(-22px);
+              width: 280px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              .dwnbtns {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                flex-direction: flex-start;
+                .wrapper-btn {
+                  transform: translateY(10px);
+                  position: relative;
+                  width: 100%;
+                  .uploadIcon {
+                    position: absolute;
+                    z-index: 2;
+                    left: 14px;
+                    top: 24px;
+                    text-align: start;
+                    pointer-events: none;
+                    height: 32px;
+                  }
+                  .desc {
+                    width: 100%;
+                    position: absolute;
+                    @include text(16px, 800, 100%);
+                    z-index: 2;
+                    left: 58px;
+                    top: 32px;
+                    text-align: start;
+                    pointer-events: none;
+                    color: rgb(160, 160, 160);
+                  }
+                  .fileUpload {
+                    height: 60px;
+                    margin-top: 40px;
+                    color: transparent;
+                    color: transparent;
+                    width: 200px;
+                    cursor: pointer;
+                    &:after {
+                      content: "                                   ";
+                      border-radius: 10px;
+                      background-color: $back-color-web;
+                      position: absolute;
+                      opacity: 1;
+                      border: 1px solid grey;
+                      color: #c7c7c7c7;
+                      left: 0;
+                      top: 0;
+                      text-align: center;
+                      padding: 30px;
+                      @include text(20px, 600, 100%);
+                    }
+                  }
+                }
+
+                h3 {
+                  @include text(20px, 400, 100%);
+                }
+              }
+            }
+            .pfpUpload {
+              padding: 20px;
+              width: 280px;
+              height: 340px;
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              .coverImage {
+                height: 200px;
+                width: 200px;
+                transform: translateY(-20px);
+                border: 1px solid grey;
+                img {
+                  width: 198px;
+                  height: 198px;
+                }
+              }
+              .wrapper-btn {
+                transform: translateY(28px);
+                position: relative;
+                width: 100%;
+                .uploadIcon {
+                  position: absolute;
+                  z-index: 2;
+                  left: 14px;
+                  top: 24px;
+                  text-align: start;
+                  pointer-events: none;
+                  height: 32px;
+                }
+                .desc {
+                  width: 100%;
+                  position: absolute;
+                  @include text(16px, 800, 100%);
+                  z-index: 2;
+                  left: 58px;
+                  top: 32px;
+                  text-align: start;
+                  pointer-events: none;
+                  color: rgb(160, 160, 160);
+                }
+                .fileUpload {
+                  height: 60px;
+                  margin-top: 40px;
+                  color: transparent;
+                  color: transparent;
+                  width: 200px;
+                  cursor: pointer;
+                  &:after {
+                    content: "                                   ";
+                    border-radius: 10px;
+                    background-color: $back-color-web;
+                    position: absolute;
+                    opacity: 1;
+                    border: 1px solid grey;
+                    color: #c7c7c7c7;
+                    left: 0;
+                    top: 0;
+                    text-align: center;
+                    padding: 30px;
+                    @include text(20px, 600, 100%);
+                  }
+                }
+              }
+            }
+          }
+        }
+        .selling {
+          .theForm {
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            .licenses {
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: row !important;
+              gap: 20px;
+            }
+            .regular {
+              margin-top: 0px !important;
+            }
+          }
+        }
+        .details {
+          .theForm {
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: row;
+            .left {
+              width: 600px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              .regular {
+                .selectList {
+                  width: 100%;
+                  cursor: pointer;
+                  option {
+                    cursor: pointer;
+                  }
+                }
+                textarea {
+                  max-height: 136px;
+                  resize: none;
+                }
+              }
+            }
+            .right {
+              width: 600px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              .regular {
+                .selectList {
+                  width: 100%;
+                  cursor: pointer;
+                  option {
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
+        }
+        @include checkboxInput();
+      }
+    }
+    position: relative;
+    .submitHolder {
+      background-color: $lightestGrey-color-web;
+      border-top-left-radius: 10px;
+      padding: 20px 40px;
+      position: fixed;
+      right: 0px;
+      bottom: 0px;
+      box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45),
+        25px 0 20px -20px rgba(0, 0, 0, 0.45),
+        0px 25px 20px -20px rgba(0, 0, 0, 0.45),
+        -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+      button {
+        @include niceButton(100px, 40px);
+      }
+    }
+  }
+}
+
+@include for-type(mobile) {
+  #uploadMain {
+    .box {
+      width: 380px;
+      padding: 60px 0px 40px 0px;
+      gap: 20px;
+      .title {
+        @include text(30px, 600, 100%);
+      }
+      .uploadForms {
+        section {
+          .sectionName {
+            align-self: flex-start;
+            @include text(20px, 600, 100%);
+            margin-bottom: 20px;
+          }
+          .theForm {
+            padding: 20px 10px 20px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 30px;
+            .regular {
+              &:not(:first-child) {
+                margin-top: 20px;
+              }
+              width: 100%;
+              .inputLabel {
+                @include text(14px, 300, 100%);
+              }
+              gap: 6px;
+              display: flex;
+              align-items: flex-start;
+              justify-content: center;
+              flex-direction: column;
+              .inputIcon {
+                height: 16px;
+                opacity: 0.8;
+                bottom: 1px;
+                align-self: center;
+                font-weight: 400;
+                font-size: 12px;
+                cursor: pointer;
+                color: rgb(219, 219, 219);
+              }
+              .inputField {
+                background-color: $back-color-web;
+                outline: none;
+                border: 2px solid rgb(80, 80, 80);
+                border-radius: 6px;
+                padding: 10px 10px;
+                @include text(14px, 600, 100%);
+                transition: 0.2s;
+                width: 100%;
+                &:hover {
+                  border: 2px solid rgb(163, 163, 163);
+                }
+                &:focus {
+                  border: 2px solid rgba(162, 16, 247, 0.8);
+                }
+              }
+            }
+            .trackTags {
+              .tagsAndBtn {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 6px;
+                width: 100%;
+                .addBtn {
+                  @include niceButton(140px, 42px);
+                }
+              }
+              .tagHolder {
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 10px;
+                .theTag {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 2px;
+
+                  background-color: rgb(51, 51, 51);
+                  border: 1px solid #c7c7c7c7;
+                  border-radius: 20px;
+                  @include text(14px, 300, 10px);
+                  color: rgb(182, 182, 182);
+                  padding: 2px;
+                  img {
+                    transform: rotate(45deg) translateX(1px);
+                    height: 16px;
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .general {
+          align-items: flex-start;
+          justify-content: flex-start;
+          .left {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          }
+          .right {
+            width: 380px;
+            display: flex;
+            gap: 40px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            .audioButtons {
+              transform: translateX(-22px);
+              width: 280px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              .dwnbtns {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                flex-direction: flex-start;
+                .wrapper-btn {
+                  transform: translateY(10px);
+                  position: relative;
+                  width: 100%;
+                  .uploadIcon {
+                    position: absolute;
+                    z-index: 2;
+                    left: 14px;
+                    top: 24px;
+                    text-align: start;
+                    pointer-events: none;
+                    height: 32px;
+                  }
+                  .desc {
+                    width: 100%;
+                    position: absolute;
+                    @include text(16px, 800, 100%);
+                    z-index: 2;
+                    left: 58px;
+                    top: 32px;
+                    text-align: start;
+                    pointer-events: none;
+                    color: rgb(160, 160, 160);
+                  }
+                  .fileUpload {
+                    height: 60px;
+                    margin-top: 40px;
+                    color: transparent;
+                    color: transparent;
+                    width: 200px;
+                    cursor: pointer;
+                    &:after {
+                      content: "                                   ";
+                      border-radius: 10px;
+                      background-color: $back-color-web;
+                      position: absolute;
+                      opacity: 1;
+                      border: 1px solid grey;
+                      color: #c7c7c7c7;
+                      left: 0;
+                      top: 0;
+                      text-align: center;
+                      padding: 30px;
+                      @include text(20px, 600, 100%);
+                    }
+                  }
+                }
+
+                h3 {
+                  @include text(20px, 400, 100%);
+                }
+              }
+            }
+            .pfpUpload {
+              padding: 20px;
+              width: 280px;
+              height: 340px;
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              .coverImage {
+                height: 200px;
+                width: 200px;
+                transform: translateY(-20px);
+                border: 1px solid grey;
+                img {
+                  width: 198px;
+                  height: 198px;
+                }
+              }
+              .wrapper-btn {
+                transform: translateY(28px);
+                position: relative;
+                width: 100%;
+                .uploadIcon {
+                  position: absolute;
+                  z-index: 2;
+                  left: 14px;
+                  top: 24px;
+                  text-align: start;
+                  pointer-events: none;
+                  height: 32px;
+                }
+                .desc {
+                  width: 100%;
+                  position: absolute;
+                  @include text(16px, 800, 100%);
+                  z-index: 2;
+                  left: 58px;
+                  top: 32px;
+                  text-align: start;
+                  pointer-events: none;
+                  color: rgb(160, 160, 160);
+                }
+                .fileUpload {
+                  height: 60px;
+                  margin-top: 40px;
+                  color: transparent;
+                  color: transparent;
+                  width: 200px;
+                  cursor: pointer;
+                  &:after {
+                    content: "                                   ";
+                    border-radius: 10px;
+                    background-color: $back-color-web;
+                    position: absolute;
+                    opacity: 1;
+                    border: 1px solid grey;
+                    color: #c7c7c7c7;
+                    left: 0;
+                    top: 0;
+                    text-align: center;
+                    padding: 30px;
+                    @include text(20px, 600, 100%);
+                  }
+                }
+              }
+            }
+          }
+        }
+        .selling {
+          .theForm {
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            .licenses {
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column !important;
+              gap: 20px;
+            }
+            .regular {
+              margin-top: 0px !important;
+            }
+          }
+        }
+        .details {
+          .theForm {
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            .left {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              .regular {
+                .selectList {
+                  width: 100%;
+                  cursor: pointer;
+                  option {
+                    cursor: pointer;
+                  }
+                }
+                textarea {
+                  max-height: 136px;
+                  resize: none;
+                }
+              }
+            }
+            .right {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              .regular {
+                .selectList {
+                  width: 100%;
+                  cursor: pointer;
+                  option {
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
+        }
+        @include checkboxInput();
+      }
+    }
+    position: relative;
+    .submitHolder {
+      background-color: $lightestGrey-color-web;
+      border-top-left-radius: 10px;
+      padding: 10px 20px;
+      position: fixed;
+      right: 0px;
+      bottom: 0px;
+      box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45),
+        25px 0 20px -20px rgba(0, 0, 0, 0.45),
+        0px 25px 20px -20px rgba(0, 0, 0, 0.45),
+        -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+      button {
+        @include niceButton(80px, 30px);
+      }
+    }
+  }
+}

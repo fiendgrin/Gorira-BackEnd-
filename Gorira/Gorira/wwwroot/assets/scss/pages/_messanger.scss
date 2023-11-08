@@ -1,0 +1,841 @@
+#messangerMain {
+  background-color: $back-color-web;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .box {
+    width: 100%;
+    min-height: calc(100vh - 116px);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    .left {
+      height: calc(100vh - 116px);
+      margin-top: 50px;
+      width: 400px;
+      border-right: 2px solid rgb(70, 70, 70);
+      background: linear-gradient(180deg, #d9a5ef 0%, #7e8ce6 100%);
+      display: flex;
+      flex-direction: column;
+      .topLeft {
+        background-color: rgb(14, 14, 14);
+        box-shadow: 0 2px 1px rgba(0, 0, 0, 0.09), 0 4px 2px rgba(0, 0, 0, 0.09),
+          0 8px 4px rgba(0, 0, 0, 0.09), 0 16px 8px rgba(0, 0, 0, 0.09),
+          0 32px 16px rgba(0, 0, 0, 0.09);
+        padding: 20px;
+        h1 {
+          @include text(18px, 600, 100%);
+        }
+      }
+      .searchUsers {
+        position: relative;
+        padding: 20px;
+        width: 400px;
+        .inputLabel {
+          @include text(20px, 400, 100%);
+        }
+        gap: 6px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        .inputIcon {
+          height: 16px;
+          opacity: 0.8;
+          bottom: 1px;
+          align-self: center;
+          font-weight: 600;
+          cursor: pointer;
+          color: rgb(219, 219, 219);
+        }
+        .inputField {
+          background-color: $top-color-web;
+          outline: none;
+          border: 1px solid transparent;
+          border-radius: 6px;
+          padding: 10px 10px;
+          padding-right: 40px;
+          @include text(16px, 600, 100%);
+          transition: 0.2s;
+          width: 100%;
+          &:hover {
+            border: 1px solid rgba(255, 255, 255, 0.7);
+          }
+          &:focus {
+            border: 1px solid white;
+          }
+        }
+        img {
+          height: 25px;
+          position: absolute;
+          top: 30px;
+          right: 30px;
+          opacity: 0.6;
+        }
+      }
+      .messangers {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        height: calc(100vh - 116px - 58px - 83px);
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        overflow: auto;
+        .singleMessanger {
+          min-height: 80px;
+          height: 80px;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          width: 100%;
+          transition: 0.3s;
+          box-shadow: transparent;
+          width: 100%;
+          gap: 10px;
+          cursor: pointer;
+          &:hover {
+            background-color: $lightestGrey-color-web;
+            box-shadow: 0 20px 10px -20px rgba(0, 0, 0, 0.45) inset,
+              0 -20px 10px -20px rgba(0, 0, 0, 0.45) inset;
+          }
+          .pfp {
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            height: 50px;
+            width: 50px;
+            margin-left: 20px;
+          }
+          .rightMessanger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 4px;
+            .name {
+              @include text(16px, 600, 18px);
+              height: 18px;
+              width: 318px;
+              color: rgb(8, 8, 8);
+              overflow: hidden;
+            }
+            .lastMessage {
+              @include text(14px, 300, 18px);
+              color: rgb(29, 29, 29);
+              height: 18px;
+              width: 308px;
+              overflow: hidden;
+              padding-right: 10px;
+            }
+          }
+        }
+      }
+    }
+    .right {
+      height: calc(100vh - 116px);
+      margin-top: 50px;
+      width: 100%;
+      border-right: 2px solid gray;
+      background-color: $top-color-web;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+      .topRight {
+        width: 100%;
+        background-color: rgb(14, 14, 14);
+        box-shadow: 0 2px 1px rgba(0, 0, 0, 0.09), 0 4px 2px rgba(0, 0, 0, 0.09),
+          0 8px 4px rgba(0, 0, 0, 0.09), 0 16px 8px rgba(0, 0, 0, 0.09),
+          0 32px 16px rgba(0, 0, 0, 0.09);
+        padding: 20px;
+        h1 {
+          width: 100%;
+          @include text(18px, 800, 100%);
+          text-align: center;
+        }
+        .people {
+          display: none;
+        }
+      }
+      .bottom {
+        height: calc(100vh - 116px - 58px);
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 100%;
+        .meaasagingBox {
+          padding-bottom: 10px;
+          width: 100%;
+          height: calc(100vh - 116px - 58px - 53px);
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          overflow-y: auto;
+          &::-webkit-scrollbar {
+            display: none;
+          }
+          .singleMessage {
+            padding: 10px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 10px;
+            max-width: 50%;
+            .theMessage {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-wrap: wrap;
+              padding: 10px;
+              @include text(14px, 400, 120%);
+              background-color: $lightGrey-color-web;
+              border-radius: 6px;
+              border: 1px solid grey;
+            }
+            .pfpMsg {
+              border-radius: 50%;
+              object-fit: cover;
+              object-position: center;
+              height: 50px;
+              width: 50px;
+              border: 1px solid grey;
+            }
+            .interlocutorMessages {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              gap: 10px;
+            }
+          }
+          .me {
+            align-self: flex-end;
+          }
+          .interlocutor {
+            align-self: flex-start;
+          }
+        }
+        .send {
+          position: relative;
+          width: 100%;
+          .inputLabel {
+            @include text(20px, 400, 100%);
+          }
+          gap: 6px;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          flex-direction: column;
+          .inputIcon {
+            height: 16px;
+            opacity: 0.8;
+            bottom: 1px;
+            align-self: center;
+            font-weight: 600;
+            cursor: pointer;
+            color: rgb(219, 219, 219);
+          }
+          .inputField {
+            background-color: rgb(34, 34, 34);
+            outline: none;
+            border: transparent;
+            padding: 16px 10px 16px 10px;
+            padding-right: 120px;
+            @include text(16px, 600, 100%);
+            transition: 0.2s;
+            width: 100%;
+            &:hover {
+            }
+            &:focus {
+            }
+          }
+          .sendBtn {
+            @include niceButton(max-content, 32px);
+            border-radius: 6px;
+            background-color: $lightGrey-color-web;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            &:hover {
+              scale: 1;
+            }
+            &:active {
+              scale: 0.98;
+            }
+            justify-self: center;
+            align-self: center;
+          }
+          justify-self: flex-end;
+        }
+      }
+    }
+  }
+}
+
+@include for-type(tablet) {
+  #messangerMain {
+    background-color: $back-color-web;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .box {
+      width: 100%;
+      min-height: calc(100vh - 96px);
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      .left {
+        height: calc(100vh - 96px);
+        margin-top: 40px;
+        width: 220px;
+        border-right: 2px solid rgb(70, 70, 70);
+        background: linear-gradient(180deg, #d9a5ef 0%, #7e8ce6 100%);
+
+        .topLeft {
+          background-color: rgb(14, 14, 14);
+          box-shadow: 0 2px 1px rgba(0, 0, 0, 0.09),
+            0 4px 2px rgba(0, 0, 0, 0.09), 0 8px 4px rgba(0, 0, 0, 0.09),
+            0 16px 8px rgba(0, 0, 0, 0.09), 0 32px 16px rgba(0, 0, 0, 0.09);
+          padding: 10px;
+          h1 {
+            @include text(16px, 600, 100%);
+          }
+        }
+        .searchUsers {
+          position: relative;
+          padding: 10px;
+          width: 220px;
+          .inputLabel {
+            @include text(16px, 400, 100%);
+          }
+          gap: 6px;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          flex-direction: column;
+          .inputIcon {
+            height: 16px;
+            opacity: 0.8;
+            bottom: 1px;
+            align-self: center;
+            font-weight: 600;
+            cursor: pointer;
+            color: rgb(219, 219, 219);
+          }
+          .inputField {
+            background-color: $top-color-web;
+            outline: none;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            padding: 6px 6px;
+            padding-right: 28px;
+            @include text(14px, 400, 100%);
+            transition: 0.2s;
+            width: 100%;
+            &:hover {
+              border: 1px solid rgba(255, 255, 255, 0.7);
+            }
+            &:focus {
+              border: 1px solid white;
+            }
+          }
+          img {
+            height: 20px;
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            opacity: 0.6;
+          }
+        }
+        .messangers {
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          flex-direction: column;
+          height: calc(100vh - 96px - 36px - 52px);
+          &::-webkit-scrollbar {
+            display: none;
+          }
+          overflow: auto;
+          .singleMessanger {
+            min-height: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            transition: 0.3s;
+            box-shadow: transparent;
+            width: 100%;
+            gap: 10px;
+            cursor: pointer;
+            &:hover {
+              background-color: $lightestGrey-color-web;
+              box-shadow: 0 20px 10px -20px rgba(0, 0, 0, 0.45) inset,
+                0 -20px 10px -20px rgba(0, 0, 0, 0.45) inset;
+            }
+            .pfp {
+              border-radius: 50%;
+              object-fit: cover;
+              object-position: center;
+              height: 36px;
+              width: 36px;
+              margin-left: 10px;
+            }
+            .rightMessanger {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: flex-start;
+              gap: 4px;
+              .name {
+                @include text(14px, 400, 16px);
+                height: 16px;
+                width: 162px;
+                color: rgb(8, 8, 8);
+                overflow: hidden;
+              }
+              .lastMessage {
+                @include text(12px, 300, 16px);
+                color: rgb(29, 29, 29);
+                height: 16px;
+                width: 162px;
+                overflow: hidden;
+                padding-right: 10px;
+              }
+            }
+          }
+        }
+      }
+      .right {
+        height: calc(100vh - 96px);
+        margin-top: 40px;
+        width: 100%;
+        border-right: 2px solid gray;
+        background-color: $top-color-web;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        .topRight {
+          width: 100%;
+          background-color: rgb(14, 14, 14);
+          box-shadow: 0 2px 1px rgba(0, 0, 0, 0.09),
+            0 4px 2px rgba(0, 0, 0, 0.09), 0 8px 4px rgba(0, 0, 0, 0.09),
+            0 16px 8px rgba(0, 0, 0, 0.09), 0 32px 16px rgba(0, 0, 0, 0.09);
+          padding: 10px;
+          h1 {
+            width: 100%;
+            @include text(16px, 600, 100%);
+            text-align: center;
+          }
+        }
+        .bottom {
+          height: calc(100vh - 96px - 36px);
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          width: 100%;
+          .meaasagingBox {
+            padding-bottom: 6px;
+            width: 100%;
+            height: calc(100vh - 96px - 36px - 53px);
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            overflow-y: auto;
+            &::-webkit-scrollbar {
+              display: none;
+            }
+            .singleMessage {
+              padding: 4px;
+              display: flex;
+              justify-content: flex-start;
+              align-items: flex-start;
+              gap: 6px;
+              max-width: 50%;
+              .theMessage {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                padding: 6px;
+                @include text(14px, 400, 120%);
+                background-color: $lightGrey-color-web;
+                border-radius: 6px;
+                border: 1px solid grey;
+              }
+              .pfpMsg {
+                border-radius: 50%;
+                object-fit: cover;
+                object-position: center;
+                height: 28px;
+                width: 28px;
+                border: 1px solid grey;
+              }
+              .interlocutorMessages {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+              }
+            }
+            .me {
+              align-self: flex-end;
+            }
+            .interlocutor {
+              align-self: flex-start;
+            }
+          }
+          .send {
+            position: relative;
+            width: 100%;
+            .inputLabel {
+              @include text(20px, 400, 100%);
+            }
+            gap: 6px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            .inputIcon {
+              height: 16px;
+              opacity: 0.8;
+              bottom: 1px;
+              align-self: center;
+              font-weight: 600;
+              cursor: pointer;
+              color: rgb(219, 219, 219);
+            }
+            .inputField {
+              background-color: rgb(34, 34, 34);
+              outline: none;
+              border: transparent;
+              padding: 16px 10px 16px 10px;
+              padding-right: 120px;
+              @include text(16px, 600, 100%);
+              transition: 0.2s;
+              width: 100%;
+              &:hover {
+              }
+              &:focus {
+              }
+            }
+            .sendBtn {
+              @include niceButton(max-content, 32px);
+              border-radius: 6px;
+              background-color: $lightGrey-color-web;
+              position: absolute;
+              top: 10px;
+              right: 10px;
+              &:hover {
+                scale: 1;
+              }
+              &:active {
+                scale: 0.98;
+              }
+              justify-self: center;
+              align-self: center;
+            }
+            justify-self: flex-end;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include for-type(mobile) {
+  #messangerMain {
+    background-color: $back-color-web;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .box {
+      width: 100%;
+      min-height: calc(100vh - 52px);
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      position: relative;
+      .left {
+        height: 400px;
+        width: 220px;
+        border: 1px solid rgb(70, 70, 70);
+        background: linear-gradient(180deg, #d9a5ef 0%, #7e8ce6 100%);
+        position: absolute;
+        z-index: 1;
+        display: none;
+        border-radius: 10px;
+        top: -4px;
+        left: 0;
+        .topLeft {
+          background-color: rgb(14, 14, 14);
+          box-shadow: 0 2px 1px rgba(0, 0, 0, 0.09),
+            0 4px 2px rgba(0, 0, 0, 0.09), 0 8px 4px rgba(0, 0, 0, 0.09),
+            0 16px 8px rgba(0, 0, 0, 0.09), 0 32px 16px rgba(0, 0, 0, 0.09);
+          padding: 10px;
+          h1 {
+            @include text(16px, 600, 100%);
+          }
+        }
+        .searchUsers {
+          position: relative;
+          padding: 10px;
+          width: 220px;
+          .inputLabel {
+            @include text(16px, 400, 100%);
+          }
+          gap: 6px;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          flex-direction: column;
+          .inputIcon {
+            height: 16px;
+            opacity: 0.8;
+            bottom: 1px;
+            align-self: center;
+            font-weight: 600;
+            cursor: pointer;
+            color: rgb(219, 219, 219);
+          }
+          .inputField {
+            background-color: $top-color-web;
+            outline: none;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            padding: 6px 6px;
+            padding-right: 28px;
+            @include text(14px, 400, 100%);
+            transition: 0.2s;
+            width: 100%;
+            &:hover {
+              border: 1px solid rgba(255, 255, 255, 0.7);
+            }
+            &:focus {
+              border: 1px solid white;
+            }
+          }
+          img {
+            height: 20px;
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            opacity: 0.6;
+          }
+        }
+        .messangers {
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          flex-direction: column;
+          height: 400px - 52px - 36px;
+          &::-webkit-scrollbar {
+            display: none;
+          }
+          overflow: auto;
+          .singleMessanger {
+            min-height: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            transition: 0.3s;
+            box-shadow: transparent;
+            width: 100%;
+            gap: 10px;
+            cursor: pointer;
+            &:hover {
+              background-color: $lightestGrey-color-web;
+              box-shadow: 0 20px 10px -20px rgba(0, 0, 0, 0.45) inset,
+                0 -20px 10px -20px rgba(0, 0, 0, 0.45) inset;
+            }
+            .pfp {
+              border-radius: 50%;
+              object-fit: cover;
+              object-position: center;
+              height: 36px;
+              width: 36px;
+              margin-left: 10px;
+            }
+            .rightMessanger {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: flex-start;
+              gap: 4px;
+              .name {
+                @include text(14px, 400, 16px);
+                height: 16px;
+                width: 162px;
+                color: rgb(8, 8, 8);
+                overflow: hidden;
+              }
+              .lastMessage {
+                @include text(12px, 300, 16px);
+                color: rgb(29, 29, 29);
+                height: 16px;
+                width: 162px;
+                overflow: hidden;
+                padding-right: 10px;
+              }
+            }
+          }
+        }
+      }
+      .right {
+        height: calc(100vh - 52px);
+        margin-top: 0px;
+        width: 100%;
+        border-right: 2px solid gray;
+        background-color: $top-color-web;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        .topRight {
+          width: 100%;
+          background-color: rgb(14, 14, 14);
+          box-shadow: 0 2px 1px rgba(0, 0, 0, 0.09),
+            0 4px 2px rgba(0, 0, 0, 0.09), 0 8px 4px rgba(0, 0, 0, 0.09),
+            0 16px 8px rgba(0, 0, 0, 0.09), 0 32px 16px rgba(0, 0, 0, 0.09);
+          padding: 10px;
+          h1 {
+            width: 100%;
+            @include text(16px, 600, 100%);
+            text-align: end;
+          }
+          .people {
+            position: absolute;
+            display: inline-block;
+            left: 6px;
+            top: 6px;
+            cursor: pointer;
+          }
+        }
+        .bottom {
+          height: calc(100vh - 52px - 36px);
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          width: 100%;
+          .meaasagingBox {
+            padding-bottom: 6px;
+            width: 100%;
+            height: calc(100vh - 52px - 36px - 53px);
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            overflow-y: auto;
+            &::-webkit-scrollbar {
+              display: none;
+            }
+            .singleMessage {
+              padding: 4px;
+              display: flex;
+              justify-content: flex-start;
+              align-items: flex-start;
+              gap: 6px;
+              max-width: 50%;
+              .theMessage {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                padding: 6px;
+                @include text(14px, 400, 120%);
+                background-color: $lightGrey-color-web;
+                border-radius: 6px;
+                border: 1px solid grey;
+              }
+              .pfpMsg {
+                border-radius: 50%;
+                object-fit: cover;
+                object-position: center;
+                height: 28px;
+                width: 28px;
+                border: 1px solid grey;
+              }
+              .interlocutorMessages {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+              }
+            }
+            .me {
+              align-self: flex-end;
+            }
+            .interlocutor {
+              align-self: flex-start;
+            }
+          }
+          .send {
+            position: relative;
+            width: 100%;
+            .inputLabel {
+              @include text(20px, 400, 100%);
+            }
+            gap: 6px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            .inputIcon {
+              height: 16px;
+              opacity: 0.8;
+              bottom: 1px;
+              align-self: center;
+              font-weight: 600;
+              cursor: pointer;
+              color: rgb(219, 219, 219);
+            }
+            .inputField {
+              background-color: rgb(34, 34, 34);
+              outline: none;
+              border: transparent;
+              padding: 16px 10px 16px 10px;
+              padding-right: 120px;
+              @include text(16px, 600, 100%);
+              transition: 0.2s;
+              width: 100%;
+              &:hover {
+              }
+              &:focus {
+              }
+            }
+            .sendBtn {
+              @include niceButton(max-content, 32px);
+              border-radius: 6px;
+              background-color: $lightGrey-color-web;
+              position: absolute;
+              top: 10px;
+              right: 10px;
+              &:hover {
+                scale: 1;
+              }
+              &:active {
+                scale: 0.98;
+              }
+              justify-self: center;
+              align-self: center;
+            }
+            justify-self: flex-end;
+          }
+        }
+      }
+    }
+  }
+}
