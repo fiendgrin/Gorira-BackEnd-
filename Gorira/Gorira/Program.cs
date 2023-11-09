@@ -30,6 +30,8 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(
 
 
 var app = builder.Build();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseStaticFiles();
 
