@@ -26,7 +26,8 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(
     }).AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
-
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
 
 
 var app = builder.Build();
@@ -34,7 +35,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseStaticFiles();
-
+app.UseSession();
+app.MapControllerRoute("Area", "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
 app.MapControllerRoute("default", "{controller=home}/{action=index}/{id?}");
 
 
