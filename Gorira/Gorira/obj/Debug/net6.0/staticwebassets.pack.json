@@ -1477,6 +1477,10 @@
       "PackagePath": "staticwebassets\\manage\\images\\samples\\Login_bg2.jpg"
     },
     {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\manage\\images\\samples\\Login_bg3.jpg",
+      "PackagePath": "staticwebassets\\manage\\images\\samples\\Login_bg3.jpg"
+    },
+    {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\manage\\images\\samples\\Mac.png",
       "PackagePath": "staticwebassets\\manage\\images\\samples\\Mac.png"
     },

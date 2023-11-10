@@ -116,6 +116,12 @@ namespace Gorira.Controllers
                 return View(loginVM);
             }
 
+            if (signInResult.IsLockedOut)
+            {
+                ModelState.AddModelError("", "Your Account is blocked");
+                return View(loginVM);
+            }
+
             //if (appUser.Baskets != null && appUser.Baskets.Count() > 0)
             //{
             //    List<BasketVM> basketVMs = new List<BasketVM>();
@@ -145,6 +151,8 @@ namespace Gorira.Controllers
             return RedirectToAction(nameof(Login));
         }
 
+
+
         #region RoleCreation
         //public async Task<IActionResult> CreateRole()
         //{
@@ -169,6 +177,21 @@ namespace Gorira.Controllers
         //    await _userManager.AddToRoleAsync(appUser, "SuperAdmin");
 
         //    return Ok("SuperAdmin Created");
+        //}
+
+        //public async Task<IActionResult> Admin()
+        //{
+        //    AppUser appUser = new AppUser
+        //    {
+        //        Email = "Admin@mail.com",
+        //        UserName = "admin"
+
+        //    };
+
+        //    await _userManager.CreateAsync(appUser, "Admin666");
+        //    await _userManager.AddToRoleAsync(appUser, "Admin");
+
+        //    return Ok("Admin Created");
         //}
         #endregion
     }

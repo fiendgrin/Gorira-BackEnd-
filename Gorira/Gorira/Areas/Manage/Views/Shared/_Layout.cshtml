@@ -28,7 +28,7 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
                 <a class="sidebar-brand brand-logo" asp-area="Manage" asp-controller="Dashboard" asp-action="Index"><img src="~/manage/images/logo.svg" alt="logo" /></a>
-                <a class="sidebar-brand brand-logo-mini" asp-area="Manage" asp-controller="Dashboard" asp-action="Index"><img  src="~/manage/images/logo-mini.svg" alt="logo" /></a>
+                <a class="sidebar-brand brand-logo-mini" asp-area="Manage" asp-controller="Dashboard" asp-action="Index"><img src="~/manage/images/logo-mini.svg" alt="logo" /></a>
             </div>
             <ul class="nav">
                 <li class="nav-item nav-category">
@@ -62,7 +62,15 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                                 <div class="navbar-profile">
-                                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+                                    @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("SuperAdmin")))
+                                    {
+                                        <i class="mdi @(User.IsInRole("SuperAdmin")?"mdi-crown":"mdi-star") d-none d-sm-block"></i>
+                                        <p class="mb-0 d-none d-sm-block navbar-profile-name text-info">@User.Identity.Name</p>
+                                    }
+                                    else
+                                    {
+                                        <i class="mdi mdi-account d-none d-sm-block"></i>
+                                    }
                                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                                 </div>
                             </a>
@@ -80,7 +88,7 @@
                                     </div>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item preview-item">
+                                <a asp-area="Manage" asp-action="Logout" asp-controller="Account" class="dropdown-item preview-item">
                                     <div class="preview-thumbnail">
                                         <div class="preview-icon bg-dark rounded-circle">
                                             <i class="mdi mdi-logout text-danger"></i>
@@ -100,11 +108,11 @@
             </nav>
             <!-- partial -->
             <div class="main-panel">
-        @RenderBody()
-    </div>
-    <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
+                @RenderBody()
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
