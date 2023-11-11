@@ -1,4 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@inject ILayoutService layoutService
+@inject UserManager<AppUser> userManager
+@{
+    Dictionary<string, string> settings = await layoutService.GetSettingsAsync();
+
+    AppUser? appUser = null;
+    if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+    {
+        appUser = await userManager.FindByNameAsync(User.Identity.Name);
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -36,7 +48,7 @@
                 <div class="left">
                     <img class="burger" src="~/assets/images/icons/burger.svg" alt="" />
                     <a href="">
-                        <img class="logo" src="~/assets/images/logo/Logo.png" alt="" />
+                        <img class="logo" src="~/assets/images/logo/@settings.FirstOrDefault(s=>s.Key == "Logo").Value" alt="" />
                     </a>
                     <form class="mySearchForm">
                         <input type="text"
@@ -61,7 +73,7 @@
                     </a>
                     <!--Account-->
                     <div class="accountHolder">
-                        @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+                        @if (appUser != null)
                         {
                             <img class="pfp" src="~/assets/images/pfp/1.jpg" alt="" />
                         }
@@ -74,7 +86,7 @@
                              src="~/assets/images/icons/chevron-down.svg"
                              alt="" />
                         <div class="accountContent">
-                            @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+                            @if (appUser != null)
                             {
                                 <!--Single Line start-->
                                 <a href="myProfile.html" class="accountLine">
@@ -222,7 +234,7 @@
         <div class="box">
             <div class="top">
                 <a href="">
-                    <img class="footerLogo" src="~/assets/images/logo/Logo.png" alt="" />
+                    <img class="footerLogo" src="~/assets/images/logo/@settings.FirstOrDefault(s=>s.Key == "Logo").Value" alt="" />
                 </a>
                 <!--Contact Start-->
                 <div class="left infoCard">
@@ -230,11 +242,11 @@
                     <div class="info inside">
                         <div class="emailGorira text">
                             <h6>Email:</h6>
-                            <p>Gorira@gmail.com</p>
+                            <p>@settings.FirstOrDefault(s=>s.Key == "ContactEmail").Value</p>
                         </div>
                         <div class="phoneGorira text">
                             <h6>Phone:</h6>
-                            <p>+7-(999)-99-99</p>
+                            <p>@settings.FirstOrDefault(s=>s.Key == "ContactPhone").Value</p>
                         </div>
                     </div>
                 </div>
@@ -245,11 +257,11 @@
                     <div class="location inside">
                         <div class="locationGorira text">
                             <h6>Location:</h6>
-                            <p>Mountain View, California, United States</p>
+                            <p>@settings.FirstOrDefault(s=>s.Key == "Location").Value</p>
                         </div>
                         <div class="addressGorira text">
                             <h6>Address:</h6>
-                            <p>1600 Amphitheatre Parkway Mountain View, CA 94043</p>
+                            <p>@settings.FirstOrDefault(s=>s.Key == "Address").Value</p>
                         </div>
                     </div>
                 </div>
@@ -259,27 +271,27 @@
                     <h5>Social Media Links</h5>
                     <div class="links inside">
                         <div class="sMlinks">
-                            <a href="https://soundcloud.com/">
+                            <a href="@settings.FirstOrDefault(s=>s.Key == "SoundCloud").Value">
                                 <img class="sMLogo"
                                      src="~/assets/images/socialMedia/soundcloud-logo.svg"
                                      alt="" />
                             </a>
-                            <a href="https://www.youtube.com/">
+                            <a href="@settings.FirstOrDefault(s=>s.Key == "YouTube").Value">
                                 <img class="sMLogo"
                                      src="~/assets/images/socialMedia/youtube-clip-logo.svg"
                                      alt="" />
                             </a>
-                            <a href="https://www.instagram.com/">
+                            <a href="@settings.FirstOrDefault(s=>s.Key == "Instagram").Value">
                                 <img class="sMLogo"
                                      src="~/assets/images/socialMedia/instagram-logo-2.svg"
                                      alt="" />
                             </a>
-                            <a href="https://www.twitter.com/">
+                            <a href="@settings.FirstOrDefault(s=>s.Key == "Twitter").Value">
                                 <img class="sMLogo"
                                      src="~/assets/images/socialMedia/twitter-logo-1.svg"
                                      alt="" />
                             </a>
-                            <a href="https://www.vk.com/">
+                            <a href="@settings.FirstOrDefault(s=>s.Key == "VK").Value">
                                 <img class="sMLogo"
                                      src="~/assets/images/socialMedia/v-kontakte-logo.svg"
                                      alt="" />

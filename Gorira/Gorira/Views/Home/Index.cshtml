@@ -1,4 +1,4 @@
-﻿
+﻿@model HomeVM
 @{
     ViewData["Title"] = "Home";
 }
@@ -13,7 +13,7 @@
             <div class="swiper-slide">
                 <div class="gradient"></div>
 
-                <a href="tracks.html" class="slide1 slidebtn">Get Tracks Now</a>
+                <a asp-controller="Track" asp-action="Index" class="slide1 slidebtn">Get Tracks Now</a>
                 <div class="slide1 slidetext">
                     <p>Easy Access To Your Favorite Beats</p>
                 </div>
@@ -24,7 +24,7 @@
             <div class="swiper-slide">
                 <div class="gradient"></div>
 
-                <a href=""> class="slide1 slidebtn">Get Tracks Now</a>
+                <a asp-controller="Track" asp-action="Index" class="slide1 slidebtn">Get Tracks Now</a>
 
                 <div class="slide2 slidetext">
                     <p>Make Money From Home</p>
@@ -35,7 +35,7 @@
             <div class="swiper-slide">
                 <div class="gradient"></div>
 
-                <a href=""> class="slide1 slidebtn">Get Tracks Now</a>
+                <a asp-controller="Track" asp-action="Index" class="slide1 slidebtn">Get Tracks Now</a>
 
                 <div class="slide3 slidetext">
                     <p>Become One Of The Greatest</p>
@@ -50,7 +50,7 @@
         <div class="trendingContainer">
             <div class="topText">
                 <h3>Trending Tracks</h3>
-                <a href=""><p>See more</p></a>
+                <a asp-controller="Track" asp-action="Index"><p>See more</p></a>
             </div>
             <div class="box">
                 <!--Single Card Start-->
@@ -174,16 +174,12 @@
     <section id="aboutUs">
         <div class="aboutUsContainer">
             <div class="left">
-                <h4>Kickstart your music career today</h4>
+                <h4>@Model.Settings.FirstOrDefault(s=>s.Key == "AboutTitle").Value</h4>
                 <!--Single Line Start-->
                 <div class="line">
                     <img src="~/assets/images/icons/check-circle.svg" alt="" />
                     <div class="text">
-                        <h5>The largest marketplace for high quality beats</h5>
-                        <p>
-                            Access over 8 million beats from our growing community of
-                            producers around the world.
-                        </p>
+                        @Html.Raw(Model.Settings.FirstOrDefault(s=>s.Key == "AboutLine1").Value)
                     </div>
                 </div>
                 <!--Single Line End-->
@@ -191,11 +187,7 @@
                 <div class="line">
                     <img src="~/assets/images/icons/check-circle.svg" alt="" />
                     <div class="text">
-                        <h5>Seamless purchasing experience</h5>
-                        <p>
-                            We keep it effortless. Browse your favorite genres and
-                            purchase with ease - all within one platform.
-                        </p>
+                        @Html.Raw(Model.Settings.FirstOrDefault(s=>s.Key == "AboutLine2").Value)
                     </div>
                 </div>
                 <!--Single Line End-->
@@ -203,11 +195,7 @@
                 <div class="line">
                     <img src="~/assets/images/icons/check-circle.svg" alt="" />
                     <div class="text">
-                        <h5>Simple licensing options</h5>
-                        <p>
-                            Contracts don't have to be confusing. Spend less time
-                            scratching your head and more time recording your next hit.
-                        </p>
+                        @Html.Raw(Model.Settings.FirstOrDefault(s=>s.Key == "AboutLine3").Value)
                     </div>
                 </div>
                 <!--Single Line End-->
@@ -215,22 +203,17 @@
                 <div class="line">
                     <img src="~/assets/images/icons/check-circle.svg" alt="" />
                     <div class="text">
-                        <h5>A community that understands you</h5>
-                        <p>
-                            We're creators just like you. Whether you need our support
-                            team or want to collaborate with like-minded creatives,
-                            there's a home for you.
-                        </p>
+                        @Html.Raw(Model.Settings.FirstOrDefault(s=>s.Key == "AboutLine4").Value)
                     </div>
                 </div>
                 <!--Single Line End-->
-                <a class="getStarted" href="">
+                <a asp-controller="Track" asp-action="Index" class="getStarted">
                     <img src="~/assets/images/icons/music.svg" alt="" /> Get
                     Started
                 </a>
             </div>
             <img class="right"
-                 src="~/assets/images/setting/mikeDean.jpg"
+                 src="~/assets/images/setting/@(Model.Settings.FirstOrDefault(s=>s.Key == "AboutImg").Value)"
                  alt="" />
         </div>
     </section>
