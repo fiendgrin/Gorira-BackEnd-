@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EXoCOZtuvJYw4CBam/4VAqAY6Y5JdfVlssC2zVuP5sk=",
+  "Hash": "Y7k12HH8RMY9M9+AJfSkH7jREuOdoJzgB/fwcKKdwFE=",
   "Source": "Gorira",
   "BasePath": "_content/Gorira",
   "Mode": "Default",
@@ -18970,6 +18970,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\manage\\vendors\\typeahead.js\\typeahead.bundle.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\templates\\EmailConfirm.html",
+      "SourceId": "Gorira",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
+      "BasePath": "_content/Gorira",
+      "RelativePath": "templates/EmailConfirm.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\templates\\EmailConfirm.html"
     }
   ]
 }

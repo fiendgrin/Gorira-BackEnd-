@@ -2,6 +2,7 @@ using Gorira.DataAccessLayer;
 using Gorira.Interfaces;
 using Gorira.Models;
 using Gorira.Services;
+using Gorira.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +29,8 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(
     }).AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.Configure<SmtpSetting>(builder.Configuration.GetSection("SmtpSetting"));
+
 builder.Services.AddScoped<ILayoutService, LayoutService>();
 
 builder.Services.AddSession();
@@ -40,6 +43,7 @@ app.UseAuthorization();
 
 app.UseStaticFiles();
 app.UseSession();
+
 app.MapControllerRoute("Area", "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
 app.MapControllerRoute("default", "{controller=home}/{action=index}/{id?}");
 

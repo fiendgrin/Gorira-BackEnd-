@@ -1,28 +1,42 @@
-﻿using Gorira.Models;
+﻿using Gorira.DataAccessLayer;
+using Gorira.Models;
+using Gorira.ViewModels;
 using Gorira.ViewModels.AccountVMs;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
+using Microsoft.Extensions.Options;
+using MimeKit;
 
 namespace Gorira.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly IConfiguration _config;
+        private readonly SmtpSetting _smtpSetting;
+        private readonly IWebHostEnvironment _env;
 
-        public AccountController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager)
+        public AccountController(AppDbContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager,
+            SignInManager<AppUser> signInManager, IConfiguration config, IOptions<SmtpSetting> options, IWebHostEnvironment env)
         {
+            _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
+            _config = config;
+            _smtpSetting = options.Value;
+            _env = env;
         }
 
         //1.Register
         //2.Login
         //3.Logout
+        //4.Email Confirmation
         //=======================================================
 
         //1.Register
@@ -40,7 +54,10 @@ namespace Gorira.Controllers
             AppUser appUser = new AppUser
             {
                 UserName = registerVM.UserName,
-                Email = registerVM.Email
+                Email = registerVM.Email,
+                IsActive = true,
+                ProfilePicture = "default2.jpg",
+                DisplayName = registerVM.UserName
             };
 
             IdentityResult identityResult = await _userManager.CreateAsync(appUser, registerVM.Password);
@@ -56,7 +73,33 @@ namespace Gorira.Controllers
 
             await _userManager.AddToRoleAsync(appUser, "Member");
 
-            return Ok();
+
+            string templateFullPath = Path.Combine(_env.WebRootPath, "templates", "EmailConfirm.html");
+            string templateContent = await System.IO.File.ReadAllTextAsync(templateFullPath);
+
+            string token = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
+            string url = Url.Action("EmailConfirm", "Account", new { Id = appUser.Id, token = token }, Request.Scheme, Request.Host.ToString());
+
+            templateContent = templateContent.Replace("{{url}}", url);
+
+            MimeMessage mimeMessage = new MimeMessage();
+            mimeMessage.From.Add(MailboxAddress.Parse(_smtpSetting.Email));
+            mimeMessage.To.Add(MailboxAddress.Parse(appUser.Email));
+            mimeMessage.Subject = "Email Confirmation";
+            mimeMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
+            {
+                Text = templateContent
+            };
+
+            using (SmtpClient client = new SmtpClient())
+            {
+                await client.ConnectAsync(_smtpSetting.Host, _smtpSetting.Port, MailKit.Security.SecureSocketOptions.StartTls);
+                await client.AuthenticateAsync(_smtpSetting.Email, _smtpSetting.Password);
+                await client.SendAsync(mimeMessage);
+                await client.DisconnectAsync(true);
+            }
+
+            return RedirectToAction(nameof(Login));
         }
 
 
@@ -92,11 +135,11 @@ namespace Gorira.Controllers
                 return View(loginVM);
             }
 
-            //if (!appUser.EmailConfirmed)
-            //{
-            //    ModelState.AddModelError("", "Confirm Your Email");
-            //    return View(loginVM);
-            //}
+            if (!appUser.EmailConfirmed)
+            {
+                ModelState.AddModelError("", "Confirm Your Email");
+                return View(loginVM);
+            }
 
             Microsoft.AspNetCore.Identity.SignInResult signInResult = await _signInManager
                 .PasswordSignInAsync(appUser, loginVM.Password, loginVM.RememberMe, true);
@@ -151,7 +194,46 @@ namespace Gorira.Controllers
             return RedirectToAction(nameof(Login));
         }
 
+        //4.Email Confirmation
+        public async Task<IActionResult> EmailConfirm(string id, string token)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return BadRequest();
+            }
 
+            AppUser appUser = await _userManager.FindByIdAsync(id);
+
+            if (appUser == null)
+            {
+                return NotFound();
+            }
+
+            if (!appUser.IsActive)
+            {
+                return BadRequest();
+            }
+
+            if (appUser.EmailConfirmed)
+            {
+                return Conflict();
+            }
+
+            IdentityResult identityResult = await _userManager.ConfirmEmailAsync(appUser, token);
+
+            if (!identityResult.Succeeded)
+            {
+                foreach (IdentityError error in identityResult.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return View(nameof(Login));
+            }
+
+            await _signInManager.SignInAsync(appUser, true);
+
+            return RedirectToAction("Index", "Home");
+        }
 
         #region RoleCreation
         //public async Task<IActionResult> CreateRole()
