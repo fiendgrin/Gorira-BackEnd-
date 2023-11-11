@@ -10,38 +10,21 @@
         <div class="gradient"></div>
         <div class="swiper-wrapper">
             <!-- Slides -->
-            <div class="swiper-slide">
-                <div class="gradient"></div>
+            @foreach (Slider slider in Model.Sliders)
+            {
+                <div class="swiper-slide">
+                    <div class="gradient"></div>
 
-                <a asp-controller="Track" asp-action="Index" class="slide1 slidebtn">Get Tracks Now</a>
-                <div class="slide1 slidetext">
-                    <p>Easy Access To Your Favorite Beats</p>
+                    <a asp-controller="Track" asp-action="Index" class="slide1 slidebtn">@slider.BtnText</a>
+                    <div class="slide slidetext">
+                        <p>@slider.Text</p>
+                    </div>
+
+                    <img src="~/assets/images/slider/@(slider.Image)" alt="" />
                 </div>
+            }
 
-                <img src="~/assets/images/slider/easy-access.png" alt="" />
-            </div>
-
-            <div class="swiper-slide">
-                <div class="gradient"></div>
-
-                <a asp-controller="Track" asp-action="Index" class="slide1 slidebtn">Get Tracks Now</a>
-
-                <div class="slide2 slidetext">
-                    <p>Make Money From Home</p>
-                </div>
-                <img src="~/assets/images/slider/work-from-home.jpg" alt="" />
-            </div>
-
-            <div class="swiper-slide">
-                <div class="gradient"></div>
-
-                <a asp-controller="Track" asp-action="Index" class="slide1 slidebtn">Get Tracks Now</a>
-
-                <div class="slide3 slidetext">
-                    <p>Become One Of The Greatest</p>
-                </div>
-                <img src="~/assets/images/slider/producers.jpg" alt="" />
-            </div>
+            
         </div>
     </section>
     <!--Swiper End-->
@@ -284,55 +267,22 @@
         <div class="gradient"></div>
         <div class="swiper-wrapper">
             <!-- Slides -->
-            <div class="swiper-slide">
-                <div class="gradient"></div>
+          @foreach (ReviewSlider reviewSlider in Model.ReviewSliders)
+            {
+                <div class="swiper-slide">
+                    <div class="gradient"></div>
 
-                <img class="slide1 mainImg"
-                     src="~/assets/images/WhyGorira/Joji.png" />
+                    <img class="slide1 mainImg"
+                         src="~/assets/images/WhyGorira/@(reviewSlider.Image)"/>
 
-                <div class="slide1 slidetextRight">
-                    <span class="name">Joji</span>
-                    <p>
-                        "I love Gorira! if at any point I need something new, or
-                        something inspiring, Gorira is my go to."
-                    </p>
+                    <div class="slide1 slidetextRight">
+                        @Html.Raw(reviewSlider.Text)
+                    </div>
+
+                    <img class="bckg" src="~/assets/images/gif/@(reviewSlider.BackgroundImage)" alt="" />
                 </div>
-
-                <img class="bckg" src="~/assets/images/gif/2.jpg" alt="" />
-            </div>
-            <div class="swiper-slide">
-                <div class="gradient"></div>
-
-                <img class="slide1 mainImg"
-                     src="~/assets/images/WhyGorira/Doja-Cat.png" />
-
-                <div class="slide1 slidetextRight">
-                    <span class="name">Doja Cat</span>
-                    <p class="textRight">
-                        "Sometimes you just don't want to go through all of the
-                        formalities, and want to just get the beat you like in a couple
-                        of clicks"
-                    </p>
-                </div>
-
-                <img class="bckg" src="~/assets/images/gif/2.jpg" alt="" />
-            </div>
-            <div class="swiper-slide">
-                <div class="gradient"></div>
-
-                <img class="slide1 mainImg"
-                     src="~/assets/images/WhyGorira/Yeat.png" />
-
-                <div class="slide1 slidetextRight">
-                    <span class="name">Yeat</span>
-                    <p>
-                        "I be even looking for my own type beats. There are definitely
-                        some mid ones, but I always find something worth searching for."
-                    </p>
-                </div>
-
-                <img class="bckg" src="~/assets/images/gif/2.jpg" alt="" />
-            </div>
+            }
+           
         </div>
     </section>
     <!--SwiperBottom End-->

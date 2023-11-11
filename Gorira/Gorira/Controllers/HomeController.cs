@@ -17,7 +17,11 @@ namespace Gorira.Controllers
         {
             HomeVM homeVMs = new HomeVM
             {
-                Settings = await _context.Settings.ToDictionaryAsync(s => s.Key, s => s.Value)
+                Settings = await _context.Settings.ToDictionaryAsync(s => s.Key, s => s.Value),
+                ReviewSliders = await _context.ReviewSliders.Where(rs=>rs.IsDeleted == false).ToListAsync(),
+                Sliders = await _context.Sliders.Where(s => s.IsDeleted == false).ToListAsync(),
+
+
 
             };
 
