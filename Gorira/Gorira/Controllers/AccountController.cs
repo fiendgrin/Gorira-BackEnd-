@@ -292,7 +292,56 @@ namespace Gorira.Controllers
                     ModelState.AddModelError("", identityError.Description);
 
                 }
-                return View("Profile", appUser);
+                return View("EditProfile", appUser);
+            }
+
+            await _signInManager.SignInAsync(DbAppUser, true);
+
+            return RedirectToAction(nameof(EditProfile));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Member")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangeEmail(AppUser appUser, string currentPassword) 
+        {
+            AppUser DbAppUser = await _userManager.Users
+            .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            if (DbAppUser == null)
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View("EditProfile",appUser);
+            }
+
+            bool PasswordCheck = await _userManager.CheckPasswordAsync(DbAppUser, currentPassword);
+
+            if (!PasswordCheck)
+            {
+                ModelState.AddModelError("", "Incorrect Password");
+                return View("EditProfile",appUser);
+            }
+
+            if (DbAppUser.NormalizedEmail != appUser.Email.Trim().ToUpperInvariant())
+            {
+                DbAppUser.Email = appUser.Email;
+            }
+
+
+            IdentityResult identityResult = await _userManager.UpdateAsync(DbAppUser);
+
+            if (!identityResult.Succeeded)
+            {
+                foreach (IdentityError identityError in identityResult.Errors)
+                {
+                    ModelState.AddModelError("", identityError.Description);
+
+                }
+                return View("EditProfile", appUser);
             }
 
             await _signInManager.SignInAsync(DbAppUser, true);

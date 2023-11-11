@@ -39,12 +39,13 @@
             <img src="~/assets/images/logo/Logo.png" alt="" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <form method="post" class="myForm">
+
                 <div class="loginInput email">
                     <input asp-for="Email"
                            autocomplete="off"
                            class="inputField"                          
                            placeholder="email" />
-                    <label class="inputLabel">Email</label>
+                    <label asp-for="Email" class="inputLabel">Email</label>
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="loginInput password">
@@ -52,7 +53,7 @@
                            autocomplete="off"
                            class="inputField"
                            placeholder="password" />
-                    <label class="inputLabel">Password</label>
+                    <label asp-for="Password" class="inputLabel">Password</label>
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="checkInput">

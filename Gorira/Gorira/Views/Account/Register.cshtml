@@ -44,7 +44,7 @@
                            autocomplete="off"
                            class="inputField"
                            placeholder="UserName" />
-                    <label class="inputLabel">UserName</label>
+                    <label asp-for="UserName" class="inputLabel">UserName</label>
                     <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>
                 <div class="loginInput email">
@@ -53,7 +53,7 @@
                            class="inputField"
                            
                            placeholder="email" />
-                    <label class="inputLabel">Email</label>
+                    <label asp-for="Email" class="inputLabel">Email</label>
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="loginInput password">
@@ -61,7 +61,7 @@
                            autocomplete="off"
                            class="inputField"
                            placeholder="password" />
-                    <label class="inputLabel">Password</label>
+                    <label asp-for="Password" class="inputLabel">Password</label>
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="loginInput confirmPassword">
@@ -69,7 +69,7 @@
                            autocomplete="off"
                            class="inputField"                         
                            placeholder="confirmPassword" />
-                    <label class="inputLabel">Confirm Password</label>
+                    <label asp-for="ConfirmPassword" class="inputLabel">Confirm Password</label>
                     <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
                 <button class="registerButton" type="submit" href="">Register</button>

@@ -7,6 +7,7 @@
 <main id="editProfileMain">
     <div class="box">
         <h2 class="title">Account Settings</h2>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <!--Tabs Start-->
         <div class="tabs">
             <h3 class="tab activeTab profileTab">Profile</h3>
@@ -17,7 +18,6 @@
 
         <div class="background">
             <!--Profile Start-->
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <form method="post" class="profileHolder" enctype="multipart/form-data">
                 <div class="pfpUpload">
                     <div class="coverImage"><img style="object-fit:cover; object-position:center" src="~/assets/images/pfp/@(Model.ProfilePicture)" /></div>
@@ -30,22 +30,27 @@
                                asp-for="ProfilePictureFile"
                                accept=".jpg, .png, .jpeg" />
                     </div>
+                    <span asp-validation-for="ProfilePictureFile" class="text-danger"></span>
                 </div>
                 <div class="regular firstName">
                     <label asp-for="FirstName" class="inputLabel">First Name</label>
                     <input class="inputField" asp-for="FirstName" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
                 <div class="regular lastName">
                     <label class="inputLabel" asp-for="LastName">Last Name</label>
                     <input class="inputField" asp-for="LastName" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
                 <div class="regular displayName">
                     <label class="inputLabel" asp-for="DisplayName">Display Name</label>
                     <input class="inputField" asp-for="DisplayName" />
+                    <span asp-validation-for="DisplayName" class="text-danger"></span>
                 </div>
                 <div class="regular location">
                     <label class="inputLabel" asp-for="Location">Location</label>
                     <input class="inputField" asp-for="Location" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
                 </div>
                 <div class="regular aboutMe">
                     <label class="inputLabel" asp-for="AboutMe">About Me</label>
@@ -53,7 +58,8 @@
                               asp-for="AboutMe"
                               cols="30"
                               rows="10"
-                    maxlength="1000"></textarea>
+                              maxlength="1000"></textarea>
+                    <span asp-validation-for="AboutMe" class="text-danger"></span>
                 </div>
                 <button type="submit" class="profileBtn">
                     <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
@@ -99,21 +105,27 @@
             </div>
             <!--Credentials End-->
             <!--Email Change(Credentials) Form Start-->
-            <form class="emailChangeForm changeForm" action="">
+            <form method="post" class="emailChangeForm changeForm" action="ChangeEmail">
+                @Html.AntiForgeryToken()
                 <div class="goBack">
                     <img src="~/assets/images/icons/chevron-lefticonImage24px.svg"
                          alt="" />
                     Go back
                 </div>
                 <div class="regular email">
-                    <label class="inputLabel">E-mail</label>
-                    <input class="inputField" type="text" placeholder="" />
+                    <label asp-for="Email" class="inputLabel">E-mail</label>
+                    <input asp-for="Email" class="inputField" placeholder="" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="regular currentPassword">
-                    <label class="inputLabel">Current Password</label>
+                    <label for="currentPassword" class="inputLabel">Current Password</label>
                     <input class="inputField"
-                           type="text"
+                           type="password"
+                           name="currentPassword"
+                           for="currentPassword"
+
                            placeholder="Type current password" />
+
                 </div>
                 <button type="submit" class="emailFormBtn formBtn">
                     <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
