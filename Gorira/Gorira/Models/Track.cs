@@ -51,5 +51,7 @@ namespace Gorira.Models
         public IFormFile? UntaggedFile { get; set; }
         [NotMapped]
         public IFormFile ? TrackStemsFile { get; set; }
+        [NotMapped]
+        public IFormFile? CoverFile { get; set; }
     }
 }

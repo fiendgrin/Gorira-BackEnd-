@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Gorira.Attributes.ValidationAttributes;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -32,7 +33,8 @@ namespace Gorira.Models
         [StringLength(255)]
         public string? VK { get; set; }
 
-
+        [FileTypes("image/png", "image/jpeg")]
+        [MaxFileSize(10)]
         [NotMapped]
         public IFormFile? ProfilePictureFile { get; set; }
     }

@@ -1,8 +1,10 @@
 ﻿using Gorira.DataAccessLayer;
 using Gorira.Models;
+using Gorira.Helpers;
 using Gorira.ViewModels;
 using Gorira.ViewModels.AccountVMs;
 using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +39,7 @@ namespace Gorira.Controllers
         //2.Login
         //3.Logout
         //4.Email Confirmation
+        //5.Edit Profile
         //=======================================================
 
         //1.Register
@@ -101,8 +104,6 @@ namespace Gorira.Controllers
 
             return RedirectToAction(nameof(Login));
         }
-
-
 
         //2.Login
         public IActionResult Login()
@@ -233,6 +234,70 @@ namespace Gorira.Controllers
             await _signInManager.SignInAsync(appUser, true);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        //5.Edit Profile
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> EditProfile()
+        {
+            AppUser appUser = await _userManager.Users
+             .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            return View(appUser);
+        }
+        [HttpPost]
+        [Authorize(Roles = "Member")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditProfile(AppUser appUser)
+        {
+            AppUser DbAppUser = await _userManager.Users
+            .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            if (DbAppUser == null)
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(appUser);
+            }
+
+            if (appUser.ProfilePictureFile != null)
+            {
+                string filePath = Path.Combine(_env.WebRootPath, "assets", "images", "pfp", DbAppUser.ProfilePicture);
+                if (System.IO.File.Exists(filePath) && DbAppUser.ProfilePicture != "default2.jpg")
+                {
+                    System.IO.File.Delete(filePath);
+                }
+
+
+                DbAppUser.ProfilePicture = await appUser.ProfilePictureFile.Save(_env.WebRootPath, new string[] { "assets", "images", "pfp" });
+            }
+
+            DbAppUser.AboutMe = appUser.AboutMe;
+            DbAppUser.Location = appUser.Location;
+            DbAppUser.FirstName = appUser.FirstName;
+            DbAppUser.LastName = appUser.LastName;
+            DbAppUser.DisplayName = appUser.DisplayName;
+
+
+
+            IdentityResult identityResult = await _userManager.UpdateAsync(DbAppUser);
+
+            if (!identityResult.Succeeded)
+            {
+                foreach (IdentityError identityError in identityResult.Errors)
+                {
+                    ModelState.AddModelError("", identityError.Description);
+
+                }
+                return View("Profile", appUser);
+            }
+
+            await _signInManager.SignInAsync(DbAppUser, true);
+
+            return RedirectToAction(nameof(EditProfile));
         }
 
         #region RoleCreation

@@ -75,7 +75,7 @@
                     <div class="accountHolder">
                         @if (appUser != null)
                         {
-                            <img class="pfp" src="~/assets/images/pfp/1.jpg" alt="" />
+                            <img style="object-fit:cover; object-position:center" class="pfp" src="~/assets/images/pfp/@(appUser.ProfilePicture)" alt="" />
                         }
                         else
                         {

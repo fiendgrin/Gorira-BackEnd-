@@ -1,0 +1,251 @@
+﻿@model AppUser
+@{
+    ViewData["Title"] = "EditProfile";
+}
+
+<!--Main Start-->
+<main id="editProfileMain">
+    <div class="box">
+        <h2 class="title">Account Settings</h2>
+        <!--Tabs Start-->
+        <div class="tabs">
+            <h3 class="tab activeTab profileTab">Profile</h3>
+            <h3 class="tab credentialsTab">Credentials</h3>
+            <h3 class="tab socialMediaTab">Social Media</h3>
+        </div>
+        <!--Tabs End-->
+
+        <div class="background">
+            <!--Profile Start-->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <form method="post" class="profileHolder" enctype="multipart/form-data">
+                <div class="pfpUpload">
+                    <div class="coverImage"><img style="object-fit:cover; object-position:center" src="~/assets/images/pfp/@(Model.ProfilePicture)" /></div>
+                    <div class="wrapper-btn">
+                        <img class="uploadIcon"
+                             src="~/assets/images/icons/edit-image-photo.svg"
+                             alt="" />
+                        <p class="desc">Profile img (jpg or png)</p>
+                        <input class="fileUpload"
+                               asp-for="ProfilePictureFile"
+                               accept=".jpg, .png, .jpeg" />
+                    </div>
+                </div>
+                <div class="regular firstName">
+                    <label asp-for="FirstName" class="inputLabel">First Name</label>
+                    <input class="inputField" asp-for="FirstName" />
+                </div>
+                <div class="regular lastName">
+                    <label class="inputLabel" asp-for="LastName">Last Name</label>
+                    <input class="inputField" asp-for="LastName" />
+                </div>
+                <div class="regular displayName">
+                    <label class="inputLabel" asp-for="DisplayName">Display Name</label>
+                    <input class="inputField" asp-for="DisplayName" />
+                </div>
+                <div class="regular location">
+                    <label class="inputLabel" asp-for="Location">Location</label>
+                    <input class="inputField" asp-for="Location" />
+                </div>
+                <div class="regular aboutMe">
+                    <label class="inputLabel" asp-for="AboutMe">About Me</label>
+                    <textarea class="inputField"
+                              asp-for="AboutMe"
+                              cols="30"
+                              rows="10"
+                    maxlength="1000"></textarea>
+                </div>
+                <button type="submit" class="profileBtn">
+                    <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
+                    Changes
+                </button>
+            </form>
+            <!--Profile End-->
+            <!--Credentials Start-->
+            <div class="credentialsHolder">
+                <div class="divider"></div>
+                <div class="line email">
+                    <div class="lineLeft">
+                        <h4 class="lineName">E-Mail</h4>
+                        <p class="lineText">YourMail@gmail.com</p>
+                    </div>
+                    <a class="lineRight emailBtn">change e-mail address</a>
+                </div>
+                <div class="divider"></div>
+                <div class="line username">
+                    <div class="lineLeft">
+                        <h4 class="lineName">Username</h4>
+                        <p class="lineText">FiendGrin</p>
+                    </div>
+                    <a class="lineRight usernameBtn">change username</a>
+                </div>
+                <div class="divider"></div>
+                <div class="line password">
+                    <div class="lineLeft">
+                        <h4 class="lineName">Password</h4>
+                        <p class="lineText">***********</p>
+                    </div>
+                    <a class="lineRight passwordBtn">change password</a>
+                </div>
+                <div class="divider"></div>
+                <div class="line phone">
+                    <div class="lineLeft">
+                        <h4 class="lineName">Phone</h4>
+                        <p class="lineText">+7-999-99-99</p>
+                    </div>
+                    <a class="lineRight phoneBtn">change phone number</a>
+                </div>
+                <div class="divider"></div>
+            </div>
+            <!--Credentials End-->
+            <!--Email Change(Credentials) Form Start-->
+            <form class="emailChangeForm changeForm" action="">
+                <div class="goBack">
+                    <img src="~/assets/images/icons/chevron-lefticonImage24px.svg"
+                         alt="" />
+                    Go back
+                </div>
+                <div class="regular email">
+                    <label class="inputLabel">E-mail</label>
+                    <input class="inputField" type="text" placeholder="" />
+                </div>
+                <div class="regular currentPassword">
+                    <label class="inputLabel">Current Password</label>
+                    <input class="inputField"
+                           type="text"
+                           placeholder="Type current password" />
+                </div>
+                <button type="submit" class="emailFormBtn formBtn">
+                    <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
+                    Changes
+                </button>
+            </form>
+            <!--Email Change(Credentials) Form End-->
+            <!--Username Change(Credentials) Form Start-->
+            <form class="usernameChangeForm changeForm" action="">
+                <div class="goBack">
+                    <img src="~/assets/images/icons/chevron-lefticonImage24px.svg"
+                         alt="" />
+                    Go back
+                </div>
+                <div class="regular username">
+                    <label class="inputLabel">Username</label>
+                    <input class="inputField" type="text" placeholder="" />
+                </div>
+                <div class="regular currentPassword">
+                    <label class="inputLabel">Current Password</label>
+                    <input class="inputField"
+                           type="text"
+                           placeholder="Type current password" />
+                </div>
+                <button type="submit" class="usernameFormBtn formBtn">
+                    <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
+                    Changes
+                </button>
+            </form>
+            <!--Username Change(Credentials) Form End-->
+            <!--Password Change(Credentials) Form Start-->
+            <form class="passwordChangeForm changeForm" action="">
+                <div class="goBack">
+                    <img src="~/assets/images/icons/chevron-lefticonImage24px.svg"
+                         alt="" />
+                    Go back
+                </div>
+                <div class="regular currentPassword">
+                    <label class="inputLabel">Current Password</label>
+                    <input class="inputField"
+                           type="password"
+                           placeholder="Type current password" />
+                </div>
+                <div class="regular password">
+                    <label class="inputLabel">New Password</label>
+                    <input type="password"
+                           class="inputField"
+                           type="text"
+                           placeholder="Type new password" />
+                </div>
+                <div class="regular confirmPassword">
+                    <label class="inputLabel">Confirm Password</label>
+                    <input type="password"
+                           class="inputField"
+                           type="text"
+                           placeholder="Confirm password" />
+                </div>
+                <button type="submit" class="confirmPasswordFormBtn formBtn">
+                    <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
+                    Changes
+                </button>
+            </form>
+            <!--Password Change(Credentials) Form End-->
+            <!--Phone Change(Credentials) Form Start-->
+            <form class="phoneChangeForm changeForm" action="">
+                <div class="goBack">
+                    <img src="~/assets/images/icons/chevron-lefticonImage24px.svg"
+                         alt="" />
+                    Go back
+                </div>
+                <div class="regular phone">
+                    <label class="inputLabel">Phone</label>
+                    <input class="inputField" type="text" placeholder="" />
+                </div>
+                <div class="regular currentPassword">
+                    <label class="inputLabel">Current Password</label>
+                    <input class="inputField"
+                           type="text"
+                           placeholder="Type current password" />
+                </div>
+                <button type="submit" class="phoneFormBtn formBtn">
+                    <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
+                    Changes
+                </button>
+            </form>
+            <!--Phone Change(Credentials) Form End-->
+            <!--Social Media Start-->
+            <form class="socialMediaHolder">
+                <div class="regular youtube">
+                    <label class="inputLabel">YouTube</label>
+                    <input class="inputField"
+                           type="text"
+                           placeholder="youtube.com/..." />
+                </div>
+                <div class="regular instagram">
+                    <label class="inputLabel">Instagram</label>
+                    <input class="inputField"
+                           type="text"
+                           placeholder="instagram.com/..." />
+                </div>
+                <div class="regular soundcloud">
+                    <label class="inputLabel">SoundCloud</label>
+                    <input class="inputField"
+                           type="text"
+                           placeholder="soundcloud.com/..." />
+                </div>
+                <div class="regular twitter">
+                    <label class="inputLabel">Twitter</label>
+                    <input class="inputField"
+                           type="text"
+                           placeholder="twitter.com/..." />
+                </div>
+                <div class="regular facebook">
+                    <label class="inputLabel">Facebook</label>
+                    <input class="inputField"
+                           type="text"
+                           placeholder="facebook.com/..." />
+                </div>
+                <div class="regular vk">
+                    <label class="inputLabel">VK</label>
+                    <input class="inputField" type="text" placeholder="vk.com/..." />
+                </div>
+                <button type="submit" class="socialMediaBtn">
+                    <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
+                    Changes
+                </button>
+            </form>
+            <!--Social Media End-->
+        </div>
+    </div>
+</main>
+<!--Main End-->
+<!--Edit Profile-->
+<script src="~/assets/javascript/editProfile.js" asp-append-version="true"></script>
+
