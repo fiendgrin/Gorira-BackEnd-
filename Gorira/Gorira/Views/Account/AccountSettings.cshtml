@@ -68,46 +68,7 @@
             @await Html.PartialAsync("_ChangePhoneNumberPartial",Model.changePhoneNumberVM)
             <!--Phone Change(Credentials) Form End-->
             <!--Social Media Start-->
-            <form class="socialMediaHolder">
-                <div class="regular youtube">
-                    <label class="inputLabel">YouTube</label>
-                    <input class="inputField"
-                           type="text"
-                           placeholder="youtube.com/..." />
-                </div>
-                <div class="regular instagram">
-                    <label class="inputLabel">Instagram</label>
-                    <input class="inputField"
-                           type="text"
-                           placeholder="instagram.com/..." />
-                </div>
-                <div class="regular soundcloud">
-                    <label class="inputLabel">SoundCloud</label>
-                    <input class="inputField"
-                           type="text"
-                           placeholder="soundcloud.com/..." />
-                </div>
-                <div class="regular twitter">
-                    <label class="inputLabel">Twitter</label>
-                    <input class="inputField"
-                           type="text"
-                           placeholder="twitter.com/..." />
-                </div>
-                <div class="regular facebook">
-                    <label class="inputLabel">Facebook</label>
-                    <input class="inputField"
-                           type="text"
-                           placeholder="facebook.com/..." />
-                </div>
-                <div class="regular vk">
-                    <label class="inputLabel">VK</label>
-                    <input class="inputField" type="text" placeholder="vk.com/..." />
-                </div>
-                <button type="submit" class="socialMediaBtn">
-                    <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
-                    Changes
-                </button>
-            </form>
+            @await Html.PartialAsync("_EditSocialMediaPartial",Model.editSocialMediaVM)
             <!--Social Media End-->
         </div>
     </div>

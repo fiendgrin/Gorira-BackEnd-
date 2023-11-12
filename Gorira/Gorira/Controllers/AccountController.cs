@@ -45,6 +45,7 @@ namespace Gorira.Controllers
         //7.Change UserName
         //8.Change PhoneNumber
         //9.Change Password
+        //10.Edit Social Media
         //=======================================================
 
         //1.Register
@@ -269,9 +270,18 @@ namespace Gorira.Controllers
                 {
                     Phone = appUser.PhoneNumber,
                 },
-                changeUserNameVM= new ChangeUserNameVM 
+                changeUserNameVM = new ChangeUserNameVM
                 {
                     UserName = appUser.UserName,
+                },
+                editSocialMediaVM = new EditSocialMediaVM
+                {
+                    YouTube = appUser.YouTube,
+                    Facebook = appUser.Facebook,
+                    VK = appUser.VK,
+                    Instagram = appUser.Instagram,
+                    SoundCloud = appUser.SoundCloud,
+                    Twitter = appUser.Twitter
                 }
 
             };
@@ -288,11 +298,46 @@ namespace Gorira.Controllers
             AppUser DbAppUser = await _userManager.Users
             .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
+            AccountSettingsVM accountSettingsVM = new AccountSettingsVM
+            {
+                editProfileVM = new EditProfileVM
+                {
+                    DisplayName = editProfileVM.DisplayName,
+                    FirstName = editProfileVM.FirstName,
+                    LastName = editProfileVM.LastName,
+                    Location = editProfileVM.Location,
+                    AboutMe = editProfileVM.AboutMe,
+                    ProfilePicture = editProfileVM.ProfilePicture
+                },
+                changeEmailVM = new ChangeEmailVM
+                {
+                    Email = DbAppUser.Email,
+                },
+                changePhoneNumberVM = new ChangePhoneNumberVM
+                {
+                    Phone = DbAppUser.PhoneNumber,
+                },
+                changeUserNameVM = new ChangeUserNameVM
+                {
+                    UserName = DbAppUser.UserName,
+                },
+                editSocialMediaVM = new EditSocialMediaVM
+                {
+                    YouTube = DbAppUser.YouTube,
+                    Facebook = DbAppUser.Facebook,
+                    VK = DbAppUser.VK,
+                    Instagram = DbAppUser.Instagram,
+                    SoundCloud = DbAppUser.SoundCloud,
+                    Twitter = DbAppUser.Twitter
+                }
+
+            };
+
             if (!ModelState.IsValid)
             {
                 TempData["Tab"] = "Profile";
                 TempData["Credentials"] = "";
-                return PartialView("_EditProfilePartial",editProfileVM);
+                return View("AccountSettings", accountSettingsVM);
             }
 
             if (editProfileVM.ProfilePictureFile != null)
@@ -326,7 +371,7 @@ namespace Gorira.Controllers
                 }
                 TempData["Tab"] = "Profile";
                 TempData["Credentials"] = "";
-                return View("AccountSettings", DbAppUser);
+                return View("AccountSettings", accountSettingsVM);
             }
 
             await _signInManager.SignInAsync(DbAppUser, true);
@@ -366,6 +411,15 @@ namespace Gorira.Controllers
                 changeUserNameVM = new ChangeUserNameVM
                 {
                     UserName = DbAppUser.UserName,
+                },
+                editSocialMediaVM = new EditSocialMediaVM
+                {
+                    YouTube = DbAppUser.YouTube,
+                    Facebook = DbAppUser.Facebook,
+                    VK = DbAppUser.VK,
+                    Instagram = DbAppUser.Instagram,
+                    SoundCloud = DbAppUser.SoundCloud,
+                    Twitter = DbAppUser.Twitter
                 }
 
             };
@@ -448,9 +502,19 @@ namespace Gorira.Controllers
                 changeUserNameVM = new ChangeUserNameVM
                 {
                     UserName = changeUserNameVM.UserName,
+                },
+                editSocialMediaVM = new EditSocialMediaVM
+                {
+                    YouTube = DbAppUser.YouTube,
+                    Facebook = DbAppUser.Facebook,
+                    VK = DbAppUser.VK,
+                    Instagram = DbAppUser.Instagram,
+                    SoundCloud = DbAppUser.SoundCloud,
+                    Twitter = DbAppUser.Twitter
                 }
 
             };
+
 
             if (!ModelState.IsValid)
             {
@@ -528,6 +592,15 @@ namespace Gorira.Controllers
                 changeUserNameVM = new ChangeUserNameVM
                 {
                     UserName = DbAppUser.UserName,
+                },
+                editSocialMediaVM = new EditSocialMediaVM
+                {
+                    YouTube = DbAppUser.YouTube,
+                    Facebook = DbAppUser.Facebook,
+                    VK = DbAppUser.VK,
+                    Instagram = DbAppUser.Instagram,
+                    SoundCloud = DbAppUser.SoundCloud,
+                    Twitter = DbAppUser.Twitter
                 }
 
             };
@@ -607,6 +680,15 @@ namespace Gorira.Controllers
                 changeUserNameVM = new ChangeUserNameVM
                 {
                     UserName = DbAppUser.UserName,
+                },
+                editSocialMediaVM = new EditSocialMediaVM
+                {
+                    YouTube = DbAppUser.YouTube,
+                    Facebook = DbAppUser.Facebook,
+                    VK = DbAppUser.VK,
+                    Instagram = DbAppUser.Instagram,
+                    SoundCloud = DbAppUser.SoundCloud,
+                    Twitter = DbAppUser.Twitter
                 }
 
             };
@@ -648,6 +730,181 @@ namespace Gorira.Controllers
 
             return RedirectToAction(nameof(AccountSettings));
         }
+
+        //10.Edit Social Media
+        [HttpPost]
+        [Authorize(Roles = "Member")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditSocialMedia(EditSocialMediaVM editSocialMediaVM)
+        {
+            TempData["Tab"] = "Social Media";
+            TempData["Credentials"] = "";
+            AppUser DbAppUser = await _userManager.Users
+            .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            AccountSettingsVM accountSettingsVM = new AccountSettingsVM
+            {
+                editProfileVM = new EditProfileVM
+                {
+                    DisplayName = DbAppUser.DisplayName,
+                    FirstName = DbAppUser.FirstName,
+                    LastName = DbAppUser.LastName,
+                    Location = DbAppUser.Location,
+                    AboutMe = DbAppUser.AboutMe,
+                    ProfilePicture = DbAppUser.ProfilePicture
+                },
+                changeEmailVM = new ChangeEmailVM
+                {
+                    Email = DbAppUser.Email,
+                },
+                changePhoneNumberVM = new ChangePhoneNumberVM
+                {
+                    Phone = DbAppUser.PhoneNumber,
+                },
+                changeUserNameVM = new ChangeUserNameVM
+                {
+                    UserName = DbAppUser.UserName,
+                },
+                editSocialMediaVM = new EditSocialMediaVM
+                {
+                    YouTube = editSocialMediaVM.YouTube,
+                    Facebook = editSocialMediaVM.Facebook,
+                    VK = editSocialMediaVM.VK,
+                    Instagram = editSocialMediaVM.Instagram,
+                    SoundCloud = editSocialMediaVM.SoundCloud,
+                    Twitter = editSocialMediaVM.Twitter
+                }
+
+            };
+
+            if (!ModelState.IsValid)
+            {
+                TempData["Tab"] = "Social Media";
+                TempData["Credentials"] = "";
+                return View("AccountSettings", accountSettingsVM);
+            }
+
+
+            string youtubeRegex = @"^(https?:\/\/)?(www\.)?youtube\.com\/(channel|user)\/[\w-]+$";
+            string instagramRegex = @"^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9_\.]+\/?$";
+            string twitterRegex = @"^(https?:\/\/)?(www\.)?twitter\.com\/[a-zA-Z0-9_]+\/?$";
+            string soundCloudRegex = @"^(https?:\/\/)?(www\.)?soundcloud\.com\/[a-zA-Z0-9_-]+\/?$";
+            string facebookRegex = @"^(https?:\/\/)?(www\.)?facebook\.com\/[a-zA-Z0-9\.]+\/?$";
+            string vkRegex = @"^(https?:\/\/)?(www\.)?vk\.com\/[a-zA-Z0-9_.]+\/?$";
+
+            if (!string.IsNullOrWhiteSpace(editSocialMediaVM.YouTube)) 
+            {
+                if (!Regex.IsMatch(editSocialMediaVM.YouTube, youtubeRegex))
+                {
+                    TempData["Tab"] = "Social Media";
+                    TempData["Credentials"] = "";
+
+                    ModelState.AddModelError("YouTube", "Invalid YouTube channel link format");
+
+                    return View("AccountSettings", accountSettingsVM);
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(editSocialMediaVM.Instagram))
+            {
+                if (!Regex.IsMatch(editSocialMediaVM.Instagram, instagramRegex))
+                {
+                    TempData["Tab"] = "Social Media";
+                    TempData["Credentials"] = "";
+
+                    ModelState.AddModelError("Instagram", "Invalid Instagram profile link format");
+
+                    return View("AccountSettings", accountSettingsVM);
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(editSocialMediaVM.Twitter))
+            {
+                if (!Regex.IsMatch(editSocialMediaVM.Twitter, twitterRegex))
+                {
+                    TempData["Tab"] = "Social Media";
+                    TempData["Credentials"] = "";
+
+                    ModelState.AddModelError("Twitter", "Invalid X(Twitter) profile link format");
+
+                    return View("AccountSettings", accountSettingsVM);
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(editSocialMediaVM.SoundCloud))
+            {
+                if (!Regex.IsMatch(editSocialMediaVM.SoundCloud, soundCloudRegex))
+                {
+                    TempData["Tab"] = "Social Media";
+                    TempData["Credentials"] = "";
+
+                    ModelState.AddModelError("SoundCloud", "Invalid SoundCloud profile link format");
+
+                    return View("AccountSettings", accountSettingsVM);
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(editSocialMediaVM.Facebook))
+            {
+                if (!Regex.IsMatch(editSocialMediaVM.Facebook, facebookRegex))
+                {
+                    TempData["Tab"] = "Social Media";
+                    TempData["Credentials"] = "";
+
+                    ModelState.AddModelError("Facebook", "Invalid Facebook Profile link format");
+
+                    return View("AccountSettings", accountSettingsVM);
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(editSocialMediaVM.VK))
+            {
+                if (!Regex.IsMatch(editSocialMediaVM.VK, vkRegex))
+                {
+                    TempData["Tab"] = "Social Media";
+                    TempData["Credentials"] = "";
+
+                    ModelState.AddModelError("VK", "Invalid VK Profile link format");
+
+                    return View("AccountSettings", accountSettingsVM);
+                }
+            }
+
+            DbAppUser.YouTube = editSocialMediaVM.YouTube;
+            DbAppUser.Facebook = editSocialMediaVM.Facebook;
+            DbAppUser.VK = editSocialMediaVM.VK;
+            DbAppUser.Instagram = editSocialMediaVM.Instagram;
+            DbAppUser.SoundCloud = editSocialMediaVM.SoundCloud;
+            DbAppUser.Twitter = editSocialMediaVM.Twitter;
+
+
+
+            IdentityResult identityResult = await _userManager.UpdateAsync(DbAppUser);
+
+            if (!identityResult.Succeeded)
+            {
+                foreach (IdentityError identityError in identityResult.Errors)
+                {
+                    ModelState.AddModelError("", identityError.Description);
+
+                }
+                TempData["Tab"] = "Social Media";
+                TempData["Credentials"] = "";
+                return View("AccountSettings", accountSettingsVM);
+            }
+
+            await _signInManager.SignInAsync(DbAppUser, true);
+
+            return RedirectToAction(nameof(AccountSettings));
+        }
+
+
+
+
+
+
+
+
         #region RoleCreation
         //public async Task<IActionResult> CreateRole()
         //{

@@ -1,0 +1,44 @@
+﻿@model EditSocialMediaVM
+<form method="post" action="EditSocialMedia" class="socialMediaHolder" style="@(TempData["Tab"]?.ToString() == "Social Media" ? "display: flex;":"display: none;")">
+    @Html.AntiForgeryToken()
+    <div class="regular youtube">
+        <label asp-for="YouTube" class="inputLabel">YouTube</label>
+        <input class="inputField"
+               asp-for="YouTube"
+               placeholder="youtube.com/..." />
+        <span asp-validation-for="YouTube" class="text-danger"></span>
+    </div>
+    <div class="regular instagram">
+        <label asp-for="Instagram" class="inputLabel">Instagram</label>
+        <input asp-for="Instagram" class="inputField"            
+               placeholder="instagram.com/..." />
+        <span asp-validation-for="Instagram" class="text-danger"></span>
+    </div>
+    <div class="regular soundcloud">
+        <label asp-for="SoundCloud" class="inputLabel">SoundCloud</label>
+        <input asp-for="SoundCloud" class="inputField"              
+               placeholder="soundcloud.com/..." />
+        <span asp-validation-for="SoundCloud" class="text-danger"></span>
+    </div>
+    <div class="regular twitter">
+        <label asp-for="Twitter" class="inputLabel">Twitter</label>
+        <input asp-for="Twitter" class="inputField"              
+               placeholder="twitter.com/..." />
+        <span asp-validation-for="Twitter" class="text-danger"></span>
+    </div>
+    <div class="regular facebook">
+        <label asp-for="Facebook" class="inputLabel">Facebook</label>
+        <input asp-for="Facebook" class="inputField"
+               placeholder="facebook.com/..." />
+        <span asp-validation-for="Facebook" class="text-danger"></span>
+    </div>
+    <div class="regular vk">
+        <label asp-for="VK" class="inputLabel">VK</label>
+        <input asp-for="VK" class="inputField" placeholder="vk.com/..." />
+        <span asp-validation-for="VK" class="text-danger"></span>
+    </div>
+    <button type="submit" class="socialMediaBtn">
+        <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
+        Changes
+    </button>
+</form>

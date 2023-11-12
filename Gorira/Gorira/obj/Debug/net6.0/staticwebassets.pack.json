@@ -417,6 +417,10 @@
       "PackagePath": "staticwebassets\\assets\\images\\icons\\chevron-lefticonImage24px.svg"
     },
     {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\cog.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\cog.svg"
+    },
+    {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\credit-card.svg",
       "PackagePath": "staticwebassets\\assets\\images\\icons\\credit-card.svg"
     },

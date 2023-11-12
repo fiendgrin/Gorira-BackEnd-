@@ -7,5 +7,6 @@
         public ChangePasswordVM changePasswordVM { get; set; }
         public ChangePhoneNumberVM changePhoneNumberVM { get; set; }
         public EditProfileVM editProfileVM { get; set; }
+        public EditSocialMediaVM editSocialMediaVM { get; set; }
     }
 }
