@@ -1,0 +1,24 @@
+﻿@model ChangeUserNameVM
+<form method="post" class="usernameChangeForm changeForm" action="ChangeUserName">
+    @Html.AntiForgeryToken()
+    <div class="goBack">
+        <img src="~/assets/images/icons/chevron-lefticonImage24px.svg"
+             alt="" />
+        Go back
+    </div>
+    <div class="regular username">
+        <label asp-for="UserName" class="inputLabel">Username</label>
+        <input asp-for="UserName" class="inputField" placeholder="" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="regular currentPassword">
+        <label asp-for="CurrentPassword" class="inputLabel">Current Password</label>
+        <input asp-for="CurrentPassword" class="inputField"
+               placeholder="Type current password" />
+        <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+    </div>
+    <button type="submit" class="usernameFormBtn formBtn">
+        <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
+        Changes
+    </button>
+</form>

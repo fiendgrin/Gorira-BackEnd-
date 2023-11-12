@@ -1,0 +1,24 @@
+﻿@model ChangeEmailVM
+<form method="post" class="emailChangeForm changeForm" action="ChangeEmail">
+    @Html.AntiForgeryToken()
+    <div class="goBack">
+        <img src="~/assets/images/icons/chevron-lefticonImage24px.svg"
+             alt="" />
+        Go back
+    </div>
+    <div class="regular email">
+        <label asp-for="Email" class="inputLabel">E-mail</label>
+        <input asp-for="Email" class="inputField" placeholder="" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="regular currentPassword">
+        <label asp-for="CurrentPassword" class="inputLabel">Current Password</label>
+        <input asp-for="CurrentPassword" class="inputField"
+               placeholder="Type current password" />
+        <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+    </div>
+    <button type="submit" class="emailFormBtn formBtn">
+        <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
+        Changes
+    </button>
+</form>

@@ -1,0 +1,50 @@
+﻿@model EditProfileVM
+<form method="post" class="profileHolder" enctype="multipart/form-data" action="EditProfile">
+    @Html.AntiForgeryToken()
+    <div class="pfpUpload">
+        <div class="coverImage"><img style="object-fit:cover; object-position:center" src="~/assets/images/pfp/@(Model.ProfilePicture)" /></div>
+        <div class="wrapper-btn">
+            <img class="uploadIcon"
+                 src="~/assets/images/icons/edit-image-photo.svg"
+                 alt="" />
+            <p class="desc">Profile img (jpg or png)</p>
+            <input class="fileUpload"
+                   asp-for="ProfilePictureFile"
+                   accept=".jpg, .png, .jpeg" />
+        </div>
+        <span asp-validation-for="ProfilePictureFile" class="text-danger"></span>
+    </div>
+    <div class="regular firstName">
+        <label asp-for="FirstName" class="inputLabel">First Name</label>
+        <input class="inputField" asp-for="FirstName" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="regular lastName">
+        <label class="inputLabel" asp-for="LastName">Last Name</label>
+        <input class="inputField" asp-for="LastName" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="regular displayName">
+        <label class="inputLabel" asp-for="DisplayName">Display Name</label>
+        <input class="inputField" asp-for="DisplayName" />
+        <span asp-validation-for="DisplayName" class="text-danger"></span>
+    </div>
+    <div class="regular location">
+        <label class="inputLabel" asp-for="Location">Location</label>
+        <input class="inputField" asp-for="Location" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+    <div class="regular aboutMe">
+        <label class="inputLabel" asp-for="AboutMe">About Me</label>
+        <textarea class="inputField"
+                  asp-for="AboutMe"
+                  cols="30"
+                  rows="10"
+                  maxlength="1000"></textarea>
+        <span asp-validation-for="AboutMe" class="text-danger"></span>
+    </div>
+    <button type="submit" class="profileBtn">
+        <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
+        Changes
+    </button>
+</form>

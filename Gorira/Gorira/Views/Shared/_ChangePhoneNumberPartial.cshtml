@@ -1,0 +1,23 @@
+﻿@model ChangePhoneNumbreVM
+<form method="post" class="phoneChangeForm changeForm" action="ChangePhoneNumber">
+    @Html.AntiForgeryToken()
+    <div class="goBack">
+        <img src="~/assets/images/icons/chevron-lefticonImage24px.svg"
+             alt="" />
+        Go back
+    </div>
+    <div class="regular phone">
+        <label asp-for="Phone" class="inputLabel">Phone</label>
+        <input asp-for="Phone" class="inputField" placeholder="" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+    <div class="regular currentPassword">
+        <label asp-for="CurrentPassword" class="inputLabel">Current Password</label>
+        <input asp-for="CurrentPassword" class="inputField"
+               placeholder="Type current password" />
+    </div>
+    <button type="submit" class="phoneFormBtn formBtn">
+        <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
+        Changes
+    </button>
+</form>

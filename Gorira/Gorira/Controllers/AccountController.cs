@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using System.Text.RegularExpressions;
 
 namespace Gorira.Controllers
 {
@@ -40,6 +41,9 @@ namespace Gorira.Controllers
         //3.Logout
         //4.Email Confirmation
         //5.Edit Profile
+        //6.Change Email
+        //7.Change PhoneNumber
+        //8.Change Password
         //=======================================================
 
         //1.Register
@@ -238,32 +242,53 @@ namespace Gorira.Controllers
 
         //5.Edit Profile
         [Authorize(Roles = "Member")]
-        public async Task<IActionResult> EditProfile()
+        public async Task<IActionResult> AccountSettings()
         {
             AppUser appUser = await _userManager.Users
              .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
-            return View(appUser);
+            AccountSettingsVM accountSettingsVM = new AccountSettingsVM
+            {
+                editProfileVM = new EditProfileVM
+                {
+                    DisplayName = appUser.DisplayName,
+                    FirstName = appUser.FirstName,
+                    LastName = appUser.LastName,
+                    Location = appUser.Location,
+                    AboutMe = appUser.AboutMe,
+                    ProfilePicture = appUser.ProfilePicture
+                },
+                changeEmailVM = new ChangeEmailVM
+                {
+                    Email = appUser.Email,
+                },
+                changePhoneNumbreVM = new ChangePhoneNumbreVM
+                {
+                    Phone = appUser.PhoneNumber,
+                },
+                changeUserNameVM= new ChangeUserNameVM 
+                {
+                    UserName = appUser.UserName,
+                }
+
+            };
+
+            return View(accountSettingsVM);
         }
         [HttpPost]
         [Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditProfile(AppUser appUser)
+        public async Task<IActionResult> EditProfile(EditProfileVM editProfileVM)
         {
             AppUser DbAppUser = await _userManager.Users
             .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
-            if (DbAppUser == null)
-            {
-                return NotFound();
-            }
-
             if (!ModelState.IsValid)
             {
-                return View(appUser);
+                return PartialView("_EditProfilePartial",editProfileVM);
             }
 
-            if (appUser.ProfilePictureFile != null)
+            if (editProfileVM.ProfilePictureFile != null)
             {
                 string filePath = Path.Combine(_env.WebRootPath, "assets", "images", "pfp", DbAppUser.ProfilePicture);
                 if (System.IO.File.Exists(filePath) && DbAppUser.ProfilePicture != "default2.jpg")
@@ -272,14 +297,14 @@ namespace Gorira.Controllers
                 }
 
 
-                DbAppUser.ProfilePicture = await appUser.ProfilePictureFile.Save(_env.WebRootPath, new string[] { "assets", "images", "pfp" });
+                DbAppUser.ProfilePicture = await editProfileVM.ProfilePictureFile.Save(_env.WebRootPath, new string[] { "assets", "images", "pfp" });
             }
 
-            DbAppUser.AboutMe = appUser.AboutMe;
-            DbAppUser.Location = appUser.Location;
-            DbAppUser.FirstName = appUser.FirstName;
-            DbAppUser.LastName = appUser.LastName;
-            DbAppUser.DisplayName = appUser.DisplayName;
+            DbAppUser.AboutMe = editProfileVM.AboutMe;
+            DbAppUser.Location = editProfileVM.Location;
+            DbAppUser.FirstName = editProfileVM.FirstName;
+            DbAppUser.LastName = editProfileVM.LastName;
+            DbAppUser.DisplayName = editProfileVM.DisplayName;
 
 
 
@@ -292,63 +317,250 @@ namespace Gorira.Controllers
                     ModelState.AddModelError("", identityError.Description);
 
                 }
-                return View("EditProfile", appUser);
+                return View("_EditProfilePartial", editProfileVM);
             }
 
             await _signInManager.SignInAsync(DbAppUser, true);
 
-            return RedirectToAction(nameof(EditProfile));
+            return RedirectToAction(nameof(AccountSettings));
         }
 
-        [HttpPost]
-        [Authorize(Roles = "Member")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ChangeEmail(AppUser appUser, string currentPassword) 
-        {
-            AppUser DbAppUser = await _userManager.Users
-            .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+        ////6.Change Email
+        //[HttpPost]
+        //[Authorize(Roles = "Member")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> ChangeEmail(AppUser appUser, string currentPassword) 
+        //{
+        //    AppUser DbAppUser = await _userManager.Users
+        //    .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
-            if (DbAppUser == null)
-            {
-                return NotFound();
-            }
+        //    ViewBag.DbAppUser = DbAppUser;
 
-            if (!ModelState.IsValid)
-            {
-                return View("EditProfile",appUser);
-            }
+        //    if (DbAppUser == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            bool PasswordCheck = await _userManager.CheckPasswordAsync(DbAppUser, currentPassword);
+        //    if (string.IsNullOrWhiteSpace(appUser.Email))
+        //    {
+        //        ModelState.AddModelError("", "Email Is Required");
+        //        return View("EditProfile", DbAppUser);
+        //    }
 
-            if (!PasswordCheck)
-            {
-                ModelState.AddModelError("", "Incorrect Password");
-                return View("EditProfile",appUser);
-            }
+        //    if (string.IsNullOrWhiteSpace(currentPassword))
+        //    {
+        //        ModelState.AddModelError("", "Password Is Required");
+        //        return View("EditProfile", DbAppUser);
+        //    }
 
-            if (DbAppUser.NormalizedEmail != appUser.Email.Trim().ToUpperInvariant())
-            {
-                DbAppUser.Email = appUser.Email;
-            }
+        //    if (!ModelState.IsValid)
+        //    {
+        //        ModelState.AddModelError("", "Email Format Is Incorrect");
+        //        return View("EditProfile", DbAppUser);
+        //    }
+
+        //    bool PasswordCheck = await _userManager.CheckPasswordAsync(DbAppUser, currentPassword);
+
+        //    if (!PasswordCheck)
+        //    {
+        //        ModelState.AddModelError("", "Incorrect Password");
+        //        return View("EditProfile", DbAppUser);
+        //    }
+
+        //    if (DbAppUser.NormalizedEmail != appUser.Email.Trim().ToUpperInvariant())
+        //    {
+        //        DbAppUser.Email = appUser.Email;
+        //    }
 
 
-            IdentityResult identityResult = await _userManager.UpdateAsync(DbAppUser);
+        //    IdentityResult identityResult = await _userManager.UpdateAsync(DbAppUser);
 
-            if (!identityResult.Succeeded)
-            {
-                foreach (IdentityError identityError in identityResult.Errors)
-                {
-                    ModelState.AddModelError("", identityError.Description);
+        //    if (!identityResult.Succeeded)
+        //    {
+        //        foreach (IdentityError identityError in identityResult.Errors)
+        //        {
+        //            ModelState.AddModelError("", identityError.Description);
 
-                }
-                return View("EditProfile", appUser);
-            }
+        //        }
+        //        return View("EditProfile", DbAppUser);
+        //    }
 
-            await _signInManager.SignInAsync(DbAppUser, true);
+        //    await _signInManager.SignInAsync(DbAppUser, true);
 
-            return RedirectToAction(nameof(EditProfile));
-        }
+        //    return RedirectToAction(nameof(EditProfile));
+        //}
 
+        ////6.Change UserName
+        //[HttpPost]
+        //[Authorize(Roles = "Member")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> ChangeUserName(AppUser appUser, string currentPassword)
+        //{
+        //    AppUser DbAppUser = await _userManager.Users
+        //    .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+        //    if (DbAppUser == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View("EditProfile", DbAppUser);
+        //    }
+
+        //    if (string.IsNullOrWhiteSpace(currentPassword))
+        //    {
+        //        ModelState.AddModelError("", "Password Is Required");
+        //        return View("EditProfile", DbAppUser);
+        //    }
+
+        //    bool PasswordCheck = await _userManager.CheckPasswordAsync(DbAppUser, currentPassword);
+
+        //    if (!PasswordCheck)
+        //    {
+        //        ModelState.AddModelError("", "Incorrect Password");
+        //        return View("EditProfile", DbAppUser);
+        //    }
+
+        //    if (DbAppUser.NormalizedUserName != appUser.UserName.Trim().ToUpperInvariant())
+        //    {
+        //        DbAppUser.UserName = appUser.UserName;
+        //    }
+
+
+        //    IdentityResult identityResult = await _userManager.UpdateAsync(DbAppUser);
+
+        //    if (!identityResult.Succeeded)
+        //    {
+        //        foreach (IdentityError identityError in identityResult.Errors)
+        //        {
+        //            ModelState.AddModelError("", identityError.Description);
+
+        //        }
+        //        return View("EditProfile", DbAppUser);
+        //    }
+
+        //    await _signInManager.SignInAsync(DbAppUser, true);
+
+        //    return RedirectToAction(nameof(EditProfile));
+        //}
+
+        ////7.Change PhoneNumber
+        //[HttpPost]
+        //[Authorize(Roles = "Member")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> ChangePhoneNumber(AppUser appUser, string currentPassword)
+        //{
+        //    AppUser DbAppUser = await _userManager.Users
+        //    .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+        //    if (DbAppUser == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View("EditProfile", DbAppUser);
+        //    }
+
+        //    if (string.IsNullOrWhiteSpace(currentPassword))
+        //    {
+        //        ModelState.AddModelError("", "Password Is Required");
+        //        return View("EditProfile", DbAppUser);
+        //    }
+
+        //    bool PasswordCheck = await _userManager.CheckPasswordAsync(DbAppUser, currentPassword);
+
+        //    if (!PasswordCheck)
+        //    {
+        //        ModelState.AddModelError("", "Incorrect Password");
+        //        return View("EditProfile", DbAppUser);
+        //    }
+
+        //    if (DbAppUser.PhoneNumber != appUser.PhoneNumber.Trim())
+        //    {
+        //        DbAppUser.PhoneNumber = appUser.PhoneNumber;
+        //    }
+
+
+        //    IdentityResult identityResult = await _userManager.UpdateAsync(DbAppUser);
+
+        //    if (!identityResult.Succeeded)
+        //    {
+        //        foreach (IdentityError identityError in identityResult.Errors)
+        //        {
+        //            ModelState.AddModelError("", identityError.Description);
+
+        //        }
+        //        return View("EditProfile", DbAppUser);
+        //    }
+
+        //    await _signInManager.SignInAsync(DbAppUser, true);
+
+        //    return RedirectToAction(nameof(EditProfile));
+        //}
+
+        ////8.Change Password
+        //[HttpPost]
+        //[Authorize(Roles = "Member")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> ChangePassword(string newPassword, string confirmPassword, string currentPassword)
+        //{
+        //    AppUser DbAppUser = await _userManager.Users
+        //    .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+        //    if (DbAppUser == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    if (string.IsNullOrWhiteSpace(newPassword) || string.IsNullOrWhiteSpace(currentPassword) || string.IsNullOrWhiteSpace(confirmPassword))
+        //    {
+        //        ModelState.AddModelError("", "All Password Inputs Are Required");
+        //        return View("EditProfile",DbAppUser);
+        //    }
+
+        //    string passwordRegex = @"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
+
+        //    if (!Regex.IsMatch(newPassword, passwordRegex))
+        //    {
+        //        ModelState.AddModelError("", "At least one digit ,one lowercase letter, one uppercase letter, one alphabetic character (letter) and minimum length of 8 characters is required");
+        //        return View("EditProfile", DbAppUser);
+        //    }
+
+        //    if (newPassword != confirmPassword)
+        //    {
+        //        ModelState.AddModelError("", "New Password and Confirm Password Should Match");
+        //        return View("EditProfile", DbAppUser);
+        //    }
+
+        //    bool PasswordCheck = await _userManager.CheckPasswordAsync(DbAppUser, currentPassword);
+
+        //    if (!PasswordCheck)
+        //    {
+        //        ModelState.AddModelError("", "Incorrect Current Password");
+        //        return View("EditProfile", DbAppUser);
+        //    }
+
+
+
+        //    IdentityResult changePasswordResult = await _userManager.ChangePasswordAsync(DbAppUser, currentPassword, newPassword);
+
+        //    if (!changePasswordResult.Succeeded)
+        //    {
+        //        foreach (var error in changePasswordResult.Errors)
+        //        {
+        //            ModelState.AddModelError("", error.Description);
+        //        }
+        //        return View("EditProfile", DbAppUser);
+        //    }
+
+        //    await _signInManager.SignInAsync(DbAppUser, true);
+
+        //    return RedirectToAction(nameof(EditProfile));
+        //}
         #region RoleCreation
         //public async Task<IActionResult> CreateRole()
         //{

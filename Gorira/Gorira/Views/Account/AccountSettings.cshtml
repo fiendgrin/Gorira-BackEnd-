@@ -1,0 +1,120 @@
+﻿@model AccountSettingsVM
+@{
+    ViewData["Title"] = "AccountSettings";
+}
+
+<!--Main Start-->
+<main id="editProfileMain">
+    <div class="box">
+        <h2 class="title">Account Settings</h2>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <!--Tabs Start-->
+        <div class="tabs">
+            <h3 class="tab activeTab profileTab">Profile</h3>
+            <h3 class="tab credentialsTab">Credentials</h3>
+            <h3 class="tab socialMediaTab">Social Media</h3>
+        </div>
+        <!--Tabs End-->
+
+        <div class="background">
+            <!--Profile Start-->
+            @await Html.PartialAsync("_EditProfilePartial",Model.editProfileVM)
+            <!--Profile End-->
+            <!--Credentials Start-->
+            <div class="credentialsHolder">
+                <div class="line email">
+                    <div class="lineLeft">
+                        <h4 class="lineName">E-Mail</h4>
+                        <p class="lineText">@(Model.changeEmailVM.Email)</p>
+                    </div>
+                    <a class="lineRight emailBtn">change e-mail address</a>
+                </div>
+                <div class="divider"></div>
+                <div class="line username">
+                    <div class="lineLeft">
+                        <h4 class="lineName">Username</h4>
+                        <p class="lineText">@(Model.changeUserNameVM.UserName)</p>
+                    </div>
+                    <a class="lineRight usernameBtn">change username</a>
+                </div>
+                <div class="divider"></div>
+                <div class="line password">
+                    <div class="lineLeft">
+                        <h4 class="lineName">Password</h4>
+                        <p class="lineText">***********</p>
+                    </div>
+                    <a class="lineRight passwordBtn">change password</a>
+                </div>
+                <div class="divider"></div>
+                <div class="line phone">
+                    <div class="lineLeft">
+                        <h4 class="lineName">Phone</h4>
+                        <p class="lineText">@(Model.changePhoneNumbreVM.Phone != null ? Model.changePhoneNumbreVM.Phone : "None")</p>
+                    </div>
+                    <a class="lineRight phoneBtn">change phone number</a>
+                </div>
+            </div>
+            <!--Credentials End-->
+            <!--Email Change(Credentials) Form Start-->
+            @await Html.PartialAsync("_ChangeEmailPartial",Model.changeEmailVM)
+            <!--Email Change(Credentials) Form End-->
+            <!--Username Change(Credentials) Form Start-->
+            @await Html.PartialAsync("_ChangeUserNamePartial",Model.changeUserNameVM)
+            <!--Username Change(Credentials) Form End-->
+            <!--Password Change(Credentials) Form Start-->
+            @await Html.PartialAsync("_ChangePasswordPartial",Model.changePasswordVM)
+            <!--Password Change(Credentials) Form End-->
+            <!--Phone Change(Credentials) Form Start-->
+            @await Html.PartialAsync("_ChangePhoneNumberPartial",Model.changePhoneNumbreVM)
+            <!--Phone Change(Credentials) Form End-->
+            <!--Social Media Start-->
+            <form class="socialMediaHolder">
+                <div class="regular youtube">
+                    <label class="inputLabel">YouTube</label>
+                    <input class="inputField"
+                           type="text"
+                           placeholder="youtube.com/..." />
+                </div>
+                <div class="regular instagram">
+                    <label class="inputLabel">Instagram</label>
+                    <input class="inputField"
+                           type="text"
+                           placeholder="instagram.com/..." />
+                </div>
+                <div class="regular soundcloud">
+                    <label class="inputLabel">SoundCloud</label>
+                    <input class="inputField"
+                           type="text"
+                           placeholder="soundcloud.com/..." />
+                </div>
+                <div class="regular twitter">
+                    <label class="inputLabel">Twitter</label>
+                    <input class="inputField"
+                           type="text"
+                           placeholder="twitter.com/..." />
+                </div>
+                <div class="regular facebook">
+                    <label class="inputLabel">Facebook</label>
+                    <input class="inputField"
+                           type="text"
+                           placeholder="facebook.com/..." />
+                </div>
+                <div class="regular vk">
+                    <label class="inputLabel">VK</label>
+                    <input class="inputField" type="text" placeholder="vk.com/..." />
+                </div>
+                <button type="submit" class="socialMediaBtn">
+                    <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
+                    Changes
+                </button>
+            </form>
+            <!--Social Media End-->
+        </div>
+    </div>
+</main>
+<!--Main End-->
+<!--Edit Profile-->
+<script src="~/assets/javascript/editProfile.js" asp-append-version="true"></script>
+
+
+

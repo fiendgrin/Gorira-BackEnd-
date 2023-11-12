@@ -36,8 +36,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXF9WaWV3U3RhcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/yunis/source/repos/Gorira/Gorira/Views/Account/EditProfile.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxFZGl0UHJvZmlsZS5jc2h0bWw=
+[C:/Users/yunis/source/repos/Gorira/Gorira/Views/Account/AccountSettings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2NvdW50U2V0dGluZ3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/yunis/source/repos/Gorira/Gorira/Views/Account/Login.cshtml]
@@ -62,6 +62,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/yunis/source/repos/Gorira/Gorira/Views/Playlist/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxheWxpc3RcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yunis/source/repos/Gorira/Gorira/Views/Shared/_ChangeEmailPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DaGFuZ2VFbWFpbFBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yunis/source/repos/Gorira/Gorira/Views/Shared/_ChangePasswordPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DaGFuZ2VQYXNzd29yZFBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yunis/source/repos/Gorira/Gorira/Views/Shared/_ChangePhoneNumberPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DaGFuZ2VQaG9uZU51bWJlclBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yunis/source/repos/Gorira/Gorira/Views/Shared/_ChangeUserNamePartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DaGFuZ2VVc2VyTmFtZVBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yunis/source/repos/Gorira/Gorira/Views/Shared/_EditProfilePartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9FZGl0UHJvZmlsZVBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/yunis/source/repos/Gorira/Gorira/Views/Shared/_Layout.cshtml]
