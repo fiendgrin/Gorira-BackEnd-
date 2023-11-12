@@ -10,9 +10,9 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <!--Tabs Start-->
         <div class="tabs">
-            <h3 class="tab activeTab profileTab">Profile</h3>
-            <h3 class="tab credentialsTab">Credentials</h3>
-            <h3 class="tab socialMediaTab">Social Media</h3>
+            <h3 class="tab @(TempData["Tab"]?.ToString() == "Profile"? "activeTab":"") profileTab">Profile</h3>
+            <h3 class="tab @(TempData["Tab"]?.ToString() == "Credentials"? "activeTab":"") credentialsTab">Credentials</h3>
+            <h3 class="tab @(TempData["Tab"]?.ToString() == "Social Media"? "activeTab":"") socialMediaTab">Social Media</h3>
         </div>
         <!--Tabs End-->
 
@@ -21,7 +21,7 @@
             @await Html.PartialAsync("_EditProfilePartial",Model.editProfileVM)
             <!--Profile End-->
             <!--Credentials Start-->
-            <div class="credentialsHolder">
+            <div class="credentialsHolder" style="@(TempData["Credentials"]?.ToString() != ""? "display: none;":"")">
                 <div class="line email">
                     <div class="lineLeft">
                         <h4 class="lineName">E-Mail</h4>
@@ -49,7 +49,7 @@
                 <div class="line phone">
                     <div class="lineLeft">
                         <h4 class="lineName">Phone</h4>
-                        <p class="lineText">@(Model.changePhoneNumbreVM.Phone != null ? Model.changePhoneNumbreVM.Phone : "None")</p>
+                        <p class="lineText">@(Model.changePhoneNumberVM.Phone != null ? Model.changePhoneNumberVM.Phone : "None")</p>
                     </div>
                     <a class="lineRight phoneBtn">change phone number</a>
                 </div>
@@ -65,7 +65,7 @@
             @await Html.PartialAsync("_ChangePasswordPartial",Model.changePasswordVM)
             <!--Password Change(Credentials) Form End-->
             <!--Phone Change(Credentials) Form Start-->
-            @await Html.PartialAsync("_ChangePhoneNumberPartial",Model.changePhoneNumbreVM)
+            @await Html.PartialAsync("_ChangePhoneNumberPartial",Model.changePhoneNumberVM)
             <!--Phone Change(Credentials) Form End-->
             <!--Social Media Start-->
             <form class="socialMediaHolder">

@@ -1,5 +1,5 @@
 ﻿@model ChangeUserNameVM
-<form method="post" class="usernameChangeForm changeForm" action="ChangeUserName">
+<form method="post" class="usernameChangeForm changeForm" action="ChangeUserName" style="@(TempData["Credentials"]?.ToString() == "Name"? "display: inline-block;":"display: none;")">
     @Html.AntiForgeryToken()
     <div class="goBack">
         <img src="~/assets/images/icons/chevron-lefticonImage24px.svg"

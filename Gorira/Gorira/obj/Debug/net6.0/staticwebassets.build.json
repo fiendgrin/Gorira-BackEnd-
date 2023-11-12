@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qdT7BYNLJCfN8XRaT1diicOREcHriOO504laazshpk0=",
+  "Hash": "KfKrLep8m+h2GRRvXF/XFU171dRSVrf4tUlB0X19yc8=",
   "Source": "Gorira",
   "BasePath": "_content/Gorira",
   "Mode": "Default",
@@ -2550,12 +2550,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\pfp\\2.jpg"
     },
     {
-      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\pfp\\20231112153357351.jpg",
+      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\pfp\\20231112175059041.jpg",
       "SourceId": "Gorira",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
       "BasePath": "_content/Gorira",
-      "RelativePath": "assets/images/pfp/20231112153357351.jpg",
+      "RelativePath": "assets/images/pfp/20231112175059041.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2564,7 +2564,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\pfp\\20231112153357351.jpg"
+      "OriginalItemSpec": "wwwroot\\assets\\images\\pfp\\20231112175059041.jpg"
     },
     {
       "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\pfp\\default.jpg",

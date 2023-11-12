@@ -42,8 +42,9 @@ namespace Gorira.Controllers
         //4.Email Confirmation
         //5.Edit Profile
         //6.Change Email
-        //7.Change PhoneNumber
-        //8.Change Password
+        //7.Change UserName
+        //8.Change PhoneNumber
+        //9.Change Password
         //=======================================================
 
         //1.Register
@@ -244,6 +245,8 @@ namespace Gorira.Controllers
         [Authorize(Roles = "Member")]
         public async Task<IActionResult> AccountSettings()
         {
+            TempData["Tab"] = "Profile";
+            TempData["Credentials"] = "";
             AppUser appUser = await _userManager.Users
              .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
@@ -262,7 +265,7 @@ namespace Gorira.Controllers
                 {
                     Email = appUser.Email,
                 },
-                changePhoneNumbreVM = new ChangePhoneNumbreVM
+                changePhoneNumberVM = new ChangePhoneNumberVM
                 {
                     Phone = appUser.PhoneNumber,
                 },
@@ -280,11 +283,15 @@ namespace Gorira.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditProfile(EditProfileVM editProfileVM)
         {
+            TempData["Tab"] = "Profile";
+            TempData["Credentials"] = "";
             AppUser DbAppUser = await _userManager.Users
             .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
             if (!ModelState.IsValid)
             {
+                TempData["Tab"] = "Profile";
+                TempData["Credentials"] = "";
                 return PartialView("_EditProfilePartial",editProfileVM);
             }
 
@@ -317,7 +324,9 @@ namespace Gorira.Controllers
                     ModelState.AddModelError("", identityError.Description);
 
                 }
-                return View("_EditProfilePartial", editProfileVM);
+                TempData["Tab"] = "Profile";
+                TempData["Credentials"] = "";
+                return View("AccountSettings", DbAppUser);
             }
 
             await _signInManager.SignInAsync(DbAppUser, true);
@@ -325,242 +334,320 @@ namespace Gorira.Controllers
             return RedirectToAction(nameof(AccountSettings));
         }
 
-        ////6.Change Email
-        //[HttpPost]
-        //[Authorize(Roles = "Member")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> ChangeEmail(AppUser appUser, string currentPassword) 
-        //{
-        //    AppUser DbAppUser = await _userManager.Users
-        //    .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+        //6.Change Email
+        [HttpPost]
+        [Authorize(Roles = "Member")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangeEmail(ChangeEmailVM changeEmailVM)
+        {
 
-        //    ViewBag.DbAppUser = DbAppUser;
+            AppUser DbAppUser = await _userManager.Users
+            .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
-        //    if (DbAppUser == null)
-        //    {
-        //        return NotFound();
-        //    }
+            AccountSettingsVM accountSettingsVM = new AccountSettingsVM
+            {
+                editProfileVM = new EditProfileVM
+                {
+                    DisplayName = DbAppUser.DisplayName,
+                    FirstName = DbAppUser.FirstName,
+                    LastName = DbAppUser.LastName,
+                    Location = DbAppUser.Location,
+                    AboutMe = DbAppUser.AboutMe,
+                    ProfilePicture = DbAppUser.ProfilePicture
+                },
+                changeEmailVM = new ChangeEmailVM
+                {
+                    Email = changeEmailVM.Email,
+                },
+                changePhoneNumberVM = new ChangePhoneNumberVM
+                {
+                    Phone = DbAppUser.PhoneNumber,
+                },
+                changeUserNameVM = new ChangeUserNameVM
+                {
+                    UserName = DbAppUser.UserName,
+                }
 
-        //    if (string.IsNullOrWhiteSpace(appUser.Email))
-        //    {
-        //        ModelState.AddModelError("", "Email Is Required");
-        //        return View("EditProfile", DbAppUser);
-        //    }
+            };
 
-        //    if (string.IsNullOrWhiteSpace(currentPassword))
-        //    {
-        //        ModelState.AddModelError("", "Password Is Required");
-        //        return View("EditProfile", DbAppUser);
-        //    }
+            if (!ModelState.IsValid)
+            {
 
-        //    if (!ModelState.IsValid)
-        //    {
-        //        ModelState.AddModelError("", "Email Format Is Incorrect");
-        //        return View("EditProfile", DbAppUser);
-        //    }
+                TempData["Tab"] = "Credentials";
+                TempData["Credentials"] = "Email";
+                return View("AccountSettings", accountSettingsVM);
+            }
 
-        //    bool PasswordCheck = await _userManager.CheckPasswordAsync(DbAppUser, currentPassword);
+            bool PasswordCheck = await _userManager.CheckPasswordAsync(DbAppUser, changeEmailVM.CurrentPassword);
 
-        //    if (!PasswordCheck)
-        //    {
-        //        ModelState.AddModelError("", "Incorrect Password");
-        //        return View("EditProfile", DbAppUser);
-        //    }
+            if (!PasswordCheck)
+            {
 
-        //    if (DbAppUser.NormalizedEmail != appUser.Email.Trim().ToUpperInvariant())
-        //    {
-        //        DbAppUser.Email = appUser.Email;
-        //    }
+                TempData["Tab"] = "Credentials";
+                TempData["Credentials"] = "Email";
+                ModelState.AddModelError("", "Incorrect Password");
+                return View("AccountSettings", accountSettingsVM);
 
+            }
 
-        //    IdentityResult identityResult = await _userManager.UpdateAsync(DbAppUser);
-
-        //    if (!identityResult.Succeeded)
-        //    {
-        //        foreach (IdentityError identityError in identityResult.Errors)
-        //        {
-        //            ModelState.AddModelError("", identityError.Description);
-
-        //        }
-        //        return View("EditProfile", DbAppUser);
-        //    }
-
-        //    await _signInManager.SignInAsync(DbAppUser, true);
-
-        //    return RedirectToAction(nameof(EditProfile));
-        //}
-
-        ////6.Change UserName
-        //[HttpPost]
-        //[Authorize(Roles = "Member")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> ChangeUserName(AppUser appUser, string currentPassword)
-        //{
-        //    AppUser DbAppUser = await _userManager.Users
-        //    .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
-
-        //    if (DbAppUser == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View("EditProfile", DbAppUser);
-        //    }
-
-        //    if (string.IsNullOrWhiteSpace(currentPassword))
-        //    {
-        //        ModelState.AddModelError("", "Password Is Required");
-        //        return View("EditProfile", DbAppUser);
-        //    }
-
-        //    bool PasswordCheck = await _userManager.CheckPasswordAsync(DbAppUser, currentPassword);
-
-        //    if (!PasswordCheck)
-        //    {
-        //        ModelState.AddModelError("", "Incorrect Password");
-        //        return View("EditProfile", DbAppUser);
-        //    }
-
-        //    if (DbAppUser.NormalizedUserName != appUser.UserName.Trim().ToUpperInvariant())
-        //    {
-        //        DbAppUser.UserName = appUser.UserName;
-        //    }
+            if (DbAppUser.NormalizedEmail != changeEmailVM.Email.Trim().ToUpperInvariant())
+            {
+                DbAppUser.Email = changeEmailVM.Email;
+            }
 
 
-        //    IdentityResult identityResult = await _userManager.UpdateAsync(DbAppUser);
+            IdentityResult identityResult = await _userManager.UpdateAsync(DbAppUser);
 
-        //    if (!identityResult.Succeeded)
-        //    {
-        //        foreach (IdentityError identityError in identityResult.Errors)
-        //        {
-        //            ModelState.AddModelError("", identityError.Description);
+            if (!identityResult.Succeeded)
+            {
+                foreach (IdentityError identityError in identityResult.Errors)
+                {
+                    ModelState.AddModelError("", identityError.Description);
 
-        //        }
-        //        return View("EditProfile", DbAppUser);
-        //    }
+                }
 
-        //    await _signInManager.SignInAsync(DbAppUser, true);
+                TempData["Tab"] = "Credentials";
+                TempData["Credentials"] = "Email";
+                return View("AccountSettings", accountSettingsVM);
+            }
 
-        //    return RedirectToAction(nameof(EditProfile));
-        //}
+            await _signInManager.SignInAsync(DbAppUser, true);
 
-        ////7.Change PhoneNumber
-        //[HttpPost]
-        //[Authorize(Roles = "Member")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> ChangePhoneNumber(AppUser appUser, string currentPassword)
-        //{
-        //    AppUser DbAppUser = await _userManager.Users
-        //    .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+            return RedirectToAction(nameof(AccountSettings));
+        }
 
-        //    if (DbAppUser == null)
-        //    {
-        //        return NotFound();
-        //    }
+        //7.Change UserName
+        [HttpPost]
+        [Authorize(Roles = "Member")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangeUserName(ChangeUserNameVM changeUserNameVM)
+        {
 
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View("EditProfile", DbAppUser);
-        //    }
+            AppUser DbAppUser = await _userManager.Users
+            .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
-        //    if (string.IsNullOrWhiteSpace(currentPassword))
-        //    {
-        //        ModelState.AddModelError("", "Password Is Required");
-        //        return View("EditProfile", DbAppUser);
-        //    }
+            AccountSettingsVM accountSettingsVM = new AccountSettingsVM
+            {
+                editProfileVM = new EditProfileVM
+                {
+                    DisplayName = DbAppUser.DisplayName,
+                    FirstName = DbAppUser.FirstName,
+                    LastName = DbAppUser.LastName,
+                    Location = DbAppUser.Location,
+                    AboutMe = DbAppUser.AboutMe,
+                    ProfilePicture = DbAppUser.ProfilePicture
+                },
+                changeEmailVM = new ChangeEmailVM
+                {
+                    Email = DbAppUser.Email,
+                },
+                changePhoneNumberVM = new ChangePhoneNumberVM
+                {
+                    Phone = DbAppUser.PhoneNumber,
+                },
+                changeUserNameVM = new ChangeUserNameVM
+                {
+                    UserName = changeUserNameVM.UserName,
+                }
 
-        //    bool PasswordCheck = await _userManager.CheckPasswordAsync(DbAppUser, currentPassword);
+            };
 
-        //    if (!PasswordCheck)
-        //    {
-        //        ModelState.AddModelError("", "Incorrect Password");
-        //        return View("EditProfile", DbAppUser);
-        //    }
+            if (!ModelState.IsValid)
+            {
+                TempData["Tab"] = "Credentials";
+                TempData["Credentials"] = "Name";
+                return View("AccountSettings", accountSettingsVM);
+            }
 
-        //    if (DbAppUser.PhoneNumber != appUser.PhoneNumber.Trim())
-        //    {
-        //        DbAppUser.PhoneNumber = appUser.PhoneNumber;
-        //    }
+            bool PasswordCheck = await _userManager.CheckPasswordAsync(DbAppUser, changeUserNameVM.CurrentPassword);
 
+            if (!PasswordCheck)
+            {
 
-        //    IdentityResult identityResult = await _userManager.UpdateAsync(DbAppUser);
+                TempData["Tab"] = "Credentials";
+                TempData["Credentials"] = "Name";
+                ModelState.AddModelError("", "Incorrect Password");
+                return View("AccountSettings", accountSettingsVM);
 
-        //    if (!identityResult.Succeeded)
-        //    {
-        //        foreach (IdentityError identityError in identityResult.Errors)
-        //        {
-        //            ModelState.AddModelError("", identityError.Description);
+            }
 
-        //        }
-        //        return View("EditProfile", DbAppUser);
-        //    }
-
-        //    await _signInManager.SignInAsync(DbAppUser, true);
-
-        //    return RedirectToAction(nameof(EditProfile));
-        //}
-
-        ////8.Change Password
-        //[HttpPost]
-        //[Authorize(Roles = "Member")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> ChangePassword(string newPassword, string confirmPassword, string currentPassword)
-        //{
-        //    AppUser DbAppUser = await _userManager.Users
-        //    .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
-
-        //    if (DbAppUser == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (string.IsNullOrWhiteSpace(newPassword) || string.IsNullOrWhiteSpace(currentPassword) || string.IsNullOrWhiteSpace(confirmPassword))
-        //    {
-        //        ModelState.AddModelError("", "All Password Inputs Are Required");
-        //        return View("EditProfile",DbAppUser);
-        //    }
-
-        //    string passwordRegex = @"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
-
-        //    if (!Regex.IsMatch(newPassword, passwordRegex))
-        //    {
-        //        ModelState.AddModelError("", "At least one digit ,one lowercase letter, one uppercase letter, one alphabetic character (letter) and minimum length of 8 characters is required");
-        //        return View("EditProfile", DbAppUser);
-        //    }
-
-        //    if (newPassword != confirmPassword)
-        //    {
-        //        ModelState.AddModelError("", "New Password and Confirm Password Should Match");
-        //        return View("EditProfile", DbAppUser);
-        //    }
-
-        //    bool PasswordCheck = await _userManager.CheckPasswordAsync(DbAppUser, currentPassword);
-
-        //    if (!PasswordCheck)
-        //    {
-        //        ModelState.AddModelError("", "Incorrect Current Password");
-        //        return View("EditProfile", DbAppUser);
-        //    }
+            if (DbAppUser.NormalizedUserName != changeUserNameVM.UserName.Trim().ToUpperInvariant())
+            {
+                DbAppUser.UserName = changeUserNameVM.UserName;
+            }
 
 
+            IdentityResult identityResult = await _userManager.UpdateAsync(DbAppUser);
 
-        //    IdentityResult changePasswordResult = await _userManager.ChangePasswordAsync(DbAppUser, currentPassword, newPassword);
+            if (!identityResult.Succeeded)
+            {
+                foreach (IdentityError identityError in identityResult.Errors)
+                {
+                    ModelState.AddModelError("", identityError.Description);
 
-        //    if (!changePasswordResult.Succeeded)
-        //    {
-        //        foreach (var error in changePasswordResult.Errors)
-        //        {
-        //            ModelState.AddModelError("", error.Description);
-        //        }
-        //        return View("EditProfile", DbAppUser);
-        //    }
+                }
+                TempData["Tab"] = "Credentials";
+                TempData["Credentials"] = "Name";
+                return View("AccountSettings", accountSettingsVM);
+            }
 
-        //    await _signInManager.SignInAsync(DbAppUser, true);
+            await _signInManager.SignInAsync(DbAppUser, true);
 
-        //    return RedirectToAction(nameof(EditProfile));
-        //}
+            return RedirectToAction(nameof(AccountSettings));
+        }
+
+        //8.Change PhoneNumber
+        [HttpPost]
+        [Authorize(Roles = "Member")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePhoneNumber(ChangePhoneNumberVM changePhoneNumberVM)
+        {
+
+            AppUser DbAppUser = await _userManager.Users
+            .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            AccountSettingsVM accountSettingsVM = new AccountSettingsVM
+            {
+                editProfileVM = new EditProfileVM
+                {
+                    DisplayName = DbAppUser.DisplayName,
+                    FirstName = DbAppUser.FirstName,
+                    LastName = DbAppUser.LastName,
+                    Location = DbAppUser.Location,
+                    AboutMe = DbAppUser.AboutMe,
+                    ProfilePicture = DbAppUser.ProfilePicture
+                },
+                changeEmailVM = new ChangeEmailVM
+                {
+                    Email = DbAppUser.Email,
+                },
+                changePhoneNumberVM = new ChangePhoneNumberVM
+                {
+                    Phone = changePhoneNumberVM.Phone,
+                },
+                changeUserNameVM = new ChangeUserNameVM
+                {
+                    UserName = DbAppUser.UserName,
+                }
+
+            };
+
+            if (!ModelState.IsValid)
+            {
+                TempData["Tab"] = "Credentials";
+                TempData["Credentials"] = "Phone";
+                return View("AccountSettings", accountSettingsVM);
+            }
+
+            bool PasswordCheck = await _userManager.CheckPasswordAsync(DbAppUser, changePhoneNumberVM.CurrentPassword);
+
+            if (!PasswordCheck)
+            {
+
+                TempData["Tab"] = "Credentials";
+                TempData["Credentials"] = "Phone";
+                ModelState.AddModelError("", "Incorrect Password");
+                return View("AccountSettings", accountSettingsVM);
+
+            }
+
+            if (DbAppUser.PhoneNumber != changePhoneNumberVM.Phone.Trim())
+            {
+                DbAppUser.PhoneNumber = changePhoneNumberVM.Phone;
+            }
+
+
+            IdentityResult identityResult = await _userManager.UpdateAsync(DbAppUser);
+
+            if (!identityResult.Succeeded)
+            {
+                foreach (IdentityError identityError in identityResult.Errors)
+                {
+                    ModelState.AddModelError("", identityError.Description);
+
+                }
+                TempData["Tab"] = "Credentials";
+                TempData["Credentials"] = "Phone";
+                return View("AccountSettings", accountSettingsVM);
+            }
+
+            await _signInManager.SignInAsync(DbAppUser, true);
+
+            return RedirectToAction(nameof(AccountSettings));
+        }
+
+        //9.Change Password
+        [HttpPost]
+        [Authorize(Roles = "Member")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(ChangePasswordVM changePasswordVM)
+        {
+            AppUser DbAppUser = await _userManager.Users
+             .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            AccountSettingsVM accountSettingsVM = new AccountSettingsVM
+            {
+                editProfileVM = new EditProfileVM
+                {
+                    DisplayName = DbAppUser.DisplayName,
+                    FirstName = DbAppUser.FirstName,
+                    LastName = DbAppUser.LastName,
+                    Location = DbAppUser.Location,
+                    AboutMe = DbAppUser.AboutMe,
+                    ProfilePicture = DbAppUser.ProfilePicture
+                },
+                changeEmailVM = new ChangeEmailVM
+                {
+                    Email = DbAppUser.Email,
+                },
+                changePhoneNumberVM = new ChangePhoneNumberVM
+                {
+                    Phone = DbAppUser.PhoneNumber,
+                },
+                changeUserNameVM = new ChangeUserNameVM
+                {
+                    UserName = DbAppUser.UserName,
+                }
+
+            };
+
+            if (!ModelState.IsValid)
+            {
+                TempData["Tab"] = "Credentials";
+                TempData["Credentials"] = "Password";
+                return View("AccountSettings", accountSettingsVM);
+            }
+
+
+            bool PasswordCheck = await _userManager.CheckPasswordAsync(DbAppUser, changePasswordVM.CurrentPassword);
+
+            if (!PasswordCheck)
+            {
+
+                TempData["Tab"] = "Credentials";
+                TempData["Credentials"] = "Password";
+                ModelState.AddModelError("", "Incorrect Password");
+                return View("AccountSettings", accountSettingsVM);
+
+            }
+
+            IdentityResult changePasswordResult = await _userManager.ChangePasswordAsync(DbAppUser, changePasswordVM.CurrentPassword, changePasswordVM.NewPassword);
+
+            if (!changePasswordResult.Succeeded)
+            {
+                foreach (var error in changePasswordResult.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                TempData["Tab"] = "Credentials";
+                TempData["Credentials"] = "Password";
+                return View("AccountSettings", accountSettingsVM);
+            }
+
+            await _signInManager.SignInAsync(DbAppUser, true);
+
+            return RedirectToAction(nameof(AccountSettings));
+        }
         #region RoleCreation
         //public async Task<IActionResult> CreateRole()
         //{

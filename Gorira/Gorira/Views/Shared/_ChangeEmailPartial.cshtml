@@ -1,5 +1,5 @@
 ﻿@model ChangeEmailVM
-<form method="post" class="emailChangeForm changeForm" action="ChangeEmail">
+<form method="post" class="emailChangeForm changeForm" action="ChangeEmail" style="@(TempData["Credentials"]?.ToString() == "Email"? "display: inline-block;":"display: none;")">
     @Html.AntiForgeryToken()
     <div class="goBack">
         <img src="~/assets/images/icons/chevron-lefticonImage24px.svg"

@@ -1,5 +1,5 @@
 ﻿@model EditProfileVM
-<form method="post" class="profileHolder" enctype="multipart/form-data" action="EditProfile">
+<form method="post" class="profileHolder" enctype="multipart/form-data" action="EditProfile" style="@(TempData["Tab"]?.ToString() == "Profile"? "display: flex;":"display: none;")">
     @Html.AntiForgeryToken()
     <div class="pfpUpload">
         <div class="coverImage"><img style="object-fit:cover; object-position:center" src="~/assets/images/pfp/@(Model.ProfilePicture)" /></div>

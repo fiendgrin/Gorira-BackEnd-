@@ -1,5 +1,5 @@
-﻿@model ChangePhoneNumbreVM
-<form method="post" class="phoneChangeForm changeForm" action="ChangePhoneNumber">
+﻿@model ChangePhoneNumberVM
+<form method="post" class="phoneChangeForm changeForm" action="ChangePhoneNumber" style="@(TempData["Credentials"]?.ToString() == "Phone"? "display: inline-block;":"display: none;")">
     @Html.AntiForgeryToken()
     <div class="goBack">
         <img src="~/assets/images/icons/chevron-lefticonImage24px.svg"
@@ -15,6 +15,7 @@
         <label asp-for="CurrentPassword" class="inputLabel">Current Password</label>
         <input asp-for="CurrentPassword" class="inputField"
                placeholder="Type current password" />
+        <span asp-validation-for="CurrentPassword" class="text-danger"></span>
     </div>
     <button type="submit" class="phoneFormBtn formBtn">
         <img src="~/assets/images/icons/save-cute.svg" alt="" />Save
