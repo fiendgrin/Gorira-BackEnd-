@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Linq;
+using X.PagedList;
 
 namespace Gorira.Controllers
 {
@@ -14,16 +15,22 @@ namespace Gorira.Controllers
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-
+        private readonly int _pageSize;
         public ArtistController(AppDbContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
         {
+            _pageSize = 12;
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
         }
 
-        public async Task<IActionResult> Index(string? search , string? order = "popular")
+        public async Task<IActionResult> Index(int? page ,string? search , string? order = "popular")
         {
+            if (page <= 0) 
+            {
+                return NotFound();
+            }
+
             IEnumerable<AppUser>? memberArtists = await _userManager
                 .GetUsersInRoleAsync("Member");
 
@@ -44,13 +51,15 @@ namespace Gorira.Controllers
                                 .OrderBy(a => a.DisplayName)
             };
 
-            if (!string.IsNullOrWhiteSpace(search) && search.Length>=2)
+            if (!string.IsNullOrWhiteSpace(search))
             {
                 Artists = Artists.Where(a => a.DisplayName.ToUpper().Contains(search.ToUpper()) ||
-                (a.Location !=null ? a.Location.ToUpper().Contains(search.ToUpper()) : false ) );
+                 (a.Location != null && a.Location.ToUpper().Contains(search.ToUpper())));
             }
 
-            return View(Artists);
+            
+
+            return View(await Artists.ToPagedListAsync(page??1,_pageSize));
 
         }
     }

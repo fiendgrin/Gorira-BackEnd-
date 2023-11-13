@@ -2,6 +2,9 @@
 @{
     ViewData["Title"] = "Artists";
 }
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+
 <!--Main Start-->
 <main id="musiciansMain">
     <div class="box">
@@ -17,23 +20,33 @@
             </div>
         </div>
         <div style="justify-content: flex-start; align-items :flex-start;" class="musicians">
-            @if (Model != null)
+            @if (Model != null && Model.Count() > 0)
             {
                 @foreach (AppUser user in Model)
                 {
                     <!--Single Card Start-->
                     <a class="musicianCard">
                         <img class="pfp" src="~/assets/images/pfp/@(user.ProfilePicture)" alt="" />
-                        <h5 style="height:26px;" class="name">@user.DisplayName</h5>
-                        <p style="height:22px" class="location">@(string.IsNullOrWhiteSpace(user.Location) ? "" : user.Location)</p>
+                        <h5 style="height:26px; line-height:26px;" class="name">@user.DisplayName</h5>
+                        <p style="height:22px; line-height:22px;" class="location">@(string.IsNullOrWhiteSpace(user.Location) ? "" : user.Location)</p>
                     </a>
                     <!--Single Card End-->
                 }
             }
+            else
+            {
+                <h3 style="text-align:center; width:100%; color:white; font-family: sans-serif; font-size:26px; font-weight:600; height:50vh">
+                    Nothing Here ...
+                    <img style="transform:translateY(8px); height:36px;" src="~/assets/images/icons/search.svg" />
+                </h3>
+            }
 
         </div>
+        @Html.PagedListPager((IPagedList) Model,page=>Url.Action("Index", new {page = page,
+        search = @Context.Request.Query["search"], order = @Context.Request.Query["order"]}))
     </div>
 </main>
+
 <!--Main End-->
 <!--Musicians-->
 <script src="~/assets/javascript/artists.js" asp-append-version="true"></script>
