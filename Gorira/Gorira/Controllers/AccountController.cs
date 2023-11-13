@@ -786,6 +786,7 @@ namespace Gorira.Controllers
 
 
             string youtubeRegex = @"^(https?:\/\/)?(www\.)?youtube\.com\/(channel|user)\/[\w-]+$";
+            string youtubeNewRegex = @"^(https?:\/\/)?(www\.)?youtube\.com\/(?:c\/|channel\/|user\/|@)?[\w-]+\/?$";
             string instagramRegex = @"^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9_\.]+\/?$";
             string twitterRegex = @"^(https?:\/\/)?(www\.)?twitter\.com\/[a-zA-Z0-9_]+\/?$";
             string soundCloudRegex = @"^(https?:\/\/)?(www\.)?soundcloud\.com\/[a-zA-Z0-9_-]+\/?$";
@@ -794,7 +795,7 @@ namespace Gorira.Controllers
 
             if (!string.IsNullOrWhiteSpace(editSocialMediaVM.YouTube)) 
             {
-                if (!Regex.IsMatch(editSocialMediaVM.YouTube, youtubeRegex))
+                if (!Regex.IsMatch(editSocialMediaVM.YouTube, youtubeRegex) && !Regex.IsMatch(editSocialMediaVM.YouTube, youtubeNewRegex))
                 {
                     TempData["Tab"] = "Social Media";
                     TempData["Credentials"] = "";

@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<AppUser>
 @{
     ViewData["Title"] = "Artists";
 }
@@ -10,96 +10,27 @@
             <div class="filter">
                 <img class="filterBtn" src="~/assets/images/icons/filtersiconImage24px.svg" alt="" />
                 <div class="filterHolder">
-                    <a href="">Popular</a>
-                    <a href="">New</a>
+                    <a asp-controller="Artist" asp-action="Index" >None</a>
+                    <a asp-controller="Artist" asp-action="Index" asp-route-order="@("popular")">Popular</a>
+                    <a asp-controller="Artist" asp-action="Index" asp-route-order="@("A-Z")">A-Z</a>
                 </div>
             </div>
         </div>
-        <div class="musicians">
-            <!--Single Card Start-->
-            <a href="" class="musicianCard">
-                <img class="pfp" src="~/assets/images/pfp/1.jpg" alt="" />
-                <h5 class="name">Username</h5>
-                <p class="location">Baku</p>
-            </a>
-            <!--Single Card End-->
-            <!--Single Card Start-->
-            <a href="" class="musicianCard">
-                <img class="pfp" src="~/assets/images/pfp/2.jpg" alt="" />
-                <h5 class="name">Username</h5>
-                <p class="location">Moscow</p>
-            </a>
-            <!--Single Card End-->
-            <!--Single Card Start-->
-            <a href="" class="musicianCard">
-                <img class="pfp" src="~/assets/images/pfp/1.jpg" alt="" />
-                <h5 class="name">Username</h5>
-                <p class="location">Baku</p>
-            </a>
-            <!--Single Card End-->
-            <!--Single Card Start-->
-            <a href="" class="musicianCard">
-                <img class="pfp" src="~/assets/images/pfp/2.jpg" alt="" />
-                <h5 class="name">Username</h5>
-                <p class="location">Moscow</p>
-            </a>
-            <!--Single Card End-->
-            <!--Single Card Start-->
-            <a href="" class="musicianCard">
-                <img class="pfp" src="~/assets/images/pfp/1.jpg" alt="" />
-                <h5 class="name">Username</h5>
-                <p class="location">Baku</p>
-            </a>
-            <!--Single Card End-->
-            <!--Single Card Start-->
-            <a href="" class="musicianCard">
-                <img class="pfp" src="~/assets/images/pfp/2.jpg" alt="" />
-                <h5 class="name">Username</h5>
-                <p class="location">Moscow</p>
-            </a>
-            <!--Single Card End-->
-            <!--Single Card Start-->
-            <a href="" class="musicianCard">
-                <img class="pfp" src="~/assets/images/pfp/1.jpg" alt="" />
-                <h5 class="name">Username</h5>
-                <p class="location">Baku</p>
-            </a>
-            <!--Single Card End-->
-            <!--Single Card Start-->
-            <a href="" class="musicianCard">
-                <img class="pfp" src="~/assets/images/pfp/2.jpg" alt="" />
-                <h5 class="name">Username</h5>
-                <p class="location">Moscow</p>
-            </a>
-            <!--Single Card End-->
-            <!--Single Card Start-->
-            <a href="" class="musicianCard">
-                <img class="pfp" src="~/assets/images/pfp/1.jpg" alt="" />
-                <h5 class="name">Username</h5>
-                <p class="location">Baku</p>
-            </a>
-            <!--Single Card End-->
-            <!--Single Card Start-->
-            <a href="" class="musicianCard">
-                <img class="pfp" src="~/assets/images/pfp/2.jpg" alt="" />
-                <h5 class="name">Username</h5>
-                <p class="location">Moscow</p>
-            </a>
-            <!--Single Card End-->
-            <!--Single Card Start-->
-            <a href="" class="musicianCard">
-                <img class="pfp" src="~/assets/images/pfp/1.jpg" alt="" />
-                <h5 class="name">Username</h5>
-                <p class="location">Baku</p>
-            </a>
-            <!--Single Card End-->
-            <!--Single Card Start-->
-            <a href="" class="musicianCard">
-                <img class="pfp" src="~/assets/images/pfp/2.jpg" alt="" />
-                <h5 class="name">Username</h5>
-                <p class="location">Moscow</p>
-            </a>
-            <!--Single Card End-->
+        <div style="justify-content: flex-start; align-items :flex-start;" class="musicians">
+            @if (Model != null)
+            {
+                @foreach (AppUser user in Model)
+                {
+                    <!--Single Card Start-->
+                    <a class="musicianCard">
+                        <img class="pfp" src="~/assets/images/pfp/@(user.ProfilePicture)" alt="" />
+                        <h5 style="height:26px;" class="name">@user.DisplayName</h5>
+                        <p style="height:22px" class="location">@(string.IsNullOrWhiteSpace(user.Location) ? "" : user.Location)</p>
+                    </a>
+                    <!--Single Card End-->
+                }
+            }
+
         </div>
     </div>
 </main>

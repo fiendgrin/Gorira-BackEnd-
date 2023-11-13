@@ -33,6 +33,12 @@ namespace Gorira.Models
         [StringLength(255)]
         public string? VK { get; set; }
 
+        [InverseProperty("Followee")]
+        public IEnumerable<Follow>? Followers { get; set; }
+
+        [InverseProperty("Follower")]
+        public IEnumerable<Follow>? Follows { get; set; }
+
         [FileTypes("image/png", "image/jpeg")]
         [MaxFileSize(10)]
         [NotMapped]
