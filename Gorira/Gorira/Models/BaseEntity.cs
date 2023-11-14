@@ -12,7 +12,7 @@ namespace Gorira.Models
         [Column(TypeName = "date")]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         [StringLength(100)]
-        public string CreatedBy { get; set; }
+        public string CreatedBy { get; set; } = "System";
         [Column(TypeName = "date")]
         public DateTime? DeletedAt { get; set; }
         [StringLength(100)]

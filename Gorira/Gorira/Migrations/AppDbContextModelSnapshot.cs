@@ -741,6 +741,9 @@ namespace Gorira.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<bool>("HasFree")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -766,7 +769,6 @@ namespace Gorira.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Tagged")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
@@ -1010,11 +1012,11 @@ namespace Gorira.Migrations
             modelBuilder.Entity("Gorira.Models.Follow", b =>
                 {
                     b.HasOne("Gorira.Models.AppUser", "Followee")
-                        .WithMany()
+                        .WithMany("Followers")
                         .HasForeignKey("FolloweeId");
 
                     b.HasOne("Gorira.Models.AppUser", "Follower")
-                        .WithMany()
+                        .WithMany("Follows")
                         .HasForeignKey("FollowerId");
 
                     b.Navigation("Followee");
@@ -1173,6 +1175,13 @@ namespace Gorira.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Gorira.Models.AppUser", b =>
+                {
+                    b.Navigation("Followers");
+
+                    b.Navigation("Follows");
                 });
 #pragma warning restore 612, 618
         }

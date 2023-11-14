@@ -9,7 +9,7 @@ namespace Gorira.Models
         [StringLength(255)]
         public string Title { get; set; }
         [StringLength(255)]
-        public string Tagged { get; set; }
+        public string? Tagged { get; set; }
         [StringLength(255)]
         public string? Untagged { get; set; }
         [StringLength(255)]
@@ -27,7 +27,7 @@ namespace Gorira.Models
         [Range(0,int.MaxValue)]
         public int? Plays { get; set; }
         public Key MusicKey { get; set; }
-
+        public bool HasFree { get; set; }
 
         public AppUser? User { get; set; }
         public string? UserId { get; set; }
