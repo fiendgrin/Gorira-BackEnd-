@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\assets\audio\NewFolder1\**" />
+    <Content Remove="wwwroot\assets\audio\NewFolder1\**" />
+    <EmbeddedResource Remove="wwwroot\assets\audio\NewFolder1\**" />
+    <None Remove="wwwroot\assets\audio\NewFolder1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\audio\stems\" />
+    <Folder Include="wwwroot\assets\audio\untagged\" />
     <Folder Include="wwwroot\manage\" />
   </ItemGroup>
 

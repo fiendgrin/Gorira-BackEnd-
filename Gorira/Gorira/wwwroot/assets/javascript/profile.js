@@ -61,10 +61,10 @@ window.addEventListener("resize", () => {
 
 
 if (window.innerWidth < 1360) {
-  infoTab.classList.add("tabActive");
-  tracksTab.classList.remove("tabActive");
-  profile.style.display = "flex";
-  profileTracks.style.display = "none";
+    infoTab.classList.remove("tabActive");
+  tracksTab.classList.add("tabActive");
+  profile.style.display = "none";
+  profileTracks.style.display = "flex";
 }
 
 
@@ -117,7 +117,7 @@ plays.forEach((play) => {
       next.remove();
       prev.remove();
       document.querySelector("#aplayer .aplayer-music").style.width = "100%";
-      ap.play();
+        ap.play();
     }
 
     // pause play btn display handel

@@ -66,11 +66,14 @@
                 </div>
 
                 <div class="right">
-                    <a href="upload.html" class="myBtn">
-                        <img class="btnImg"
-                             src="~/assets/images/icons/upload.svg"
-                             alt="" />Upload
-                    </a>
+                    @if (appUser != null)
+                    {
+                        <a asp-controller="Track" asp-action="Upload" class="myBtn">
+                            <img class="btnImg"
+                                 src="~/assets/images/icons/upload.svg"
+                                 alt="" />Upload
+                        </a>
+                    }
                     <!--Account-->
                     <div class="accountHolder">
                         @if (appUser != null)

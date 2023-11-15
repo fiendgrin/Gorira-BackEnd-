@@ -33,6 +33,9 @@ namespace Gorira.Models
         [StringLength(255)]
         public string? VK { get; set; }
 
+
+        public IEnumerable<Track>? Tracks { get; set; }
+
         [InverseProperty("Followee")]
         public IEnumerable<Follow>? Followers { get; set; }
 

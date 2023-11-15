@@ -188,7 +188,7 @@ namespace Gorira.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("Gorira.Models.Follow", b =>
@@ -236,7 +236,7 @@ namespace Gorira.Migrations
 
                     b.HasIndex("FollowerId");
 
-                    b.ToTable("Follows");
+                    b.ToTable("Follows", (string)null);
                 });
 
             modelBuilder.Entity("Gorira.Models.Genre", b =>
@@ -284,7 +284,7 @@ namespace Gorira.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("Gorira.Models.Mood", b =>
@@ -327,7 +327,7 @@ namespace Gorira.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Moods");
+                    b.ToTable("Moods", (string)null);
                 });
 
             modelBuilder.Entity("Gorira.Models.Playlist", b =>
@@ -383,7 +383,7 @@ namespace Gorira.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Playlists");
+                    b.ToTable("Playlists", (string)null);
                 });
 
             modelBuilder.Entity("Gorira.Models.PlaylistFollower", b =>
@@ -431,7 +431,7 @@ namespace Gorira.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("PlaylistFollowers");
+                    b.ToTable("PlaylistFollowers", (string)null);
                 });
 
             modelBuilder.Entity("Gorira.Models.PlaylistTrack", b =>
@@ -479,7 +479,7 @@ namespace Gorira.Migrations
 
                     b.HasIndex("TrackId");
 
-                    b.ToTable("PlaylistTracks");
+                    b.ToTable("PlaylistTracks", (string)null);
                 });
 
             modelBuilder.Entity("Gorira.Models.Report", b =>
@@ -527,7 +527,7 @@ namespace Gorira.Migrations
 
                     b.HasIndex("SuspectId");
 
-                    b.ToTable("Reports");
+                    b.ToTable("Reports", (string)null);
                 });
 
             modelBuilder.Entity("Gorira.Models.ReviewSlider", b =>
@@ -580,7 +580,7 @@ namespace Gorira.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReviewSliders");
+                    b.ToTable("ReviewSliders", (string)null);
                 });
 
             modelBuilder.Entity("Gorira.Models.Setting", b =>
@@ -603,7 +603,7 @@ namespace Gorira.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Settings");
+                    b.ToTable("Settings", (string)null);
                 });
 
             modelBuilder.Entity("Gorira.Models.Slider", b =>
@@ -661,7 +661,7 @@ namespace Gorira.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sliders");
+                    b.ToTable("Sliders", (string)null);
                 });
 
             modelBuilder.Entity("Gorira.Models.Tag", b =>
@@ -704,7 +704,7 @@ namespace Gorira.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("Gorira.Models.Track", b =>
@@ -810,7 +810,7 @@ namespace Gorira.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Tracks");
+                    b.ToTable("Tracks", (string)null);
                 });
 
             modelBuilder.Entity("Gorira.Models.TrackTag", b =>
@@ -858,7 +858,7 @@ namespace Gorira.Migrations
 
                     b.HasIndex("TrackId");
 
-                    b.ToTable("TrackTags");
+                    b.ToTable("TrackTags", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

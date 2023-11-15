@@ -262,3 +262,4 @@ C:\Users\yunis\source\repos\Gorira\Gorira\bin\Debug\net6.0\JetBrains.Annotations
 C:\Users\yunis\source\repos\Gorira\Gorira\bin\Debug\net6.0\X.PagedList.dll
 C:\Users\yunis\source\repos\Gorira\Gorira\bin\Debug\net6.0\X.PagedList.Mvc.Core.dll
 C:\Users\yunis\source\repos\Gorira\Gorira\obj\Debug\net6.0\Gorira.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\yunis\source\repos\Gorira\Gorira\bin\Debug\net6.0\web.config

@@ -121,7 +121,7 @@ namespace Gorira.Controllers
 
 
             track.CreatedBy = appUser.UserName;
-
+            track.UserId = appUser.Id;
             await _context.Tracks.AddAsync(track);
             await _context.SaveChangesAsync();
 
@@ -161,9 +161,6 @@ namespace Gorira.Controllers
                     await _context.SaveChangesAsync();
                 }
             }
-
-          
-
 
             return RedirectToAction("Index", "Home");
         }

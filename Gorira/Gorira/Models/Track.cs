@@ -1,4 +1,5 @@
-﻿using Gorira.Enums;
+﻿using Gorira.Attributes.ValidationAttributes;
+using Gorira.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -45,13 +46,24 @@ namespace Gorira.Models
         public int? SecondaryMoodId { get; set; }
 
 
+        public IEnumerable<TrackTag>? TrackTags { get; set; }
+
+
         [NotMapped]
+        [FileTypes("audio/mpeg")]
+        [MaxFileSize(30)]
         public IFormFile? TaggedFile { get; set; }
         [NotMapped]
+        [FileTypes("audio/mpeg", "audio/wav")]
+        [MaxFileSize(150)]
         public IFormFile? UntaggedFile { get; set; }
         [NotMapped]
-        public IFormFile ? TrackStemsFile { get; set; }
+        [FileTypes("application/zip", "application/x-rar-compressed")]
+        [MaxFileSize(300)]
+        public IFormFile? TrackStemsFile { get; set; }
         [NotMapped]
+        [FileTypes("image/png", "image/jpeg")]
+        [MaxFileSize(10)]
         public IFormFile? CoverFile { get; set; }
     }
 }
