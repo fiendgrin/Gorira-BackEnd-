@@ -165,6 +165,14 @@
       "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231115142859130.mp3"
     },
     {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231115203458457.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231115203458457.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231115204936830.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231115204936830.mp3"
+    },
+    {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tracks\\Future - WAIT FOR U (Instrumental) ft. Drake, Tems.mp3",
       "PackagePath": "staticwebassets\\assets\\audio\\tracks\\Future - WAIT FOR U (Instrumental) ft. Drake, Tems.mp3"
     },
@@ -247,6 +255,10 @@
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231115142859157.mp3",
       "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231115142859157.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231115204936877.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231115204936877.mp3"
     },
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-grid.css",

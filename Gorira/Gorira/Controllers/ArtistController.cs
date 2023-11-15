@@ -2,6 +2,7 @@
 using Gorira.Models;
 using Gorira.ViewModels;
 using Gorira.ViewModels.ArtistVMs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -66,13 +67,23 @@ namespace Gorira.Controllers
 
         }
 
-        public async Task<IActionResult> Detail(string? Id,int? page)
+        public async Task<IActionResult> Detail(string? Id, int? page)
         {
             if (string.IsNullOrWhiteSpace(Id)) return BadRequest();
 
 
+            if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+            {
+                AppUser currentUser = await _userManager.Users
+          .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+                if (currentUser.Id == Id)
+                {
+                    return RedirectToAction(nameof(MyProfile));
+                }
+
+            }
             AppUser? appUser = await _userManager.Users
-                .Include(u=> u.Tracks.Where(t=>t.IsDeleted==false)).ThenInclude(t=>t.TrackTags.Where(tt=>tt.IsDeleted==false))
+                .Include(u => u.Tracks.Where(t => t.IsDeleted == false)).ThenInclude(t => t.TrackTags.Where(tt => tt.IsDeleted == false))
                 .FirstOrDefaultAsync(u => u.Id == Id && u.IsActive == true);
 
             if (appUser == null) return NotFound();
@@ -84,7 +95,36 @@ namespace Gorira.Controllers
 
             if (appUser.Tracks != null)
             {
-               userTracks = await appUser.Tracks.ToPagedListAsync(page ?? 1, _detailPageSize);
+                userTracks = await appUser.Tracks.ToPagedListAsync(page ?? 1, _detailPageSize);
+            }
+
+            ArtistVM artistVM = new ArtistVM
+            {
+                User = appUser,
+                Tracks = userTracks,
+            };
+
+            return View(artistVM);
+        }
+
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> MyProfile(int? page)
+        {
+            AppUser currentUser = await _userManager.Users
+         .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+
+            if (page <= 0) return NotFound();
+
+            AppUser? appUser = await _userManager.Users
+              .Include(u => u.Tracks.Where(t => t.IsDeleted == false)).ThenInclude(t => t.TrackTags.Where(tt => tt.IsDeleted == false))
+              .FirstOrDefaultAsync(u => u.Id == currentUser.Id && u.IsActive == true);
+
+            IPagedList<Track>? userTracks = null;
+
+            if (appUser.Tracks != null)
+            {
+                userTracks = await appUser.Tracks.ToPagedListAsync(page ?? 1, _detailPageSize);
             }
 
             ArtistVM artistVM = new ArtistVM

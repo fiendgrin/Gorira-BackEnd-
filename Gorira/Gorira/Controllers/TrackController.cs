@@ -66,7 +66,13 @@ namespace Gorira.Controllers
                 ModelState.AddModelError("", "Tagged Audio is required");
                 return View(track);
             }
-          
+
+            if (track.UntaggedFile == null)
+            {
+                ModelState.AddModelError("", "Untagged Audio is required");
+                return View(track);
+            }
+
 
             if (!ModelState.IsValid)
             {

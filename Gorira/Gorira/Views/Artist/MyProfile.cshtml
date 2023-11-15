@@ -1,0 +1,185 @@
+﻿@model ArtistVM
+@{
+    ViewData["Title"] = Model.User.DisplayName;
+
+    bool hasProtocol = false;
+}
+
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+<main id="myProfileMain">
+    <div class="box">
+        <div class="tabs">
+            <div class="info tab tabActive">Info</div>
+            <div class="tracks tab">Tracks</div>
+        </div>
+        <div class="left">
+            <div class="account">
+                <img class="pfp" src="~/assets/images/pfp/@Model.User.ProfilePicture" alt="" />
+                <h3 class="profileName">@Model.User.DisplayName</h3>
+                <div class="accountButtons">
+                    <a href="editProfile.html" class="edit">
+                        <img src="~/assets/images/icons/pencil.svg" alt="" />Edit
+                        Profile
+                    </a>
+                </div>
+            </div>
+            <div class="stats sectionDefault">
+                <h6>stats</h6>
+                <div class="statLine">
+                    <h5>Followers:</h5>
+                    @if (Model.User.Followers != null && Model.User.Followers.Count() > 0)
+                    {
+                       
+                        <p class="numberElement">@(Model.User.Followers.Count())</p>
+                    }
+                    else
+                    {
+                        <p class="numberElement">0</p>
+                    }
+                </div>
+                <div class="statLine">
+                    <h5>Plays:</h5>
+                    @if (Model.Tracks != null)
+                    {
+                        <p class="numberElement">@(Model.User.Tracks.Where(t => t.Plays != null).Sum(p => p.Plays))</p>
+                    }
+                    else
+                    {
+                        <p class="numberElement">0</p>
+                    }
+                </div>
+                <div class="statLine">
+                    <h5>Tracks:</h5>
+                    @if (Model.Tracks != null)
+                    {
+                        <p class="numberElement">@Model.User.Tracks.Count()</p>
+                    }
+                    else
+                    {
+                        <p class="numberElement">0</p>
+                    }
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="aboutMe sectionDefault">
+                <h6>about me</h6>
+                <div class="aboutMeLine">
+                    <p class="text">
+                        @Model.User.AboutMe
+                    </p>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="findMeOn sectionDefault">
+                <h6>find me on</h6>
+                @if (!string.IsNullOrWhiteSpace(Model.User.YouTube))
+                {
+                    hasProtocol = Model.User.YouTube.StartsWith("http://") || Model.User.YouTube.StartsWith("https://");
+                    <a target="_blank" href="@(hasProtocol ? Model.User.YouTube : "https://" + Model.User.YouTube)" class="link">
+                        <img src="~/assets/images/socialMedia/youtube-clip-logo.svg"
+                             alt="" />
+                        <h4>YouTube</h4>
+                    </a>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.User.Instagram))
+                {
+                    hasProtocol = Model.User.Instagram.StartsWith("http://") || Model.User.Instagram.StartsWith("https://");
+                    <a target="_blank" href="@(hasProtocol ? Model.User.Instagram : "https://" + Model.User.Instagram)" class="link">
+                        <img src="~/assets/images/socialMedia/instagram-logo-2.svg"
+                             alt="" />
+                        <h4>Instagram</h4>
+                    </a>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.User.SoundCloud))
+                {
+                    hasProtocol = Model.User.SoundCloud.StartsWith("http://") || Model.User.SoundCloud.StartsWith("https://");
+                    <a target="_blank" href="@(hasProtocol ? Model.User.SoundCloud : "https://" + Model.User.SoundCloud)" class="link">
+                        <img src="~/assets/images/socialMedia/soundcloud-logo.svg"
+                             alt="" />
+                        <h4>SoundCloud</h4>
+                    </a>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.User.Facebook))
+                {
+                    hasProtocol = Model.User.Facebook.StartsWith("http://") || Model.User.Facebook.StartsWith("https://");
+                    <a target="_blank" href="@(hasProtocol ? Model.User.Facebook : "https://" + Model.User.Facebook)" class="link">
+                        <img src="~/assets/images/socialMedia/facebook-logo-2.svg"
+                             alt="" />
+                        <h4>FaceBook</h4>
+                    </a>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.User.Twitter))
+                {
+                    hasProtocol = Model.User.Twitter.StartsWith("http://") || Model.User.Twitter.StartsWith("https://");
+                    <a target="_blank" href="@(hasProtocol ? Model.User.Twitter : "https://" + Model.User.Twitter)" class="link">
+                        <img src="~/assets/images/socialMedia/twitter-logo-1.svg"
+                             alt="" />
+                        <h4>Twitter</h4>
+                    </a>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.User.VK))
+                {
+                    hasProtocol = Model.User.VK.StartsWith("http://") || Model.User.VK.StartsWith("https://");
+                    <a target="_blank" href="@(hasProtocol ? Model.User.VK : "https://" + Model.User.VK)" class="link">
+                        <img src="~/assets/images/socialMedia/v-kontakte-logo.svg"
+                             alt="" />
+                        <h4>VK</h4>
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="right">
+            <div class="topText">
+                <h3>Tracks</h3>
+                <a asp-controller="Track" asp-action="Index"><p>See more</p></a>
+            </div>
+            <div class="theTracks">
+                @if (Model.Tracks != null)
+                {
+                    <div class="theTracks">
+                        @foreach (Track track in Model.Tracks)
+                        {
+                            <!--Single Card Start-->
+                            <div class="myCard">
+                                <img name="@track.Title"
+                                     artist="@Model.User.DisplayName"
+                                     track="/assets/audio/tagged/@track.Tagged"
+                                     cover="/assets/images/@(Model.User.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
+                                     class="play"
+                                     src="~/assets/images/icons/play.svg"
+                                     alt="" />
+                                <img class="pause" src="~/assets/images/icons/pause.svg" alt="" />
+                                <a href="">
+                                    <img class="cover"
+                                         src="~/assets/images/@(Model.User.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
+                                         alt="" />
+                                </a>
+                                <div class="bottomText">
+                                    <div class="top">
+                                        <p class="price">@(track.Price)$</p>
+                                        <p class="tempo">
+                                            <img src="~/assets/images/icons/dot.svg" alt="" /> @(track.Bpm) BPM
+                                        </p>
+                                    </div>
+                                    <a><h6 class="title">@track.Title</h6></a>
+                                </div>
+
+                            </div>
+                            <!--Single Card End-->
+                        }
+                    </div>
+                    @(Html.PagedListPager((IPagedList)Model.Tracks, page => Url.Action("MyProfile", "Artist", new { page = page, })))
+                }
+            </div>
+        </div>
+    </div>
+
+    <!--Player Start-->
+    <div id="aplayer"></div>
+    <!--Player End-->
+</main>
+
+<!--My Profile-->
+<script src="~/assets/javascript/myProfile.js" asp-append-version="true"></script>
+
