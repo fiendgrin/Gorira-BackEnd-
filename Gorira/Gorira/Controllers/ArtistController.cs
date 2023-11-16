@@ -28,6 +28,14 @@ namespace Gorira.Controllers
             _roleManager = roleManager;
         }
 
+
+        //1.Index
+        //2.Detail
+        //3.My Profile
+
+        //====================================================================
+
+        //1.Index
         public async Task<IActionResult> Index(int? page, string? search, string? order = "popular")
         {
             if (page <= 0)
@@ -67,6 +75,7 @@ namespace Gorira.Controllers
 
         }
 
+        //2.Detail
         public async Task<IActionResult> Detail(string? Id, int? page)
         {
             if (string.IsNullOrWhiteSpace(Id)) return BadRequest();
@@ -107,6 +116,7 @@ namespace Gorira.Controllers
             return View(artistVM);
         }
 
+        //3.My Profile
         [Authorize(Roles = "Member")]
         public async Task<IActionResult> MyProfile(int? page)
         {

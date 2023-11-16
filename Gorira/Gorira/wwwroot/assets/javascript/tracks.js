@@ -41,19 +41,16 @@ window.addEventListener("click", (e) => {
   sortHolder.classList.remove("active");
 });
 
-// let allInputs = document.querySelectorAll("input");
 
-// allInputs.forEach((i) => {
-//   i.addEventListener("change", () => {
-//     console.log(i.value);
-//     console.log(i.checked);
-//   });
-// });
-
+left.addEventListener("click", (e) => {
+    if (window.innerWidth <= 768) {
+        e.stopPropagation();
+    }
+});
 openFilters.addEventListener("click", (e) => {
-  if (window.innerWidth <= 768) {
     e.stopPropagation();
-    if (left.style.display != "none") {
+  if (window.innerWidth <= 768) {
+    if (left.style.display == "flex") {
       left.style.display = "none";
     } else {
       left.style.display = "flex";
@@ -61,11 +58,7 @@ openFilters.addEventListener("click", (e) => {
     sortHolder.classList.remove("active");
   }
 });
-left.addEventListener("click", (e) => {
-  if (window.innerWidth <= 768) {
-    e.stopPropagation();
-  }
-});
+
 
 window.addEventListener("click", (e) => {
   if (window.innerWidth <= 768) {

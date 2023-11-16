@@ -31566,10 +31566,13 @@ label {
     transition: 0.3s;
 }
 
-    .pagination li {
-        margin: 0 5px;
-        transition: 0.3s;
-    }
+.pagination-container {
+    width:100%;
+}
+.pagination li {
+    margin: 0 5px;
+    transition: 0.3s;
+}
         .pagination li.active {
             margin: 0 6px;
             border-radius: 6px;
@@ -31614,3 +31617,129 @@ label {
         padding: 0 6px;
 
     }
+
+
+
+
+@media (min-width: 768px) and (max-width: 1359px) {
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+        font-family: "Chakra Petch", sans-serif;
+        font-weight: 400;
+        transition: 0.3s;
+    }
+
+        .pagination li {
+            margin: 0 1px;
+            transition: 0.3s;
+        }
+
+            .pagination li.active {
+                margin: 0 4px;
+                border-radius: 6px;
+                background: #202020;
+                max-width: auto;
+                min-width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                padding: 0 2px;
+                color: white;
+                transition: 0.3s;
+            }
+
+        .pagination a {
+            text-decoration: none;
+            margin: 0 4px;
+            border-radius: 6px;
+            background: #202020;
+            max-width: auto;
+            min-width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0 2px;
+            color: gray;
+            transition: 0.3s;
+        }
+
+        .pagination .disabled a {
+            pointer-events: none;
+            background-color: rgba(0, 0, 0, 0.1);
+            color: #999;
+            padding: 0 1px;
+        }
+}
+
+@media (min-width: 0px) and (max-width: 768px) {
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+        font-family: "Chakra Petch", sans-serif;
+        font-weight: 400;
+        transition: 0.3s;
+    }
+    .pagination li {
+        margin: 0 1px;
+        transition: 0.3s;
+    }
+        .pagination li.active {
+            margin: 0 2px;
+            border-radius: 6px;
+            background: #202020;
+            max-width: auto;
+            min-width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0 2px;
+            color: white;
+            transition: 0.3s;
+        }
+
+    .pagination a {
+        text-decoration: none;
+        margin: 0 2px;
+        border-radius: 6px;
+        background: #202020;
+        max-width: auto;
+        min-width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        padding: 0 2px;
+        color: gray;
+        transition: 0.3s;
+    }
+    .pagination .disabled a {
+        pointer-events: none;
+        background-color: rgba(0, 0, 0, 0.1);
+        color: #999;
+        padding: 0 1px;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 768px) {
+
+    .musicianCard h5 {
+    max-width:266px;
+    }
+    .aplayer-body {
+        width:380px;
+    }
+}

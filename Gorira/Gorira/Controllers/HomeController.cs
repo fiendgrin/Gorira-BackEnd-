@@ -13,6 +13,12 @@ namespace Gorira.Controllers
         {
             _context = context;
         }
+
+        //1.Index
+
+        //==================================================
+
+        //1.Index
         public async Task<IActionResult> Index()
         {
             HomeVM homeVMs = new HomeVM

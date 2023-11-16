@@ -1,11 +1,16 @@
 ﻿using Gorira.DataAccessLayer;
+using Gorira.Enums;
 using Gorira.Helpers;
 using Gorira.Models;
+using Gorira.ViewModels.ArtistVMs;
+using Gorira.ViewModels.TrackVMs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Linq;
+using X.PagedList;
 
 namespace Gorira.Controllers
 {
@@ -18,7 +23,7 @@ namespace Gorira.Controllers
         private readonly int _pageSize;
         public TrackController(AppDbContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IWebHostEnvironment env)
         {
-            _pageSize = 12;
+            _pageSize = 9;
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
@@ -29,12 +34,107 @@ namespace Gorira.Controllers
         //1.Index
         //2.Upload
 
-        //==========================================
+        //=========================================================
 
         //1.Index
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int? page, string? search, List<int>? genres,List<int>? moods,List<Key>? keys,
+            double? minPrice = 0,double? maxPrice = 9999, double? minBpm = 0, double? maxBpm=9999, string? order = "popular")
+        
         {
-            return View();
+            if (page <= 0)
+            {
+                return NotFound();
+            }
+
+            AppUser? appUser = null;
+
+            if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+            {
+                appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+            }
+
+            IEnumerable<Track>? Tracks = await _context.Tracks
+                .Where(t => t.IsDeleted == false && (appUser == null || t.UserId != appUser.Id)).ToListAsync();
+
+          
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                Tracks = Tracks.Where(t => t.Title.ToUpper().Contains(search.Trim().ToUpper()));
+            }
+
+
+            if (genres != null && genres.Count > 0)
+            {
+                Tracks = Tracks.Where(t => (t.MainGenreId != null && genres.Contains((int)t.MainGenreId)) || 
+                (t.SubGenreId != null && genres.Contains((int)t.SubGenreId)) );
+            }
+
+            if (moods != null && moods.Count > 0)
+            {
+                Tracks = Tracks.Where(t => (t.PrimaryMoodId != null && moods.Contains((int)t.PrimaryMoodId)) ||
+                (t.SecondaryMoodId != null && moods.Contains((int)t.SecondaryMoodId)));
+            }
+
+            if (keys != null && keys.Count > 0)
+            {
+                Tracks = Tracks.Where(t => keys.Contains(t.MusicKey));
+            }
+
+
+            if (minBpm != 0 || maxBpm != 9999)
+            {
+                if (minBpm == null)
+                {
+                    minBpm = 0;
+                }
+                if (maxBpm == null)
+                {
+                    maxBpm = 9999;
+                }
+                Tracks = Tracks.Where(t => t.Bpm >= minBpm && t.Bpm <= maxBpm);
+            }
+
+            if (minPrice != 0 || maxPrice != 9999)
+            {
+                if (minPrice == null)
+                {
+                    minPrice = 0;
+                }
+                if (maxPrice == null)
+                {
+                    maxPrice = 9999;
+                }
+
+                Tracks = Tracks.Where(t => t.Price >= minPrice && t.Price <= maxPrice);
+            }
+
+            IPagedList<Track> paginatedTracks = await Tracks.ToPagedListAsync(page ?? 1, _pageSize);
+
+
+            List<AppUser> allUsers = await _userManager.Users.Where(u => u.IsActive == true).ToListAsync();
+            IEnumerable<Genre> allGenres = await _context.Genres.Where(g => g.IsDeleted == false).OrderBy(g=>g.Id).ToArrayAsync();
+            IEnumerable<Mood> allMoods = await _context.Moods.Where(g => g.IsDeleted == false).OrderBy(g => g.Id).ToArrayAsync();
+
+          TrackVM  trackVM = new TrackVM
+            {
+                Tracks = paginatedTracks,
+                Users = allUsers,
+               filterVM = new FilterVM 
+               {
+                   Genres = allGenres,
+                   Moods = allMoods,
+                   selectedGenres = genres,
+                   selectedMoods = moods,
+                   selectedKeys = keys,
+                   minBpm = minBpm,
+                   maxBpm = maxBpm,
+                   minPrice = minPrice,
+                   maxPrice = maxPrice,
+               }
+            };
+
+            return View(trackVM);
         }
 
         //2.Upload
@@ -170,5 +270,7 @@ namespace Gorira.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+
     }
 }

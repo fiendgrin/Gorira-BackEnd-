@@ -1,291 +1,13 @@
-﻿
+﻿@model TrackVM
 @{
     ViewData["Title"] = "Tracks";
 }
-
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
 <!--Main Start-->
 <main id="tracksMain">
     <div class="box">
-        <form class="left">
-            <div class="filtersTitle">
-                <h4>Filters</h4>
-                <a href="">Clear all</a>
-            </div>
-            <div class="divider"></div>
-
-            <!--Single Filter start-->
-            <div class="filter">
-                <div class="top">
-                    <div class="filterName">
-                        <img class="filterIcon"
-                             src="~/assets/images/icons/headphones.svg"
-                             alt="" />
-                        <h5>Genre</h5>
-                    </div>
-                    <img class="chevron"
-                         src="~/assets/images/icons/chevron-down.svg"
-                         alt="" />
-                </div>
-                <div class="bottom">
-                    <!--single check start-->
-                    <div class="checkInput">
-                        <div class="checkbox-wrapper-13">
-                            <input class="myCheckBox"
-                                   name="Hip-Hop"
-                                   id="Hip-Hop"
-                                   type="checkbox" />
-                            <label class="checkLabel" for="Hip-Hop">Hip-Hop</label>
-                        </div>
-                    </div>
-                    <!--single check start-->
-                    <!--single check start-->
-                    <div class="checkInput">
-                        <div class="checkbox-wrapper-13">
-                            <input class="myCheckBox"
-                                   name="Pop"
-                                   id="Pop"
-                                   type="checkbox" />
-                            <label class="checkLabel" for="Pop">Pop</label>
-                        </div>
-                    </div>
-                    <!--single check start-->
-                    <!--single check start-->
-                    <div class="checkInput">
-                        <div class="checkbox-wrapper-13">
-                            <input class="myCheckBox"
-                                   name="R&B"
-                                   id="R&B"
-                                   type="checkbox" />
-                            <label class="checkLabel" for="R&B">R&B</label>
-                        </div>
-                    </div>
-                    <!--single check start-->
-                    <!--single check start-->
-                    <div class="checkInput">
-                        <div class="checkbox-wrapper-13">
-                            <input class="myCheckBox"
-                                   name="Electronic"
-                                   id="Electronic"
-                                   type="checkbox" />
-                            <label class="checkLabel" for="Electronic">Electronic</label>
-                        </div>
-                    </div>
-                    <!--single check start-->
-                    <!--single check start-->
-                    <div class="checkInput">
-                        <div class="checkbox-wrapper-13">
-                            <input class="myCheckBox"
-                                   name="Rock"
-                                   id="Rock"
-                                   type="checkbox" />
-                            <label class="checkLabel" for="Rock">Rock</label>
-                        </div>
-                    </div>
-                    <!--single check start-->
-                </div>
-            </div>
-            <div class="divider"></div>
-            <!--Single Filter end-->
-            <!--Single Filter start-->
-            <div class="filter">
-                <div class="top">
-                    <div class="filterName">
-                        <img class="filterIcon"
-                             src="~/assets/images/icons/happy-face-cute.svg"
-                             alt="" />
-                        <h5>Mood</h5>
-                    </div>
-                    <img class="chevron"
-                         src="~/assets/images/icons/chevron-down.svg"
-                         alt="" />
-                </div>
-                <div class="bottom">
-                    <!--single check start-->
-                    <div class="checkInput">
-                        <div class="checkbox-wrapper-13">
-                            <input class="myCheckBox"
-                                   name="Angry"
-                                   id="Angry"
-                                   type="checkbox" />
-                            <label class="checkLabel" for="Angry">Angry</label>
-                        </div>
-                    </div>
-                    <!--single check start-->
-                    <!--single check start-->
-                    <div class="checkInput">
-                        <div class="checkbox-wrapper-13">
-                            <input class="myCheckBox"
-                                   name="Sad"
-                                   id="Sad"
-                                   type="checkbox" />
-                            <label class="checkLabel" for="Sad">Sad</label>
-                        </div>
-                    </div>
-                    <!--single check start-->
-                    <!--single check start-->
-                    <div class="checkInput">
-                        <div class="checkbox-wrapper-13">
-                            <input class="myCheckBox"
-                                   name="Happy"
-                                   id="Happy"
-                                   type="checkbox" />
-                            <label class="checkLabel" for="Happy">Happy</label>
-                        </div>
-                    </div>
-                    <!--single check start-->
-                    <!--single check start-->
-                    <div class="checkInput">
-                        <div class="checkbox-wrapper-13">
-                            <input class="myCheckBox"
-                                   name="Uplifting"
-                                   id="Uplifting"
-                                   type="checkbox" />
-                            <label class="checkLabel" for="Uplifting">Uplifting</label>
-                        </div>
-                    </div>
-                    <!--single check start-->
-                    <!--single check start-->
-                    <div class="checkInput">
-                        <div class="checkbox-wrapper-13">
-                            <input class="myCheckBox"
-                                   name="Agressive"
-                                   id="Agressive"
-                                   type="checkbox" />
-                            <label class="checkLabel" for="Agressive">Agressive</label>
-                        </div>
-                    </div>
-                    <!--single check start-->
-                </div>
-            </div>
-            <div class="divider"></div>
-            <!--Single Filter end-->
-            <!--Single Filter start-->
-            <div class="filter">
-                <div class="top">
-                    <div class="filterName">
-                        <img class="filterIcon"
-                             src="~/assets/images/icons/music-note-trebble-clef.svg"
-                             alt="" />
-                        <h5>Key</h5>
-                    </div>
-                    <img class="chevron"
-                         src="~/assets/images/icons/chevron-down.svg"
-                         alt="" />
-                </div>
-                <div class="bottom">
-                    <!--single check start-->
-                    <div class="checkInput">
-                        <div class="checkbox-wrapper-13">
-                            <input class="myCheckBox" name="Cm" id="Cm" type="checkbox" />
-                            <label class="checkLabel" for="Cm">Cm</label>
-                        </div>
-                    </div>
-                    <!--single check start-->
-                    <!--single check start-->
-                    <div class="checkInput">
-                        <div class="checkbox-wrapper-13">
-                            <input class="myCheckBox" name="Dm" id="Dm" type="checkbox" />
-                            <label class="checkLabel" for="Dm">Dm</label>
-                        </div>
-                    </div>
-                    <!--single check start-->
-                    <!--single check start-->
-                    <div class="checkInput">
-                        <div class="checkbox-wrapper-13">
-                            <input class="myCheckBox" name="Em" id="Em" type="checkbox" />
-                            <label class="checkLabel" for="Em">Em</label>
-                        </div>
-                    </div>
-                    <!--single check start-->
-                    <!--single check start-->
-                    <div class="checkInput">
-                        <div class="checkbox-wrapper-13">
-                            <input class="myCheckBox" name="Fm" id="Fm" type="checkbox" />
-                            <label class="checkLabel" for="Fm">Fm</label>
-                        </div>
-                    </div>
-                    <!--single check start-->
-                    <!--single check start-->
-                    <div class="checkInput">
-                        <div class="checkbox-wrapper-13">
-                            <input class="myCheckBox" name="Gm" id="Gm" type="checkbox" />
-                            <label class="checkLabel" for="Gm">Gm</label>
-                        </div>
-                    </div>
-                    <!--single check start-->
-                </div>
-            </div>
-            <div class="divider"></div>
-            <!--Single Filter end-->
-            <!--Single Filter start-->
-            <div class="filter">
-                <div class="top">
-                    <div class="filterName">
-                        <img class="filterIcon"
-                             src="~/assets/images/icons/heartbeat.svg"
-                             alt="" />
-                        <h5>BPM</h5>
-                    </div>
-                    <img class="chevron"
-                         src="~/assets/images/icons/chevron-down.svg"
-                         alt="" />
-                </div>
-                <div class="bottom">
-                    <div class="inputs">
-                        <div class="regular">
-                            <label class="inputLabel">From</label>
-                            <input type="text"
-                                   class="inputField numberInput"
-                                   placeholder="0" />
-                        </div>
-                        <div class="regular">
-                            <label class="inputLabel">To</label>
-                            <input type="text"
-                                   class="inputField numberInput"
-                                   placeholder="0" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="divider"></div>
-            <!--Single Filter end-->
-            <!--Single Filter start-->
-            <div class="filter">
-                <div class="top">
-                    <div class="filterName">
-                        <img class="filterIcon"
-                             src="~/assets/images/icons/dollar-coin.svg"
-                             alt="" />
-                        <h5>Price</h5>
-                    </div>
-                    <img class="chevron"
-                         src="~/assets/images/icons/chevron-down.svg"
-                         alt="" />
-                </div>
-                <div class="bottom">
-                    <div class="inputs">
-                        <div class="regular">
-                            <label class="inputLabel">From</label>
-                            <input type="text"
-                                   class="inputField numberInput"
-                                   placeholder="0" />
-                        </div>
-                        <div class="regular">
-                            <label class="inputLabel">To</label>
-                            <input type="text"
-                                   class="inputField numberInput"
-                                   placeholder="0" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="divider"></div>
-            <!--Single Filter end-->
-            <button class="filterSubmit">
-                <img src="~/assets/images/icons/filtersiconImage24px.svg"
-                     alt="" />Apply
-            </button>
-        </form>
+        @await Html.PartialAsync("_FilterPartial",Model.filterVM)
 
         <div class="right">
             <div class="topText">
@@ -304,35 +26,52 @@
                     <a href="">New</a>
                 </div>
             </div>
-            <div class="theTracks">
-                <!--Single Card Start-->
-                <div class="myCard">
-                    <img name="Young Thug Type Beat 2023"
-                         artist="Wheezy"
-                         track="./assets/audio/trendingInstrumentals/Young Thug - Check (Instrumental).mp3"
-                         cover="./assets/images/covers/youngThug2.jpg"
-                         class="play"
-                         src="~/assets/images/icons/play.svg"
-                         alt="" />
-                    <img class="pause" src="~/assets/images/icons/pause.svg" alt="" />
-                    <a href="">
-                        <img class="cover"
-                             src="~/assets/images/covers/youngThug2.jpg"
-                             alt="" />
-                    </a>
-                    <div class="bottomText">
-                        <div class="top">
-                            <p class="price">23.99$</p>
-                            <p class="tempo">
-                                <img src="~/assets/images/icons/dot.svg" alt="" /> 148 BPM
-                            </p>
+            @if (Model.Tracks != null && Model.Tracks.Count > 0)
+            {
+                <div class="theTracks">
+                    @foreach (Track track in Model.Tracks)
+                    {
+                        AppUser user = Model.Users.FirstOrDefault(u => u.Id == track.UserId);
+                        <!--Single Card Start-->
+                        <div class="myCard">
+                            <img name="@track.Title"
+                            artist="@user.DisplayName"
+                            track="./assets/audio/tagged/@track.Tagged"
+                            cover="./assets/images/@(user.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
+                            class="play"
+                            src="~/assets/images/icons/play.svg"
+                            alt="" />
+                            <img class="pause" src="~/assets/images/icons/pause.svg" alt="" />
+                            <a href="">
+                                <img class="cover"
+                                src="~/assets/images/@(user.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
+                                alt="" />
+                            </a>
+                            <div class="bottomText">
+                                <div class="top">
+                                    <p class="price">@(track.Price)$</p>
+                                    <p class="tempo">
+                                        <img src="~/assets/images/icons/dot.svg" alt="" /> @(track.Bpm) BPM
+                                    </p>
+                                </div>
+                                <a href=""><h6 class="title">@track.Title</h6></a>
+                                <a class="artista" asp-controller="Artist" asp-action="Detail" asp-route-Id="@user.Id"><p class="artist">@user.DisplayName</p></a>
+                            </div>
                         </div>
-                        <a href=""><h6 class="title">Young Thug Type Beat 2023</h6></a>
-                        <a class="artista" href=""><p class="artist">Wheezy</p></a>
-                    </div>
+                        <!--Single Card End-->
+                    }
                 </div>
-                <!--Single Card End-->
-            </div>
+                @Html.PagedListPager((IPagedList) Model.Tracks,page=>Url.Action("Index","Track", new {page = page,
+            search = @Context.Request.Query["search"], order = @Context.Request.Query["order"],
+            genres = @Context.Request.Query["genres"], moods = @Context.Request.Query["moods"],
+            keys = @Context.Request.Query["keys"], minPrice = @Context.Request.Query["minPrice"], maxPrice = @Context.Request.Query["maxPrice"],
+            minBpm = @Context.Request.Query["minBpm"], maxBpm = @Context.Request.Query["maxBpm"]
+                }),
+            new X.PagedList.Web.Common.PagedListRenderOptions
+            {
+            Display = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+            DisplayPageCountAndCurrentLocation = false,
+            MaximumPageNumbersToDisplay = 5 })}
         </div>
     </div>
     <div id="aplayer"></div>

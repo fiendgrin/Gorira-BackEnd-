@@ -1,0 +1,191 @@
+﻿@model FilterVM
+<form method="get" class="left" asp-action="Index" asp-controller="Track">
+    <div class="filtersTitle">
+        <h4>Filters</h4>
+        <a asp-controller="Track" asp-action="Index">Clear all</a>
+    </div>
+    <div class="divider"></div>
+
+    <!--Single Filter start-->
+    <div class="filter">
+        <div class="top">
+            <div class="filterName">
+                <img class="filterIcon"
+                     src="~/assets/images/icons/headphones.svg"
+                     alt="" />
+                <h5>Genre</h5>
+            </div>
+            <img class="chevron"
+                 src="~/assets/images/icons/chevron-down.svg"
+                 alt="" />
+        </div>
+        <div class="bottom">
+            @foreach (Genre genre in Model.Genres)
+            {
+                <!--single check start-->
+                <div class="checkInput">
+                    <div class="checkbox-wrapper-13">
+                        <input @(Model.selectedGenres != null && Model.selectedGenres.Contains(genre.Id) ? "checked":"")
+                               class="myCheckBox"
+                               name="genres"
+                               id="@genre.Name"
+                               value="@genre.Id"
+                               type="checkbox" />
+                        <label class="checkLabel" for="@genre.Name">@genre.Name</label>
+                    </div>
+                </div>
+                <!--single check start-->
+            }
+
+        </div>
+    </div>
+    <div class="divider"></div>
+    <!--Single Filter end-->
+    <!--Single Filter start-->
+    <div class="filter">
+        <div class="top">
+            <div class="filterName">
+                <img class="filterIcon"
+                     src="~/assets/images/icons/happy-face-cute.svg"
+                     alt="" />
+                <h5>Mood</h5>
+            </div>
+            <img class="chevron"
+                 src="~/assets/images/icons/chevron-down.svg"
+                 alt="" />
+        </div>
+        <div class="bottom">
+          @foreach (Mood mood in Model.Moods)
+            {
+                <!--single Mood check start-->
+                <div class="checkInput">
+                    <div class="checkbox-wrapper-13">
+                        <input @(Model.selectedMoods != null && Model.selectedMoods.Contains(mood.Id) ? "checked" : "")
+                            class="myCheckBox"
+                               name="moods"
+                               id="@mood.Name"
+                               value="@mood.Id"
+                               type="checkbox" />
+                        <label class="checkLabel" for="@mood.Name">@mood.Name</label>
+                    </div>
+                </div>
+                <!--single Mood check end-->
+            }
+         
+        </div>
+    </div>
+    <div class="divider"></div>
+    <!--Single Filter end-->
+    <!--Single Filter start-->
+    <div class="filter">
+        <div class="top">
+            <div class="filterName">
+                <img class="filterIcon"
+                     src="~/assets/images/icons/music-note-trebble-clef.svg"
+                     alt="" />
+                <h5>Key</h5>
+            </div>
+            <img class="chevron"
+                 src="~/assets/images/icons/chevron-down.svg"
+                 alt="" />
+        </div>
+        <div class="bottom">
+
+            @foreach (var keyname in Enum.GetValues(typeof(Key)))
+            {
+                <!--single Key check start-->
+                <div class="checkInput">
+                    <div class="checkbox-wrapper-13">
+                        <input @(Model.selectedKeys != null && Model.selectedKeys.Any(k => k.ToString() == keyname.ToString()) ? "checked" : "")
+                            class="myCheckBox" 
+                            value="@((int)keyname)" 
+                            name="keys" id="@keyname" 
+                            type="checkbox" />
+                        <label class="checkLabel" for="@keyname">@keyname</label>
+                    </div>
+                </div>
+                <!--single Key check end-->
+            }
+          
+           
+        </div>
+    </div>
+    <div class="divider"></div>
+    <!--Single Filter end-->
+    <!--Single Filter start-->
+    <div class="filter">
+        <div class="top">
+            <div class="filterName">
+                <img class="filterIcon"
+                     src="~/assets/images/icons/heartbeat.svg"
+                     alt="" />
+                <h5>BPM</h5>
+            </div>
+            <img class="chevron"
+                 src="~/assets/images/icons/chevron-down.svg"
+                 alt="" />
+        </div>
+        <div class="bottom">
+            <div class="inputs">
+                <div class="regular">
+                    <label class="inputLabel">From</label>
+                    <input value="@(Model.minBpm != null ? Model.minBpm: 0)"
+                        type="text"
+                           class="inputField numberInput"
+                           name="minBpm"
+                           placeholder="0" />
+                </div>
+                <div class="regular">
+                    <label class="inputLabel">To</label>
+                    <input value="@(Model.maxBpm != null ? Model.maxBpm : 9999)"
+                        type="text"
+                           name="maxBpm"
+                           class="inputField numberInput"
+                           placeholder="0" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <!--Single Filter end-->
+    <!--Single Filter start-->
+    <div class="filter">
+        <div class="top">
+            <div class="filterName">
+                <img class="filterIcon"
+                     src="~/assets/images/icons/dollar-coin.svg"
+                     alt="" />
+                <h5>Price</h5>
+            </div>
+            <img class="chevron"
+                 src="~/assets/images/icons/chevron-down.svg"
+                 alt="" />
+        </div>
+        <div class="bottom">
+            <div class="inputs">
+                <div class="regular">
+                    <label class="inputLabel">From</label>
+                    <input value="@(Model.minPrice != null ? Model.minPrice: 0)"
+                        type="text"
+                           name="minPrice"
+                           class="inputField numberInput"
+                           placeholder="0" />
+                </div>
+                <div class="regular">
+                    <label class="inputLabel">To</label>
+                    <input value="@(Model.maxPrice != null ? Model.maxPrice : 9999)"
+                        type="text"
+                           class="inputField numberInput"
+                           name="maxPrice"
+                           placeholder="0" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <!--Single Filter end-->
+    <button class="filterSubmit">
+        <img src="~/assets/images/icons/filtersiconImage24px.svg"
+             alt="" />Apply
+    </button>
+</form>

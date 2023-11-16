@@ -47,10 +47,10 @@ burger.addEventListener("click", (e) => {
   accountContent.classList.remove("active");
   chevronBasket.style.transform = "";
   basketContent.classList.remove("active");
-  if (navBar.style.display == "none") {
-    navBar.style.display = "flex";
-  } else {
+  if (navBar.style.display == "flex") {
     navBar.style.display = "none";
+  } else {
+    navBar.style.display = "flex";
   }
 });
 
@@ -74,5 +74,7 @@ window.addEventListener("resize", () => {
 });
 
 if (window.innerWidth <= 768) {
-  navBar.style.display = "none";
+    if (navBar.style.display !== "none") {
+        navBar.style.display = "none";
+    }
 }

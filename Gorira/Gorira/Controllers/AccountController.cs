@@ -46,6 +46,7 @@ namespace Gorira.Controllers
         //8.Change PhoneNumber
         //9.Change Password
         //10.Edit Social Media
+
         //=======================================================
 
         //1.Register
