@@ -35,7 +35,8 @@ namespace Gorira.Controllers
 
         //1.Index
         //2.Upload
-
+        //3.Play Counter
+        //4.Detail
         //=========================================================
 
         //1.Index
@@ -56,7 +57,7 @@ namespace Gorira.Controllers
             }
 
             IEnumerable<Track>? Tracks = await _context.Tracks
-                .Where(t => t.IsDeleted == false && (appUser == null || t.UserId != appUser.Id)).ToListAsync();
+                .Where(t => t.IsDeleted == false).ToListAsync();
 
           
 
@@ -289,7 +290,7 @@ namespace Gorira.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        
+        //3.Play Counter
         [Authorize(Roles = "Member")]
         public async Task<IActionResult> PlayCounter(int? Id) 
         {

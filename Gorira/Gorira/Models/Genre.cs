@@ -10,6 +10,11 @@ namespace Gorira.Models
         [StringLength(255)]
         public string Image { get; set; }
 
+        [InverseProperty("MainGenre")]
+        public IEnumerable<Track>? MainGenreTracks { get; set; }
+        [InverseProperty("SubGenre")]
+        public IEnumerable<Track>? SubGenreTracks { get; set; }
+
         [NotMapped]
         public IFormFile? ImageFile { get; set; }
     }
