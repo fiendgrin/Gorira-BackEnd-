@@ -22,8 +22,10 @@
                     <p>Sort by</p>
                 </div>
                 <div class="sortHolder">
-                    <a href="">Popular</a>
-                    <a href="">New</a>
+                    <a asp-controller="Track" asp-action="Index">None</a>
+                    <a asp-controller="Track" asp-action="Index" asp-route-order="@("popular")">Popular</a>
+                    <a asp-controller="Track" asp-action="Index" asp-route-order="@("A-Z")">A-Z</a>
+                    <a asp-controller="Track" asp-action="Index" asp-route-order="@("new")">New</a>
                 </div>
             </div>
             @if (Model.Tracks != null && Model.Tracks.Count > 0)
@@ -34,24 +36,29 @@
                         AppUser user = Model.Users.FirstOrDefault(u => u.Id == track.UserId);
                         <!--Single Card Start-->
                         <div class="myCard">
-                            <img name="@track.Title"
-                            artist="@user.DisplayName"
-                            track="./assets/audio/tagged/@track.Tagged"
-                            cover="./assets/images/@(user.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
-                            class="play"
-                            src="~/assets/images/icons/play.svg"
-                            alt="" />
+                            
+                                    <img name="@track.Title"
+                                         artist="@user.DisplayName"
+                                         track="./assets/audio/tagged/@track.Tagged"
+                                         cover="./assets/images/@(user.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
+                                         class="play trackPlayBtn"
+                                         src="~/assets/images/icons/play.svg"
+                                         alt=""
+                                         trackId="@track.Id"
+                                 />
+                               
+                          
                             <img class="pause" src="~/assets/images/icons/pause.svg" alt="" />
                             <a href="">
                                 <img class="cover"
-                                src="~/assets/images/@(user.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
-                                alt="" />
+                                     src="~/assets/images/@(user.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
+                                     alt="" />
                             </a>
                             <div class="bottomText">
                                 <div class="top">
                                     <p class="price">@(track.Price)$</p>
                                     <p class="tempo">
-                                        <img src="~/assets/images/icons/dot.svg" alt="" /> @(track.Bpm) BPM
+                                        <img src="~/assets/images/icons/dot.svg" alt="" />  @(track.Bpm != null ? $"{track.Bpm} BPM" : "")
                                     </p>
                                 </div>
                                 <a href=""><h6 class="title">@track.Title</h6></a>
@@ -66,12 +73,13 @@
             genres = @Context.Request.Query["genres"], moods = @Context.Request.Query["moods"],
             keys = @Context.Request.Query["keys"], minPrice = @Context.Request.Query["minPrice"], maxPrice = @Context.Request.Query["maxPrice"],
             minBpm = @Context.Request.Query["minBpm"], maxBpm = @Context.Request.Query["maxBpm"]
-                }),
+            }),
             new X.PagedList.Web.Common.PagedListRenderOptions
             {
             Display = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
             DisplayPageCountAndCurrentLocation = false,
-            MaximumPageNumbersToDisplay = 5 })}
+            MaximumPageNumbersToDisplay = 5 })
+            }
         </div>
     </div>
     <div id="aplayer"></div>

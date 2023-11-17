@@ -11,6 +11,9 @@
     <div class="box">
         <h2 class="title">Track Metadata Editor</h2>
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <span style="height:fit-content !important;" asp-validation-for="TrackStemsFile" class="text-danger"></span>
+        <span style="height:fit-content !important;" asp-validation-for="TaggedFile" class="text-danger"></span>
+        <span style="height:fit-content !important;" asp-validation-for="UntaggedFile" class="text-danger"></span>
         <form method="post" class="uploadForms" enctype="multipart/form-data">
             <section class="general">
                 <h5 class="sectionName">General Information</h5>
@@ -44,7 +47,7 @@
                                     <p class="desc">Untagged (mp3 or wav)</p>
                                     <input asp-for="UntaggedFile" class="fileUpload"
                                            accept=".mp3, .wav" />
-                                    <span asp-validation-for="UntaggedFile" class="text-danger"></span>
+                                   
                                 </div>
                                 <div class="wrapper-btn">
                                     <img class="uploadIcon"
@@ -55,7 +58,7 @@
 
                                     <input asp-for="TrackStemsFile" class="fileUpload"
                                            accept=".rar, .zip" />
-                                    <span asp-validation-for="TrackStemsFile" class="text-danger"></span>
+                                   
                                 </div>
                             </div>
                             <div class="dwnbtns forStreaming">
@@ -67,7 +70,7 @@
 
                                     <p class="desc">Tagged (only mp3)</p>
                                     <input asp-for="TaggedFile" class="fileUpload" accept=".mp3" />
-                                    <span asp-validation-for="TaggedFile" class="text-danger"></span>
+                                    
                                 </div>
                             </div>
                         </div>

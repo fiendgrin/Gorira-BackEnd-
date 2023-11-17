@@ -7,7 +7,9 @@ using Gorira.ViewModels.TrackVMs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Data;
 using System.Linq;
 using X.PagedList;
@@ -108,6 +110,20 @@ namespace Gorira.Controllers
 
                 Tracks = Tracks.Where(t => t.Price >= minPrice && t.Price <= maxPrice);
             }
+
+
+
+            Tracks = order switch
+            {
+                "popular" => Tracks.OrderByDescending(t => t.Plays),
+
+                "A-Z" => Tracks.OrderBy(t => t.Title),
+
+                "new" => Tracks.OrderByDescending(t => t.CreatedAt)
+
+            };
+
+
 
             IPagedList<Track> paginatedTracks = await Tracks.ToPagedListAsync(page ?? 1, _pageSize);
 
@@ -227,7 +243,9 @@ namespace Gorira.Controllers
 
 
             track.CreatedBy = appUser.UserName;
+            track.IsDeleted = false;
             track.UserId = appUser.Id;
+            track.Plays = 0;
             await _context.Tracks.AddAsync(track);
             await _context.SaveChangesAsync();
 
@@ -271,6 +289,49 @@ namespace Gorira.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> PlayCounter(int? Id) 
+        {
 
+            if (Id == null) return BadRequest();
+
+            Track? track = await _context.Tracks.FirstOrDefaultAsync(t => t.IsDeleted == false && Id == t.Id);
+
+            if (track == null) return NotFound();
+
+            AppUser? appUser = await _userManager.Users.FirstOrDefaultAsync(u=>u.UserName == User.Identity.Name);
+
+            PlayToken? playToken = await _context.PlayTokens.FirstOrDefaultAsync(pt=>pt.TrackId == Id && pt.UserId == appUser.Id && pt.IsDeleted == false);
+
+            if (playToken == null)
+            {
+                playToken = new PlayToken
+                {
+                    UserId = appUser.Id,
+                    TrackId = Id,
+                    UpdatedAt = DateTime.UtcNow,
+                    CreatedBy = appUser.UserName,
+                };
+
+                await _context.PlayTokens.AddAsync(playToken);
+
+                track.Plays = 1;
+            }
+            else 
+            {
+                TimeSpan? timeDifference = DateTime.UtcNow - playToken.UpdatedAt;
+
+                if (timeDifference.Value.TotalHours >= 1)
+                {
+                    track.Plays++;
+                    playToken.UpdatedAt = DateTime.UtcNow;
+                }
+            }
+            await _context.SaveChangesAsync();
+
+
+            return Ok(playToken);
+        }
     }
 }

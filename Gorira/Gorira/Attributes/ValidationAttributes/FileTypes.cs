@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using NuGet.Packaging.Signing;
+using System.ComponentModel.DataAnnotations;
 
 namespace Gorira.Attributes.ValidationAttributes
 {
@@ -26,9 +27,10 @@ namespace Gorira.Attributes.ValidationAttributes
             }
             foreach (var file in files)
             {
-                if (!_fileTypes.Contains(file.ContentType))
+                var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+                if (!_fileTypes.Contains(file.ContentType) && (extension != ".rar"))
                 {
-                    return new ValidationResult("File type must be" + string.Join(", ", _fileTypes));
+                    return new ValidationResult("File type must be " + string.Join(", ", _fileTypes) );
                 }
             }
 

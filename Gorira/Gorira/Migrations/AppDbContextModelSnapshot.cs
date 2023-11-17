@@ -155,7 +155,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(100)
@@ -173,7 +173,7 @@ namespace Gorira.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -188,7 +188,7 @@ namespace Gorira.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Gorira.Models.Follow", b =>
@@ -208,7 +208,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(100)
@@ -224,7 +224,7 @@ namespace Gorira.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -236,7 +236,7 @@ namespace Gorira.Migrations
 
                     b.HasIndex("FollowerId");
 
-                    b.ToTable("Follows", (string)null);
+                    b.ToTable("Follows");
                 });
 
             modelBuilder.Entity("Gorira.Models.Genre", b =>
@@ -256,7 +256,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(100)
@@ -276,7 +276,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -284,7 +284,7 @@ namespace Gorira.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres", (string)null);
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("Gorira.Models.Mood", b =>
@@ -304,7 +304,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(100)
@@ -319,7 +319,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -327,7 +327,7 @@ namespace Gorira.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Moods", (string)null);
+                    b.ToTable("Moods");
                 });
 
             modelBuilder.Entity("Gorira.Models.Playlist", b =>
@@ -351,7 +351,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(100)
@@ -370,7 +370,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -383,7 +383,7 @@ namespace Gorira.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Playlists", (string)null);
+                    b.ToTable("Playlists");
                 });
 
             modelBuilder.Entity("Gorira.Models.PlaylistFollower", b =>
@@ -403,7 +403,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(100)
@@ -416,7 +416,7 @@ namespace Gorira.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -431,7 +431,7 @@ namespace Gorira.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("PlaylistFollowers", (string)null);
+                    b.ToTable("PlaylistFollowers");
                 });
 
             modelBuilder.Entity("Gorira.Models.PlaylistTrack", b =>
@@ -451,7 +451,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(100)
@@ -467,7 +467,7 @@ namespace Gorira.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -479,7 +479,55 @@ namespace Gorira.Migrations
 
                     b.HasIndex("TrackId");
 
-                    b.ToTable("PlaylistTracks", (string)null);
+                    b.ToTable("PlaylistTracks");
+                });
+
+            modelBuilder.Entity("Gorira.Models.PlayToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("date");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("DeletedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("TrackId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TrackId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PlayTokens");
                 });
 
             modelBuilder.Entity("Gorira.Models.Report", b =>
@@ -499,7 +547,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(100)
@@ -515,7 +563,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -527,7 +575,7 @@ namespace Gorira.Migrations
 
                     b.HasIndex("SuspectId");
 
-                    b.ToTable("Reports", (string)null);
+                    b.ToTable("Reports");
                 });
 
             modelBuilder.Entity("Gorira.Models.ReviewSlider", b =>
@@ -552,7 +600,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(100)
@@ -572,7 +620,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -580,7 +628,7 @@ namespace Gorira.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReviewSliders", (string)null);
+                    b.ToTable("ReviewSliders");
                 });
 
             modelBuilder.Entity("Gorira.Models.Setting", b =>
@@ -603,7 +651,7 @@ namespace Gorira.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Settings", (string)null);
+                    b.ToTable("Settings");
                 });
 
             modelBuilder.Entity("Gorira.Models.Slider", b =>
@@ -628,7 +676,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(100)
@@ -653,7 +701,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -661,7 +709,7 @@ namespace Gorira.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sliders", (string)null);
+                    b.ToTable("Sliders");
                 });
 
             modelBuilder.Entity("Gorira.Models.Tag", b =>
@@ -681,7 +729,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(100)
@@ -696,7 +744,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -704,7 +752,7 @@ namespace Gorira.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags", (string)null);
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("Gorira.Models.Track", b =>
@@ -731,7 +779,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(100)
@@ -789,7 +837,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -810,7 +858,7 @@ namespace Gorira.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Tracks", (string)null);
+                    b.ToTable("Tracks");
                 });
 
             modelBuilder.Entity("Gorira.Models.TrackTag", b =>
@@ -830,7 +878,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(100)
@@ -846,7 +894,7 @@ namespace Gorira.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -858,7 +906,7 @@ namespace Gorira.Migrations
 
                     b.HasIndex("TrackId");
 
-                    b.ToTable("TrackTags", (string)null);
+                    b.ToTable("TrackTags");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -1063,6 +1111,21 @@ namespace Gorira.Migrations
                     b.Navigation("Track");
                 });
 
+            modelBuilder.Entity("Gorira.Models.PlayToken", b =>
+                {
+                    b.HasOne("Gorira.Models.Track", "Track")
+                        .WithMany()
+                        .HasForeignKey("TrackId");
+
+                    b.HasOne("Gorira.Models.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Track");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Gorira.Models.Report", b =>
                 {
                     b.HasOne("Gorira.Models.AppUser", "Reporter")
@@ -1097,7 +1160,7 @@ namespace Gorira.Migrations
                         .HasForeignKey("SubGenreId");
 
                     b.HasOne("Gorira.Models.AppUser", "User")
-                        .WithMany()
+                        .WithMany("Tracks")
                         .HasForeignKey("UserId");
 
                     b.Navigation("MainGenre");
@@ -1118,7 +1181,7 @@ namespace Gorira.Migrations
                         .HasForeignKey("TagId");
 
                     b.HasOne("Gorira.Models.Track", "Track")
-                        .WithMany()
+                        .WithMany("TrackTags")
                         .HasForeignKey("TrackId");
 
                     b.Navigation("Tag");
@@ -1182,6 +1245,13 @@ namespace Gorira.Migrations
                     b.Navigation("Followers");
 
                     b.Navigation("Follows");
+
+                    b.Navigation("Tracks");
+                });
+
+            modelBuilder.Entity("Gorira.Models.Track", b =>
+                {
+                    b.Navigation("TrackTags");
                 });
 #pragma warning restore 612, 618
         }

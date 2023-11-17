@@ -22,5 +22,6 @@ namespace Gorira.DataAccessLayer
         public DbSet<Playlist> Playlists { get; set; }
         public DbSet<PlaylistTrack> PlaylistTracks { get; set; }
         public DbSet<PlaylistFollower> PlaylistFollowers { get; set; }
+        public DbSet<PlayToken> PlayTokens { get; set; }
     }
 }

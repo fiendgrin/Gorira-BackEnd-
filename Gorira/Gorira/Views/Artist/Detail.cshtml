@@ -41,10 +41,11 @@
                 <h6>stats</h6>
                 <div class="statLine">
                     <h5>Followers:</h5>
-                    @if (Model.User.Followers != null && Model.User.Followers.Count()>0)
+                    @if (Model.User.Followers != null && Model.User.Followers.Count() > 0)
                     {
                         <p class="numberElement">@(Model.User.Followers.Count())</p>
-                    }else
+                    }
+                    else
                     {
                         <p class="numberElement">0</p>
                     }
@@ -54,13 +55,14 @@
                     @if (Model.Tracks != null)
                     {
                         <p class="numberElement">@(Model.User.Tracks.Where(t => t.Plays != null).Sum(p => p.Plays))</p>
-                    }else
+                    }
+                    else
                     {
                         <p class="numberElement">0</p>
                     }
                 </div>
                 <div class="statLine">
-                        <h5>Tracks:</h5>
+                    <h5>Tracks:</h5>
                     @if (Model.Tracks != null)
                     {
                         <p class="numberElement">@Model.User.Tracks.Count()</p>
@@ -76,7 +78,7 @@
                 <h6>about me</h6>
                 <div class="aboutMeLine">
                     <p class="text">
-                       @Model.User.AboutMe
+                        @Model.User.AboutMe
                     </p>
                 </div>
             </div>
@@ -155,9 +157,11 @@
                                  artist="@Model.User.DisplayName"
                                  track="/assets/audio/tagged/@track.Tagged"
                                  cover="/assets/images/@(Model.User.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
-                                 class="play"
+                                 class="play trackPlayBtn"
                                  src="~/assets/images/icons/play.svg"
-                                 alt="" />
+                                 alt=""
+                                 trackId="@track.Id" />
+
                             <img class="pause" src="~/assets/images/icons/pause.svg" alt="" />
                             <a href="">
                                 <img class="cover"
@@ -168,17 +172,22 @@
                                 <div class="top">
                                     <p class="price">@(track.Price)$</p>
                                     <p class="tempo">
-                                        <img src="~/assets/images/icons/dot.svg" alt="" /> @(track.Bpm) BPM
+                                        <img src="~/assets/images/icons/dot.svg" alt="" />   @(track.Bpm != null ? $"{track.Bpm} BPM" : "")
                                     </p>
                                 </div>
-                                <a ><h6 class="title">@track.Title</h6></a>
+                                <a><h6 class="title">@track.Title</h6></a>
                             </div>
-                            
+
                         </div>
                         <!--Single Card End-->
                     }
                 </div>
-                @(Html.PagedListPager((IPagedList)Model.Tracks, page => Url.Action("Detail", "Artist", new {id=Model.User.Id , page = page,})))
+                @Html.PagedListPager((IPagedList)Model.Tracks, page => Url.Action("Detail", "Artist", new {id=Model.User.Id , page = page,}),
+            new X.PagedList.Web.Common.PagedListRenderOptions
+            {
+            Display = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+            DisplayPageCountAndCurrentLocation = false,
+            MaximumPageNumbersToDisplay = 5 })
             }
         </div>
     </div>
