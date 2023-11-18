@@ -49,14 +49,8 @@ namespace Gorira.Controllers
                 return NotFound();
             }
 
-            AppUser? appUser = null;
-
-            if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
-            {
-                appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
-            }
-
             IEnumerable<Track>? Tracks = await _context.Tracks
+                .Include(t=>t.User)
                 .Where(t => t.IsDeleted == false).ToListAsync();
 
           
@@ -129,14 +123,12 @@ namespace Gorira.Controllers
             IPagedList<Track> paginatedTracks = await Tracks.ToPagedListAsync(page ?? 1, _pageSize);
 
 
-            List<AppUser> allUsers = await _userManager.Users.Where(u => u.IsActive == true).ToListAsync();
             IEnumerable<Genre> allGenres = await _context.Genres.Where(g => g.IsDeleted == false).OrderBy(g=>g.Id).ToArrayAsync();
             IEnumerable<Mood> allMoods = await _context.Moods.Where(g => g.IsDeleted == false).OrderBy(g => g.Id).ToArrayAsync();
 
           TrackVM  trackVM = new TrackVM
             {
                 Tracks = paginatedTracks,
-                Users = allUsers,
                filterVM = new FilterVM 
                {
                    Genres = allGenres,
@@ -333,6 +325,23 @@ namespace Gorira.Controllers
 
 
             return Ok(playToken);
+        }
+
+        //4.Detail
+        public async Task<IActionResult> Detail(int? Id) 
+        {
+            if (Id == null) return BadRequest();
+
+            Track? track = await _context.Tracks
+                .Include(t=>t.User)
+                .Include(t=>t.TrackTags.Where(tt=>tt.IsDeleted==false)).ThenInclude(tt=>tt.Tag)
+                .FirstOrDefaultAsync(t => t.Id == Id && t.IsDeleted == false);
+
+            if (track == null) return NotFound();
+           
+
+
+            return View(track);
         }
     }
 }

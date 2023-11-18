@@ -33,14 +33,13 @@
                 <div class="theTracks">
                     @foreach (Track track in Model.Tracks)
                     {
-                        AppUser user = Model.Users.FirstOrDefault(u => u.Id == track.UserId);
                         <!--Single Card Start-->
                         <div class="myCard">
                             
                                     <img name="@track.Title"
-                                         artist="@user.DisplayName"
+                                 artist="@track.User.DisplayName"
                                          track="./assets/audio/tagged/@track.Tagged"
-                                         cover="./assets/images/@(user.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
+                                 cover="./assets/images/@(track.User.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
                                          class="play trackPlayBtn"
                                          src="~/assets/images/icons/play.svg"
                                          alt=""
@@ -49,9 +48,9 @@
                                
                           
                             <img class="pause" src="~/assets/images/icons/pause.svg" alt="" />
-                            <a href="">
+                            <a asp-controller="Track" asp-action="Detail" asp-route-Id="@track.Id">
                                 <img class="cover"
-                                     src="~/assets/images/@(user.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
+                                     src="~/assets/images/@(track.User.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
                                      alt="" />
                             </a>
                             <div class="bottomText">
@@ -61,8 +60,8 @@
                                         <img src="~/assets/images/icons/dot.svg" alt="" />  @(track.Bpm != null ? $"{track.Bpm} BPM" : "")
                                     </p>
                                 </div>
-                                <a href=""><h6 class="title">@track.Title</h6></a>
-                                <a class="artista" asp-controller="Artist" asp-action="Detail" asp-route-Id="@user.Id"><p class="artist">@user.DisplayName</p></a>
+                                <a asp-controller="Track" asp-action="Detail" asp-route-Id="@track.Id"><h6 class="title">@track.Title</h6></a>
+                                <a class="artista" asp-controller="Artist" asp-action="Detail" asp-route-Id="@track.User.Id"><p class="artist">@track.User.DisplayName</p></a>
                             </div>
                         </div>
                         <!--Single Card End-->

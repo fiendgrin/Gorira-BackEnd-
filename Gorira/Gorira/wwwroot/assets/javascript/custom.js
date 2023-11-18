@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+
+    console.log($('.trackPlayBtn'))
     $('.trackPlayBtn').click(async function  (e) {
         e.preventDefault();
         let url = "/Track/PlayCounter/" + $(this).attr("trackId");

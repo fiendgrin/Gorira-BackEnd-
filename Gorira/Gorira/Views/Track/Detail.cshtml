@@ -1,0 +1,350 @@
+﻿@model Track
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<main id="trackMain">
+    <div class="box">
+        <div class="tabs">
+            <div class="info tab tabActive">Info</div>
+            <div class="tracks tab">Media</div>
+        </div>
+        <div class="left">
+            <div class="theTrack">
+                <img class="cover" src="~/assets/images/@(Model.User.ProfilePicture == Model.Cover ? $"pfp/{Model.Cover}": $"covers/{Model.Cover}")" alt="" />
+                <h3 class="trackName">@Model.Title</h3>
+                <p class="beatMaker">@Model.User.DisplayName</p>
+                <div class="trackButtons">
+                    @if (Model.HasFree)
+                    {
+                        <a href="" class="edit">
+                            <img src="~/assets/images/icons/download.svg" alt="" />
+                            Free
+                        </a>
+                    }
+                    <button class="addToPlaylist">
+                        <img class="btnImg"
+                             src="~/assets/images/icons/plus.svg"
+                             alt="" />
+                        Add
+                    </button>
+                </div>
+            </div>
+            <div class="stats sectionDefault">
+                <h6>Information</h6>
+                <div class="statLine">
+                    <h5>Published:</h5>
+                    <p class="number">@Model.CreatedAt.ToString("MMMM dd, yyyy")</p>
+                </div>
+                <div class="statLine">
+                    <h5>BPM:</h5>
+                    <p class="number">@Model.Bpm</p>
+                </div>
+                <div class="statLine">
+                    <h5>Key:</h5>
+                    <p class="number">@Model.MusicKey</p>
+                </div>
+                <div class="statLine">
+                    <h5>Plays:</h5>
+                    <p class="numberElement number">@Model.Plays</p>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="aboutTrack sectionDefault">
+                <h6>Description</h6>
+                <div class="aboutTrackLine">
+                    <p class="text">
+                       @Model.Description
+                    </p>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="tags sectionDefault">
+                <h6>Tags</h6>
+                @foreach (TrackTag trackTag in Model.TrackTags)
+                {
+                    <div class="tag">#@trackTag.Tag.Name</div>
+                }
+            </div>
+        </div>
+        <div class="right">
+            <!--Player Start-->
+          
+            <div id="aplayer"
+                 track="/assets/audio/tagged/@Model.Tagged"
+                 name="@Model.User.DisplayName"
+                 cover="/assets/images/@(Model.User.ProfilePicture == Model.Cover ? $"pfp/{Model.Cover}" : $"covers/{Model.Cover}")"
+                 title="@(Model.Title)"
+                 trackid="@Model.Id"></div>
+            <!--Player End-->
+            <!--Licensing Start-->
+            <div class="licensing">
+                <div class="licensingTop">
+                    <h3>Licensing</h3>
+                    <div class="addToCartHolder">
+                        <div class="addCartText">
+                            <p class="price">Price:</p>
+                            <h6 class="thePrice">$@Model.Price</h6>
+                        </div>
+                        <button class="addToCart">
+                            <img src="~/assets/images/icons/cart-full.svg" alt="" /> Add
+                            To Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="licenses">
+                    <label price="@(Model.Price)$" class="radio nonExclusive">
+                        <input name="radio" type="radio" checked />
+                        <span>
+                            NON-EXCLUSIVE <br />
+                            <p>mp3</p>
+                            <br />
+                            <ul>
+                                <li>
+                                    <img src="~/assets/images/icons/voice-mail-2.svg"
+                                         alt="" />
+                                    <p>USED FOR MUSIC RECORDING</p>
+                                </li>
+                                <li>
+                                    <img src="~/assets/images/icons/layers-1.svg" alt="" />
+                                    <p>DISTRIBUTE UP TO 3,000 COPIES</p>
+                                </li>
+                                <li>
+                                    <img src="~/assets/images/icons/ear-hearing.svg" alt="" />
+                                    <p>500,000 ONLINE AUDIO STREAMS</p>
+                                </li>
+                                <li>
+                                    <img src="~/assets/images/icons/camera-video-cute.svg"
+                                         alt="" />
+                                    <p>1 MUSIC VIDEO</p>
+                                </li>
+                                <li>
+                                    <img src="~/assets/images/icons/radio.svg" alt="" />
+                                    <p>RADIO BROADCASTING RIGHTS (2 STATIONS)</p>
+                                </li>
+                                <li>
+                                    <img src="~/assets/images/icons/theater-mask.svg"
+                                         alt="" />
+                                    <p>FOR PROFIT LIVE PERFORMANCES</p>
+                                </li>
+                            </ul>
+                        </span>
+                    </label>
+                   @if (Model.UnlimitedPrice != null)
+                    {
+                        <label price="@(Model.UnlimitedPrice)$" class="radio unlimited">
+                            <input name="radio" type="radio" />
+                            <span>
+                                UNLIMITED <br />
+                                <p>mp3, wav, stems</p>
+                                <br />
+                                <ul>
+                                    <li>
+                                        <img src="~/assets/images/icons/voice-mail-2.svg"
+                                             alt="" />
+                                        <p>USED FOR MUSIC RECORDING</p>
+                                    </li>
+                                    <li>
+                                        <img src="~/assets/images/icons/layers-1.svg" alt="" />
+                                        <p>DISTRIBUTE UP TO UNLIMITED COPIES</p>
+                                    </li>
+                                    <li>
+                                        <img src="~/assets/images/icons/ear-hearing.svg" alt="" />
+                                        <p>UNLIMITED ONLINE AUDIO STREAMS</p>
+                                    </li>
+                                    <li>
+                                        <img src="~/assets/images/icons/camera-video-cute.svg"
+                                             alt="" />
+                                        <p>UNLIMITED MUSIC VIDEOS</p>
+                                    </li>
+                                    <li>
+                                        <img src="~/assets/images/icons/radio.svg" alt="" />
+                                        <p>RADIO BROADCASTING RIGHTS (UNLIMITED STATIONS)</p>
+                                    </li>
+                                    <li>
+                                        <img src="~/assets/images/icons/theater-mask.svg"
+                                             alt="" />
+                                        <p>FOR PROFIT LIVE PERFORMANCES</p>
+                                    </li>
+                                </ul>
+                            </span>
+                        </label>
+                    }
+                </div>
+            </div>
+            <!--Licensing End-->
+            <!--Comment Section Start-->
+            <div class="commentSection">
+                <div class="commentTop">
+                    <h3>Comments</h3>
+                    <img src="~/assets/images/icons/chat-bubble-text-square.svg"
+                         alt="" />
+                </div>
+                <form class="regular commentField">
+                    <input maxlength="60"
+                           class="inputField"
+                           type="text"
+                           placeholder="Share your thoughts..." />
+                    <button>
+                        <img class="btnImg"
+                             src="~/assets/images/icons/send.svg"
+                             alt="" />
+                    </button>
+                </form>
+                <div class="theComments">
+                    <!--Single Comment Start-->
+                    <div class="singleComment">
+                        <img class="commentatorPfp"
+                             src="~/assets/images/pfp/default.jpg" />
+                        <div class="nameAndComment">
+                            <h5 class="commentatorName">Joney Ancient</h5>
+                            <p class="commentatorText">
+                                i fell in love with this beat, im gonna buy it and work a
+                                good song on it🔥🔥🔥
+                            </p>
+                        </div>
+                    </div>
+                    <!--Single Comment End-->
+                    <!--Single Comment Start-->
+                    <div class="singleComment">
+                        <img class="commentatorPfp" src="~/assets/images/pfp/1.jpg" />
+                        <div class="nameAndComment">
+                            <h5 class="commentatorName">UKNOWME.wav</h5>
+                            <p class="commentatorText">
+                                Good job🔥 Purchase my beat and get MIXING & MASTERING 4
+                                FREE⚡️
+                            </p>
+                        </div>
+                    </div>
+                    <!--Single Comment End-->
+                    <!--Single Comment Start-->
+                    <div class="singleComment">
+                        <img class="commentatorPfp" src="~/assets/images/pfp/2.jpg" />
+                        <div class="nameAndComment">
+                            <h5 class="commentatorName">Morini Beats</h5>
+                            <p class="commentatorText">
+                                wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+                            </p>
+                        </div>
+                    </div>
+                    <!--Single Comment End-->
+                </div>
+                <div class="seeAll">See more(325)</div>
+            </div>
+            <!--Comment Section End-->
+        </div>
+    </div>
+    <!--modal-->
+    <dialog id="modal">
+        <img class="closeModal" src="~/assets/images/icons/plus.svg" alt="" />
+
+        <div class="content">
+            <div class="myTable">
+                <div class="body">
+                    <!--Single Playlist start-->
+                    <div class="singleTrack">
+                        <div class="coverAndTitle">
+                            <img class="cover"
+                                 src="~/assets/images/playlistCovers/raindrops.jpg"
+                                 alt="" />
+                            <div class="title">
+                                <h4 class="name">My Playlist</h4>
+                                <p class="author">Me</p>
+                            </div>
+                        </div>
+
+                        <div class="settings">
+                            <a href="" class="editBtn">
+                                <img class="btnImg awaiting"
+                                     src="~/assets/images/icons/plus.svg"
+                                     alt="" />
+                                <img class="btnImg done"
+                                     src="~/assets/images/icons/check.svg"
+                                     alt="" />
+                            </a>
+                        </div>
+                    </div>
+                    <!--Single Playlist end-->
+                    <!--Single Playlist start-->
+                    <div class="singleTrack">
+                        <div class="coverAndTitle">
+                            <img class="cover"
+                                 src="~/assets/images/playlistCovers/raindrops.jpg"
+                                 alt="" />
+                            <div class="title">
+                                <h4 class="name">My Playlist</h4>
+                                <p class="author">Me</p>
+                            </div>
+                        </div>
+
+                        <div class="settings">
+                            <a href="" class="editBtn">
+                                <img class="btnImg awaiting"
+                                     src="~/assets/images/icons/plus.svg"
+                                     alt="" />
+                                <img class="btnImg done"
+                                     src="~/assets/images/icons/check.svg"
+                                     alt="" />
+                            </a>
+                        </div>
+                    </div>
+                    <!--Single Playlist end-->
+                    <!--Single Playlist start-->
+                    <div class="singleTrack">
+                        <div class="coverAndTitle">
+                            <img class="cover"
+                                 src="~/assets/images/playlistCovers/raindrops.jpg"
+                                 alt="" />
+                            <div class="title">
+                                <h4 class="name">My Playlist</h4>
+                                <p class="author">Me</p>
+                            </div>
+                        </div>
+
+                        <div class="settings">
+                            <a href="" class="editBtn">
+                                <img class="btnImg awaiting"
+                                     src="~/assets/images/icons/plus.svg"
+                                     alt="" />
+                                <img class="btnImg done"
+                                     src="~/assets/images/icons/check.svg"
+                                     alt="" />
+                            </a>
+                        </div>
+                    </div>
+                    <!--Single Playlist end-->
+                    <!--Single Playlist start-->
+                    <div class="singleTrack">
+                        <div class="coverAndTitle">
+                            <img class="cover"
+                                 src="~/assets/images/playlistCovers/raindrops.jpg"
+                                 alt="" />
+                            <div class="title">
+                                <h4 class="name">My Playlist</h4>
+                                <p class="author">Me</p>
+                            </div>
+                        </div>
+
+                        <div class="settings">
+                            <a href="" class="editBtn">
+                                <img class="btnImg awaiting"
+                                     src="~/assets/images/icons/plus.svg"
+                                     alt="" />
+                                <img class="btnImg done"
+                                     src="~/assets/images/icons/check.svg"
+                                     alt="" />
+                            </a>
+                        </div>
+                    </div>
+                    <!--Single Playlist end-->
+                </div>
+            </div>
+        </div>
+    </dialog>
+    <!--modal end-->
+</main>
+
+
+<script src="~/assets/javascript/track.js" asp-append-version="true"></script>
+<script src="~/assets/javascript/modal.js" asp-append-version="true"></script>
