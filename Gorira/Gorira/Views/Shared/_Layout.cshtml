@@ -2,6 +2,7 @@
 @inject UserManager<AppUser> userManager
 @{
     Dictionary<string, string> settings = await layoutService.GetSettingsAsync();
+    List<BasketVM> basketVMs = await layoutService.GetBasketsAsync();
 
     AppUser? appUser = null;
     if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
@@ -153,74 +154,13 @@
                             }
                         </div>
                     </div>
-                    <!--Basket-->
+                  
+                         <!--Basket-->
                     <div class="basketHolder">
-                        <div class="basketCounter">3</div>
-                        <img class="basketIcon"
-                             src="~/assets/images/icons/shopping-cart.svg"
-                             alt="" />
-                        <img class="chevronBasket"
-                             src="~/assets/images/icons/chevron-down.svg"
-                             alt="" />
-                        <div class="basketContent">
-                            <div class="cartCount"></div>
-                            <!--One Beat Start-->
-                            <div class="oneBeat">
-                                <a class="beatDetail" href="">
-                                    <img class="beatCover"
-                                         src="~/assets/images/covers/youngThug.jpg"
-                                         alt="" />
-                                    <p class="title">my Beat Title 2023</p>
-                                </a>
-                                <p class="price">$20.99</p>
-                                <a class="removeBasket" href="">
-                                    <img class="ex"
-                                         src="~/assets/images/icons/plus.svg"
-                                         alt="" />
-                                </a>
-                            </div>
-                            <div class="divider"></div>
-                            <!--One Beat End-->
-                            <!--One Beat Start-->
-                            <div class="oneBeat">
-                                <a class="beatDetail" href="">
-                                    <img class="beatCover"
-                                         src="~/assets/images/covers/kevinGates.jpg"
-                                         alt="" />
-                                    <p class="title">my Beat Title 2023</p>
-                                </a>
-                                <p class="price">$20.99</p>
-                                <a class="removeBasket" href="">
-                                    <img class="ex"
-                                         src="~/assets/images/icons/plus.svg"
-                                         alt="" />
-                                </a>
-                            </div>
-                            <div class="divider"></div>
-                            <!--One Beat End-->
-                            <!--One Beat Start-->
-                            <div class="oneBeat">
-                                <a class="beatDetail" href="">
-                                    <img class="beatCover"
-                                         src="~/assets/images/covers/kevinGates.jpg"
-                                         alt="" />
-                                    <p class="title">my Beat Title 2023</p>
-                                </a>
-                                <p class="price">$20.99</p>
-                                <a class="removeBasket" href="">
-                                    <img class="ex"
-                                         src="~/assets/images/icons/plus.svg"
-                                         alt="" />
-                                </a>
-                            </div>
-                            <div class="divider"></div>
-                            <!--One Beat End-->
-                            <a class="checkout" href="">
-                                <img src="~/assets/images/icons/credit-card.svg"
-                                     alt="" />Checkout
-                            </a>
-                        </div>
+                       
+                       @await Html.PartialAsync("_BasketPartial",basketVMs)
                     </div>
+                   
                 </div>
             </div>
         </div>

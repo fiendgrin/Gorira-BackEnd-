@@ -86,7 +86,7 @@
                             <p class="price">Price:</p>
                             <h6 class="thePrice">$@Model.Price</h6>
                         </div>
-                        <button class="addToCart">
+                        <button class="addToCart" trackId="@Model.Id">
                             <img src="~/assets/images/icons/cart-full.svg" alt="" /> Add
                             To Cart
                         </button>
@@ -95,7 +95,7 @@
                 <div class="divider"></div>
                 <div class="licenses">
                     <label price="@(Model.Price)$" class="radio nonExclusive">
-                        <input name="radio" type="radio" checked />
+                        <input id="limited" name="radio" type="radio" checked />
                         <span>
                             NON-EXCLUSIVE <br />
                             <p>mp3</p>
@@ -134,7 +134,7 @@
                    @if (Model.UnlimitedPrice != null)
                     {
                         <label price="@(Model.UnlimitedPrice)$" class="radio unlimited">
-                            <input name="radio" type="radio" />
+                            <input id="unlimited" name="radio" type="radio" />
                             <span>
                                 UNLIMITED <br />
                                 <p>mp3, wav, stems</p>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BasketVM> ;
+
+<div class="basketCounter">@Model.Count()</div>
+<img class="basketIcon"
+     src="~/assets/images/icons/shopping-cart.svg"
+     alt="" />
+<img class="chevronBasket"
+     src="~/assets/images/icons/chevron-down.svg"
+     alt="" />
+<div style="cursor:default;" class="basketContent">
+    @if (Model.Count() > 0)
+    {
+        @foreach (BasketVM basketVM in Model)
+        {
+            <!--One Beat Start-->
+            <div style="width:100%;" class="oneBeat d-flex justify-content-between">
+                <a class="beatDetail" asp-controller="Track" asp-action="Detail" asp-route-Id="@basketVM.Id">
+                    <img style="width:40px; object-fit:cover; object-position:center"
+                        class="beatCover"
+                         src="~/assets/images/@(basketVM.AuthorPfp == basketVM.Image ? $"pfp/{basketVM.Image}": $"covers/{basketVM.Image}")"
+                         alt="" />
+                    <p style="width:100%;" class="title">@basketVM.Title</p>
+                </a>
+                <p  class="price">$@basketVM.Price</p>
+                <a class="removeBasket" asp-controller="Track" asp-action="Detail" asp-route-Id="@basketVM.Id">
+                    <img class="ex"
+                         src="~/assets/images/icons/plus.svg"
+                         alt="" />
+                </a>
+            </div>
+            <div class="divider"></div>
+            <!--One Beat End-->
+        }
+
+        <a class="checkout" href="">
+            <img src="~/assets/images/icons/credit-card.svg"
+                 alt="" />Checkout
+        </a>
+    }else
+    {
+
+        <img style="width:80px; height:80px; align-self:center;"
+             src="~/assets/images/icons/shopping-cart.svg"
+             alt="" />
+        <h3 style="align-self:center; width:290px; padding:6px; color:white; font-weight:600; text-align:center; font-family: Chakra Petch, sans-serif;">Your Cart Is Empry</h3>
+        <p style="align-self:center; width:290px; padding:2px; color:#c7c7c7c7; font-weight:300; text-align:center; font-family: Chakra Petch, sans-serif;">When you add something to your cart, it will appear here</p>
+    }
+</div>

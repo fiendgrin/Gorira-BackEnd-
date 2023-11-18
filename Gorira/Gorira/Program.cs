@@ -37,7 +37,6 @@ builder.Services.AddScoped<ILayoutService, LayoutService>();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
-
 var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();

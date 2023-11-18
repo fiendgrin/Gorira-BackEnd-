@@ -138,6 +138,57 @@ namespace Gorira.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Gorira.Models.Basket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("date");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("DeletedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsUnlimited")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("TrackId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TrackId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Baskets");
+                });
+
             modelBuilder.Entity("Gorira.Models.Comment", b =>
                 {
                     b.Property<int>("Id")
@@ -1042,6 +1093,21 @@ namespace Gorira.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Gorira.Models.Basket", b =>
+                {
+                    b.HasOne("Gorira.Models.Track", "Track")
+                        .WithMany()
+                        .HasForeignKey("TrackId");
+
+                    b.HasOne("Gorira.Models.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Track");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Gorira.Models.Comment", b =>
                 {
                     b.HasOne("Gorira.Models.Track", "Track")
@@ -1144,7 +1210,7 @@ namespace Gorira.Migrations
             modelBuilder.Entity("Gorira.Models.Track", b =>
                 {
                     b.HasOne("Gorira.Models.Genre", "MainGenre")
-                        .WithMany()
+                        .WithMany("MainGenreTracks")
                         .HasForeignKey("MainGenreId");
 
                     b.HasOne("Gorira.Models.Mood", "PrimaryMood")
@@ -1156,7 +1222,7 @@ namespace Gorira.Migrations
                         .HasForeignKey("SecondaryMoodId");
 
                     b.HasOne("Gorira.Models.Genre", "SubGenre")
-                        .WithMany()
+                        .WithMany("SubGenreTracks")
                         .HasForeignKey("SubGenreId");
 
                     b.HasOne("Gorira.Models.AppUser", "User")
@@ -1247,6 +1313,13 @@ namespace Gorira.Migrations
                     b.Navigation("Follows");
 
                     b.Navigation("Tracks");
+                });
+
+            modelBuilder.Entity("Gorira.Models.Genre", b =>
+                {
+                    b.Navigation("MainGenreTracks");
+
+                    b.Navigation("SubGenreTracks");
                 });
 
             modelBuilder.Entity("Gorira.Models.Track", b =>

@@ -35,6 +35,7 @@ namespace Gorira.Models
 
 
         public IEnumerable<Track>? Tracks { get; set; }
+        public IEnumerable<Basket>? Baskets { get; set; }
 
         [InverseProperty("Followee")]
         public IEnumerable<Follow>? Followers { get; set; }
