@@ -60,19 +60,34 @@
                             </div>
                             <div class="date">@track.CreatedAt.ToString("MMMM dd, yyyy")</div>
                             <div style="display:flex;" class="settings">
-                                <a  class="editBtn">
+                                <a asp-controller="Track" asp-action="Edit" asp-route-Id="@track.Id" class="editBtn">
                                     <img class="btnImg"
                                          src="~/assets/images/icons/squareAndPencil.svg"
                                          alt="" />
                                 </a>
-                                        <a class="editBtn deleteTrack">
+                                <a trackId="@track.Id" class="editBtn deleteTrack">
                                     <img class="btnImg"
                                          src="~/assets/images/icons/trash.svg"
                                          alt="" />
                                 </a>
                             </div>
                         </div>
-                        <!--Single Track end-->
+                        <!--modal-->
+                        <dialog trackId="@track.Id" class="modal">
+                            <img trackId="@track.Id" class="closeModal" src="~/assets/images/icons/plus.svg" alt="" />
+
+                            <div class="content">
+                                <div class="myTable">
+                                    <div class="body">
+                                        <h3>Are You Sure?</h3>
+                                        <p class="text-danger">the instrumental will be permanently deleted!!!</p>
+                                        <a asp-controller="Track" asp-action="Delete" asp-route-Id="@track.Id">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </dialog>
+                        <!--modal end-->
+
                     }
                 
                 </div>
@@ -92,21 +107,8 @@
     <!--Player Start-->
     <div id="aplayer"></div>
     <!--Player End-->
-       <!--modal-->
-    <dialog id="modal">
-        <img class="closeModal" src="~/assets/images/icons/plus.svg" alt="" />
-
-        <div class="content">
-            <div class="myTable">
-                <div class="body">
-                    <h3>Are You Sure?</h3>
-                    <p class="text-danger">the instrumental will be permanently deleted!!!</p>
-                    <a >Delete</a>
-                </div>
-            </div>
-        </div>
-    </dialog>
-    <!--modal end-->
+   
+    <!--Single Track end-->
 </main>
 <!---->
 <script src="~/assets/javascript/myTracks.js" asp-append-version="true"></script>

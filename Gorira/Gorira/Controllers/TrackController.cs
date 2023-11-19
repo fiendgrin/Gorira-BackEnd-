@@ -43,9 +43,9 @@ namespace Gorira.Controllers
         //=========================================================
 
         //1.Index
-        public async Task<IActionResult> Index(int? page, string? search, List<int>? genres,List<int>? moods,List<Key>? keys,
-            double? minPrice = 0,double? maxPrice = 9999, double? minBpm = 0, double? maxBpm=9999, string? order = "popular")
-        
+        public async Task<IActionResult> Index(int? page, string? search, List<int>? genres, List<int>? moods, List<Key>? keys,
+            double? minPrice = 0, double? maxPrice = 9999, double? minBpm = 0, double? maxBpm = 9999, string? order = "popular")
+
         {
             if (page <= 0)
             {
@@ -53,10 +53,10 @@ namespace Gorira.Controllers
             }
 
             IEnumerable<Track>? Tracks = await _context.Tracks
-                .Include(t=>t.User)
+                .Include(t => t.User)
                 .Where(t => t.IsDeleted == false).ToListAsync();
 
-          
+
 
             if (!string.IsNullOrWhiteSpace(search))
             {
@@ -66,8 +66,8 @@ namespace Gorira.Controllers
 
             if (genres != null && genres.Count > 0)
             {
-                Tracks = Tracks.Where(t => (t.MainGenreId != null && genres.Contains((int)t.MainGenreId)) || 
-                (t.SubGenreId != null && genres.Contains((int)t.SubGenreId)) );
+                Tracks = Tracks.Where(t => (t.MainGenreId != null && genres.Contains((int)t.MainGenreId)) ||
+                (t.SubGenreId != null && genres.Contains((int)t.SubGenreId)));
             }
 
             if (moods != null && moods.Count > 0)
@@ -126,24 +126,24 @@ namespace Gorira.Controllers
             IPagedList<Track> paginatedTracks = await Tracks.ToPagedListAsync(page ?? 1, _pageSize);
 
 
-            IEnumerable<Genre> allGenres = await _context.Genres.Where(g => g.IsDeleted == false).OrderBy(g=>g.Id).ToArrayAsync();
+            IEnumerable<Genre> allGenres = await _context.Genres.Where(g => g.IsDeleted == false).OrderBy(g => g.Id).ToArrayAsync();
             IEnumerable<Mood> allMoods = await _context.Moods.Where(g => g.IsDeleted == false).OrderBy(g => g.Id).ToArrayAsync();
 
-          TrackVM  trackVM = new TrackVM
+            TrackVM trackVM = new TrackVM
             {
                 Tracks = paginatedTracks,
-               filterVM = new FilterVM 
-               {
-                   Genres = allGenres,
-                   Moods = allMoods,
-                   selectedGenres = genres,
-                   selectedMoods = moods,
-                   selectedKeys = keys,
-                   minBpm = minBpm,
-                   maxBpm = maxBpm,
-                   minPrice = minPrice,
-                   maxPrice = maxPrice,
-               }
+                filterVM = new FilterVM
+                {
+                    Genres = allGenres,
+                    Moods = allMoods,
+                    selectedGenres = genres,
+                    selectedMoods = moods,
+                    selectedKeys = keys,
+                    minBpm = minBpm,
+                    maxBpm = maxBpm,
+                    minPrice = minPrice,
+                    maxPrice = maxPrice,
+                }
             };
 
             return View(trackVM);
@@ -162,10 +162,15 @@ namespace Gorira.Controllers
         [HttpPost]
         [Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Upload(Track track, List<string> TagNames)
+        public async Task<IActionResult> Upload(Track? track, List<string>? TagNames)
         {
             ViewBag.Moods = await _context.Moods.Where(m => m.IsDeleted == false).ToListAsync();
             ViewBag.Genres = await _context.Genres.Where(m => m.IsDeleted == false).ToListAsync();
+
+            if (track == null) return BadRequest();
+
+            if (TagNames == null) return BadRequest();
+
 
             if (TagNames.Count != 3)
             {
@@ -219,13 +224,13 @@ namespace Gorira.Controllers
                 track.TrackStems = await track.TrackStemsFile.Save(_env.WebRootPath, new string[] { "assets", "audio", "stems" });
             }
 
-            if (track.UnlimitedPrice != null && track.UnlimitedPrice > 0 && (track.TrackStemsFile == null || track.UntaggedFile == null))
+            if (track.UnlimitedPrice != null && track.UnlimitedPrice > 0 && (track.TrackStemsFile == null))
             {
                 ModelState.AddModelError("", "If your track's \"unlimited price\" is greater than \"0\", please make sure to include \"Track Stems\" and \"Untagged Audio\"");
                 return View(track);
             }
 
-            if ((track.UnlimitedPrice == null || track.UnlimitedPrice <= 0) && track.TrackStemsFile != null && track.UntaggedFile != null)
+            if ((track.UnlimitedPrice == null || track.UnlimitedPrice <= 0) && track.TrackStemsFile != null)
             {
                 ModelState.AddModelError("", "If you included \"Track Stems\" and \"Untagged Audio\", please make sure your \"unlimited price\" is greater than \"0\", ");
                 return View(track);
@@ -282,12 +287,12 @@ namespace Gorira.Controllers
                 }
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(MyTracks));
         }
 
         //3.Play Counter
         [Authorize(Roles = "Member")]
-        public async Task<IActionResult> PlayCounter(int? Id) 
+        public async Task<IActionResult> PlayCounter(int? Id)
         {
 
             if (Id == null) return BadRequest();
@@ -296,9 +301,9 @@ namespace Gorira.Controllers
 
             if (track == null) return NotFound();
 
-            AppUser? appUser = await _userManager.Users.FirstOrDefaultAsync(u=>u.UserName == User.Identity.Name);
+            AppUser? appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
-            PlayToken? playToken = await _context.PlayTokens.FirstOrDefaultAsync(pt=>pt.TrackId == Id && pt.UserId == appUser.Id && pt.IsDeleted == false);
+            PlayToken? playToken = await _context.PlayTokens.FirstOrDefaultAsync(pt => pt.TrackId == Id && pt.UserId == appUser.Id && pt.IsDeleted == false);
 
             if (playToken == null)
             {
@@ -314,7 +319,7 @@ namespace Gorira.Controllers
 
                 track.Plays++;
             }
-            else 
+            else
             {
                 TimeSpan? timeDifference = DateTime.UtcNow - playToken.UpdatedAt;
 
@@ -331,17 +336,17 @@ namespace Gorira.Controllers
         }
 
         //4.Detail
-        public async Task<IActionResult> Detail(int? Id) 
+        public async Task<IActionResult> Detail(int? Id)
         {
             if (Id == null) return BadRequest();
 
             Track? track = await _context.Tracks
-                .Include(t=>t.User)
-                .Include(t=>t.TrackTags.Where(tt=>tt.IsDeleted==false)).ThenInclude(tt=>tt.Tag)
+                .Include(t => t.User)
+                .Include(t => t.TrackTags.Where(tt => tt.IsDeleted == false)).ThenInclude(tt => tt.Tag)
                 .FirstOrDefaultAsync(t => t.Id == Id && t.IsDeleted == false);
 
             if (track == null) return NotFound();
-           
+
 
 
             return View(track);
@@ -349,20 +354,237 @@ namespace Gorira.Controllers
 
         //5.My Tracks
         [Authorize(Roles = "Member")]
-        public async Task<IActionResult> MyTracks(int? page, string? search) 
+        public async Task<IActionResult> MyTracks(int? page, string? search)
         {
             if (page <= 0)
             {
                 return NotFound();
             }
-            ViewBag.Counter = page == null ? 0 : (page-1) * _myTrackPageSize;
-            AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u=>u.UserName == User.Identity.Name);
+            ViewBag.Counter = page == null ? 0 : (page - 1) * _myTrackPageSize;
+            AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
             IPagedList<Track>? tracks = await _context.Tracks
-                .Include(t=>t.User)
+                .Include(t => t.User)
                 .Where(t => t.IsDeleted == false && t.UserId == appUser.Id).ToPagedListAsync(page ?? 1, _myTrackPageSize);
 
             return View(tracks);
+        }
+
+        //6.Track Edit
+
+        //2.Upload
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> Edit(int? Id)
+        {
+            ViewBag.Moods = await _context.Moods.Where(m => m.IsDeleted == false).ToListAsync();
+            ViewBag.Genres = await _context.Genres.Where(m => m.IsDeleted == false).ToListAsync();
+
+            if (Id == null) return BadRequest();
+
+            Track? track = await _context.Tracks
+                .Include(t=>t.User)
+                .FirstOrDefaultAsync(t => t.IsDeleted == false && t.Id == Id);
+
+            if (track == null) return NotFound();
+
+
+            return View(track);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Member")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Track? track, int? Id, List<string>? TagNames)
+        {
+
+            ViewBag.Moods = await _context.Moods.Where(m => m.IsDeleted == false).ToListAsync();
+            ViewBag.Genres = await _context.Genres.Where(m => m.IsDeleted == false).ToListAsync();
+
+
+            if (track == null) return BadRequest();
+           
+
+            if (Id == null) return BadRequest();
+
+            Track DbTrack = await _context.Tracks.FirstOrDefaultAsync(t => t.IsDeleted == false && t.Id == Id);
+
+            if (track.UntaggedFile == null && DbTrack.Untagged == null)
+            {
+                ModelState.AddModelError("", "Untagged Audio is required");
+                return View(track);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(track);
+            }
+
+            AppUser appUser = await _userManager.Users
+           .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            if (track.CoverFile != null)
+            {
+                if (track.Cover != appUser.ProfilePicture && DbTrack.Cover != null)
+                {
+                    string filePath = Path.Combine(_env.WebRootPath, "assets", "images", "covers", DbTrack.Cover);
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+                }
+
+                DbTrack.Cover = await track.CoverFile.Save(_env.WebRootPath, new string[] { "assets", "images", "covers" });
+            }
+
+            if (track.TaggedFile != null)
+            {
+                if (DbTrack.Tagged != null)
+                {
+
+                    string filePath = Path.Combine(_env.WebRootPath, "assets", "audio", "tagged", DbTrack.Tagged);
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+                }
+
+
+                DbTrack.Tagged = await track.TaggedFile.Save(_env.WebRootPath, new string[] { "assets", "audio", "tagged" });
+            }
+
+            if (track.UntaggedFile != null)
+            {
+                if (DbTrack.Untagged != null)
+                {
+                    string filePath = Path.Combine(_env.WebRootPath, "assets", "audio", "untagged", DbTrack.Untagged);
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+                }
+
+                DbTrack.Untagged = await track.UntaggedFile.Save(_env.WebRootPath, new string[] { "assets", "audio", "untagged" });
+            }
+
+            if (track.TrackStemsFile != null)
+            {
+                if (DbTrack.TrackStems != null)
+                {
+                    string filePath = Path.Combine(_env.WebRootPath, "assets", "audio", "stems", DbTrack.TrackStems);
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+                }
+
+                DbTrack.TrackStems = await track.TrackStemsFile.Save(_env.WebRootPath, new string[] { "assets", "audio", "stems" });
+            }
+
+
+            if (track.UnlimitedPrice != null && track.UnlimitedPrice > 0 && (track.TrackStemsFile == null && DbTrack.TrackStems == null))
+            {
+                ModelState.AddModelError("", "If your track's \"unlimited price\" is greater than \"0\", please make sure to include \"Track Stems\" and \"Untagged Audio\"");
+                return View(track);
+            }
+
+            if ((track.UnlimitedPrice == null || track.UnlimitedPrice <= 0) && (track.TrackStemsFile != null  || DbTrack.TrackStems != null))
+            {
+                ModelState.AddModelError("", "If you included \"Track Stems\" and \"Untagged Audio\", please make sure your \"unlimited price\" is greater than \"0\", ");
+                return View(track);
+            }
+
+
+            if (track.MainGenreId != null)
+            {
+                DbTrack.MainGenreId = track.MainGenreId;
+            }
+
+            if (track.SubGenreId != null)
+            {
+                DbTrack.SubGenreId = track.SubGenreId;
+            }
+
+            if (track.PrimaryMoodId != null)
+            {
+                DbTrack.PrimaryMoodId = track.PrimaryMoodId;
+            }
+
+            if (track.SecondaryMoodId != null)
+            {
+                DbTrack.SecondaryMoodId = track.SecondaryMoodId;
+            }
+
+            if (track.MusicKey != null)
+            {
+                DbTrack.MusicKey = track.MusicKey;
+            }
+
+
+
+            DbTrack.UpdatedBy = appUser.UserName;
+            DbTrack.UpdatedAt = DateTime.Now;
+            DbTrack.Price = track.Price;
+            DbTrack.UnlimitedPrice = track.UnlimitedPrice;
+            DbTrack.HasFree = track.HasFree;
+            DbTrack.Title = track.Title;
+            DbTrack.Bpm = track.Bpm;
+            DbTrack.Description = track.Description;
+
+            await _context.SaveChangesAsync();
+
+
+           
+            if (TagNames.Count == 3)
+            {
+
+                List<TrackTag> oldTrackTags = await _context.TrackTags.Where(tt => tt.IsDeleted == false && tt.TrackId == Id).ToListAsync();
+
+                foreach (TrackTag oldTrackTag in oldTrackTags)
+                {
+                    oldTrackTag.IsDeleted = true;
+                }
+                    await _context.SaveChangesAsync();
+
+                foreach (string tag in TagNames)
+                {
+                    if (!await _context.Tags.AnyAsync(t => t.Name.Trim().ToLower() == tag.Trim().ToLower() && t.IsDeleted == false))
+                    {
+                        Tag newTag = new Tag
+                        {
+                            Name = tag,
+                        };
+
+
+                        await _context.Tags.AddAsync(newTag);
+                        await _context.SaveChangesAsync();
+                        TrackTag trackTag = new TrackTag
+                        {
+                            TagId = newTag.Id,
+                            TrackId = track.Id
+
+                        };
+                        await _context.TrackTags.AddAsync(trackTag);
+                        await _context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        Tag existingTag = await _context.Tags.FirstOrDefaultAsync(t => t.IsDeleted == false && t.Name == tag);
+
+                        TrackTag trackTag = new TrackTag
+                        {
+                            TagId = existingTag.Id,
+                            TrackId = track.Id
+
+                        };
+                        await _context.TrackTags.AddAsync(trackTag);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+
+            }
+
+
+            return RedirectToAction(nameof(MyTracks));
         }
     }
 }

@@ -1,0 +1,182 @@
+﻿@model Track
+@{
+    ViewData["Title"] = "Edit";
+    List<Mood> moods = ViewBag.Moods;
+    SelectList moodList = new SelectList(moods, nameof(Mood.Id), nameof(Mood.Name));
+    List<Genre> genres = ViewBag.Genres;
+    SelectList genreList = new SelectList(genres, nameof(Genre.Id), nameof(Genre.Name));
+}
+
+<main id="uploadMain">
+    <div class="box">
+        <h2 class="title">Track Metadata Editor</h2>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <span style="height:fit-content !important;" asp-validation-for="TrackStemsFile" class="text-danger"></span>
+        <span style="height:fit-content !important;" asp-validation-for="TaggedFile" class="text-danger"></span>
+        <span style="height:fit-content !important;" asp-validation-for="UntaggedFile" class="text-danger"></span>
+        <form method="post" class="uploadForms" enctype="multipart/form-data">
+            <section class="general">
+                <h5 class="sectionName">General Information</h5>
+                <div class="theForm">
+                    <div class="left">
+                        <div class="regular trackTitle">
+                            <label asp-for="Title" class="inputLabel">Title*</label>
+                            <input asp-for="Title" class="inputField" placeholder="Title" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="regular trackTags">
+                            <label class="inputLabel">Tags(3)*</label>
+                            <div class="tagsAndBtn">
+                                <input class="inputField tagsInputField"
+                                       placeholder="Tag"
+                                       maxlength="25" />
+                                <div class="inputIcon">0/25</div>
+                                <div class="addBtn">+Add</div>
+                            </div>
+                            <div class="tagHolder"></div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="audioButtons">
+                            <div class="dwnbtns forDownload">
+                                <h3>For Downloads</h3>
+                                <div class="wrapper-btn">
+                                    <img class="uploadIcon"
+                                         src="~/assets/images/icons/music.svg"
+                                         alt="" />
+                                    <p class="desc">Untagged (mp3 or wav)</p>
+                                    <input asp-for="UntaggedFile" class="fileUpload"
+                                           accept=".mp3, .wav" />
+
+                                </div>
+                                <div class="wrapper-btn">
+                                    <img class="uploadIcon"
+                                         src="~/assets/images/icons/sliders-v_10435308.svg"
+                                         alt="" />
+
+                                    <p class="desc">Track stems (zip or rar)</p>
+
+                                    <input asp-for="TrackStemsFile" class="fileUpload"
+                                           accept=".rar, .zip" />
+
+                                </div>
+                            </div>
+                            <div class="dwnbtns forStreaming">
+                                <h3>For Streaming</h3>
+                                <div class="wrapper-btn">
+                                    <img class="uploadIcon"
+                                         src="~/assets/images/icons/music.svg"
+                                         alt="" />
+
+                                    <p class="desc">Tagged (only mp3)</p>
+                                    <input asp-for="TaggedFile" class="fileUpload" accept=".mp3" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pfpUpload">
+                            <div class="coverImage"><img style="object-position:center;" class="object-fit-cover" src="/assets/images/@(Model.User.ProfilePicture == Model.Cover ? $"pfp/{Model.Cover}": $"covers/{Model.Cover}")" /></div>
+                            <div class="wrapper-btn">
+                                <img class="uploadIcon"
+                                     src="~/assets/images/icons/edit-image-photo.svg"
+                                     alt="" />
+                                <p class="desc">Cover img (jpg or png)</p>
+                                <input asp-for="CoverFile" class="fileUpload"
+                                       accept=".jpg, .png, .jpeg" />
+                                <span asp-validation-for="CoverFile" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="selling">
+                <h5 class="sectionName">Selling Preferences</h5>
+                <div class="theForm">
+                    <div class="licenses">
+                        <div class="regular">
+                            <label asp-for="Price" class="inputLabel">NON EXCLUSIVE (MP3) PRICE</label>
+                            <input asp-for="Price" min="0"
+                                   class="inputField numberInput"
+                                   placeholder="Price" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="regular">
+                            <label asp-for="UnlimitedPrice" class="inputLabel">UNLIMITED (MP3, WAV AND TRACK STEMS) PRICE</label>
+                            <input asp-for="UnlimitedPrice"
+                                   min="0"
+                                   class="inputField numberInput"
+                                   placeholder="Price" />
+                            <span asp-validation-for="UnlimitedPrice" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="checkInput">
+                        <div class="checkbox-wrapper-13">
+                            <input asp-for="HasFree" class="myCheckBox" />
+                            <label asp-for="HasFree" class="checkLabel">Free Download (Tagged MP3)</label>
+                            <span asp-validation-for="HasFree" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="details">
+                <h5 class="sectionName">Track Details</h5>
+                <div class="theForm">
+                    <div class="left">
+                        <div class="regular">
+                            <label asp-for="MainGenreId" class="inputLabel">Main Genre*</label>
+                            <select asp-for="MainGenreId" class="inputField mainGenre selectList" asp-items="genreList">
+                            </select>
+                            <span asp-validation-for="MainGenreId" class="text-danger"></span>
+                        </div>
+                        <div class="regular">
+                            <label asp-for="PrimaryMoodId" class="inputLabel">Primary Mood</label>
+                            <select asp-for="PrimaryMoodId" class="inputField primaryMood selectList" asp-items="moodList">
+                            </select>
+                            <span asp-validation-for="PrimaryMoodId" class="text-danger"></span>
+                        </div>
+                        <div class="regular">
+                            <label asp-for="Description" class="inputLabel">Description</label>
+                            <textarea asp-for="Description" class="inputField"
+                                      cols="30"
+                                      rows="10"
+                                      placeholder="Enter a Description"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="regular">
+                            <label asp-for="SubGenreId" class="inputLabel">Sub Genre</label>
+                            <select asp-for="SubGenreId" class="inputField subGenre selectList" asp-items="genreList">
+                            </select>
+                            <span asp-validation-for="SubGenreId" class="text-danger"></span>
+                        </div>
+                        <div class="regular">
+                            <label asp-for="SecondaryMoodId" class="inputLabel">Secondary Mood</label>
+                            <select asp-for="SecondaryMoodId" class="inputField secondaryMood selectList" asp-items="moodList">
+                            </select>
+                            <span asp-validation-for="SecondaryMoodId" class="text-danger"></span>
+                        </div>
+                        <div class="regular">
+                            <label asp-for="Bpm" class="inputLabel">BPM (Beats per minute)</label>
+                            <input asp-for="Bpm"
+                                   class="inputField numberInput"
+                                   placeholder="0" />
+                        </div>
+                        <div class="regular">
+                            <label asp-for="MusicKey" class="inputLabel">Key</label>
+                            <select asp-for="MusicKey" class="inputField key selectList" asp-items="@Html.GetEnumSelectList<Key>()">
+                            </select>
+                            <span asp-validation-for="MusicKey" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="submitHolder">
+                <button type="submit">Edit</button>
+            </div>
+        </form>
+    </div>
+</main>
+<!--TagHandler-->
+<script src="~/assets/javascript/upload.js" asp-append-version="true"></script>
+
