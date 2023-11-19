@@ -81,5 +81,91 @@ namespace Gorira.Controllers
 
             return View(cartVMs);
         }
+
+        public async Task<IActionResult> RemoveCart(int? Id)
+        {
+            if (Id == null) return BadRequest();
+
+            string? basket = Request.Cookies["basket"];
+
+            List<BasketVM>? basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+
+
+            if (!basketVMs.Any(t => t.Id == Id)) return NotFound();
+
+            basketVMs.RemoveAll(t => t.Id == Id);
+
+            basket = JsonConvert.SerializeObject(basketVMs);
+
+            Response.Cookies.Append("basket", basket);
+       
+
+            if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+            {
+                AppUser appUser = await _userManager.Users
+                    .Include(b => b.Baskets.Where(b => b.IsDeleted == false))
+                    .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+                if (appUser != null)
+                {
+                    Basket? userBasket = appUser.Baskets?.FirstOrDefault(b => b.TrackId == Id);
+
+
+                    if (userBasket != null)
+                    {
+                        userBasket.DeletedAt = DateTime.Now;
+                        userBasket.IsDeleted = true;
+                        userBasket.DeletedBy = User.Identity.Name;
+                    }
+
+                }
+                await _context.SaveChangesAsync();
+            }
+
+            List<CartVM>? cartVMs = new List<CartVM>();
+
+            foreach (BasketVM basketVM in basketVMs)
+            {
+
+
+                Track track = await _context.Tracks
+              .Include(t => t.User)
+              .FirstOrDefaultAsync(t => t.Id == basketVM.Id);
+                basketVM.Title = track.Title;
+                basketVM.Id = track.Id;
+                basketVM.Image = track.Cover;
+                basketVM.Price = basketVM.IsUnlimited ? track.UnlimitedPrice : track.Price;
+                basketVM.AuthorPfp = track.User.ProfilePicture;
+                basketVM.AuthorId = track.UserId;
+                basketVM.AuthorName = track.User.DisplayName;
+
+                if (cartVMs == null || !cartVMs.Any(c => c.UserId == basketVM.AuthorId))
+                {
+                    List<BasketVM> cartBasketVMs = new List<BasketVM>
+                        {
+                            basketVM
+                        };
+                    CartVM cartVM = new CartVM
+                    {
+                        BasketVMs = cartBasketVMs,
+                        UserId = basketVM.AuthorId,
+                    };
+
+                    cartVMs.Add(cartVM);
+                }
+                else
+                {
+
+                    CartVM cartVM = cartVMs.Find(c => c.UserId == basketVM.AuthorId);
+                    List<BasketVM> cartBasketVMs = cartVM.BasketVMs;
+                    cartBasketVMs.Add(basketVM);
+                    cartVM.BasketVMs = cartBasketVMs;
+                }
+
+
+            }
+
+            return PartialView("_CartPartial", cartVMs);
+        }
     }
 }

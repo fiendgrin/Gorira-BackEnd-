@@ -21,7 +21,7 @@
                         class="beatCover"
                          src="~/assets/images/@(basketVM.AuthorPfp == basketVM.Image ? $"pfp/{basketVM.Image}": $"covers/{basketVM.Image}")"
                          alt="" />
-                    <p style="width:100%;" class="title">@basketVM.Title</p>
+                    <p style="width:100%; transition:0.2s;" class="title">@basketVM.Title</p>
                 </a>
                 <p  class="price">$@basketVM.Price</p>
                 <a style="cursor:pointer; pointer-events:all;" class="removeBasket" asp-controller="Basket" asp-action="RemoveBasket" asp-route-Id="@basketVM.Id">

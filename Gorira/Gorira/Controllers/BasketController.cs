@@ -24,15 +24,15 @@ namespace Gorira.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> AddBasket(int? id, bool? isUnlimited)
+        public async Task<IActionResult> AddBasket(int? Id, bool? isUnlimited)
         {
-            if (id == null) return BadRequest();
+            if (Id == null) return BadRequest();
 
             if (isUnlimited == null) return BadRequest();
 
-            if (!await _context.Tracks.AnyAsync(p => p.IsDeleted == false && p.Id == id)) return NotFound();
+            if (!await _context.Tracks.AnyAsync(p => p.IsDeleted == false && p.Id == Id)) return NotFound();
 
-            if (await _context.Tracks.AnyAsync(p => p.IsDeleted == false && p.Id == id && isUnlimited == true && p.UnlimitedPrice == null)) return BadRequest();
+            if (await _context.Tracks.AnyAsync(p => p.IsDeleted == false && p.Id == Id && isUnlimited == true && p.UnlimitedPrice == null)) return BadRequest();
 
 
             string? basket = Request.Cookies["basket"];
@@ -42,11 +42,11 @@ namespace Gorira.Controllers
             {
                 basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
 
-                if (!basketVMs.Exists(b => b.Id == id))
+                if (!basketVMs.Exists(b => b.Id == Id))
                 {
                     basketVMs.Add(new BasketVM
                     {
-                        Id = (int)id,
+                        Id = (int)Id,
                         IsUnlimited = (bool)isUnlimited,
                     });
                 }
@@ -57,7 +57,7 @@ namespace Gorira.Controllers
 
                 basketVMs = new List<BasketVM> { new BasketVM
                 {
-                    Id = (int)id,
+                    Id = (int)Id,
                    IsUnlimited = (bool)isUnlimited,
                 }
             };
@@ -76,14 +76,14 @@ namespace Gorira.Controllers
 
                 if (appUser != null && appUser.Baskets != null && appUser.Baskets.Count() > 0)
                 {
-                    Basket? userBasket = appUser.Baskets.FirstOrDefault(b => b.TrackId == id);
+                    Basket? userBasket = appUser.Baskets.FirstOrDefault(b => b.TrackId == Id);
                     if (userBasket == null)
                     {
                         Basket userNewBasket = new Basket
                         {
                             UserId = appUser.Id,
-                            TrackId = id,
-                            IsUnlimited = basketVMs.FirstOrDefault(b => b.Id == id).IsUnlimited
+                            TrackId = Id,
+                            IsUnlimited = basketVMs.FirstOrDefault(b => b.Id == Id).IsUnlimited
                         };
 
                         await _context.AddAsync(userNewBasket);
@@ -96,8 +96,8 @@ namespace Gorira.Controllers
                     Basket userNewBasket = new Basket
                     {
                         UserId = appUser.Id,
-                        TrackId = id,
-                        IsUnlimited = basketVMs.FirstOrDefault(b => b.Id == id).IsUnlimited
+                        TrackId = Id,
+                        IsUnlimited = basketVMs.FirstOrDefault(b => b.Id == Id).IsUnlimited
                     };
 
                     await _context.AddAsync(userNewBasket);
@@ -124,18 +124,19 @@ namespace Gorira.Controllers
             return PartialView("_BasketPartial", basketVMs);
         }
 
-        public async Task<IActionResult> RemoveBasket(int? id)
+
+        public async Task<IActionResult> RemoveBasket(int? Id)
         {
-            if (id == null) return BadRequest();
+            if (Id == null) return BadRequest();
 
             string? basket = Request.Cookies["basket"];
 
             List<BasketVM>? basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
 
 
-            if (!basketVMs.Any(t => t.Id == id)) return NotFound();
+            if (!basketVMs.Any(t => t.Id == Id)) return NotFound();
 
-            basketVMs.RemoveAll(t => t.Id == id);
+            basketVMs.RemoveAll(t => t.Id == Id);
 
             basket = JsonConvert.SerializeObject(basketVMs);
 
@@ -150,7 +151,7 @@ namespace Gorira.Controllers
 
                 if (appUser != null)
                 {
-                    Basket? userBasket = appUser.Baskets?.FirstOrDefault(b => b.TrackId == id);
+                    Basket? userBasket = appUser.Baskets?.FirstOrDefault(b => b.TrackId == Id);
 
 
                     if (userBasket != null)

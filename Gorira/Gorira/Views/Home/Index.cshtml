@@ -52,7 +52,7 @@
                                  alt=""
                                  trackId="@track.Id" />
                             <img class="pause" src="~/assets/images/icons/pause.svg" alt="" />
-                            <a href="">
+                            <a asp-controller="Track" asp-action="Detail" asp-route-Id="@track.Id">
                                 <img class="cover"
                                      src="~/assets/images/@(user?.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
                                      alt="" />
@@ -64,8 +64,8 @@
                                         <img src="~/assets/images/icons/dot.svg" alt="" /> @(track.Bpm != null ? $"{track.Bpm} BPM" : "")
                                     </p>
                                 </div>
-                                <a href=""><h6 class="title">@track.Title</h6></a>
-                                <a href=""><p class="artist">@user?.DisplayName</p></a>
+                                <a asp-controller="Track" asp-action="Detail" asp-route-Id="@track.Id"><h6 class="title">@track.Title</h6></a>
+                                <a asp-controller="Artist" asp-action="Detail" asp-route-Id="@user.Id"><p class="artist">@user?.DisplayName</p></a>
                             </div>
                         </div>
                         <!--Single Card End-->
