@@ -1,19 +1,21 @@
 ﻿@model IEnumerable<BasketVM> ;
 
+<div class="BasketTopIcons">
 <div class="basketCounter">@Model.Count()</div>
-<img class="basketIcon"
-     src="~/assets/images/icons/shopping-cart.svg"
-     alt="" />
-<img class="chevronBasket"
-     src="~/assets/images/icons/chevron-down.svg"
-     alt="" />
-<div style="cursor:default;" class="basketContent">
+    <img class="basketIcon"
+         src="~/assets/images/icons/shopping-cart.svg"
+         alt="" />
+    <img class="chevronBasket"
+         src="~/assets/images/icons/chevron-down.svg"
+         alt="" />
+</div>
+<div style="" class="basketContent">
     @if (Model.Count() > 0)
     {
         @foreach (BasketVM basketVM in Model)
         {
             <!--One Beat Start-->
-            <div style="width:100%;" class="oneBeat d-flex justify-content-between">
+            <div style="width:100%; pointer-events:all;" class="oneBeat d-flex justify-content-between">
                 <a class="beatDetail" asp-controller="Track" asp-action="Detail" asp-route-Id="@basketVM.Id">
                     <img style="width:40px; object-fit:cover; object-position:center"
                         class="beatCover"
@@ -22,7 +24,7 @@
                     <p style="width:100%;" class="title">@basketVM.Title</p>
                 </a>
                 <p  class="price">$@basketVM.Price</p>
-                <a class="removeBasket" asp-controller="Track" asp-action="Detail" asp-route-Id="@basketVM.Id">
+                <a style="cursor:pointer; pointer-events:all;" class="removeBasket" asp-controller="Basket" asp-action="RemoveBasket" asp-route-Id="@basketVM.Id">
                     <img class="ex"
                          src="~/assets/images/icons/plus.svg"
                          alt="" />
@@ -32,7 +34,7 @@
             <!--One Beat End-->
         }
 
-        <a class="checkout" href="">
+        <a class="checkout" asp-controller="Cart" asp-action="Index">
             <img src="~/assets/images/icons/credit-card.svg"
                  alt="" />Checkout
         </a>

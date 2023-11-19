@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using System.Text.RegularExpressions;
+using Gorira.ViewModels.BasketVMs;
+using Newtonsoft.Json;
 
 namespace Gorira.Controllers
 {
@@ -127,7 +129,7 @@ namespace Gorira.Controllers
             }
 
             AppUser appUser = await _userManager.Users
-                //.Include(u => u.Baskets.Where(b => b.IsDeleted == false))
+                .Include(u => u.Baskets.Where(b => b.IsDeleted == false))
                 .FirstOrDefaultAsync(u => u.NormalizedEmail == loginVM.Email.Trim().ToUpperInvariant());
             if (appUser == null)
             {
@@ -173,24 +175,24 @@ namespace Gorira.Controllers
                 return View(loginVM);
             }
 
-            //if (appUser.Baskets != null && appUser.Baskets.Count() > 0)
-            //{
-            //    List<BasketVM> basketVMs = new List<BasketVM>();
+            if (appUser.Baskets != null && appUser.Baskets.Count() > 0)
+            {
+                List<BasketVM> basketVMs = new List<BasketVM>();
 
-            //    foreach (Basket basket in appUser.Baskets)
-            //    {
-            //        BasketVM basketVM = new BasketVM
-            //        {
-            //            Id = (int)basket.ProductId,
-            //            Count = basket.Count
-            //        };
-            //        basketVMs.Add(basketVM);
-            //    }
+                foreach (Basket basket in appUser.Baskets)
+                {
+                    BasketVM basketVM = new BasketVM
+                    {
+                        Id = (int)basket.TrackId,
+                     IsUnlimited = basket.IsUnlimited,
+                    };
+                    basketVMs.Add(basketVM);
+                }
 
-            //    string cookie = JsonConvert.SerializeObject(basketVMs);
-            //    Response.Cookies.Append("basket", cookie);
+                string cookie = JsonConvert.SerializeObject(basketVMs);
+                Response.Cookies.Append("basket", cookie);
 
-            //}
+            }
 
             return RedirectToAction("Index", "Home");
         }

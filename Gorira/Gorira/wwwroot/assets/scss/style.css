@@ -975,8 +975,8 @@ header .boxTop .boxContent .right .basketHolder {
     cursor: pointer;
     padding: 4px;
     transition: 0.2s;
-    position: relative;
     border-radius: 20px;
+    position: relative;
 }
 
     header .boxTop .boxContent .right .basketHolder .basketCounter {
@@ -1011,9 +1011,7 @@ header .boxTop .boxContent .right .basketHolder {
         transition: 0.1s;
     }
 
-    header .boxTop .boxContent .right .basketHolder:hover {
-        background-color: rgba(137, 43, 226, 0.3);
-    }
+  
 
         header .boxTop .boxContent .right .basketHolder:hover .chevronBasket {
             opacity: 1;
@@ -31742,4 +31740,30 @@ label {
     .aplayer-body {
         width:380px;
     }
+
+    .BasketTopIcons {
+        padding: 0px;
+ 
+    }
 }
+
+.BasketTopIcons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    padding: 4px;
+    background-color: transparent;
+    cursor: pointer;
+    position:relative;
+    transition: 0.2s;
+    border-radius: 20px;
+}
+
+.BasketHolder {
+    padding: 0px;
+}
+header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
+    background-color: rgba(137, 43, 226, 0.3);
+}
+

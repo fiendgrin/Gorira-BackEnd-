@@ -1,0 +1,88 @@
+﻿@model IEnumerable<CartVM>
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<main style="min-height: calc(80vh - 66px); align-items:flex-start;" id="cartMain">
+    <div  class="box">
+        <div class="topText">
+            <h3>Cart</h3>
+        </div>
+        <div class="content">
+            <div class="left">
+                @foreach (CartVM cartVM in Model)
+                {
+                    BasketVM basketVM = cartVM.BasketVMs.First(b => b.AuthorId == cartVM.UserId);
+                    <!--Single Artist Start-->
+                    <div class="singleArtist">
+                        <div class="top">
+                            <div class="PfpAndName">
+                                <img class="pfp" src="~/assets/images/pfp/@basketVM.AuthorPfp" alt="" />
+                                <h4 class="title">@basketVM.AuthorName</h4>
+                            </div>
+                            <div style="align-items:center; justify-content:center;" class="singleArtistSum">
+                                <div class="count">@cartVM.BasketVMs.Count item:</div>
+                                <div class="sum">$@cartVM.BasketVMs.Sum(b=>b.Price)</div>
+                            </div>
+                        </div>
+                        <div class="beats">
+                            @foreach (BasketVM BVM in cartVM.BasketVMs)
+                            {
+                                <!--Single Beat Start-->
+                                <div class="singleBeat">
+                                    <img class="cover"
+                                         src="~/assets/images/@(BVM.AuthorPfp == BVM.Image ? $"pfp/{BVM.Image}": $"covers/{BVM.Image}")"
+                                         alt="" />
+                                    <div class="beatInfo">
+                                        <div class="beatTitleAndPrice">
+                                            <div class="beatTitle">@BVM.Title</div>
+                                            <div class="beatPrice">$@BVM.Price</div>
+                                        </div>
+                                        <div class="licenseAndX">
+                                            @if (BVM.IsUnlimited)
+                                            {
+                                                <div class="license">
+                                                    Unlimited License (MP3 or WAV,Track Stems)
+                                                </div>
+                                            }else
+                                            {
+                                                <div class="license">
+                                                    Non-Exclusive License (MP3 Or WAV)
+                                                </div>
+                                            }
+                                            <a href="">
+                                                <img src="~/assets/images/icons/plus.svg"
+                                                     alt=""
+                                                     class="x" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Single Beat End-->
+                            }
+
+
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <!--Single Artist Start-->
+                }
+            </div>
+            <div class="right">
+                <div class="line subTotal">
+                    <h6>Sub Total:</h6>
+                    <h6>$@(Math.Round((decimal)Model.Sum(c => c.BasketVMs.Sum(b => b.Price)),2))</h6>
+                </div>
+                <div class="line serviceFee">
+                    <h6>Service Fee(1%):</h6>
+                    <h6>$@(Math.Round((decimal)(Model.Sum(c => c.BasketVMs.Sum(b => b.Price))) / 100,2))</h6>
+                </div>
+                <div class="line total">
+                    <h6>Total (@Model.Sum(c=>c.BasketVMs.Count)):</h6>
+                    <h6>$@(Math.Round((decimal)((Model.Sum(c => c.BasketVMs.Sum(b => b.Price))) * 1.01),2))</h6>
+                </div>
+                <a href="" class="checkout"><img class="credit" src="~/assets/images/icons/credit-card.svg" alt="">Checkout</a>
+            </div>
+        </div>
+    </div>
+</main>
