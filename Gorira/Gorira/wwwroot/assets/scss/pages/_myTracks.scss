@@ -57,7 +57,7 @@
         border: 1px solid transparent;
         border-radius: 6px;
         padding: 10px 10px;
-        padding-right: 40px;
+        padding-right: 40px !important;
         @include text(16px, 600, 100%);
         transition: 0.2s;
         width: 100%;
@@ -110,7 +110,7 @@
                 width: 40px;
               }
               &:nth-child(2) {
-                width: 580px;
+                width: 540px;
               }
               &:nth-child(3) {
                 width: 300px;
@@ -119,7 +119,7 @@
                 width: 200px;
               }
               &:nth-child(5) {
-                width: 160px;
+                width: 200px;
               }
             }
           }
@@ -181,10 +181,13 @@
               .cover {
                 border-radius: 6px;
                 height: 60px;
+                width: 60px;
+                object-fit: cover;
+                object-position: center;
               }
               .title {
                 @include text(18px, 600, 20px);
-                width: 510px;
+                width: 470px;
                 height: 20px;
                 overflow: hidden;
               }
@@ -206,10 +209,17 @@
               @include text(16px, 600, 20px);
             }
             .settings {
-              width: 160px;
+              width: 200px;
+              display: flex;
+              gap: 10px;
               .editBtn {
                 @include niceButton(140px, 40px);
                 background-color: $lightGrey-color-web;
+                button{
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                }
                 &:hover {
                   background-color: $lightestGrey-color-web;
                 }
@@ -327,16 +337,16 @@
                   width: 40px;
                 }
                 &:nth-child(2) {
-                  width: 340px;
+                  width: 300px;
                 }
                 &:nth-child(3) {
-                  width: 188px;
+                  width: 168px;
                 }
                 &:nth-child(4) {
                   width: 120px;
                 }
                 &:nth-child(5) {
-                  width: 40px;
+                  width: 120px;
                   display: none;
                 }
               }
@@ -403,10 +413,11 @@
                 .cover {
                   border-radius: 6px;
                   height: 50px;
+                  width: 50px;
                 }
                 .title {
                   @include text(14px, 400, 20px);
-                  width: 280px;
+                  width: 240px;
                   height: 20px;
                   overflow: hidden;
                 }
@@ -415,7 +426,7 @@
                 display: flex;
                 gap: 4px;
                 align-items: center;
-                width: 188px;
+                width: 168px;
                 .format {
                   @include text(12px, 300, 14px);
                   padding: 4px;
@@ -428,10 +439,10 @@
                 @include text(12px, 300, 20px);
               }
               .settings {
-                width: 40px;
+                width: 100px;
                 .editBtn {
-                  width: 40px;
-                  height: 40px;
+                  width: 45px;
+                  height: 45px;
                   background-color: $lightGrey-color-web;
                   &:hover {
                     background-color: $lightestGrey-color-web;
@@ -557,7 +568,7 @@
                   width: 26px;
                 }
                 &:nth-child(2) {
-                  width: 302px;
+                  width: 218px;
                 }
                 &:nth-child(3) {
                   width: 188px;
@@ -568,7 +579,7 @@
                   display: none;
                 }
                 &:nth-child(5) {
-                  width: 38px;
+                  width: 78px;
                   display: none;
                 }
               }
@@ -635,11 +646,12 @@
                 align-self: flex-start;
                 .cover {
                   border-radius: 6px;
-                  height: 50px;
+                  height: 40px;
+                  width: 40px;
                 }
                 .title {
                   @include text(14px, 400, 20px);
-                  width: 242px;
+                  width: 196px;
                   height: 20px;
                   overflow: hidden;
                 }
@@ -663,7 +675,7 @@
                 display: none;
               }
               .settings {
-                width: 38px;
+                width: 86px;
                 .editBtn {
                   display: flex;
                   width: 38px;

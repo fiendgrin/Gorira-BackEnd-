@@ -1,0 +1,113 @@
+﻿@model IPagedList<Track>
+@{
+    ViewData["Title"] = "MyTracks";
+    int counter = ViewBag.Counter;
+}
+@using X.PagedList
+@using X.PagedList.Mvc
+@using X.PagedList.Mvc.Core;
+<main id="myTracksMain">
+    <div class="box">
+        <div class="topText">
+            <h3>My tracks</h3>
+        </div>
+        <div class="content">
+            <div class="myTable">
+                <div class="head">
+                    <div class="tableNamings">
+                        <div></div>
+                        <div>Track</div>
+                        <div>Available Formats</div>
+                        <div>Release Date</div>
+                        <div>Settings</div>
+                    </div>
+                </div>
+                <div class="body">
+                   @foreach (Track track in Model)
+                    {
+                        counter++;
+                        <!--Single Track start-->
+                        <div class="singleTrack">
+                            <div class="number">
+                                <h5>@counter</h5>
+                                <img name="@track.Title"
+                                     artist="@track.User.DisplayName"
+                                     track="/assets/audio/tagged/@track.Tagged"
+                                     cover="/assets/images/@(track.User.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
+                                     class="play trackPlayBtn"
+                                     src="~/assets/images/icons/play.svg"
+                                     alt=""
+                                     trackId="@track.Id" /><img class="pause"
+                                                   src="~/assets/images/icons/pause.svg"
+                                                   alt="" />
+                            </div>
+                            <div class="coverAndTitle">
+                                <img class="cover"
+                                     src="~/assets/images/@(track.User.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
+                                     alt="" />
+                                <h4 class="title">@track.Title</h4>
+                            </div>
+                            <div class="formats">
+                                @if (track.Untagged != null)
+                                {
+                                    <div class="format">MP3 or WAV</div>
+                                 
+                                }
+                                @if (track.TrackStems !=null)
+                                {
+                                    <div class="format">STEMS</div>
+                                }
+                            </div>
+                            <div class="date">@track.CreatedAt.ToString("MMMM dd, yyyy")</div>
+                            <div style="display:flex;" class="settings">
+                                <a  class="editBtn">
+                                    <img class="btnImg"
+                                         src="~/assets/images/icons/squareAndPencil.svg"
+                                         alt="" />
+                                </a>
+                                        <a class="editBtn deleteTrack">
+                                    <img class="btnImg"
+                                         src="~/assets/images/icons/trash.svg"
+                                         alt="" />
+                                </a>
+                            </div>
+                        </div>
+                        <!--Single Track end-->
+                    }
+                
+                </div>
+            </div>
+            @Html.PagedListPager((IPagedList) Model,page=>Url.Action("MyTracks","Track", new {page = page,
+            search = @Context.Request.Query["search"]
+            }),
+            new X.PagedList.Web.Common.PagedListRenderOptions
+            {
+            Display = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+            DisplayPageCountAndCurrentLocation = false,
+            MaximumPageNumbersToDisplay = 5 })
+            
+        </div>
+    </div>
+ 
+    <!--Player Start-->
+    <div id="aplayer"></div>
+    <!--Player End-->
+       <!--modal-->
+    <dialog id="modal">
+        <img class="closeModal" src="~/assets/images/icons/plus.svg" alt="" />
+
+        <div class="content">
+            <div class="myTable">
+                <div class="body">
+                    <h3>Are You Sure?</h3>
+                    <p class="text-danger">the instrumental will be permanently deleted!!!</p>
+                    <a >Delete</a>
+                </div>
+            </div>
+        </div>
+    </dialog>
+    <!--modal end-->
+</main>
+<!---->
+<script src="~/assets/javascript/myTracks.js" asp-append-version="true"></script>
+<script src="~/assets/javascript/modalMyTracks.js" asp-append-version="true"></script>

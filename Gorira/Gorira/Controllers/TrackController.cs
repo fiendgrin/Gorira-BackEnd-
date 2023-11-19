@@ -23,9 +23,11 @@ namespace Gorira.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IWebHostEnvironment _env;
         private readonly int _pageSize;
+        private readonly int _myTrackPageSize;
         public TrackController(AppDbContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IWebHostEnvironment env)
         {
             _pageSize = 9;
+            _myTrackPageSize = 5;
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
@@ -37,6 +39,7 @@ namespace Gorira.Controllers
         //2.Upload
         //3.Play Counter
         //4.Detail
+        //5.My Tracks
         //=========================================================
 
         //1.Index
@@ -309,7 +312,7 @@ namespace Gorira.Controllers
 
                 await _context.PlayTokens.AddAsync(playToken);
 
-                track.Plays = 1;
+                track.Plays++;
             }
             else 
             {
@@ -342,6 +345,24 @@ namespace Gorira.Controllers
 
 
             return View(track);
+        }
+
+        //5.My Tracks
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> MyTracks(int? page, string? search) 
+        {
+            if (page <= 0)
+            {
+                return NotFound();
+            }
+            ViewBag.Counter = page == null ? 0 : (page-1) * _myTrackPageSize;
+            AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u=>u.UserName == User.Identity.Name);
+
+            IPagedList<Track>? tracks = await _context.Tracks
+                .Include(t=>t.User)
+                .Where(t => t.IsDeleted == false && t.UserId == appUser.Id).ToPagedListAsync(page ?? 1, _myTrackPageSize);
+
+            return View(tracks);
         }
     }
 }

@@ -1193,6 +1193,10 @@
       "PackagePath": "staticwebassets\\assets\\javascript\\modal.js"
     },
     {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\modalMyTracks.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\modalMyTracks.js"
+    },
+    {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\myPlaylist.js",
       "PackagePath": "staticwebassets\\assets\\javascript\\myPlaylist.js"
     },
@@ -1251,6 +1255,10 @@
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\base\\_typography.scss",
       "PackagePath": "staticwebassets\\assets\\scss\\base\\_typography.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\layout\\_backendAdditions.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\layout\\_backendAdditions.scss"
     },
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\layout\\_footer.scss",
