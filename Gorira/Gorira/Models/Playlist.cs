@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Gorira.Attributes.ValidationAttributes;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Gorira.Models
 {
@@ -13,5 +15,10 @@ namespace Gorira.Models
 
         public string? UserId { get; set; }
         public AppUser? User { get; set; }
+
+        [NotMapped]
+        [FileTypes("image/png", "image/jpeg")]
+        [MaxFileSize(10)]
+        public IFormFile? CoverFile { get; set; }
     }
 }

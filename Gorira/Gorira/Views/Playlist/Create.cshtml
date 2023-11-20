@@ -1,0 +1,51 @@
+﻿@model Playlist
+@{
+    ViewData["Title"] = "Create";
+}
+<!--Main Start-->
+<main style="min-height:68vh; align-items:flex-start;" id="createPlaylistMain">
+    <div  class="box">
+        <h2 class="title">Playlist Editor</h2>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form  method="post" class="uploadForms" enctype="multipart/form-data">
+            <section class="general">
+                <div class="theForm">
+                    <div class="left">
+                        <div class="regular trackTitle">
+                            <label asp-for="Title" class="inputLabel">Title*</label>
+                            <input asp-for="Title" class="inputField" placeholder="Title" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="regular">
+                            <label asp-for="Description" class="inputLabel">Description</label>
+                            <textarea asp-for="Description" class="inputField"
+                                      cols="30"
+                                      rows="10"
+                                      placeholder="Enter a Description"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="pfpUpload">
+                            <div class="coverImage"></div>
+                            <div class="wrapper-btn">
+                                <img class="uploadIcon"
+                                     src="~/assets/images/icons/edit-image-photo.svg"
+                                     alt="" />
+                                <p style="width:200px;" class="desc">Cover img (jpg or png)</p>
+                                <input asp-for="CoverFile" class="fileUpload"
+                                       accept=".jpg, .png, .jpeg" />
+                                <span asp-validation-for="CoverFile" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div style="position:static; padding:0px; width:100%; justify-content:flex-start; background-color:none;" class="submitHolder">
+                <button style="width:100%;" type="submit">Create</button>
+            </div>
+        </form>
+    </div>
+</main>
+<!--Main End-->
+<script src="~/assets/javascript/createPlaylist.js" asp-append-version="true"></script>
