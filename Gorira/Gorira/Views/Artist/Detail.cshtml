@@ -24,7 +24,7 @@
                 <img class="pfp" src="~/assets/images/pfp/@Model.User.ProfilePicture" alt="" />
                 <h3 class="profileName">@Model.User.DisplayName</h3>
                 <div class="accountButtons">
-                    <a class="follow">
+                    <a asp-controller="Artist" asp-action="FollowUser" asp-route-id="@Model.User.Id" class="follow @(Model.IsFollowed == true ? "followActive":"")">
                         <img class="plus" src="~/assets/images/icons/plus.svg" alt="" />
                         <img class="check"
                              src="~/assets/images/icons/check.svg"

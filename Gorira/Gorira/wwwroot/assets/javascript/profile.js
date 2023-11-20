@@ -21,7 +21,12 @@ reportHolder.addEventListener("click", () => {
 
 let followBtn = document.querySelector("#profileMain .follow");
 
-followBtn.addEventListener("click", () => {
+followBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    let url = followBtn.getAttribute('href');
+    fetch(url)
+
+    console.log(url);
     followBtn.classList.toggle("followActive");
 });
 

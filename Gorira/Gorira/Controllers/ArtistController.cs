@@ -80,18 +80,18 @@ namespace Gorira.Controllers
         {
             if (string.IsNullOrWhiteSpace(Id)) return BadRequest();
 
-
+            AppUser? currentUser = null;
             if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
             {
-                AppUser currentUser = await _userManager.Users
-          .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+                currentUser = await _userManager.Users
+                .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
                 if (currentUser.Id == Id)
                 {
                     return RedirectToAction(nameof(MyProfile));
                 }
-
             }
             AppUser? appUser = await _userManager.Users
+                .Include(u => u.Followers.Where(f=>f.IsDeleted == false))
                 .Include(u => u.Tracks.Where(t => t.IsDeleted == false)).ThenInclude(t => t.TrackTags.Where(tt => tt.IsDeleted == false))
                 .FirstOrDefaultAsync(u => u.Id == Id && u.IsActive == true);
 
@@ -106,11 +106,17 @@ namespace Gorira.Controllers
             {
                 userTracks = await appUser.Tracks.ToPagedListAsync(page ?? 1, _detailPageSize);
             }
+            bool isFollower = false;
+            if (currentUser!=null && appUser.Followers.Any(u=>u.FollowerId == currentUser.Id))
+            {
+                isFollower = true;
+            }
 
             ArtistVM artistVM = new ArtistVM
             {
                 User = appUser,
                 Tracks = userTracks,
+                IsFollowed = isFollower,
             };
 
             return View(artistVM);
@@ -127,6 +133,7 @@ namespace Gorira.Controllers
             if (page <= 0) return NotFound();
 
             AppUser? appUser = await _userManager.Users
+                 .Include(u => u.Followers)
               .Include(u => u.Tracks.Where(t => t.IsDeleted == false)).ThenInclude(t => t.TrackTags.Where(tt => tt.IsDeleted == false))
               .FirstOrDefaultAsync(u => u.Id == currentUser.Id && u.IsActive == true);
 
@@ -144,6 +151,51 @@ namespace Gorira.Controllers
             };
 
             return View(artistVM);
+        }
+
+        //4.Follow
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> FollowUser(string? Id)
+        {
+            if (Id == null) return BadRequest();
+
+            AppUser? appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == Id && u.IsActive == true);
+
+            if (appUser == null) return NotFound();
+
+            AppUser currentUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            Follow? followCheck = await _context.Follows.FirstOrDefaultAsync(f => f.FolloweeId == Id && f.FollowerId == currentUser.Id);
+
+            if (followCheck != null)
+            {
+                if (followCheck.IsDeleted == false)
+                {
+                    followCheck.IsDeleted = true;
+                }
+                else
+                {
+                    followCheck.IsDeleted = false;
+                }
+
+            }
+            else
+            {
+                Follow follow = new Follow
+                {
+                    FolloweeId = Id,
+                    FollowerId = currentUser.Id,
+                    IsDeleted = false,
+                    CreatedBy = currentUser.UserName,
+
+
+                };
+                await _context.Follows.AddAsync(follow);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }

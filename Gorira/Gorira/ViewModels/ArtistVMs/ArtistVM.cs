@@ -8,5 +8,7 @@ namespace Gorira.ViewModels.ArtistVMs
         public AppUser User { get; set; }
 
         public IPagedList<Track>? Tracks { get; set; }
+
+        public bool? IsFollowed { get; set; }
     }
 }
