@@ -1,160 +1,75 @@
-﻿
+﻿@model IPagedList<Track>
 @{
     ViewData["Title"] = "Feed";
 }
-
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
 <main id="feedMain">
-    <div class="box">
+    <div style="display:flex; justify-content:flex-start; align-items:flex-start;" class="box">
         <div class="topText">
             <h3>Your Feed</h3>
-            <a href=""><p>See all</p></a>
+            <a asp-action="Index" asp-controller="Track"><p>See all</p></a>
         </div>
-        <div class="posts">
-            <!--Single Post Start-->
-            <div class="singlePost">
-                <div class="top">
-                    <img class="pfp" src="~/assets/images/pfp/default.jpg" alt="" />
-                    <div class="artistName">Wheezy</div>
-                    <div class="releaseDate">• - 12,october 2023</div>
-                </div>
-                <div class="bottom">
-                    <img class="cover"
-                         src="~/assets/images/covers/drake.png"
-                         alt="" />
-                    <div class="right">
-                        <div class="title">
-                            <img name="Never Stop (Drake Type Beat 2023)"
-                                 artist="Wheezy"
-                                 track="./assets/audio/tracks/Future - WAIT FOR U (Instrumental) ft. Drake, Tems.mp3"
-                                 cover="./assets/images/covers/drake.png"
-                                 class="trackBtn"
-                                 src="~/assets/images/icons/play.svg"
-                                 alt="" />
-                            <img class="pause"
-                                 src="~/assets/images/icons/pause.svg"
-                                 alt="" />
-                            <h3 class="theTitle">NEVER STOP</h3>
+        <div style="display:flex; justify-content:flex-start; align-items:flex-start;" class="posts">
+            @if (Model != null)
+            {
+                @foreach (Track track in Model)
+                {
+                    <!--Single Post Start-->
+                    <div class="singlePost">
+                        <div class="top">
+                            <a  asp-action="Detail" asp-controller="Artist" asp-route-Id="@track.UserId">
+                                <img class="pfp" src="~/assets/images/pfp/@track.User.ProfilePicture" alt="" />
+                            </a>
+                            <a style="text-decoration:none;" asp-action="Detail" asp-controller="Artist" asp-route-Id="@track.UserId">
+                                <div class="artistName">@track.User.DisplayName</div>
+                            </a>
+                            <div class="releaseDate">• - @track.CreatedAt.ToString("MMMM dd, yyyy")</div>
                         </div>
-                        <div class="about">❗️30$ UNLIMITED, EXPIRING SOON!</div>
-                        <button class="addToBasket">
-                            <img class="btnImg"
-                                 src="~/assets/images/icons/shopping-cart.svg"
-                                 alt="" />
-                            $30.99
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!--Single Post End-->
-            <!--Single Post Start-->
-            <div class="singlePost">
-                <div class="top">
-                    <img class="pfp" src="~/assets/images/pfp/default.jpg" alt="" />
-                    <div class="artistName">Metro Boomin</div>
-                    <div class="releaseDate">• - 12,october 2023</div>
-                </div>
-                <div class="bottom">
-                    <img class="cover" src="~/assets/images/covers/21.jpg" alt="" />
-                    <div class="right">
-                        <div class="title">
-                            <img name="No Heart Instrumental (21 Type Beat 2023)"
-                                 artist="Metro Boomin"
-                                 track="./assets/audio/trendingInstrumentals/21 Savage - No Heart Instrumental.mp3"
-                                 cover="./assets/images/covers/21.jpg"
-                                 class="trackBtn"
-                                 src="~/assets/images/icons/play.svg"
-                                 alt="" />
-                            <img class="pause"
-                                 src="~/assets/images/icons/pause.svg"
-                                 alt="" />
-                            <h3 class="theTitle">
-                                No Heart Instrumental (21 Type Beat 2023)
-                            </h3>
+                        <div class="bottom">
+                            <a asp-action="Detail" asp-controller="Track" asp-route-Id="@track.Id">
+                                <img class="cover"
+                                     src="~/assets/images/@(track.User.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
+                                     alt="" />
+                            </a>
+                            <div class="right">
+                                <div class="title">
+                                    <img name="@track.Title"
+                                         artist="@track.User.DisplayName"
+                                         track="/assets/audio/tagged/@track.Tagged"
+                                         cover="/assets/images/@(track.User.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")"
+                                         class="trackBtn play trackPlayBtn"
+                                         src="~/assets/images/icons/play.svg"
+                                         alt=""
+                                         trackId="@track.Id" />
+                                    <img class="pause"
+                                         src="~/assets/images/icons/pause.svg"
+                                         alt="" />
+                                    <a style="text-decoration:none;" asp-action="Detail" asp-controller="Track" asp-route-Id="@track.Id">
+                                        <h3  class="theTitle">@track.Title</h3>
+                                    </a>
+                                </div>
+                                <div class="about">@track.Description</div>
+                                <a class="addToBasket">
+                                    <img class="btnImg"
+                                         src="~/assets/images/icons/shopping-cart.svg"
+                                         alt="" />
+                                    $@track.Price
+                                </a>
+                            </div>
                         </div>
-                        <div class="about">❗️30$ UNLIMITED, EXPIRING SOON!</div>
-                        <button class="addToBasket">
-                            <img class="btnImg"
-                                 src="~/assets/images/icons/shopping-cart.svg"
-                                 alt="" />
-                            $30.99
-                        </button>
                     </div>
-                </div>
-            </div>
-            <!--Single Post End-->
-            <!--Single Post Start-->
-            <div class="singlePost">
-                <div class="top">
-                    <img class="pfp" src="~/assets/images/pfp/default.jpg" alt="" />
-                    <div class="artistName">Wheezy</div>
-                    <div class="releaseDate">• - 12,october 2023</div>
-                </div>
-                <div class="bottom">
-                    <img class="cover"
-                         src="~/assets/images/covers/drake.png"
-                         alt="" />
-                    <div class="right">
-                        <div class="title">
-                            <img name="Never Stop (Drake Type Beat 2023)"
-                                 artist="Wheezy"
-                                 track="./assets/audio/tracks/Future - WAIT FOR U (Instrumental) ft. Drake, Tems.mp3"
-                                 cover="./assets/images/covers/drake.png"
-                                 class="trackBtn"
-                                 src="~/assets/images/icons/play.svg"
-                                 alt="" />
-                            <img class="pause"
-                                 src="~/assets/images/icons/pause.svg"
-                                 alt="" />
-                            <h3 class="theTitle">NEVER STOP</h3>
-                        </div>
-                        <div class="about">❗️30$ UNLIMITED, EXPIRING SOON!</div>
-                        <button class="addToBasket">
-                            <img class="btnImg"
-                                 src="~/assets/images/icons/shopping-cart.svg"
-                                 alt="" />
-                            $30.99
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!--Single Post End-->
-            <!--Single Post Start-->
-            <div class="singlePost">
-                <div class="top">
-                    <img class="pfp" src="~/assets/images/pfp/default.jpg" alt="" />
-                    <div class="artistName">Metro Boomin</div>
-                    <div class="releaseDate">• - 12,october 2023</div>
-                </div>
-                <div class="bottom">
-                    <img class="cover" src="~/assets/images/covers/21.jpg" alt="" />
-                    <div class="right">
-                        <div class="title">
-                            <img name="No Heart Instrumental (21 Type Beat 2023)"
-                                 artist="Metro Boomin"
-                                 track="./assets/audio/trendingInstrumentals/21 Savage - No Heart Instrumental.mp3"
-                                 cover="./assets/images/covers/21.jpg"
-                                 class="trackBtn"
-                                 src="~/assets/images/icons/play.svg"
-                                 alt="" />
-                            <img class="pause"
-                                 src="~/assets/images/icons/pause.svg"
-                                 alt="" />
-                            <h3 class="theTitle">
-                                No Heart Instrumental (21 Type Beat 2023)
-                            </h3>
-                        </div>
-                        <div class="about">❗️30$ UNLIMITED, EXPIRING SOON!</div>
-                        <button class="addToBasket">
-                            <img class="btnImg"
-                                 src="~/assets/images/icons/shopping-cart.svg"
-                                 alt="" />
-                            $30.99
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!--Single Post End-->
+                    <!--Single Post End-->
+                }
+
+            }
         </div>
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", "Feed", new {page = page,}),
+        new X.PagedList.Web.Common.PagedListRenderOptions
+        {
+        Display = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+        DisplayPageCountAndCurrentLocation = false,
+        MaximumPageNumbersToDisplay = 5 })
     </div>
 
     <!--Player Start-->

@@ -9,7 +9,7 @@ namespace Gorira.Models
     {
         public int Id { get; set; }
         public bool IsDeleted { get; set; }
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         [StringLength(100)]
         public string CreatedBy { get; set; } = "System";

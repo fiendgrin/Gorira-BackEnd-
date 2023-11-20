@@ -147,7 +147,7 @@ namespace Gorira.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -198,7 +198,7 @@ namespace Gorira.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -251,7 +251,7 @@ namespace Gorira.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -299,7 +299,7 @@ namespace Gorira.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -347,7 +347,7 @@ namespace Gorira.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -394,7 +394,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -446,7 +446,7 @@ namespace Gorira.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -494,7 +494,7 @@ namespace Gorira.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -542,7 +542,7 @@ namespace Gorira.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -590,7 +590,7 @@ namespace Gorira.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -643,7 +643,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -719,7 +719,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -772,7 +772,7 @@ namespace Gorira.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -822,7 +822,7 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -921,7 +921,7 @@ namespace Gorira.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -1100,7 +1100,7 @@ namespace Gorira.Migrations
                         .HasForeignKey("TrackId");
 
                     b.HasOne("Gorira.Models.AppUser", "User")
-                        .WithMany()
+                        .WithMany("Baskets")
                         .HasForeignKey("UserId");
 
                     b.Navigation("Track");
@@ -1308,6 +1308,8 @@ namespace Gorira.Migrations
 
             modelBuilder.Entity("Gorira.Models.AppUser", b =>
                 {
+                    b.Navigation("Baskets");
+
                     b.Navigation("Followers");
 
                     b.Navigation("Follows");

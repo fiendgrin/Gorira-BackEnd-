@@ -31973,3 +31973,13 @@ header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
         width: 70%;
     }
 }
+
+
+#feedMain .box .posts .singlePost .bottom .right .title a .theTitle {
+    min-height: 20px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+    #feedMain .box .posts .singlePost .bottom .right .title a .theTitle {
+        min-height: 18px;
+    }
+}
