@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+W+Gul6qFgZUa785OOgquSLVCLFPWRBdNFwyBM9IkCg=",
+  "Hash": "UBmxMW6CUcY9PYl6XW8qEfEyRrP4NW1mAFUgkcjzASQ=",
   "Source": "Gorira",
   "BasePath": "_content/Gorira",
   "Mode": "Default",
@@ -408,6 +408,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\audio\\stems\\20231120002426168.rar"
     },
     {
+      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231120003342511.rar",
+      "SourceId": "Gorira",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
+      "BasePath": "_content/Gorira",
+      "RelativePath": "assets/audio/stems/20231120003342511.rar",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\audio\\stems\\20231120003342511.rar"
+    },
+    {
       "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231114212502701.mp3",
       "SourceId": "Gorira",
       "SourceType": "Discovered",
@@ -595,23 +612,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\audio\\tagged\\20231114221758917.mp3"
     },
     {
-      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231114222212108.mp3",
-      "SourceId": "Gorira",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
-      "BasePath": "_content/Gorira",
-      "RelativePath": "assets/audio/tagged/20231114222212108.mp3",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\audio\\tagged\\20231114222212108.mp3"
-    },
-    {
       "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231114222434600.mp3",
       "SourceId": "Gorira",
       "SourceType": "Discovered",
@@ -627,23 +627,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\audio\\tagged\\20231114222434600.mp3"
-    },
-    {
-      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231114222629945.mp3",
-      "SourceId": "Gorira",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
-      "BasePath": "_content/Gorira",
-      "RelativePath": "assets/audio/tagged/20231114222629945.mp3",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\audio\\tagged\\20231114222629945.mp3"
     },
     {
       "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231115011644348.mp3",
@@ -882,23 +865,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\audio\\tagged\\20231115142859130.mp3"
-    },
-    {
-      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231115203458457.mp3",
-      "SourceId": "Gorira",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
-      "BasePath": "_content/Gorira",
-      "RelativePath": "assets/audio/tagged/20231115203458457.mp3",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\audio\\tagged\\20231115203458457.mp3"
     },
     {
       "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231115204936830.mp3",
@@ -2686,12 +2652,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\covers\\20231116235157030.jpg"
     },
     {
-      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231120002024313.png",
+      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231120031003686.jpg",
       "SourceId": "Gorira",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
       "BasePath": "_content/Gorira",
-      "RelativePath": "assets/images/covers/20231120002024313.png",
+      "RelativePath": "assets/images/covers/20231120031003686.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2700,58 +2666,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\covers\\20231120002024313.png"
-    },
-    {
-      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231120002347945.png",
-      "SourceId": "Gorira",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
-      "BasePath": "_content/Gorira",
-      "RelativePath": "assets/images/covers/20231120002347945.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\covers\\20231120002347945.png"
-    },
-    {
-      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231120002426158.png",
-      "SourceId": "Gorira",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
-      "BasePath": "_content/Gorira",
-      "RelativePath": "assets/images/covers/20231120002426158.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\covers\\20231120002426158.png"
-    },
-    {
-      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231120002528424.png",
-      "SourceId": "Gorira",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
-      "BasePath": "_content/Gorira",
-      "RelativePath": "assets/images/covers/20231120002528424.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\covers\\20231120002528424.png"
+      "OriginalItemSpec": "wwwroot\\assets\\images\\covers\\20231120031003686.jpg"
     },
     {
       "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\21.jpg",

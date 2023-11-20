@@ -40,6 +40,8 @@ namespace Gorira.Controllers
         //3.Play Counter
         //4.Detail
         //5.My Tracks
+        //6.Track Edit
+        //7.Track Delete
         //=========================================================
 
         //1.Index
@@ -372,7 +374,6 @@ namespace Gorira.Controllers
 
         //6.Track Edit
 
-        //2.Upload
         [Authorize(Roles = "Member")]
         public async Task<IActionResult> Edit(int? Id)
         {
@@ -382,7 +383,7 @@ namespace Gorira.Controllers
             if (Id == null) return BadRequest();
 
             Track? track = await _context.Tracks
-                .Include(t=>t.User)
+                .Include(t => t.User)
                 .FirstOrDefaultAsync(t => t.IsDeleted == false && t.Id == Id);
 
             if (track == null) return NotFound();
@@ -402,7 +403,7 @@ namespace Gorira.Controllers
 
 
             if (track == null) return BadRequest();
-           
+
 
             if (Id == null) return BadRequest();
 
@@ -487,7 +488,7 @@ namespace Gorira.Controllers
                 return View(track);
             }
 
-            if ((track.UnlimitedPrice == null || track.UnlimitedPrice <= 0) && (track.TrackStemsFile != null  || DbTrack.TrackStems != null))
+            if ((track.UnlimitedPrice == null || track.UnlimitedPrice <= 0) && (track.TrackStemsFile != null || DbTrack.TrackStems != null))
             {
                 ModelState.AddModelError("", "If you included \"Track Stems\" and \"Untagged Audio\", please make sure your \"unlimited price\" is greater than \"0\", ");
                 return View(track);
@@ -533,7 +534,7 @@ namespace Gorira.Controllers
             await _context.SaveChangesAsync();
 
 
-           
+
             if (TagNames.Count == 3)
             {
 
@@ -543,7 +544,7 @@ namespace Gorira.Controllers
                 {
                     oldTrackTag.IsDeleted = true;
                 }
-                    await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 foreach (string tag in TagNames)
                 {
@@ -582,6 +583,86 @@ namespace Gorira.Controllers
                 }
 
             }
+
+
+            return RedirectToAction(nameof(MyTracks));
+        }
+
+        //7.Track Delete
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> Delete(int? Id)
+        {
+
+            if (Id == null) return BadRequest();
+
+            Track? track = await _context.Tracks
+                .Include(t => t.User)
+                .FirstOrDefaultAsync(t => t.IsDeleted == false && t.Id == Id);
+
+            if (track == null) return NotFound();
+
+            AppUser appUser = await _userManager.Users
+           .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+
+            IEnumerable<TrackTag> trackTags = await _context.TrackTags.Where(tt => tt.TrackId == Id && tt.IsDeleted == false).ToListAsync();
+
+
+            foreach (TrackTag trackTag in trackTags)
+            {
+                trackTag.IsDeleted = true;
+                trackTag.DeletedBy = appUser.UserName;
+                trackTag.DeletedAt = DateTime.Now;
+            }
+
+            track.IsDeleted = true;
+            track.DeletedBy = appUser.UserName;
+            track.DeletedAt = DateTime.Now; 
+            
+
+
+
+            await _context.SaveChangesAsync();
+
+
+            if (track.Cover != appUser.ProfilePicture)
+            {
+                string filePath = Path.Combine(_env.WebRootPath, "assets", "images", "covers", track.Cover);
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+            }
+
+            if (track.Tagged != null)
+            {
+                string filePath = Path.Combine(_env.WebRootPath, "assets", "audio", "tagged", track.Tagged);
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+            }
+
+            if (track.Untagged != null)
+            {
+                string filePath = Path.Combine(_env.WebRootPath, "assets", "audio", "untagged", track.Untagged);
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+            }
+
+            if (track.TrackStems != null)
+            {
+                string filePath = Path.Combine(_env.WebRootPath, "assets", "audio", "stems", track.TrackStems);
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+            }
+
+
+
 
 
             return RedirectToAction(nameof(MyTracks));
