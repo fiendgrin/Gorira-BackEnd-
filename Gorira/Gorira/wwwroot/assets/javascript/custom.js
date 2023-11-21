@@ -40,7 +40,10 @@
 
         let response = await fetch(url);
         let data = await response.text();
-        $('.basketHolder').html(data);
+        if (data != null && data != "") {
+            $('.basketHolder').html(data);
+        }
+       
 
         chevronBasket = document.querySelector(".chevronBasket");
         basketContent = document.querySelector(".basketContent");
@@ -64,7 +67,9 @@
             .then(res => res.text())
             .then(data => {
 
-                $('.basketHolder').html(data);
+                if (data != null && data != "") {
+                    $('.basketHolder').html(data);
+                }
                 $('.BasketTopIcons').click(handleBasketClick);
             })
 
@@ -73,8 +78,10 @@
         fetch(cartUrl)
             .then(res => res.text())
             .then(data => {
-
-                $('#cartBody').html(data);
+                if (data != null && data != "") {
+                    $('#cartBody').html(data);
+                }
+             
                 $('.BasketTopIcons').click(handleBasketClick);
 
             })

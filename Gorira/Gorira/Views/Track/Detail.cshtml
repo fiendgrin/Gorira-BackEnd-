@@ -1,6 +1,6 @@
-﻿@model Track
+﻿@model TrackDetailVM
 @{
-    ViewData["Title"] = Model.Title;
+    ViewData["Title"] = Model.track.Title;
 }
 
 <main id="trackMain">
@@ -11,11 +11,11 @@
         </div>
         <div class="left">
             <div class="theTrack">
-                <img class="cover" src="~/assets/images/@(Model.User.ProfilePicture == Model.Cover ? $"pfp/{Model.Cover}": $"covers/{Model.Cover}")" alt="" />
-                <h3 class="trackName">@Model.Title</h3>
-                <p class="beatMaker">@Model.User.DisplayName</p>
+                <img class="cover" src="~/assets/images/@(Model.track.User.ProfilePicture == Model.track.Cover ? $"pfp/{Model.track.Cover}": $"covers/{Model.track.Cover}")" alt="" />
+                <h3 class="trackName">@Model.track.Title</h3>
+                <p class="beatMaker">@Model.track.User.DisplayName</p>
                 <div class="trackButtons">
-                    @if (Model.HasFree)
+                    @if (Model.track.HasFree)
                     {
                         <a href="" class="edit">
                             <img src="~/assets/images/icons/download.svg" alt="" />
@@ -34,19 +34,19 @@
                 <h6>Information</h6>
                 <div class="statLine">
                     <h5>Published:</h5>
-                    <p class="number">@Model.CreatedAt.ToString("MMMM dd, yyyy")</p>
+                    <p class="number">@Model.track.CreatedAt.ToString("MMMM dd, yyyy")</p>
                 </div>
                 <div class="statLine">
                     <h5>BPM:</h5>
-                    <p class="number">@Model.Bpm</p>
+                    <p class="number">@Model.track.Bpm</p>
                 </div>
                 <div class="statLine">
                     <h5>Key:</h5>
-                    <p class="number">@Model.MusicKey</p>
+                    <p class="number">@Model.track.MusicKey</p>
                 </div>
                 <div class="statLine">
                     <h5>Plays:</h5>
-                    <p class="numberElement number">@Model.Plays</p>
+                    <p class="numberElement number">@Model.track.Plays</p>
                 </div>
             </div>
             <div class="divider"></div>
@@ -54,14 +54,14 @@
                 <h6>Description</h6>
                 <div class="aboutTrackLine">
                     <p class="text">
-                       @Model.Description
+                        @Model.track.Description
                     </p>
                 </div>
             </div>
             <div class="divider"></div>
             <div class="tags sectionDefault">
                 <h6>Tags</h6>
-                @foreach (TrackTag trackTag in Model.TrackTags)
+                @foreach (TrackTag trackTag in Model.track.TrackTags)
                 {
                     <div class="tag">#@trackTag.Tag.Name</div>
                 }
@@ -71,11 +71,11 @@
             <!--Player Start-->
           
             <div id="aplayer"
-                 track="/assets/audio/tagged/@Model.Tagged"
-                 name="@Model.User.DisplayName"
-                 cover="/assets/images/@(Model.User.ProfilePicture == Model.Cover ? $"pfp/{Model.Cover}" : $"covers/{Model.Cover}")"
-                 title="@(Model.Title)"
-                 trackid="@Model.Id"></div>
+                 track="/assets/audio/tagged/@Model.track.Tagged"
+                 name="@Model.track.User.DisplayName"
+                 cover="/assets/images/@(Model.track.User.ProfilePicture == Model.track.Cover ? $"pfp/{Model.track.Cover}" : $"covers/{Model.track.Cover}")"
+                 title="@(Model.track.Title)"
+                 trackid="@Model.track.Id"></div>
             <!--Player End-->
             <!--Licensing Start-->
             <div class="licensing">
@@ -84,9 +84,9 @@
                     <div class="addToCartHolder">
                         <div class="addCartText">
                             <p class="price">Price:</p>
-                            <h6 class="thePrice">$@Model.Price</h6>
+                            <h6 class="thePrice">$@Model.track.Price</h6>
                         </div>
-                        <button class="addToCart" trackId="@Model.Id">
+                        <button class="addToCart" trackId="@Model.track.Id">
                             <img src="~/assets/images/icons/cart-full.svg" alt="" /> Add
                             To Cart
                         </button>
@@ -94,7 +94,7 @@
                 </div>
                 <div class="divider"></div>
                 <div class="licenses">
-                    <label price="@(Model.Price)$" class="radio nonExclusive">
+                    <label price="@(Model.track.Price)$" class="radio nonExclusive">
                         <input id="limited" name="radio" type="radio" checked />
                         <span>
                             NON-EXCLUSIVE <br />
@@ -131,9 +131,9 @@
                             </ul>
                         </span>
                     </label>
-                   @if (Model.UnlimitedPrice != null)
+                    @if (Model.track.UnlimitedPrice != null)
                     {
-                        <label price="@(Model.UnlimitedPrice)$" class="radio unlimited">
+                        <label price="@(Model.track.UnlimitedPrice)$" class="radio unlimited">
                             <input id="unlimited" name="radio" type="radio" />
                             <span>
                                 UNLIMITED <br />
@@ -242,102 +242,39 @@
         <div class="content">
             <div class="myTable">
                 <div class="body">
-                    <!--Single Playlist start-->
-                    <div class="singleTrack">
-                        <div class="coverAndTitle">
-                            <img class="cover"
-                                 src="~/assets/images/playlistCovers/raindrops.jpg"
-                                 alt="" />
-                            <div class="title">
-                                <h4 class="name">My Playlist</h4>
-                                <p class="author">Me</p>
-                            </div>
-                        </div>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+                    {
 
-                        <div class="settings">
-                            <a href="" class="editBtn">
-                                <img class="btnImg awaiting"
-                                     src="~/assets/images/icons/plus.svg"
-                                     alt="" />
-                                <img class="btnImg done"
-                                     src="~/assets/images/icons/check.svg"
-                                     alt="" />
-                            </a>
-                        </div>
-                    </div>
-                    <!--Single Playlist end-->
-                    <!--Single Playlist start-->
-                    <div class="singleTrack">
-                        <div class="coverAndTitle">
-                            <img class="cover"
-                                 src="~/assets/images/playlistCovers/raindrops.jpg"
-                                 alt="" />
-                            <div class="title">
-                                <h4 class="name">My Playlist</h4>
-                                <p class="author">Me</p>
-                            </div>
-                        </div>
+                        @foreach (Playlist playlist in Model.playlists)
+                        {
+                            <!--Single Playlist start-->
+                            <div class="singleTrack">
+                                <div class="coverAndTitle">
+                                    <img class="cover"
+                                         src="~/assets/images/@(playlist.User.ProfilePicture == playlist.Cover ? $"pfp/{playlist.Cover}": $"playlistCovers/{playlist.Cover}")"
+                                         alt="" />
+                                    <div class="title">
+                                        <h4 class="name">@playlist.Title</h4>
+                                        <p class="author">@playlist.User.DisplayName</p>
+                                    </div>
+                                </div>
 
-                        <div class="settings">
-                            <a href="" class="editBtn">
-                                <img class="btnImg awaiting"
-                                     src="~/assets/images/icons/plus.svg"
-                                     alt="" />
-                                <img class="btnImg done"
-                                     src="~/assets/images/icons/check.svg"
-                                     alt="" />
-                            </a>
-                        </div>
-                    </div>
-                    <!--Single Playlist end-->
-                    <!--Single Playlist start-->
-                    <div class="singleTrack">
-                        <div class="coverAndTitle">
-                            <img class="cover"
-                                 src="~/assets/images/playlistCovers/raindrops.jpg"
-                                 alt="" />
-                            <div class="title">
-                                <h4 class="name">My Playlist</h4>
-                                <p class="author">Me</p>
+                                <div class="settings">
+                                    <a asp-controller="Playlist" asp-action="AddTrack" asp-route-trackId="@Model.track.Id" asp-route-playlistId="@playlist.Id"
+                                       class="editBtn @(playlist.PlaylistTracks.Any(pt=>pt.TrackId == Model.track.Id && playlist.Id == pt.PlaylistId && pt.IsDeleted == false) ? "active":"")">
+                                        <img class="btnImg awaiting"
+                                             src="~/assets/images/icons/plus.svg"
+                                             alt="" />
+                                        <img class="btnImg done"
+                                             src="~/assets/images/icons/check.svg"
+                                             alt="" />
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="settings">
-                            <a href="" class="editBtn">
-                                <img class="btnImg awaiting"
-                                     src="~/assets/images/icons/plus.svg"
-                                     alt="" />
-                                <img class="btnImg done"
-                                     src="~/assets/images/icons/check.svg"
-                                     alt="" />
-                            </a>
-                        </div>
-                    </div>
-                    <!--Single Playlist end-->
-                    <!--Single Playlist start-->
-                    <div class="singleTrack">
-                        <div class="coverAndTitle">
-                            <img class="cover"
-                                 src="~/assets/images/playlistCovers/raindrops.jpg"
-                                 alt="" />
-                            <div class="title">
-                                <h4 class="name">My Playlist</h4>
-                                <p class="author">Me</p>
-                            </div>
-                        </div>
-
-                        <div class="settings">
-                            <a href="" class="editBtn">
-                                <img class="btnImg awaiting"
-                                     src="~/assets/images/icons/plus.svg"
-                                     alt="" />
-                                <img class="btnImg done"
-                                     src="~/assets/images/icons/check.svg"
-                                     alt="" />
-                            </a>
-                        </div>
-                    </div>
-                    <!--Single Playlist end-->
+                            <!--Single Playlist end-->
+                        }
+                    }
+                  
                 </div>
             </div>
         </div>

@@ -31966,9 +31966,13 @@ header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
         width: 90%;
     }
 }
-
+#trackMain #modal .content .myTable .body .singleTrack .coverAndTitle .cover {
+    width: 60px !important;
+}
 @media (min-width: 768px) and (max-width: 1359px) {
-
+    #trackMain #modal .content .myTable .body .singleTrack .coverAndTitle .cover {
+        width: 40px !important;
+    }
     #myTracksMain :modal {
         width: 70%;
     }
@@ -31978,8 +31982,13 @@ header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
 #feedMain .box .posts .singlePost .bottom .right .title a .theTitle {
     min-height: 20px;
 }
+
 @media (min-width: 0px) and (max-width: 768px) {
+    #trackMain #modal .content .myTable .body .singleTrack .coverAndTitle .cover {
+        width: 40px !important;
+    }
     #feedMain .box .posts .singlePost .bottom .right .title a .theTitle {
         min-height: 18px;
     }
+
 }

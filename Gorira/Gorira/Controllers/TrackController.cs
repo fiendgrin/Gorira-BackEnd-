@@ -346,14 +346,32 @@ namespace Gorira.Controllers
 
             Track? track = await _context.Tracks
                 .Include(t => t.User)
+                .Include(t=>t.PlaylistTracks.Where(pt=>pt.IsDeleted == false))
                 .Include(t => t.TrackTags.Where(tt => tt.IsDeleted == false)).ThenInclude(tt => tt.Tag)
                 .FirstOrDefaultAsync(t => t.Id == Id && t.IsDeleted == false);
 
             if (track == null) return NotFound();
+            AppUser? appUser = null;
+            IEnumerable<Playlist>? playlists = null;
+            if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+            {
+                appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
+                playlists = await _context.Playlists
+                    .Include(p => p.User)
+                      .Include(p => p.PlaylistFollowers)
+                      .Include(p => p.PlaylistTracks)
+                    .Where(p => p.IsDeleted == false && (p.UserId == appUser.Id || p.PlaylistFollowers.Any(pf=>pf.UserId == appUser.Id))).ToListAsync();
+            }
 
+            TrackDetailVM trackDetailVM = new TrackDetailVM 
+            {
+                track = track,
+                playlists = playlists
+            
+            };
 
-            return View(track);
+            return View(trackDetailVM);
         }
 
         //5.My Tracks

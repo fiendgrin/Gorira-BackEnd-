@@ -47,6 +47,8 @@ namespace Gorira.Models
 
 
         public IEnumerable<TrackTag>? TrackTags { get; set; }
+        public IEnumerable<PlaylistTrack>? PlaylistTracks { get; set; }
+
 
 
         [NotMapped]

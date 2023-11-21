@@ -63,8 +63,8 @@ namespace Gorira.Controllers
 
             return View(playlists);
         }
-        [Authorize(Roles = "Member")]
 
+        [Authorize(Roles = "Member")]
         //2.Create
         public async Task<IActionResult> Create()
         {
@@ -108,6 +108,58 @@ namespace Gorira.Controllers
 
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Roles = "Member")]
+        //2.Create
+        public async Task<IActionResult> AddTrack(int? trackId,int? playlistId) 
+        {
+            if (trackId == null) return BadRequest();
+
+            if (playlistId == null) return BadRequest();
+
+            Track? track = await _context.Tracks.FirstOrDefaultAsync(t => t.IsDeleted == false && trackId == t.Id);
+
+            if (track == null) return NotFound();
+
+            Playlist? playlist = await _context.Playlists.FirstOrDefaultAsync(p => p.IsDeleted == false && playlistId == p.Id);
+
+            if (playlist == null) return NotFound();
+
+            AppUser appUser = await _userManager.Users
+           .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name); ;
+
+            IEnumerable<PlaylistTrack> playlistTracks = await _context.PlaylistTracks.Where(pt => pt.IsDeleted == false).ToListAsync();
+            PlaylistTrack? playlistTrack = playlistTracks.FirstOrDefault(pt => pt.TrackId == trackId && playlistId == pt.PlaylistId);
+            if (playlistTrack !=null)
+            {
+                if (playlistTrack.IsDeleted == false)
+                {
+                    playlistTrack.IsDeleted = true;
+                }
+                else 
+                {
+                    playlistTrack.IsDeleted = false;
+                }
+
+            }
+            else
+            {
+                playlistTrack = new PlaylistTrack
+                {
+                    TrackId = trackId,
+                    PlaylistId = playlistId,
+                    CreatedBy = appUser.UserName,
+                    IsDeleted = false,
+                };
+
+                await _context.PlaylistTracks.AddAsync(playlistTrack);
+            }
+
+           
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
 
 

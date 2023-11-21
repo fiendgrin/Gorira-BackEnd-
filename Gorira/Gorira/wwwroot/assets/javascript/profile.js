@@ -26,7 +26,6 @@ followBtn.addEventListener("click", (e) => {
     let url = followBtn.getAttribute('href');
     fetch(url)
 
-    console.log(url);
     followBtn.classList.toggle("followActive");
 });
 

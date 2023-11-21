@@ -1,6 +1,7 @@
 ﻿using Gorira.DataAccessLayer;
 using Gorira.Models;
 using Gorira.ViewModels.BasketVMs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,16 +25,26 @@ namespace Gorira.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles = "Member")]
         public async Task<IActionResult> AddBasket(int? Id, bool? isUnlimited)
         {
             if (Id == null) return BadRequest();
 
             if (isUnlimited == null) return BadRequest();
 
-            if (!await _context.Tracks.AnyAsync(p => p.IsDeleted == false && p.Id == Id)) return NotFound();
+            Track? trackCheck = await _context.Tracks.FirstOrDefaultAsync(p => p.IsDeleted == false && p.Id == Id);
+
+            if (trackCheck == null) return NotFound();
 
             if (await _context.Tracks.AnyAsync(p => p.IsDeleted == false && p.Id == Id && isUnlimited == true && p.UnlimitedPrice == null)) return BadRequest();
 
+
+            AppUser appUser = await _userManager.Users
+                   .Include(b => b.Baskets.Where(b => b.IsDeleted == false))
+                   .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            if (trackCheck.UserId == appUser.Id) return Conflict();
 
             string? basket = Request.Cookies["basket"];
 
@@ -68,11 +79,8 @@ namespace Gorira.Controllers
 
             Response.Cookies.Append("basket", basket);
 
-            if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
-            {
-                AppUser appUser = await _userManager.Users
-                    .Include(b => b.Baskets.Where(b => b.IsDeleted == false))
-                    .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+           
+               
 
                 if (appUser != null && appUser.Baskets != null && appUser.Baskets.Count() > 0)
                 {
@@ -103,7 +111,7 @@ namespace Gorira.Controllers
                     await _context.AddAsync(userNewBasket);
                 }
                 await _context.SaveChangesAsync();
-            }
+           
 
             foreach (BasketVM basketVM in basketVMs)
             {
@@ -124,7 +132,7 @@ namespace Gorira.Controllers
             return PartialView("_BasketPartial", basketVMs);
         }
 
-
+        [Authorize(Roles ="Member")]
         public async Task<IActionResult> RemoveBasket(int? Id)
         {
             if (Id == null) return BadRequest();
@@ -143,8 +151,6 @@ namespace Gorira.Controllers
             Response.Cookies.Append("basket", basket);
 
 
-            if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
-            {
                 AppUser appUser = await _userManager.Users
                     .Include(b => b.Baskets.Where(b => b.IsDeleted == false))
                     .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
@@ -163,7 +169,7 @@ namespace Gorira.Controllers
 
                 }
                 await _context.SaveChangesAsync();
-            }
+          
 
             foreach (BasketVM basketVM in basketVMs)
             {
