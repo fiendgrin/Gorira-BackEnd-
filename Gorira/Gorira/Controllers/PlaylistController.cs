@@ -1,6 +1,7 @@
 ﻿using Gorira.DataAccessLayer;
 using Gorira.Helpers;
 using Gorira.Models;
+using Gorira.ViewModels.PlalistVMs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,9 @@ namespace Gorira.Controllers
 
         //1.Index
         //2.Create
+        //3.AddTrack
+
+        //==========================================
 
         //1.Index
         public async Task<IActionResult> Index(int? page, string? filter = "all")
@@ -110,8 +114,8 @@ namespace Gorira.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //3.AddTrack
         [Authorize(Roles = "Member")]
-        //2.Create
         public async Task<IActionResult> AddTrack(int? trackId,int? playlistId) 
         {
             if (trackId == null) return BadRequest();
@@ -162,6 +166,32 @@ namespace Gorira.Controllers
             return Ok();
         }
 
+        //4.Detail
+        public async Task<IActionResult> Detail(int? Id) 
+        {
+            if(Id == null) return BadRequest();
+
+            Playlist? playlist = await _context.Playlists
+                .Include(p=>p.User)
+                .Include(p=>p.PlaylistFollowers.Where(pf=>pf.IsDeleted == false))
+                .Include(p=>p.PlaylistTracks.Where(pt=>pt.IsDeleted==false)).ThenInclude(pt=>pt.Track).ThenInclude(t=>t.User)
+                .FirstOrDefaultAsync(p => p.Id == Id && p.IsDeleted == false);
+
+            if (playlist == null) return NotFound();
+
+            AppUser? appUser = await _userManager.Users
+           .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            PlaylistDetailVM playlistDetailVM = new PlaylistDetailVM
+            {
+                playlist= playlist,
+                User=appUser,
+
+            };
+         
+
+            return View(playlistDetailVM);
+        }
 
     }
 }

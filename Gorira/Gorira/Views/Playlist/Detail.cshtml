@@ -1,0 +1,101 @@
+﻿@model PlaylistDetailVM
+@{
+    ViewData["Title"] = Model.playlist.Title;
+}
+
+<!--Main Start-->
+<main id="playlistMain">
+    <div class="box">
+        <div class="tabs">
+            <div class="info tab tabActive">Info</div>
+            <div class="tracks tab">Media</div>
+        </div>
+        <div class="left">
+            <div class="theTrack">
+                <img class="cover"
+                     src="~/assets/images/@(Model.playlist.User.ProfilePicture == Model.playlist.Cover ? $"pfp/{Model.playlist.Cover}": $"playlistCovers/{Model.playlist.Cover}")"
+                     alt="" />
+                <h3 class="playlistName">@Model.playlist.Title</h3>
+                <p class="beatMaker">@Model.playlist.User.DisplayName</p>
+                <div style="display:flex; gap:4px;" class="accountButtons">
+                    @if (Model.User != null)
+                    {
+                        @if (Model.User.Id != Model.playlist.UserId)
+                        {
+                            <a class="follow">
+                                <img class="plus" src="~/assets/images/icons/plus.svg" alt="" />
+                                <img class="check"
+                                     src="~/assets/images/icons/check.svg"
+                                     alt="" />
+                                <p class="plus">Follow</p>
+                                <p class="check">Followed</p>
+                            </a>
+
+                        }
+                        else
+                        {
+
+                            <a class="editPlaylistBtn editPlaylist">
+                                <img class="plus" src="~/assets/images/icons/pencil.svg" alt="" />
+
+                                <p class="">Edit</p>
+                            </a>
+                            <a class="editPlaylistBtn deletePlaylist">
+                                <img class="plus" src="~/assets/images/icons/trash.svg" alt="" />
+
+                                <p class="">Delete</p>
+                            </a>
+                        }
+                    }
+                 
+                </div>
+            </div>
+            <div class="stats sectionDefault">
+                <h6>Information</h6>
+                <div class="statLine">
+                    <h5>Published:</h5>
+                    <p class="number">@Model.playlist.CreatedAt.ToString("MMMM dd, yyyy")</p>
+                </div>
+                <div class="statLine">
+                    <h5>Tracks:</h5>
+                    <p class="number">@(Model.playlist.PlaylistTracks != null ? Model.playlist.PlaylistTracks.Count() : 0)</p>
+                </div>
+                <div class="statLine">
+                    <h5>Followers:</h5>
+                    <p class="numberElement number">@(Model.playlist.PlaylistFollowers != null ? Model.playlist.PlaylistFollowers.Count() : 0)</p>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="aboutTrack sectionDefault">
+                <h6>about</h6>
+                <div class="aboutTrackLine">
+                    <p class="text">
+                        @Model.playlist.Description
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <!--All Beats Start-->
+            @if (Model.playlist.PlaylistTracks != null)
+            {
+                foreach (PlaylistTrack playlistTrack in Model.playlist.PlaylistTracks)
+                {
+                    <!--Single audio start-->
+                    <audio name="@playlistTrack.Track.Title"
+                           artist="@playlistTrack.Track.User.DisplayName"
+                           track="/assets/audio/tagged/@playlistTrack.Track.Tagged"
+                           cover="/assets/images/@(playlistTrack.Track.User.ProfilePicture == playlistTrack.Track.Cover ? $"pfp/{playlistTrack.Track.Cover}" : $"covers/{playlistTrack.Track.Cover}")"
+                           class="beat"
+                           trackId="@playlistTrack.Track.Id"></audio>
+                    <!--Single audio end-->
+                }
+            }
+            <!--All Beats End-->
+            <div id="aplayer"></div>
+        </div>
+    </div>
+</main>
+<!--Main End-->
+
+<script src="~/assets/javascript/playlist.js" asp-append-version="true"></script>

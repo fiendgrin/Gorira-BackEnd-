@@ -62,7 +62,7 @@ namespace Gorira.Controllers
                                 .Where(a => a.IsActive == true && a.NormalizedUserName != User.Identity?.Name?.Trim().ToUpperInvariant())
                                 .OrderBy(a => a.DisplayName),
 
-                _=> memberArtists
+                _ => memberArtists
                                 .Where(a => a.IsActive == true && a.NormalizedUserName != User.Identity?.Name?.Trim().ToUpperInvariant())
                                 .OrderByDescending(a => a.Followers?.Count()),
             };
@@ -95,7 +95,7 @@ namespace Gorira.Controllers
                 }
             }
             AppUser? appUser = await _userManager.Users
-                .Include(u => u.Followers.Where(f=>f.IsDeleted == false))
+                .Include(u => u.Followers.Where(f => f.IsDeleted == false))
                 .Include(u => u.Tracks.Where(t => t.IsDeleted == false)).ThenInclude(t => t.TrackTags.Where(tt => tt.IsDeleted == false))
                 .FirstOrDefaultAsync(u => u.Id == Id && u.IsActive == true);
 
@@ -111,7 +111,7 @@ namespace Gorira.Controllers
                 userTracks = await appUser.Tracks.ToPagedListAsync(page ?? 1, _detailPageSize);
             }
             bool isFollower = false;
-            if (currentUser!=null && appUser.Followers.Any(u=>u.FollowerId == currentUser.Id))
+            if (currentUser != null && appUser.Followers.Any(u => u.FollowerId == currentUser.Id))
             {
                 isFollower = true;
             }
@@ -121,7 +121,9 @@ namespace Gorira.Controllers
                 User = appUser,
                 Tracks = userTracks,
                 IsFollowed = isFollower,
+                CurrentUser = currentUser,
             };
+
 
             return View(artistVM);
         }
@@ -168,6 +170,8 @@ namespace Gorira.Controllers
             if (appUser == null) return NotFound();
 
             AppUser currentUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            if (Id == currentUser.Id) return Conflict();
 
             Follow? followCheck = await _context.Follows.FirstOrDefaultAsync(f => f.FolloweeId == Id && f.FollowerId == currentUser.Id);
 

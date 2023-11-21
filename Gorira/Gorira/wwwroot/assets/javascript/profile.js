@@ -20,14 +20,16 @@ reportHolder.addEventListener("click", () => {
 });
 
 let followBtn = document.querySelector("#profileMain .follow");
+if (followBtn != null) {
 
-followBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    let url = followBtn.getAttribute('href');
-    fetch(url)
+    followBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        let url = followBtn.getAttribute('href');
+        fetch(url)
 
-    followBtn.classList.toggle("followActive");
-});
+        followBtn.classList.toggle("followActive");
+    });
+}
 
 let infoTab = document.querySelector("#profileMain .info");
 let tracksTab = document.querySelector("#profileMain .tracks");
