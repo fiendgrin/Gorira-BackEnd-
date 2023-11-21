@@ -52,6 +52,6 @@ filebtn.addEventListener("change", () => {
         reader.readAsDataURL(file);
       }
     }
-    filebtn.value = "";
+      fileInput.value = "";
   }
 });

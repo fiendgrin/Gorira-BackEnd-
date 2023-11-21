@@ -60,7 +60,11 @@ namespace Gorira.Controllers
                                 .OrderByDescending(a => a.Followers?.Count()),
                 "A-Z" => memberArtists
                                 .Where(a => a.IsActive == true && a.NormalizedUserName != User.Identity?.Name?.Trim().ToUpperInvariant())
-                                .OrderBy(a => a.DisplayName)
+                                .OrderBy(a => a.DisplayName),
+
+                _=> memberArtists
+                                .Where(a => a.IsActive == true && a.NormalizedUserName != User.Identity?.Name?.Trim().ToUpperInvariant())
+                                .OrderByDescending(a => a.Followers?.Count()),
             };
 
             if (!string.IsNullOrWhiteSpace(search))

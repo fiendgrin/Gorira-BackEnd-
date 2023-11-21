@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using X.PagedList;
 
 namespace Gorira.Controllers
 {
@@ -24,13 +25,48 @@ namespace Gorira.Controllers
             _roleManager = roleManager;
             _env = env;
         }
-        public async Task<IActionResult> Index()
-        {
 
-            return View();
+        //1.Index
+        //2.Create
+
+        //1.Index
+        public async Task<IActionResult> Index(int? page, string? filter = "all")
+        {
+            if (page <= 0)
+            {
+                return NotFound();
+            }
+
+            IPagedList<Playlist> playlists = await _context.Playlists
+                .Include(p => p.User)
+                .Include(p => p.PlaylistFollowers.Where(pf => pf.IsDeleted == false))
+                .Include(p => p.PlaylistTracks.Where(pt => pt.IsDeleted == false))
+                .Where(p => p.IsDeleted == false)
+                .OrderByDescending(p => p.CreatedAt).ToPagedListAsync(page ?? 1, _pageSize);
+
+            AppUser? currentUser = await _userManager.Users
+           .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            if (currentUser != null)
+            {
+                playlists = filter switch
+                {
+                    "all" => playlists,
+
+                    "my" => playlists.Where(p => p.UserId == currentUser.Id).ToPagedList(page ?? 1, _pageSize),
+
+                    "followed" => playlists.Where(p => p.PlaylistFollowers.Any(pf => pf.UserId == currentUser.Id)).ToPagedList(page ?? 1, _pageSize),
+                    _ => playlists,
+
+                };
+            }
+
+            return View(playlists);
         }
         [Authorize(Roles = "Member")]
-        public async Task<IActionResult> Create() 
+
+        //2.Create
+        public async Task<IActionResult> Create()
         {
             return View();
         }
@@ -73,6 +109,7 @@ namespace Gorira.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
 
     }
 }

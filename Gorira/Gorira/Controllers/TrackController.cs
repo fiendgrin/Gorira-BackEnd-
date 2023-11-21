@@ -119,7 +119,9 @@ namespace Gorira.Controllers
 
                 "A-Z" => Tracks.OrderBy(t => t.Title),
 
-                "new" => Tracks.OrderByDescending(t => t.CreatedAt)
+                "new" => Tracks.OrderByDescending(t => t.CreatedAt),
+
+                _ => Tracks.OrderByDescending(t => t.Plays),
 
             };
 
@@ -617,8 +619,8 @@ namespace Gorira.Controllers
 
             track.IsDeleted = true;
             track.DeletedBy = appUser.UserName;
-            track.DeletedAt = DateTime.Now; 
-            
+            track.DeletedAt = DateTime.Now;
+
 
 
 

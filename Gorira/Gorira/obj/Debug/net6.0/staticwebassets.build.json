@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UBmxMW6CUcY9PYl6XW8qEfEyRrP4NW1mAFUgkcjzASQ=",
+  "Hash": "gthnlbRg6TUmcL6D3pv3MVeXVGb/qaD9ogJc9IpUthw=",
   "Source": "Gorira",
   "BasePath": "_content/Gorira",
   "Mode": "Default",
@@ -4673,6 +4673,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\pfp\\defaultPFP.png"
+    },
+    {
+      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\playlistCovers\\20231121030157311.jpg",
+      "SourceId": "Gorira",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
+      "BasePath": "_content/Gorira",
+      "RelativePath": "assets/images/playlistCovers/20231121030157311.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\playlistCovers\\20231121030157311.jpg"
     },
     {
       "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\playlistCovers\\raindrops.jpg",

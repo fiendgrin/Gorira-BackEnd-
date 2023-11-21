@@ -1,197 +1,66 @@
-﻿
+﻿@model IPagedList<Playlist>
 @{
     ViewData["Title"] = "Playlists";
 }
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
 <!--Main Start-->
-<main id="playlistsMain">
-    <div class="box">
+<main id="myPlaylistsMain">
+    <div style="min-height:68vh;" class="box">
         <div class="content">
+            <div class="createPlaylist">
+                <a asp-action="Create" asp-controller="Playlist"><img class="btnImg" src="~/assets/images/icons/plus.svg" alt="">Create new playlist</a>
+            </div>
             <div class="topText">
                 <div class="leftName">
-
-                    Playlists
+                   Playlists
                 </div>
                 <div class="sort">
-                    <img src="~/assets/images/icons/sort-cute.svg" alt="" />
-                    <p>Sort by</p>
+                    <img src="~/assets/images/icons/filtersiconImage24px.svg" alt="" />
+                    <p>Filter</p>
                 </div>
                 <div class="sortHolder">
-                    <a href="">Popular</a>
-                    <a href="">New</a>
+                    <a asp-controller="Playlist" asp-action="Index">All</a>
+                    <a asp-controller="Playlist" asp-action="Index" asp-route-filter="@("my")">My</a>
+                    <a asp-controller="Playlist" asp-action="Index" asp-route-filter="@("followed")">Followed</a>
                 </div>
             </div>
-            <form class="regular searchTracks">
-                <input class="inputField" type="text" placeholder="Search..." />
-                <button type="submit">
-                    <img class="" src="~/assets/images/icons/search.svg" alt="" />
-                </button>
-            </form>
             <div class="theTracks">
-                <!--Single Card Start-->
-                <div class="myCard">
-                    <a class="coverHolder" href="">
-                        <img class="cover"
-                             src="~/assets/images/playlistCovers/raindrops.jpg"
-                             alt="" />
-                    </a>
-                    <div class="bottomText">
-                        <p class="songCount">111 Tracks</p>
-                        <a class="titleHolder" href="">
-                            <img src="~/assets/images/icons/play-list-5.svg" alt="" />
-                            <h6 class="title">Playlist title</h6>
+                @foreach (Playlist playlist in Model)
+                {
+                    <!--Single Card Start-->
+                    <div class="myCard">
+                        <a asp-controller="Playlist" asp-action="Detail" asp-route-Id="@playlist.Id" class="coverHolder">
+                            <img class="cover"
+                                 src="~/assets/images/@(playlist.User.ProfilePicture == playlist.Cover ? $"pfp/{playlist.Cover}": $"playlistCovers/{playlist.Cover}")"
+                                 alt="" />
                         </a>
+                        <div class="bottomText">
+                            <p class="songCount">@playlist.PlaylistTracks.Count() Tracks</p>
+                            <a class="titleHolder" asp-controller="Playlist" asp-action="Detail" asp-route-Id="@playlist.Id">
+                                <img src="~/assets/images/icons/play-list-5.svg" alt="" />
+                                <h6 class="title">@playlist.Title</h6>
+                            </a>
 
-                        <a href="" class="authorHolder">
-                            <p class="author">User</p>
-                        </a>
+                            <a asp-controller="Artist" asp-action="Detail" asp-route-Id="@playlist.UserId" class="authorHolder">
+                                <p class="author">@playlist.User.DisplayName</p>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <!--Single Card End-->
-                <!--Single Card Start-->
-                <div class="myCard">
-                    <a class="coverHolder" href="">
-                        <img class="cover"
-                             src="~/assets/images/playlistCovers/raindrops.jpg"
-                             alt="" />
-                    </a>
-                    <div class="bottomText">
-                        <p class="songCount">111 Tracks</p>
-                        <a class="titleHolder" href="">
-                            <img src="~/assets/images/icons/play-list-5.svg" alt="" />
-                            <h6 class="title">Playlist title</h6>
-                        </a>
-
-                        <a href="" class="authorHolder">
-                            <p class="author">User</p>
-                        </a>
-                    </div>
-                </div>
-                <!--Single Card End-->
-                <!--Single Card Start-->
-                <div class="myCard">
-                    <a class="coverHolder" href="">
-                        <img class="cover"
-                             src="~/assets/images/playlistCovers/raindrops.jpg"
-                             alt="" />
-                    </a>
-                    <div class="bottomText">
-                        <p class="songCount">111 Tracks</p>
-                        <a class="titleHolder" href="">
-                            <img src="~/assets/images/icons/play-list-5.svg" alt="" />
-                            <h6 class="title">Playlist title</h6>
-                        </a>
-
-                        <a href="" class="authorHolder">
-                            <p class="author">User</p>
-                        </a>
-                    </div>
-                </div>
-                <!--Single Card End-->
-                <!--Single Card Start-->
-                <div class="myCard">
-                    <a class="coverHolder" href="">
-                        <img class="cover"
-                             src="~/assets/images/playlistCovers/raindrops.jpg"
-                             alt="" />
-                    </a>
-                    <div class="bottomText">
-                        <p class="songCount">111 Tracks</p>
-                        <a class="titleHolder" href="">
-                            <img src="~/assets/images/icons/play-list-5.svg" alt="" />
-                            <h6 class="title">Playlist title</h6>
-                        </a>
-
-                        <a href="" class="authorHolder">
-                            <p class="author">User</p>
-                        </a>
-                    </div>
-                </div>
-                <!--Single Card End-->
-                <!--Single Card Start-->
-                <div class="myCard">
-                    <a class="coverHolder" href="">
-                        <img class="cover"
-                             src="~/assets/images/playlistCovers/raindrops.jpg"
-                             alt="" />
-                    </a>
-                    <div class="bottomText">
-                        <p class="songCount">111 Tracks</p>
-                        <a class="titleHolder" href="">
-                            <img src="~/assets/images/icons/play-list-5.svg" alt="" />
-                            <h6 class="title">Playlist title</h6>
-                        </a>
-
-                        <a href="" class="authorHolder">
-                            <p class="author">User</p>
-                        </a>
-                    </div>
-                </div>
-                <!--Single Card End-->
-                <!--Single Card Start-->
-                <div class="myCard">
-                    <a class="coverHolder" href="">
-                        <img class="cover"
-                             src="~/assets/images/playlistCovers/raindrops.jpg"
-                             alt="" />
-                    </a>
-                    <div class="bottomText">
-                        <p class="songCount">111 Tracks</p>
-                        <a class="titleHolder" href="">
-                            <img src="~/assets/images/icons/play-list-5.svg" alt="" />
-                            <h6 class="title">Playlist title</h6>
-                        </a>
-
-                        <a href="" class="authorHolder">
-                            <p class="author">User</p>
-                        </a>
-                    </div>
-                </div>
-                <!--Single Card End-->
-                <!--Single Card Start-->
-                <div class="myCard">
-                    <a class="coverHolder" href="">
-                        <img class="cover"
-                             src="~/assets/images/playlistCovers/raindrops.jpg"
-                             alt="" />
-                    </a>
-                    <div class="bottomText">
-                        <p class="songCount">111 Tracks</p>
-                        <a class="titleHolder" href="">
-                            <img src="~/assets/images/icons/play-list-5.svg" alt="" />
-                            <h6 class="title">Playlist title</h6>
-                        </a>
-
-                        <a href="" class="authorHolder">
-                            <p class="author">User</p>
-                        </a>
-                    </div>
-                </div>
-                <!--Single Card End-->
-                <!--Single Card Start-->
-                <div class="myCard">
-                    <a class="coverHolder" href="">
-                        <img class="cover"
-                             src="~/assets/images/playlistCovers/raindrops.jpg"
-                             alt="" />
-                    </a>
-                    <div class="bottomText">
-                        <p class="songCount">111 Tracks</p>
-                        <a class="titleHolder" href="">
-                            <img src="~/assets/images/icons/play-list-5.svg" alt="" />
-                            <h6 class="title">Playlist title</h6>
-                        </a>
-
-                        <a href="" class="authorHolder">
-                            <p class="author">User</p>
-                        </a>
-                    </div>
-                </div>
-                <!--Single Card End-->
+                    <!--Single Card End-->
+                }
             </div>
+            @Html.PagedListPager((IPagedList) Model,page=>Url.Action("Index","Playlis", new {page = page,
+            search = @Context.Request.Query["search"], order = @Context.Request.Query["filter"]
+            }),
+            new X.PagedList.Web.Common.PagedListRenderOptions
+            {
+            Display = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+            DisplayPageCountAndCurrentLocation = false,
+            MaximumPageNumbersToDisplay = 5 })
         </div>
     </div>
 </main>
 <!--Main End-->
-<!--Playlists Script-->
-<script src="~/assets/javascript/playlists.js" asp-append-version="true"></script>
+<script src="~/assets/javascript/myPlaylists.js" asp-append-version="true"></script>
 

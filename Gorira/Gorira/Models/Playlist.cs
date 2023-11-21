@@ -16,6 +16,9 @@ namespace Gorira.Models
         public string? UserId { get; set; }
         public AppUser? User { get; set; }
 
+        public IEnumerable<PlaylistTrack>? PlaylistTracks { get; set; }
+        public IEnumerable<PlaylistFollower>? PlaylistFollowers { get; set; }
+
         [NotMapped]
         [FileTypes("image/png", "image/jpeg")]
         [MaxFileSize(10)]
