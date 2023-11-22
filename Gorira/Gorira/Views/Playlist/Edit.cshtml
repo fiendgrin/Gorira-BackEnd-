@@ -1,0 +1,106 @@
+﻿@model Playlist
+@{
+    ViewData["Title"] = "Edit";
+    int counter = 0;
+}
+
+<!--Main Start-->
+<main id="createPlaylistMain">
+    <div class="box">
+        <h2 class="title">Playlist Editor</h2>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form method="post" class="uploadForms" enctype="multipart/form-data">
+            <section class="general">
+                <div class="theForm">
+                    <div class="left">
+                        <div class="regular trackTitle">
+                            <label asp-for="Title" class="inputLabel">Title*</label>
+                            <input asp-for="Title" class="inputField" placeholder="Title" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="regular">
+                            <label asp-for="Description" class="inputLabel">Description</label>
+                            <textarea asp-for="Description" class="inputField"
+                                      cols="30"
+                                      rows="10"
+                                      placeholder="Enter a Description"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="pfpUpload">
+                            <div class="coverImage"><img style="object-position:center;" class="object-fit-cover" src="/assets/images/@(Model.User.ProfilePicture == Model.Cover ? $"pfp/{Model.Cover}": $"playlistCovers/{Model.Cover}")" /></div>
+                            <div class="wrapper-btn">
+                                <img class="uploadIcon"
+                                     src="~/assets/images/icons/edit-image-photo.svg"
+                                     alt="" />
+                                <p style="width:200px;" class="desc">Cover img (jpg or png)</p>
+                                <input asp-for="CoverFile" class="fileUpload"
+                                       accept=".jpg, .png, .jpeg" />
+                                <span asp-validation-for="CoverFile" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div style="position:static; padding:0px; width:100%; justify-content:flex-start; background-color:transparent;" class="submitHolder">
+                <button style="width:100%;" type="submit">
+                    <img class="btnImg"
+                         src="~/assets/images/icons/save-cute.svg"
+                         alt="" />Save edit
+                </button>
+            </div>
+
+            <section class="tracks">
+                <div class="theForm">
+                    <div class="content">
+                        <div class="myTable">
+                            <div class="body">
+                                @foreach (PlaylistTrack playlistTrack in Model.PlaylistTracks)
+                                {
+                                    counter++;
+                                    <!--Single Track start-->
+                                    <div class="singleTrack">
+                                        <div class="number">
+                                            <h5>@counter</h5>
+                                        </div>
+                                        <div class="coverAndTitle">
+                                            <a asp-controller ="Track" asp-action="Detail" asp-route-Id="@playlistTrack.TrackId">
+                                                <img class="cover"
+                                                 src="~/assets/images/@(playlistTrack.Track.User.ProfilePicture == playlistTrack.Track.Cover ? $"pfp/{playlistTrack.Track.Cover}": $"covers/{playlistTrack.Track.Cover}")"
+                                                     alt="" />
+                                            </a>
+                                            <div class="title">
+                                                <a style="text-decoration:none;" asp-controller="Track" asp-action="Detail" asp-route-Id="@playlistTrack.TrackId">
+                                                    <h4 class="name">
+                                                    @playlistTrack.Track.Title
+                                                    </h4>
+                                                </a>
+                                                <a style="text-decoration:none;" asp-controller="Artist" asp-action="Detail" asp-route-Id="@playlistTrack.Track.UserId">
+                                                    <p class="author">@playlistTrack.Track.User.DisplayName</p>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="settings">
+                                            <a asp-controller="Playlist" asp-action="AddTrack" asp-route-trackId="@playlistTrack.TrackId" asp-route-playlistId="@Model.Id" asp-route-reload="@true" class="editBtn deleteTrackFromPlaylist">
+                                                <img class="btnImg"
+                                                     src="~/assets/images/icons/trash.svg"
+                                                     alt="" />
+                                                <p>Remove</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!--Single Track end-->
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </div>
+</main>
+<!--Main End-->
+<!--Main End-->
+<script src="~/assets/javascript/createPlaylist.js" asp-append-version="true"></script>

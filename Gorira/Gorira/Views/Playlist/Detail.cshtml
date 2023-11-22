@@ -35,7 +35,7 @@
                         else
                         {
 
-                            <a class="editPlaylistBtn editPlaylist">
+                            <a asp-controller="Playlist" asp-action="Edit" asp-route-Id="@Model.playlist.Id" class="editPlaylistBtn editPlaylist">
                                 <img class="plus" src="~/assets/images/icons/pencil.svg" alt="" />
 
                                 <p class="">Edit</p>

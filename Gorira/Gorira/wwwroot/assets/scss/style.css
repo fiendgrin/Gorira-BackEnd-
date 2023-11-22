@@ -31766,9 +31766,9 @@ label {
 
 
     #myTracksMain :modal {
-   
         width: 90%;
     }
+
     #trackMain .box .content .myTable .body .coverAndTitle {
         width: 200px !important;
         -o-object-fit: cover;
@@ -31885,9 +31885,9 @@ header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
 
                 #myTracksMain :modal .content .myTable .body h3 {
                     padding: 10px;
-                    text-align:center;
-                    font-size:32px;
-                    width:100%;
+                    text-align: center;
+                    font-size: 32px;
+                    width: 100%;
                     font-style: normal;
                     font-family: "Chakra Petch", sans-serif;
                     font-weight: 600;
@@ -31966,13 +31966,59 @@ header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
         width: 90%;
     }
 }
+
+#createPlaylistMain .box .uploadForms .tracks .theForm .content .myTable .body .singleTrack .coverAndTitle .cover {
+    width: 60px !important;
+    height: 60px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+#createPlaylistMain .box .uploadForms .tracks .theForm .content .myTable .body .singleTrack .coverAndTitle .title {
+    max-width: 900px;
+    
+    overflow: hidden;
+}
+
+    #createPlaylistMain .box .uploadForms .tracks .theForm .content .myTable .body .singleTrack .coverAndTitle .title .name {
+        height: 28px;
+        max-width: 900px;
+        overflow: hidden !important;
+        text-align: center;
+    }
+
 #trackMain #modal .content .myTable .body .singleTrack .coverAndTitle .cover {
     width: 60px !important;
+    height: 60px !important;
+    object-fit: cover !important;
+    object-position: center !important;
 }
+
 @media (min-width: 768px) and (max-width: 1359px) {
+    #createPlaylistMain .box .uploadForms .tracks .theForm .content .myTable .body .singleTrack .coverAndTitle .title {
+        max-width: 400px;
+        overflow: hidden;
+    }
+
     #trackMain #modal .content .myTable .body .singleTrack .coverAndTitle .cover {
         width: 40px !important;
+        height: 40px !important;
+        object-fit: cover !important;
+        object-position: center !important;
     }
+    #createPlaylistMain .box .uploadForms .tracks .theForm .content .myTable .body .singleTrack .coverAndTitle .title .name {
+        height: 28px;
+        max-width: 400px;
+        overflow: hidden !important;
+        text-align: center;
+    }
+    #createPlaylistMain .box .uploadForms .tracks .theForm .content .myTable .body .singleTrack .coverAndTitle .cover {
+        width: 60px !important;
+        height: 60px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+    }
+
     #myTracksMain :modal {
         width: 70%;
     }
@@ -31984,13 +32030,40 @@ header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
 }
 
 @media (min-width: 0px) and (max-width: 768px) {
+    #createPlaylistMain .box .uploadForms .tracks .theForm .content .myTable .body .singleTrack .coverAndTitle .cover {
+        width: 50px !important;
+        height: 50px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+    }
+
+    #createPlaylistMain .box .uploadForms .tracks .theForm .content .myTable .body .singleTrack .coverAndTitle .title {
+        max-width: 160px;
+        height: 50px;
+        overflow: hidden !important;
+    }
+
+        #createPlaylistMain .box .uploadForms .tracks .theForm .content .myTable .body .singleTrack .coverAndTitle .title .name {
+            height: 26px;
+            max-width: 164px;
+            overflow: hidden !important;
+            text-align:center;
+        }
+
+        #createPlaylistMain .box .uploadForms .tracks .theForm .content .myTable .body .singleTrack .coverAndTitle .title .author {
+            height: 20px;
+        }
+
     #trackMain #modal .content .myTable .body .singleTrack .coverAndTitle .cover {
         width: 40px !important;
+        height: 40px !important;
+        object-fit: cover !important;
+        object-position: center !important;
     }
+
     #feedMain .box .posts .singlePost .bottom .right .title a .theTitle {
         min-height: 18px;
     }
-
 }
 
 
@@ -32031,4 +32104,10 @@ header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
         background-color: rgba(56, 54, 56, 0.7333333333);
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
         scale: 1.02;
+    }
+
+
+    .editPlaylistBtn:active {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+        scale: 0.98;
     }

@@ -30,6 +30,8 @@ namespace Gorira.Controllers
         //1.Index
         //2.Create
         //3.AddTrack
+        //4.Detail
+        //5.Edit
 
         //==========================================
 
@@ -116,7 +118,7 @@ namespace Gorira.Controllers
 
         //3.AddTrack
         [Authorize(Roles = "Member")]
-        public async Task<IActionResult> AddTrack(int? trackId,int? playlistId) 
+        public async Task<IActionResult> AddTrack(int? trackId,int? playlistId,bool? reload=false) 
         {
             if (trackId == null) return BadRequest();
 
@@ -163,6 +165,11 @@ namespace Gorira.Controllers
            
             await _context.SaveChangesAsync();
 
+            if (reload == true)
+            {
+               return RedirectToAction("Edit", new {Id= playlistId });
+            }
+
             return Ok();
         }
 
@@ -193,5 +200,67 @@ namespace Gorira.Controllers
             return View(playlistDetailVM);
         }
 
+        //5.Edit
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> Edit(int? Id)
+        {
+            if (Id == null) return BadRequest();
+
+            AppUser appUser = await _userManager.Users
+     .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            Playlist? playlist = await _context.Playlists
+                .Include(p=>p.User)
+                 .Include(p => p.PlaylistTracks.Where(pt => pt.IsDeleted == false)).ThenInclude(pt => pt.Track).ThenInclude(t => t.User)
+                .FirstOrDefaultAsync(p => p.Id == Id && p.IsDeleted == false && p.UserId == appUser.Id);
+
+            if (playlist == null) return NotFound();
+
+            return View(playlist);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Member")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Playlist? playlist, int? Id) 
+        {
+            if (playlist == null) return BadRequest();
+
+
+            if (Id == null) return BadRequest();
+
+            Playlist DbPlaylist = await _context.Playlists.FirstOrDefaultAsync(p => p.Id == playlist.Id);
+
+            if (!ModelState.IsValid)
+            {
+                return View(playlist);
+            }
+            AppUser appUser = await _userManager.Users
+         .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            if (playlist.CoverFile != null)
+            {
+                if (playlist.Cover != appUser.ProfilePicture && DbPlaylist.Cover != null)
+                {
+                    string filePath = Path.Combine(_env.WebRootPath, "assets", "images", "playlistCovers", DbPlaylist.Cover);
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+                  
+                }
+
+                DbPlaylist.Cover = await playlist.CoverFile.Save(_env.WebRootPath, new string[] { "assets", "images", "playlistCovers" });
+            }
+
+            DbPlaylist.Title = playlist.Title;
+            DbPlaylist.Description = playlist.Description;
+
+            DbPlaylist.UpdatedBy = appUser.UserName;
+            DbPlaylist.UpdatedAt = DateTime.Now;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
