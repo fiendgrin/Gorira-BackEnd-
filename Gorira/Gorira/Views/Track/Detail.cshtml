@@ -17,7 +17,7 @@
                 <div class="trackButtons">
                     @if (Model.track.HasFree)
                     {
-                        <a href="" class="edit">
+                        <a asp-controller="Track" asp-action="FreeDownload" asp-route-Id="@Model.track.Id" class="edit">
                             <img src="~/assets/images/icons/download.svg" alt="" />
                             Free
                         </a>
@@ -98,7 +98,7 @@
                         <input id="limited" name="radio" type="radio" checked />
                         <span>
                             NON-EXCLUSIVE <br />
-                            <p>mp3</p>
+                            <p>mp3 or wav</p>
                             <br />
                             <ul>
                                 <li>
@@ -137,7 +137,7 @@
                             <input id="unlimited" name="radio" type="radio" />
                             <span>
                                 UNLIMITED <br />
-                                <p>mp3, wav, stems</p>
+                                <p>mp3 or wav, stems</p>
                                 <br />
                                 <ul>
                                     <li>

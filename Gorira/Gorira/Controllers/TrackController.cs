@@ -42,6 +42,8 @@ namespace Gorira.Controllers
         //5.My Tracks
         //6.Track Edit
         //7.Track Delete
+        //8.Free Download
+
         //=========================================================
 
         //1.Index
@@ -689,6 +691,44 @@ namespace Gorira.Controllers
 
 
             return RedirectToAction(nameof(MyTracks));
+        }
+
+        //8.Free Download
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> FreeDownload(int? Id)
+        {
+            if (Id == null) return BadRequest();
+
+            Track? track = await _context.Tracks
+                .Include(t=>t.User)
+                .FirstOrDefaultAsync(t=>t.IsDeleted == false && t.Id == Id && t.HasFree == true);
+
+            if (track == null) return NotFound();
+
+            string taggedAudio = track.Tagged;
+
+            if (taggedAudio != null)
+            {
+                // Get the file path on your server
+                string filePath = Path.Combine(_env.WebRootPath, "assets", "audio", "tagged", track.Tagged); ;
+
+                // Ensure the file exists
+                if (System.IO.File.Exists(filePath))
+                {
+                    // Provide the file for download
+                    byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+                    return File(fileBytes, "audio/mpeg", $"{track.User.DisplayName} - {track.Title} (Free Gorira).mp3");
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+            }
+            else 
+            {
+                return NotFound();
+            }
         }
     }
 }
