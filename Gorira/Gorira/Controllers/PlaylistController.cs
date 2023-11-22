@@ -32,6 +32,7 @@ namespace Gorira.Controllers
         //3.AddTrack
         //4.Detail
         //5.Edit
+        //6.Delete
 
         //==========================================
 
@@ -259,6 +260,61 @@ namespace Gorira.Controllers
             DbPlaylist.UpdatedBy = appUser.UserName;
             DbPlaylist.UpdatedAt = DateTime.Now;
             await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        //6.Delete
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> Delete(int? Id) 
+        {
+            if (Id == null) return BadRequest();
+
+            Playlist? playlist = await _context.Playlists
+                .Include(p=>p.PlaylistTracks.Where(pt=>pt.IsDeleted == false))
+                .Include(p => p.PlaylistFollowers.Where(pf => pf.IsDeleted == false))
+                .Include(t => t.User)
+                .FirstOrDefaultAsync(t => t.IsDeleted == false && t.Id == Id);
+
+            if (playlist == null) return NotFound();
+
+            AppUser appUser = await _userManager.Users
+           .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            if (playlist.UserId != appUser.Id) return NotFound();
+
+            foreach (PlaylistTrack playlistTrack in playlist.PlaylistTracks)
+            {
+                playlistTrack.IsDeleted = true;
+                playlistTrack.DeletedBy = appUser.UserName;
+                playlistTrack.DeletedAt = DateTime.Now;
+            }
+
+            foreach (PlaylistFollower playlistFollower in playlist.PlaylistFollowers)
+            {
+                playlistFollower.IsDeleted = true;
+                playlistFollower.DeletedBy = appUser.UserName;
+                playlistFollower.DeletedAt = DateTime.Now;
+            }
+
+
+            playlist.IsDeleted = true;
+            playlist.DeletedBy = appUser.UserName;
+            playlist.DeletedAt = DateTime.Now;
+
+
+            await _context.SaveChangesAsync();
+
+
+            if (playlist.Cover != appUser.ProfilePicture && playlist.Cover!= null)
+            {
+                string filePath = Path.Combine(_env.WebRootPath, "assets", "images", "playlistCovers", playlist.Cover);
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+            }
+
 
             return RedirectToAction(nameof(Index));
         }

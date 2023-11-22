@@ -47,7 +47,7 @@
                             </a>
                         }
                     }
-                 
+
                 </div>
             </div>
             <div class="stats sectionDefault">
@@ -95,7 +95,22 @@
             <div id="aplayer"></div>
         </div>
     </div>
+    <dialog trackId="@Model.playlist.Id" class="modal">
+        <img trackId="@Model.playlist.Id" class="closeModal" src="~/assets/images/icons/plus.svg" alt="" />
+
+        <div class="content">
+            <div class="myTable">
+                <div class="body">
+                    <h3>Are You Sure?</h3>
+                    <p class="text-danger">This playlist will be permanently deleted!!!</p>
+                    <a asp-controller="Playlist" asp-action="Delete" asp-route-Id="@Model.playlist.Id">Delete</a>
+                </div>
+            </div>
+        </div>
+    </dialog>
+    <!--modal end-->
 </main>
 <!--Main End-->
 
 <script src="~/assets/javascript/playlist.js" asp-append-version="true"></script>
+<script src="~/assets/javascript/modalDeletePlaylist.js" asp-append-version="true"></script>

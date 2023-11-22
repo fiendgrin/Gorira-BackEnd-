@@ -1201,6 +1201,10 @@
       "PackagePath": "staticwebassets\\assets\\javascript\\modal.js"
     },
     {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\modalDeletePlaylist.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\modalDeletePlaylist.js"
+    },
+    {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\modalMyTracks.js",
       "PackagePath": "staticwebassets\\assets\\javascript\\modalMyTracks.js"
     },

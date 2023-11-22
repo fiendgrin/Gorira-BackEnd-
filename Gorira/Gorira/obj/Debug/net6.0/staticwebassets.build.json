@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gthnlbRg6TUmcL6D3pv3MVeXVGb/qaD9ogJc9IpUthw=",
+  "Hash": "8v/JKdFpQwgw9i7n69Bn4/MgXXhO6+9g+6B9NVNcntk=",
   "Source": "Gorira",
   "BasePath": "_content/Gorira",
   "Mode": "Default",
@@ -5115,6 +5115,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\javascript\\modal.js"
+    },
+    {
+      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\modalDeletePlaylist.js",
+      "SourceId": "Gorira",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
+      "BasePath": "_content/Gorira",
+      "RelativePath": "assets/javascript/modalDeletePlaylist.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\javascript\\modalDeletePlaylist.js"
     },
     {
       "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\modalMyTracks.js",

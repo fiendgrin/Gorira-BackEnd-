@@ -624,6 +624,9 @@ namespace Gorira.Controllers
             AppUser appUser = await _userManager.Users
            .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
+            if (track.UserId != appUser.Id) return NotFound();
+
+
 
             IEnumerable<TrackTag> trackTags = await _context.TrackTags.Where(tt => tt.TrackId == Id && tt.IsDeleted == false).ToListAsync();
 
@@ -645,7 +648,7 @@ namespace Gorira.Controllers
             await _context.SaveChangesAsync();
 
 
-            if (track.Cover != appUser.ProfilePicture)
+            if (track.Cover != appUser.ProfilePicture && track.Cover != null)
             {
                 string filePath = Path.Combine(_env.WebRootPath, "assets", "images", "covers", track.Cover);
                 if (System.IO.File.Exists(filePath))

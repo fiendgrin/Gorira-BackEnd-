@@ -32111,3 +32111,148 @@ header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
         scale: 0.98;
     }
+
+
+#playlistMain :modal {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: rgb(14, 14, 16);
+    border-radius: 5px;
+    width: 40%;
+    height: 50%;
+    opacity: 1;
+    padding: 10px;
+    min-height: 200px;
+    height: fit-content;
+    bottom: -100px;
+    transition: 0.5s all;
+    border: none;
+    outline: none;
+    border: 1px solid #5757574d;
+    animation: modalSlide 0.5s ease-out;
+    animation-fill-mode: forwards;
+}
+
+
+    #playlistMain :modal .closeModal {
+        align-self: flex-end;
+        width: 24px;
+        rotate: 45deg;
+        cursor: pointer;
+        position: fixed;
+        display: block;
+    }
+
+    #playlistMain :modal .content {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+        #playlistMain :modal .content .myTable {
+            width: 100%;
+        }
+
+            #playlistMain :modal .content .myTable .body {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                overflow: auto;
+            }
+
+                #playlistMain :modal .content .myTable .body h3 {
+                    padding: 10px;
+                    text-align: center;
+                    font-size: 32px;
+                    width: 100%;
+                    font-style: normal;
+                    font-family: "Chakra Petch", sans-serif;
+                    font-weight: 600;
+                    line-height: 100%;
+                    color: white;
+                }
+
+                #playlistMain :modal .content .myTable .body p {
+                    padding: 10px;
+                    margin-bottom: 20px;
+                    font-size: 22px;
+                    font-style: normal;
+                    text-align: center;
+                    width: 100%;
+                    font-family: "Chakra Petch", sans-serif;
+                    font-weight: 600;
+                    line-height: 100%;
+                    color: red;
+                }
+
+                #playlistMain :modal .content .myTable .body a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    -moz-column-gap: 6px;
+                    column-gap: 6px;
+                    background-color: #a210f7;
+                    outline: none;
+                    border: 1px solid transparent;
+                    border-radius: 10px;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-family: "Chakra Petch", sans-serif;
+                    font-weight: 800;
+                    line-height: 140%;
+                    color: white;
+                    padding: 6px 10px;
+                    box-shadow: transparent;
+                    transition: 0.3s;
+                    height: 40px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-family: "Chakra Petch", sans-serif;
+                    font-weight: 600;
+                    line-height: 100%;
+                    color: white;
+                    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+                    text-decoration: none;
+                    width: 70%;
+                    align-self: center;
+                    background-color: #4a4a4a;
+                }
+
+
+                    #playlistMain :modal .content .myTable .body a .btnImg {
+                        height: 22px;
+                        transform: translateX(-1px);
+                    }
+
+                    #playlistMain :modal .content .myTable .body a:hover {
+                        scale: 1;
+                        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+                        background-color: #d9534f;
+                    }
+
+                    #playlistMain :modal .content .myTable .body a:active {
+                        scale: 0.98;
+                    }
+
+
+@media (min-width: 0px) and (max-width: 768px) {
+
+
+    #playlistMain :modal {
+        width: 90%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1359px) {
+
+    #playlistMain :modal {
+        width: 70%;
+    }
+}
