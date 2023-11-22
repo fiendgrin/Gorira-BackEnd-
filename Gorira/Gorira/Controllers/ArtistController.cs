@@ -32,6 +32,7 @@ namespace Gorira.Controllers
         //1.Index
         //2.Detail
         //3.My Profile
+        //4.FollowUser
 
         //====================================================================
 
@@ -159,7 +160,7 @@ namespace Gorira.Controllers
             return View(artistVM);
         }
 
-        //4.Follow
+        //4.FollowUser
         [Authorize(Roles = "Member")]
         public async Task<IActionResult> FollowUser(string? Id)
         {

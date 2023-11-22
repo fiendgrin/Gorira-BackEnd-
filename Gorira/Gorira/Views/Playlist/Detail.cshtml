@@ -22,7 +22,7 @@
                     {
                         @if (Model.User.Id != Model.playlist.UserId)
                         {
-                            <a class="follow">
+                            <a asp-controller="Playlist" asp-action="FollowPlaylist" asp-route-Id="@Model.playlist.Id" class="follow @(Model.playlist.PlaylistFollowers.Any(pf=>pf.UserId == Model.User.Id) ? "followActive":"")">
                                 <img class="plus" src="~/assets/images/icons/plus.svg" alt="" />
                                 <img class="check"
                                      src="~/assets/images/icons/check.svg"
@@ -34,7 +34,6 @@
                         }
                         else
                         {
-
                             <a asp-controller="Playlist" asp-action="Edit" asp-route-Id="@Model.playlist.Id" class="editPlaylistBtn editPlaylist">
                                 <img class="plus" src="~/assets/images/icons/pencil.svg" alt="" />
 

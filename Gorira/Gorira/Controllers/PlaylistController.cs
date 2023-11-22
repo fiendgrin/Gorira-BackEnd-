@@ -33,6 +33,7 @@ namespace Gorira.Controllers
         //4.Detail
         //5.Edit
         //6.Delete
+        //7.Follow Playlist
 
         //==========================================
 
@@ -317,6 +318,54 @@ namespace Gorira.Controllers
 
 
             return RedirectToAction(nameof(Index));
+        }
+
+        //7.Follow Playlist
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> FollowPlaylist(int? Id) 
+        {
+
+            if (Id == null) return BadRequest();
+
+            Playlist? playlist = await _context.Playlists.FirstOrDefaultAsync(p => p.Id == Id && p.IsDeleted == false);
+
+            if (playlist == null) return NotFound();
+
+            AppUser currentUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            if (currentUser.Id == playlist.UserId) return NotFound();
+
+            PlaylistFollower? playlistFollowerCheck = await _context.PlaylistFollowers.FirstOrDefaultAsync(pf=>pf.PlaylistId == Id && currentUser.Id == pf.UserId);
+
+            if (playlistFollowerCheck != null)
+            {
+                if (playlistFollowerCheck.IsDeleted == false)
+                {
+                    playlistFollowerCheck.IsDeleted = true;
+                }
+                else
+                {
+                    playlistFollowerCheck.IsDeleted = false;
+                }
+
+            }
+            else
+            {
+                PlaylistFollower playlistFollower = new PlaylistFollower
+                {
+                    UserId = currentUser.Id,
+                    PlaylistId = Id,
+                    IsDeleted = false,
+                    CreatedBy = currentUser.UserName,
+
+
+                };
+                await _context.PlaylistFollowers.AddAsync(playlistFollower);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }

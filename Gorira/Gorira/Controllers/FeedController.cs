@@ -20,6 +20,13 @@ namespace Gorira.Controllers
             _userManager = userManager;
             _roleManager = roleManager;
         }
+
+
+        //1.Index
+
+        //========================================
+
+        //1.Index
         public async Task<IActionResult>  Index(int? page)
         {
             if (page <= 0) return NotFound();

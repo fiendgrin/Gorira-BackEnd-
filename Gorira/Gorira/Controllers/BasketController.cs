@@ -20,12 +20,19 @@ namespace Gorira.Controllers
             _userManager = userManager;
         }
 
+        //1.Index
+        //2.AddBasket
+        //3.RemoveBasket
 
+        //================================================
+
+        //1.Index
         public IActionResult Index()
         {
             return View();
         }
 
+        //2.AddBasket
         [Authorize(Roles = "Member")]
         public async Task<IActionResult> AddBasket(int? Id, bool? isUnlimited)
         {
@@ -132,6 +139,7 @@ namespace Gorira.Controllers
             return PartialView("_BasketPartial", basketVMs);
         }
 
+        //3.RemoveBasket
         [Authorize(Roles ="Member")]
         public async Task<IActionResult> RemoveBasket(int? Id)
         {

@@ -1,7 +1,10 @@
 let followBtn = document.querySelector("#playlistMain .follow");
 
 if (followBtn!=null) {
-    followBtn.addEventListener("click", () => {
+    followBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        let url = followBtn.getAttribute('href');
+        fetch(url)
         followBtn.classList.toggle("followActive");
     });
 
@@ -10,14 +13,13 @@ let audioElements = document.querySelectorAll("#playlistMain .beat");
 
 let audioList = [];
 
-// Loop through the audio elements and extract information to create APlayer-compatible objects
+
 audioElements.forEach((audioElement) => {
     let name = audioElement.getAttribute("name");
     let artist = audioElement.getAttribute("artist");
     let url = audioElement.getAttribute("track");
     let cover = audioElement.getAttribute("cover");
     let Id = audioElement.getAttribute("trackId");
-    // Create APlayer-compatible object and add it to the audioList array
     let audioObject = {
         name: name,
         artist: artist,

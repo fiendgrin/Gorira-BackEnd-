@@ -23,8 +23,11 @@ namespace Gorira.Controllers
             _userManager = userManager;
         }
 
+        //1.Index
+        //2.Remove Cart
+        //===============================================
 
-        [Authorize(Roles="Member")]
+        [Authorize(Roles = "Member")]
         public async Task<IActionResult> Index()
         {
             List<CartVM>? cartVMs = new List<CartVM>();
@@ -36,7 +39,7 @@ namespace Gorira.Controllers
             }
             else
             {
-              
+
                 basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
                 foreach (BasketVM basketVM in basketVMs)
                 {
@@ -51,7 +54,7 @@ namespace Gorira.Controllers
                     basketVM.AuthorId = track.UserId;
                     basketVM.AuthorName = track.User.DisplayName;
 
-                    if (cartVMs == null || !cartVMs.Any(c=>c.UserId == basketVM.AuthorId))
+                    if (cartVMs == null || !cartVMs.Any(c => c.UserId == basketVM.AuthorId))
                     {
                         List<BasketVM> cartBasketVMs = new List<BasketVM>
                         {
@@ -68,7 +71,7 @@ namespace Gorira.Controllers
                     else
                     {
 
-                        CartVM cartVM  =  cartVMs.Find(c=>c.UserId == basketVM.AuthorId);
+                        CartVM cartVM = cartVMs.Find(c => c.UserId == basketVM.AuthorId);
                         List<BasketVM> cartBasketVMs = cartVM.BasketVMs;
                         cartBasketVMs.Add(basketVM);
                         cartVM.BasketVMs = cartBasketVMs;
@@ -82,6 +85,8 @@ namespace Gorira.Controllers
             return View(cartVMs);
         }
 
+        //2.Remove Cart
+        [Authorize(Roles = "Member")]
         public async Task<IActionResult> RemoveCart(int? Id)
         {
             if (Id == null) return BadRequest();
@@ -90,37 +95,38 @@ namespace Gorira.Controllers
 
             List<BasketVM>? basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
 
+            AppUser appUser = await _userManager.Users
+                  .Include(b => b.Baskets.Where(b => b.IsDeleted == false))
+                  .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
             if (!basketVMs.Any(t => t.Id == Id)) return NotFound();
+
+            if (!appUser.Baskets.Any(b=>b.Id != Id)) return NotFound();
+
 
             basketVMs.RemoveAll(t => t.Id == Id);
 
             basket = JsonConvert.SerializeObject(basketVMs);
 
             Response.Cookies.Append("basket", basket);
-       
 
-            if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+
+
+            if (appUser != null)
             {
-                AppUser appUser = await _userManager.Users
-                    .Include(b => b.Baskets.Where(b => b.IsDeleted == false))
-                    .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+                Basket? userBasket = appUser.Baskets?.FirstOrDefault(b => b.TrackId == Id);
 
-                if (appUser != null)
+
+                if (userBasket != null)
                 {
-                    Basket? userBasket = appUser.Baskets?.FirstOrDefault(b => b.TrackId == Id);
-
-
-                    if (userBasket != null)
-                    {
-                        userBasket.DeletedAt = DateTime.Now;
-                        userBasket.IsDeleted = true;
-                        userBasket.DeletedBy = User.Identity.Name;
-                    }
-
+                    userBasket.DeletedAt = DateTime.Now;
+                    userBasket.IsDeleted = true;
+                    userBasket.DeletedBy = User.Identity.Name;
                 }
-                await _context.SaveChangesAsync();
+
             }
+            await _context.SaveChangesAsync();
+
 
             List<CartVM>? cartVMs = new List<CartVM>();
 
