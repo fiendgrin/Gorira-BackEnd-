@@ -18,7 +18,7 @@
                      alt="" />
             </div>
             <div class="reportContent">
-                <a href="#" class="report">Report</a>
+                <a asp-controller="Artist" asp-action="ReportUser" asp-route-Id="@Model.User.Id" class="report">Report</a>
             </div>
             <div class="account">
                 <img class="pfp" src="~/assets/images/pfp/@Model.User.ProfilePicture" alt="" />

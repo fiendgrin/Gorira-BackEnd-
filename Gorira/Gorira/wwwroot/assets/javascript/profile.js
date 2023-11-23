@@ -10,13 +10,23 @@ numberElements.forEach((numberElement) => {
 
 let reportContent = document.querySelector("#profileMain .reportContent");
 let reportHolder = document.querySelector("#profileMain .reportHolder");
+let report = document.querySelector("#profileMain .reportContent .report");
 
-reportHolder.addEventListener("click", () => {
+reportHolder.addEventListener("click", (e) => {
+    e.stopPropagation();
     if (reportContent.style.display != "flex") {
         reportContent.style.display = "flex";
     } else {
         reportContent.style.display = "none";
     }
+});
+
+reportContent.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
+
+window.addEventListener("click", () => {
+    reportContent.style.display = "none";
 });
 
 let followBtn = document.querySelector("#profileMain .follow");
@@ -26,7 +36,6 @@ if (followBtn != null) {
         e.preventDefault();
         let url = followBtn.getAttribute('href');
         fetch(url)
-
         followBtn.classList.toggle("followActive");
     });
 }
@@ -151,3 +160,4 @@ pauses.forEach((pause) => {
         pause.style.display = "none";
     });
 });
+

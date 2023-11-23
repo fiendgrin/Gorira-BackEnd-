@@ -32,8 +32,8 @@ namespace Gorira.Controllers
         //1.Index
         //2.Detail
         //3.My Profile
-        //4.FollowUser
-
+        //4.Follow User
+        //5.Report User
         //====================================================================
 
         //1.Index
@@ -172,7 +172,7 @@ namespace Gorira.Controllers
 
             AppUser currentUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
-            if (Id == currentUser.Id) return Conflict();
+            if (Id == currentUser.Id) return NotFound();
 
             Follow? followCheck = await _context.Follows.FirstOrDefaultAsync(f => f.FolloweeId == Id && f.FollowerId == currentUser.Id);
 
@@ -205,6 +205,37 @@ namespace Gorira.Controllers
             await _context.SaveChangesAsync();
 
             return Ok();
+        }
+
+        //5.Report User
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> ReportUser(string? Id)
+        {
+            if (Id == null) return BadRequest();
+
+            AppUser? appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == Id && u.IsActive == true);
+
+            if (appUser == null) return NotFound();
+
+            AppUser currentUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            if (Id == currentUser.Id) return NotFound();
+
+            if (!await _context.Reports.AnyAsync(r => r.SuspectId == Id && r.ReporterId == currentUser.Id))
+            {
+                Report report = new Report
+                {
+                    SuspectId = Id,
+                    ReporterId = currentUser.Id,
+                    IsDeleted = false,
+                    CreatedBy = currentUser.UserName,
+                };
+                await _context.Reports.AddAsync(report);
+                await _context.SaveChangesAsync();
+            }
+
+
+            return RedirectToAction("Detail", new { Id = Id });
         }
     }
 }
