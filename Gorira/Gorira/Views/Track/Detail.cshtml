@@ -202,9 +202,9 @@
                     <div style="height:max-content; display:flex;" class="theComments">
                         @await Html.PartialAsync("_CommentsPartial",Model.comments)
                     </div>
-                    @if (Model.comments.Count() > 3)
+                    @if (ViewBag.MaxPage > 1)
                     {
-                        <div class="seeAll">See more</div>
+                        <a asp-controller="Track" asp-action="LoadMoreComments" asp-route-Id="@Model.track.Id" class="seeAll" data-pageIndex="1" data-maxPage="@(ViewBag.MaxPage)">See more</a>
                     }
                 }
             </div>

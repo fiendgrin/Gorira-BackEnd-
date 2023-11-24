@@ -43,7 +43,12 @@
 
         </div>
         @Html.PagedListPager((IPagedList) Model,page=>Url.Action("Index", new {page = page,
-        search = @Context.Request.Query["search"], order = @Context.Request.Query["order"]}))
+        search = @Context.Request.Query["search"], order = @Context.Request.Query["order"]}),
+        new X.PagedList.Web.Common.PagedListRenderOptions
+        {
+        Display = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+        DisplayPageCountAndCurrentLocation = false,
+        MaximumPageNumbersToDisplay = 5 })
     </div>
 </main>
 

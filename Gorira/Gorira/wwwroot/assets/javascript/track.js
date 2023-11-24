@@ -111,3 +111,41 @@ PostComment.addEventListener("submit", (e) => {
     commentText.value = "";
 
 });
+
+
+let loadMore = document.querySelector("#trackMain .seeAll")
+
+if (loadMore!=null) {
+    loadMore.addEventListener('click', (e) => {
+        e.preventDefault();
+        let url = loadMore.getAttribute('href');
+        let pageIndex = loadMore.getAttribute('data-pageIndex');
+        console.log(pageIndex);
+
+        let totalPage = loadMore.getAttribute('data-maxpage');
+        console.log(totalPage);
+
+        if (pageIndex > 0 && pageIndex < (totalPage - 1)) {
+            console.log(url + '?pageIndex=' + pageIndex);
+
+            fetch(url + '?pageIndex=' + pageIndex)
+                .then(res => res.text())
+                .then(data => {
+                    document.querySelector("#trackMain .theComments").innerHTML += data
+                });
+        } else if (pageIndex == (totalPage - 1)) {
+            console.log("LOL");
+            fetch(url + '?pageIndex=' + pageIndex)
+                .then(res => res.text())
+                .then(data => {
+                    document.querySelector("#trackMain .theComments").innerHTML += data;
+                    loadMore.remove();
+                });
+         
+        }
+        pageIndex++;
+        loadMore.setAttribute("data-pageIndex", pageIndex)
+    })
+}
+  
+

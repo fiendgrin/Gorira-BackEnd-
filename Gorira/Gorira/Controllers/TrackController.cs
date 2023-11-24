@@ -13,6 +13,7 @@ using System;
 using System.Data;
 using System.Linq;
 using X.PagedList;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Gorira.Controllers
 {
@@ -348,16 +349,16 @@ namespace Gorira.Controllers
 
             Track? track = await _context.Tracks
                 .Include(t => t.User)
-                .Include(t=>t.PlaylistTracks.Where(pt=>pt.IsDeleted == false))
+                .Include(t => t.PlaylistTracks.Where(pt => pt.IsDeleted == false))
                 .Include(t => t.TrackTags.Where(tt => tt.IsDeleted == false)).ThenInclude(tt => tt.Tag)
                 .FirstOrDefaultAsync(t => t.Id == Id && t.IsDeleted == false);
 
             if (track == null) return NotFound();
 
             AppUser? appUser = null;
-            
+
             IEnumerable<Playlist>? playlists = null;
-            
+
             if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
             {
                 appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
@@ -366,18 +367,22 @@ namespace Gorira.Controllers
                     .Include(p => p.User)
                       .Include(p => p.PlaylistFollowers)
                       .Include(p => p.PlaylistTracks)
-                    .Where(p => p.IsDeleted == false && (p.UserId == appUser.Id || p.PlaylistFollowers.Any(pf=>pf.UserId == appUser.Id))).ToListAsync();
+                    .Where(p => p.IsDeleted == false && (p.UserId == appUser.Id || p.PlaylistFollowers.Any(pf => pf.UserId == appUser.Id))).ToListAsync();
             }
 
             IEnumerable<Comment> comments = _context.Comments
                .Include(c => c.User)
                .Where(c => c.IsDeleted == false && c.TrackId == Id).OrderByDescending(c => c.CreatedAt);
 
-            TrackDetailVM trackDetailVM = new TrackDetailVM 
+
+            int maxPage = (int)Math.Ceiling((decimal)comments.Count() / 5);
+            ViewBag.MaxPage = maxPage;
+
+            TrackDetailVM trackDetailVM = new TrackDetailVM
             {
                 track = track,
                 playlists = playlists,
-                comments= comments
+                comments = comments.Take(5),
 
             };
 
@@ -708,8 +713,8 @@ namespace Gorira.Controllers
             if (Id == null) return BadRequest();
 
             Track? track = await _context.Tracks
-                .Include(t=>t.User)
-                .FirstOrDefaultAsync(t=>t.IsDeleted == false && t.Id == Id && t.HasFree == true);
+                .Include(t => t.User)
+                .FirstOrDefaultAsync(t => t.IsDeleted == false && t.Id == Id && t.HasFree == true);
 
             if (track == null) return NotFound();
 
@@ -733,7 +738,7 @@ namespace Gorira.Controllers
                 }
 
             }
-            else 
+            else
             {
                 return NotFound();
             }
@@ -743,23 +748,23 @@ namespace Gorira.Controllers
         [HttpPost]
         [Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PostComment(int? Id,string? text) 
+        public async Task<IActionResult> PostComment(int? Id, string? text)
         {
             if (Id == null) return BadRequest();
 
             if (string.IsNullOrWhiteSpace(text)) return BadRequest();
-            if (text.Trim()=="") return BadRequest();
+            if (text.Trim() == "") return BadRequest();
 
             Track? track = await _context.Tracks.FirstOrDefaultAsync(t => t.IsDeleted == false && t.Id == Id);
 
             if (track == null) return NotFound();
 
-            AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u=>u.UserName == User.Identity.Name);
+            AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
             Comment comment = new Comment
             {
                 IsDeleted = false,
-                CreatedBy= User.Identity.Name,
+                CreatedBy = User.Identity.Name,
                 UserId = appUser.Id,
                 TrackId = Id,
                 Text = text
@@ -769,10 +774,43 @@ namespace Gorira.Controllers
             await _context.SaveChangesAsync();
 
             IEnumerable<Comment> comments = _context.Comments
-                .Include(c=>c.User)
-                .Where(c => c.IsDeleted == false && c.TrackId == Id).OrderByDescending(c => c.CreatedAt).Take(10);
+                .Include(c => c.User)
+                .Where(c => c.IsDeleted == false && c.TrackId == Id).OrderByDescending(c => c.CreatedAt);
+
+            int maxPage = (int)Math.Ceiling((decimal)comments.Count() / 5);
+            ViewBag.MaxPage = maxPage;
+            int? PageIndex = TempData["PageIndex"] == null ? 1 : (int)TempData["PageIndex"] + 1;
+            if (PageIndex > maxPage) return BadRequest();
+
+            comments = comments.Take((int)PageIndex * 5);
 
             return PartialView("_CommentsPartial", comments);
+        }
+
+        public async Task<IActionResult> LoadMoreComments(int? Id, int? pageIndex)
+        {
+            if (pageIndex == null) return BadRequest();
+
+            if (pageIndex <= 0) return BadRequest();
+
+            if (Id == null) return BadRequest();
+
+            if (!await _context.Tracks.AnyAsync(t => t.IsDeleted == false && t.Id == Id)) return NotFound();
+
+            IQueryable<Comment> comments = _context.Comments
+                  .Include(c => c.User)
+                  .Where(c => c.IsDeleted == false && c.TrackId == Id)
+                  .OrderByDescending(c => c.CreatedAt);
+
+
+
+            int maxPage = (int)Math.Ceiling((decimal)comments.Count() / 5);
+            ViewBag.MaxPage = maxPage;
+            if (pageIndex > maxPage) return BadRequest();
+            TempData["PageIndex"] = pageIndex;
+            comments = comments.Skip((int)pageIndex * 5).Take(5);
+
+            return PartialView("_CommentsPartial", new List<Comment>(comments));
         }
     }
 }

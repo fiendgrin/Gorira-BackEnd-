@@ -33,6 +33,8 @@ namespace Gorira.Models
         [StringLength(255)]
         public string? VK { get; set; }
 
+        [NotMapped]
+        public IList<string> Roles { get; set; }
 
         public IEnumerable<Track>? Tracks { get; set; }
         public IEnumerable<Basket>? Baskets { get; set; }

@@ -44,39 +44,45 @@ namespace Gorira.Controllers
                 return NotFound();
             }
 
-            IEnumerable<AppUser>? memberArtists = await _userManager
-                .GetUsersInRoleAsync("Member");
+            IEnumerable<AppUser>? memberArtists = await _userManager.Users
+                .Include(u => u.Followers.Where(f => f.IsDeleted == false))
+                .Where(u => u.IsActive == true).ToListAsync();
 
-            IEnumerable<AppUser>? Artists = new List<AppUser>();
+            foreach (AppUser memberArtist in memberArtists)
+            {
+                memberArtist.Roles = await _userManager.GetRolesAsync(memberArtist);
+            }
 
             if (string.IsNullOrWhiteSpace(order) || (order != ("popular") && order != ("A-Z")))
             {
                 return BadRequest();
             }
 
-            Artists = order switch
+            memberArtists = memberArtists.Where(a => a.Roles.Contains("Member"));
+
+            memberArtists = order switch
             {
                 "popular" => memberArtists
-                                .Where(a => a.IsActive == true && a.NormalizedUserName != User.Identity?.Name?.Trim().ToUpperInvariant())
-                                .OrderByDescending(a => a.Followers?.Count()),
+                                .Where(a => a.NormalizedUserName != User.Identity?.Name?.Trim().ToUpperInvariant())
+                                .OrderByDescending(a => a.Followers == null ? 0 : a.Followers.Count()),
                 "A-Z" => memberArtists
-                                .Where(a => a.IsActive == true && a.NormalizedUserName != User.Identity?.Name?.Trim().ToUpperInvariant())
+                                .Where(a => a.NormalizedUserName != User.Identity?.Name?.Trim().ToUpperInvariant())
                                 .OrderBy(a => a.DisplayName),
 
                 _ => memberArtists
-                                .Where(a => a.IsActive == true && a.NormalizedUserName != User.Identity?.Name?.Trim().ToUpperInvariant())
-                                .OrderByDescending(a => a.Followers?.Count()),
+                                .Where(a => a.NormalizedUserName != User.Identity?.Name?.Trim().ToUpperInvariant())
+                                .OrderByDescending(a => a.Followers == null ? 0 : a.Followers.Count()),
             };
 
             if (!string.IsNullOrWhiteSpace(search))
             {
-                Artists = Artists.Where(a => a.DisplayName.ToUpper().Contains(search.ToUpper()) ||
+                memberArtists = memberArtists.Where(a => a.DisplayName.ToUpper().Contains(search.ToUpper()) ||
                  (a.Location != null && a.Location.ToUpper().Contains(search.ToUpper())));
             }
 
 
 
-            return View(await Artists.ToPagedListAsync(page ?? 1, _pageSize));
+            return View(await memberArtists.ToPagedListAsync(page ?? 1, _pageSize));
 
         }
 
@@ -233,7 +239,6 @@ namespace Gorira.Controllers
                 await _context.Reports.AddAsync(report);
                 await _context.SaveChangesAsync();
             }
-
 
             return RedirectToAction("Detail", new { Id = Id });
         }
