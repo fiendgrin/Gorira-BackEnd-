@@ -14,7 +14,7 @@ const ap = new APlayer({
 let playAplayer = document.querySelector("#trackMain #aplayer .aplayer-play");
 let trackId = document.querySelector("#trackMain #aplayer").getAttribute("trackId");
 playAplayer.classList.add("trackPlayBtn");
-playAplayer.setAttribute("trackId",trackId)
+playAplayer.setAttribute("trackId", trackId)
 
 
 let thePrice = document.querySelector("#trackMain .thePrice");
@@ -84,3 +84,30 @@ if (window.innerWidth >= 1360) {
     myProfile.style.display = "flex";
     myProfileTracks.style.display = "none";
 }
+
+let PostComment = document.querySelector("#trackMain .postComment");
+
+PostComment.addEventListener("submit", (e) => {
+
+    let commentText = document.querySelector("#trackMain .commentText");
+    e.preventDefault();
+    let url = PostComment.getAttribute('action'); 
+    let textValue = PostComment.querySelector('input[name="text"]').value;
+
+    let urlParts = url.split('/');
+    let id = urlParts[urlParts.length - 1];
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Requested-With': 'XMLHttpRequest',
+            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+        },
+        body: `Id=${id}&text=${encodeURIComponent(textValue)}`
+    })
+        .then(res => res.text())
+        .then(data => { document.querySelector("#trackMain .theComments").innerHTML = data })
+
+    commentText.value = "";
+
+});

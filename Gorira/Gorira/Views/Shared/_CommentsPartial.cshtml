@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Comment>
+
+@foreach (Comment comment in Model)
+{
+    <!--Single Comment Start-->
+    <div style="height:max-content;" class="singleComment">
+        <a  style=" align-self:flex-start;" asp-controller="Artist" asp-action="detail" asp-route-Id="@comment.UserId">
+            <img class="commentatorPfp"
+                 src="~/assets/images/pfp/@comment.User.ProfilePicture" />
+        </a>
+        <div style="height:max-content;" class="nameAndComment">
+            <a style="height:max-content; text-decoration:none;" asp-controller="Artist" asp-action="detail" asp-route-Id="@comment.UserId"> <h5 class="commentatorName">@comment.User.DisplayName</h5></a>
+            <p style="height:max-content; " class="commentatorText">
+                @comment.Text
+            </p>
+        </div>
+    </div>
+    <!--Single Comment End-->
+}

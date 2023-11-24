@@ -69,7 +69,7 @@
         </div>
         <div class="right">
             <!--Player Start-->
-          
+
             <div id="aplayer"
                  track="/assets/audio/tagged/@Model.track.Tagged"
                  name="@Model.track.User.DisplayName"
@@ -175,62 +175,38 @@
             </div>
             <!--Licensing End-->
             <!--Comment Section Start-->
-            <div class="commentSection">
+            <div style="height:fit-content; display:flex;" class="commentSection">
                 <div class="commentTop">
                     <h3>Comments</h3>
                     <img src="~/assets/images/icons/chat-bubble-text-square.svg"
                          alt="" />
                 </div>
-                <form class="regular commentField">
-                    <input maxlength="60"
-                           class="inputField"
+                <!--Comment Form Partial Start-->
+                <form method="post" class="regular commentField postComment" asp-controller="Track" asp-action="PostComment" asp-route-Id="@Model.track.Id" data-url="@Url.Action("PostComment", "Track", new { Id = Model.track.Id })">
+                    @Html.AntiForgeryToken()
+                    <input maxlength="500"
+                           class="inputField commentText"
                            type="text"
+                           name="text"
+                           for="text"
                            placeholder="Share your thoughts..." />
-                    <button>
+                    <button type="submit">
                         <img class="btnImg"
                              src="~/assets/images/icons/send.svg"
                              alt="" />
                     </button>
                 </form>
-                <div class="theComments">
-                    <!--Single Comment Start-->
-                    <div class="singleComment">
-                        <img class="commentatorPfp"
-                             src="~/assets/images/pfp/default.jpg" />
-                        <div class="nameAndComment">
-                            <h5 class="commentatorName">Joney Ancient</h5>
-                            <p class="commentatorText">
-                                i fell in love with this beat, im gonna buy it and work a
-                                good song on it🔥🔥🔥
-                            </p>
-                        </div>
+                <!--Comment Form Partial End-->
+                @if (Model.comments != null)
+                {
+                    <div style="height:max-content; display:flex;" class="theComments">
+                        @await Html.PartialAsync("_CommentsPartial",Model.comments)
                     </div>
-                    <!--Single Comment End-->
-                    <!--Single Comment Start-->
-                    <div class="singleComment">
-                        <img class="commentatorPfp" src="~/assets/images/pfp/1.jpg" />
-                        <div class="nameAndComment">
-                            <h5 class="commentatorName">UKNOWME.wav</h5>
-                            <p class="commentatorText">
-                                Good job🔥 Purchase my beat and get MIXING & MASTERING 4
-                                FREE⚡️
-                            </p>
-                        </div>
-                    </div>
-                    <!--Single Comment End-->
-                    <!--Single Comment Start-->
-                    <div class="singleComment">
-                        <img class="commentatorPfp" src="~/assets/images/pfp/2.jpg" />
-                        <div class="nameAndComment">
-                            <h5 class="commentatorName">Morini Beats</h5>
-                            <p class="commentatorText">
-                                wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
-                            </p>
-                        </div>
-                    </div>
-                    <!--Single Comment End-->
-                </div>
-                <div class="seeAll">See more(325)</div>
+                    @if (Model.comments.Count() > 3)
+                    {
+                        <div class="seeAll">See more</div>
+                    }
+                }
             </div>
             <!--Comment Section End-->
         </div>
@@ -274,7 +250,7 @@
                             <!--Single Playlist end-->
                         }
                     }
-                  
+
                 </div>
             </div>
         </div>

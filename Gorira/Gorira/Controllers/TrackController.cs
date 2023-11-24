@@ -353,8 +353,11 @@ namespace Gorira.Controllers
                 .FirstOrDefaultAsync(t => t.Id == Id && t.IsDeleted == false);
 
             if (track == null) return NotFound();
+
             AppUser? appUser = null;
+            
             IEnumerable<Playlist>? playlists = null;
+            
             if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
             {
                 appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
@@ -366,11 +369,16 @@ namespace Gorira.Controllers
                     .Where(p => p.IsDeleted == false && (p.UserId == appUser.Id || p.PlaylistFollowers.Any(pf=>pf.UserId == appUser.Id))).ToListAsync();
             }
 
+            IEnumerable<Comment> comments = _context.Comments
+               .Include(c => c.User)
+               .Where(c => c.IsDeleted == false && c.TrackId == Id).OrderByDescending(c => c.CreatedAt);
+
             TrackDetailVM trackDetailVM = new TrackDetailVM 
             {
                 track = track,
-                playlists = playlists
-            
+                playlists = playlists,
+                comments= comments
+
             };
 
             return View(trackDetailVM);
@@ -729,6 +737,42 @@ namespace Gorira.Controllers
             {
                 return NotFound();
             }
+        }
+
+        //9.Post Comment
+        [HttpPost]
+        [Authorize(Roles = "Member")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PostComment(int? Id,string? text) 
+        {
+            if (Id == null) return BadRequest();
+
+            if (string.IsNullOrWhiteSpace(text)) return BadRequest();
+            if (text.Trim()=="") return BadRequest();
+
+            Track? track = await _context.Tracks.FirstOrDefaultAsync(t => t.IsDeleted == false && t.Id == Id);
+
+            if (track == null) return NotFound();
+
+            AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u=>u.UserName == User.Identity.Name);
+
+            Comment comment = new Comment
+            {
+                IsDeleted = false,
+                CreatedBy= User.Identity.Name,
+                UserId = appUser.Id,
+                TrackId = Id,
+                Text = text
+            };
+
+            await _context.Comments.AddAsync(comment);
+            await _context.SaveChangesAsync();
+
+            IEnumerable<Comment> comments = _context.Comments
+                .Include(c=>c.User)
+                .Where(c => c.IsDeleted == false && c.TrackId == Id).OrderByDescending(c => c.CreatedAt).Take(10);
+
+            return PartialView("_CommentsPartial", comments);
         }
     }
 }
