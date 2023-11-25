@@ -1,0 +1,99 @@
+﻿@model MessengerVM
+@{
+    ViewData["Title"] = "Messenger";
+    Chat? showingChat = null;
+    AppUser? userName = null;
+    if (Model.Chats != null)
+    {
+        showingChat = Model.Chats.FirstOrDefault(c => c.Id == Model.ChatId);
+        if (showingChat != null)
+        {
+            userName = showingChat.User1Id == Model.CurrentUser.Id ? showingChat.User2 : showingChat.User1;
+        }
+    }
+}
+
+<main id="messangerMain">
+    <div class="box">
+        <section class="left">
+            <div class="topLeft">
+                <h1>Messangers</h1>
+            </div>
+            <div class="searchUsers">
+                <input class="inputField" type="text" placeholder="Search..." />
+                <img class="" src="~/assets/images/icons/search.svg" alt="" />
+            </div>
+            <div class="messangers">
+                @if (Model.Chats != null)
+                {
+                    @foreach (Chat chat in Model.Chats.OrderByDescending(c=>c.ChatLogs.OrderByDescending(cl=>cl.Id).FirstOrDefault().CreatedAt))
+                    {
+                        AppUser appUser = chat.User1Id == Model.CurrentUser.Id ? chat.User2 : chat.User1;
+                        <!--Single Messanger Start-->
+                        <a style="text-decoration:none;" asp-controller="Messenger" asp-action="Index" asp-route-Id="@chat.Id" class="singleMessanger">
+                            <img class="pfp" src="~/assets/images/pfp/@appUser.ProfilePicture" alt="" />
+                            <div class="rightMessanger">
+                                <h4 class="name">@appUser.DisplayName</h4>
+                                <p class="lastMessage">@(chat.ChatLogs.OrderByDescending(cl=>cl.Id).FirstOrDefault().Message)</p>
+                            </div>
+                        </a>
+                        <!--Single Messanger End-->
+                    }
+
+                }
+            </div>
+        </section>
+        <section class="right">
+            <div class="topRight">
+                <img class="people"
+                     src="~/assets/images/icons/sharingiconImage24px.svg"
+                     alt="" />
+                <h1>@(userName != null ? userName.DisplayName : "Message box")</h1>
+            </div>
+            <div class="bottom">
+                <div class="meaasagingBox" data-chatid="@((Model.ChatId).ToString())" data-userId="@(userName != null ? userName.Id : "")" pfp="@(userName != null ? userName.ProfilePicture : "")">
+
+                    @if (showingChat != null && showingChat.ChatLogs != null)
+                    {
+                        foreach (ChatLog chatlog in showingChat.ChatLogs)
+                        {
+
+                            if (Model.CurrentUser.Id != chatlog.Messager.Id)
+                            {
+                                <!--Single Message Start-->
+                                <div class="singleMessage me">
+                                    <p class="theMessage">@chatlog.Message</p>
+                                </div>
+                                <!--Single Message End-->
+                            }
+                            else
+                            {
+                                <!--Single Message Start-->
+                                <div class="singleMessage interlocutor">
+                                    <img class="pfpMsg" src="~/assets/images/pfp/@chatlog.Messager.ProfilePicture" />
+                                    <div class="interlocutorMessages">
+                                        <p class="theMessage">
+                                            @chatlog.Message
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <!--Single Message End-->
+                            }
+
+                        }
+                    }
+
+
+                </div>
+                <div class="send">
+                    <input class="inputField messageInput" type="text" placeholder="Message" />
+                    <a class="sendBtn" src="~/assets/images/icons/search.svg" alt="">send</a>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!---->
+<script src="~/assets/javascript/messenger.js" asp-append-version="true"></script>

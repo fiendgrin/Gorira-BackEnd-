@@ -34,7 +34,7 @@
                             <p class="plus">Follow</p>
                             <p class="check">Followed</p>
                         </a>
-                        <a class="message">
+                        <a asp-controller="Messenger" asp-action="Message" asp-route-Id="@Model.User.Id" class="message">
                             <img src="~/assets/images/icons/message.svg" alt="" />Message
                         </a>
                     }

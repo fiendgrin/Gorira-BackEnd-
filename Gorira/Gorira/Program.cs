@@ -1,9 +1,11 @@
 using Gorira.DataAccessLayer;
 using Gorira.Helpers;
+using Gorira.Hubs;
 using Gorira.Interfaces;
 using Gorira.Models;
 using Gorira.Services;
 using Gorira.ViewModels;
+using Gorira.ViewModels.ChatHubVMs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,17 +34,26 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(
 
 builder.Services.Configure<SmtpSetting>(builder.Configuration.GetSection("SmtpSetting"));
 
+builder.Services.AddSignalR();
+
+
 builder.Services.AddScoped<ILayoutService, LayoutService>();
 
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseStaticFiles();
 app.UseSession();
+
+app.UseEndpoints(endPoints =>
+{
+    endPoints.MapHub<ChatHub>("/chat");
+});
 
 app.MapControllerRoute("Area", "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
 app.MapControllerRoute("default", "{controller=home}/{action=index}/{id?}");

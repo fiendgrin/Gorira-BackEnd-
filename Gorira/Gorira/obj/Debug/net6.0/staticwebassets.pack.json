@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\notification\\notification.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\notification\\notification.mp3"
+    },
+    {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231115011853536.zip",
       "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231115011853536.zip"
     },
@@ -1193,8 +1197,8 @@
       "PackagePath": "staticwebassets\\assets\\javascript\\header.js"
     },
     {
-      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\messanger.js",
-      "PackagePath": "staticwebassets\\assets\\javascript\\messanger.js"
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\messenger.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\messenger.js"
     },
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\modal.js",

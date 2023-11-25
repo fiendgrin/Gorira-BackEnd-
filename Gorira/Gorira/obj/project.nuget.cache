@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Pu+BpZN+P+kPKg29tO0kSd8vZ3r7T3sqlR9g/WH8E9/iAMseHw1NJE5FzpheQC1IQXhsXqwwoPDdfsWvIF5OFQ==",
+  "dgSpecHash": "0c2MDML1pTzdNQedqTMU3T0PTnwCgpHE/7I7eiqabWo7y9B5wOYeowP4qWwNBbrReIIibvKNRURNkmUDl+H2FQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\Gorira.csproj",
   "expectedPackageFiles": [
@@ -56,14 +56,26 @@
     "C:\\Users\\yunis\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\jetbrains.annotations\\2022.3.1\\jetbrains.annotations.2022.3.1.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\jquery\\1.6.4\\jquery.1.6.4.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\mailkit\\4.2.0\\mailkit.4.2.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.aspnet.signalr\\2.4.3\\microsoft.aspnet.signalr.2.4.3.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.aspnet.signalr.core\\2.4.3\\microsoft.aspnet.signalr.core.2.4.3.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.aspnet.signalr.js\\2.4.3\\microsoft.aspnet.signalr.js.2.4.3.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.aspnet.signalr.systemweb\\2.4.3\\microsoft.aspnet.signalr.systemweb.2.4.3.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\6.0.25\\microsoft.aspnetcore.connections.abstractions.6.0.25.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.24\\microsoft.aspnetcore.cryptography.internal.6.0.24.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.24\\microsoft.aspnetcore.cryptography.keyderivation.6.0.24.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.aspnetcore.http.connections.client\\6.0.25\\microsoft.aspnetcore.http.connections.client.6.0.25.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.aspnetcore.http.connections.common\\6.0.25\\microsoft.aspnetcore.http.connections.common.6.0.25.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\6.0.24\\microsoft.aspnetcore.identity.entityframeworkcore.6.0.24.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.0\\microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.aspnetcore.signalr.client\\6.0.25\\microsoft.aspnetcore.signalr.client.6.0.25.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.aspnetcore.signalr.client.core\\6.0.25\\microsoft.aspnetcore.signalr.client.core.6.0.25.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.aspnetcore.signalr.common\\6.0.25\\microsoft.aspnetcore.signalr.common.6.0.25.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.aspnetcore.signalr.protocols.json\\6.0.25\\microsoft.aspnetcore.signalr.protocols.json.6.0.25.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.build\\17.3.2\\microsoft.build.17.3.2.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.build.framework\\17.3.2\\microsoft.build.framework.17.3.2.nupkg.sha512",
@@ -94,10 +106,11 @@
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.1\\microsoft.extensions.dependencyinjection.6.0.1.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.extensions.features\\6.0.25\\microsoft.extensions.features.6.0.25.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.extensions.identity.core\\6.0.24\\microsoft.extensions.identity.core.6.0.24.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.extensions.identity.stores\\6.0.24\\microsoft.extensions.identity.stores.6.0.24.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.extensions.logging\\6.0.0\\microsoft.extensions.logging.6.0.0.nupkg.sha512",
-    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.4\\microsoft.extensions.logging.abstractions.6.0.4.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.identity.client\\4.21.1\\microsoft.identity.client.4.21.1.nupkg.sha512",
@@ -109,6 +122,9 @@
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.net.stringtools\\17.3.2\\microsoft.net.stringtools.17.3.2.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.owin\\2.1.0\\microsoft.owin.2.1.0.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.owin.host.systemweb\\2.1.0\\microsoft.owin.host.systemweb.2.1.0.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\microsoft.owin.security\\2.1.0\\microsoft.owin.security.2.1.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.visualstudio.debugger.contracts\\17.2.0\\microsoft.visualstudio.debugger.contracts.17.2.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration\\6.0.16\\microsoft.visualstudio.web.codegeneration.6.0.16.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.core\\6.0.16\\microsoft.visualstudio.web.codegeneration.core.6.0.16.nupkg.sha512",
@@ -132,6 +148,7 @@
     "C:\\Users\\yunis\\.nuget\\packages\\nuget.projectmodel\\6.6.1\\nuget.projectmodel.6.6.1.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\nuget.protocol\\6.6.1\\nuget.protocol.6.6.1.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\nuget.versioning\\6.6.1\\nuget.versioning.6.6.1.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\owin\\1.0.0\\owin.1.0.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -176,7 +193,7 @@
     "C:\\Users\\yunis\\.nuget\\packages\\system.io.compression.zipfile\\4.3.0\\system.io.compression.zipfile.4.3.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\system.io.filesystem\\4.3.0\\system.io.filesystem.4.3.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
-    "C:\\Users\\yunis\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\system.io.pipelines\\6.0.3\\system.io.pipelines.6.0.3.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\system.linq.expressions\\4.3.0\\system.linq.expressions.4.3.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
@@ -221,6 +238,7 @@
     "C:\\Users\\yunis\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\system.text.regularexpressions\\4.3.0\\system.text.regularexpressions.4.3.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
+    "C:\\Users\\yunis\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\system.threading.tasks.dataflow\\6.0.0\\system.threading.tasks.dataflow.6.0.0.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
@@ -231,5 +249,66 @@
     "C:\\Users\\yunis\\.nuget\\packages\\x.pagedlist\\8.4.7\\x.pagedlist.8.4.7.nupkg.sha512",
     "C:\\Users\\yunis\\.nuget\\packages\\x.pagedlist.mvc.core\\8.4.7\\x.pagedlist.mvc.core.8.4.7.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.SignalR.Core 2.4.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.SignalR.Core",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.SignalR.SystemWeb 2.4.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.SignalR.SystemWeb",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Owin 2.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Owin",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Owin.Host.SystemWeb 2.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Owin.Host.SystemWeb",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Owin.Security 2.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Owin.Security",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Owin 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Owin",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

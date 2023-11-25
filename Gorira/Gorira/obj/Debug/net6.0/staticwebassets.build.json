@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8v/JKdFpQwgw9i7n69Bn4/MgXXhO6+9g+6B9NVNcntk=",
+  "Hash": "aOqTOqrGUABP1NDZYCVKmk6FhDps38yxE564ZNrqr1w=",
   "Source": "Gorira",
   "BasePath": "_content/Gorira",
   "Mode": "Default",
@@ -16,6 +16,23 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\notification\\notification.mp3",
+      "SourceId": "Gorira",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
+      "BasePath": "_content/Gorira",
+      "RelativePath": "assets/audio/notification/notification.mp3",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\audio\\notification\\notification.mp3"
+    },
     {
       "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231115011853536.zip",
       "SourceId": "Gorira",
@@ -5083,12 +5100,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\javascript\\header.js"
     },
     {
-      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\messanger.js",
+      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\messenger.js",
       "SourceId": "Gorira",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
       "BasePath": "_content/Gorira",
-      "RelativePath": "assets/javascript/messanger.js",
+      "RelativePath": "assets/javascript/messenger.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -5097,7 +5114,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\javascript\\messanger.js"
+      "OriginalItemSpec": "wwwroot\\assets\\javascript\\messenger.js"
     },
     {
       "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\modal.js",

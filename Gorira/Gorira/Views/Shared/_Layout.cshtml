@@ -41,7 +41,12 @@
 <body>
     <!--APlayer-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+    <!--SignalR-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.25/signalr.min.js"></script>
     <!--Start-->
+    <audio id="notificationSound">
+        <source src="~/assets/audio/notification/notification.mp3" type="audio/mpeg">
+    </audio>
     <!--Header start-->
     <header>
         <div class="boxTop">
@@ -107,7 +112,7 @@
                                 <div class="divider"></div>
                                 <!--Single Line End-->
                                 <!--Single Line start-->
-                                <a href="messanger.html" class="accountLine">
+                                <a asp-controller="Messenger" asp-action="Index" class="accountLine">
                                     <img src="~/assets/images/icons/message.svg" alt="" />
                                     <p>Messages</p>
                                 </a>
@@ -256,6 +261,7 @@
         </div>
     </footer>
     <!--Footer End-->
+   
     @RenderSection("Scripts",false)
     <!--Script For Bootstrap-->
     <script src="~/assets/jquerry/jquerry.js"></script>

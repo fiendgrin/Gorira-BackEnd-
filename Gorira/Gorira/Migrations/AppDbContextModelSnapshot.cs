@@ -189,6 +189,107 @@ namespace Gorira.Migrations
                     b.ToTable("Baskets");
                 });
 
+            modelBuilder.Entity("Gorira.Models.Chat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("DeletedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("User1Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("User2Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("User1Id");
+
+                    b.HasIndex("User2Id");
+
+                    b.ToTable("Chats");
+                });
+
+            modelBuilder.Entity("Gorira.Models.ChatLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("ChatId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("DeletedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("MessagerId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChatId");
+
+                    b.HasIndex("MessagerId");
+
+                    b.ToTable("ChatLogs");
+                });
+
             modelBuilder.Entity("Gorira.Models.Comment", b =>
                 {
                     b.Property<int>("Id")
@@ -1108,6 +1209,36 @@ namespace Gorira.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Gorira.Models.Chat", b =>
+                {
+                    b.HasOne("Gorira.Models.AppUser", "User1")
+                        .WithMany()
+                        .HasForeignKey("User1Id");
+
+                    b.HasOne("Gorira.Models.AppUser", "User2")
+                        .WithMany()
+                        .HasForeignKey("User2Id");
+
+                    b.Navigation("User1");
+
+                    b.Navigation("User2");
+                });
+
+            modelBuilder.Entity("Gorira.Models.ChatLog", b =>
+                {
+                    b.HasOne("Gorira.Models.Chat", "Chat")
+                        .WithMany()
+                        .HasForeignKey("ChatId");
+
+                    b.HasOne("Gorira.Models.AppUser", "Messager")
+                        .WithMany()
+                        .HasForeignKey("MessagerId");
+
+                    b.Navigation("Chat");
+
+                    b.Navigation("Messager");
+                });
+
             modelBuilder.Entity("Gorira.Models.Comment", b =>
                 {
                     b.HasOne("Gorira.Models.Track", "Track")
@@ -1150,7 +1281,7 @@ namespace Gorira.Migrations
             modelBuilder.Entity("Gorira.Models.PlaylistFollower", b =>
                 {
                     b.HasOne("Gorira.Models.Playlist", "Playlist")
-                        .WithMany()
+                        .WithMany("PlaylistFollowers")
                         .HasForeignKey("PlaylistId");
 
                     b.HasOne("Gorira.Models.AppUser", "User")
@@ -1165,11 +1296,11 @@ namespace Gorira.Migrations
             modelBuilder.Entity("Gorira.Models.PlaylistTrack", b =>
                 {
                     b.HasOne("Gorira.Models.Playlist", "Playlist")
-                        .WithMany()
+                        .WithMany("PlaylistTracks")
                         .HasForeignKey("PlaylistId");
 
                     b.HasOne("Gorira.Models.Track", "Track")
-                        .WithMany()
+                        .WithMany("PlaylistTracks")
                         .HasForeignKey("TrackId");
 
                     b.Navigation("Playlist");
@@ -1324,8 +1455,17 @@ namespace Gorira.Migrations
                     b.Navigation("SubGenreTracks");
                 });
 
+            modelBuilder.Entity("Gorira.Models.Playlist", b =>
+                {
+                    b.Navigation("PlaylistFollowers");
+
+                    b.Navigation("PlaylistTracks");
+                });
+
             modelBuilder.Entity("Gorira.Models.Track", b =>
                 {
+                    b.Navigation("PlaylistTracks");
+
                     b.Navigation("TrackTags");
                 });
 #pragma warning restore 612, 618
