@@ -415,7 +415,6 @@ namespace Gorira.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
@@ -1212,7 +1211,7 @@ namespace Gorira.Migrations
             modelBuilder.Entity("Gorira.Models.Chat", b =>
                 {
                     b.HasOne("Gorira.Models.AppUser", "User1")
-                        .WithMany()
+                        .WithMany("Chats")
                         .HasForeignKey("User1Id");
 
                     b.HasOne("Gorira.Models.AppUser", "User2")
@@ -1227,7 +1226,7 @@ namespace Gorira.Migrations
             modelBuilder.Entity("Gorira.Models.ChatLog", b =>
                 {
                     b.HasOne("Gorira.Models.Chat", "Chat")
-                        .WithMany()
+                        .WithMany("ChatLogs")
                         .HasForeignKey("ChatId");
 
                     b.HasOne("Gorira.Models.AppUser", "Messager")
@@ -1441,11 +1440,18 @@ namespace Gorira.Migrations
                 {
                     b.Navigation("Baskets");
 
+                    b.Navigation("Chats");
+
                     b.Navigation("Followers");
 
                     b.Navigation("Follows");
 
                     b.Navigation("Tracks");
+                });
+
+            modelBuilder.Entity("Gorira.Models.Chat", b =>
+                {
+                    b.Navigation("ChatLogs");
                 });
 
             modelBuilder.Entity("Gorira.Models.Genre", b =>

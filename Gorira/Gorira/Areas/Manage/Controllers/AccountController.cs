@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 
 namespace Gorira.Areas.Manage.Controllers
 {
-    [Area("manage")]
+    [Area("Manage")]
     public class AccountController : Controller
     {
         private readonly UserManager<AppUser> _userManager;

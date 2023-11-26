@@ -1,0 +1,31 @@
+﻿@model Genre
+@{
+    ViewData["Title"] = "Update Genre";
+}
+
+<div class="content-wrapper">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Create a new genre</h4>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <form method="post" enctype="multipart/form-data" class="forms-sample">
+                    <div class="form-group">
+                        <label asp-for="Name" for="Name">Name</label>
+                        <input asp-for="Name" class="form-control" id="Name" placeholder="Name">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group d-flex flex-column">
+                        <label class="form-label" asp-for="ImageFile">Image upload</label>
+                        <input class="form-control file-upload-info" accept=".png, .jpg, .jpeg" asp-for="ImageFile">
+                        <span asp-validation-for="ImageFile" class="text-danger"></span>
+                    </div>
+                    <button class="btn btn-primary mr-2">Update</button>
+                    <a asp-area="Manage" asp-controller="Genre" asp-action="Index" class="btn btn-dark">Go back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content-wrapper ends -->
+

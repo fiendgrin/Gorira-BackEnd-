@@ -1,0 +1,186 @@
+﻿@model DetailGenreVM
+@{
+    ViewData["Title"] = Model.Genre.Name;
+}
+@using X.PagedList
+@using X.PagedList.Mvc
+@using X.PagedList.Mvc.Core;
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title" style="color:#b878f0;">@(Model.Genre.Name) </h3>
+        <a asp-area="Manage" asp-controller="Genre" asp-action="Index" class="btn btn-dark">Go back</a>
+    </div>
+    <div class="row">
+
+
+        <div class="col-md-6 col-xl-4 grid-margin stretch-card pb-0">
+            <div class="card pb-0">
+                <div style="width:100%; padding:10px; align-items:center; justify-content:center;" class="d-flex flex-column">
+                    <div class="item">
+                        <img style="width: 400px; height:400px; object-fit:cover; object-position:center; align-self:center; justify-self:center; border:1px solid #b878f0; border-radius:6px;" src="~/assets/images/genres/@Model.Genre.Image" alt="">
+                    </div>
+                    <h4 class="card-title mt-3 mb-0">Cover Image</h4>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+    <div class="row">
+
+
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+
+
+                                    <th> Name </th>
+                                    <th> (Genre)Track Count </th>
+                                    <th> (SubGenre)Track Count </th>
+                                    <th> Plays </th>
+                                    <th> Creation Date </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                <tr>
+
+                                    <td> @(Model.Genre.Name) </td>
+                                    <td>
+                                        @(Model.Genre.MainGenreTracks != null ? Model.Genre.MainGenreTracks.Count() : 0)
+                                    </td>
+                                    <td>
+                                        @(Model.Genre.SubGenreTracks != null ? Model.Genre.SubGenreTracks.Count() : 0)
+                                    </td>
+                                    <td>@((Model.Genre.MainGenreTracks != null ? Model.Genre.MainGenreTracks.Sum(t => t.Plays) : 0) + (Model.Genre.SubGenreTracks != null ? Model.Genre.SubGenreTracks.Sum(t => t.Plays) : 0))</td>
+                                    <td>
+                                        @(Model.Genre.CreatedAt.ToString("MMMM, dd yyyy"))
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @if (Model.MainTracks != null && Model.Genre.MainGenreTracks.Count() >0)
+    {
+        <div class="row">
+
+
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Main Genre Tracks</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th> Image </th>
+                                        <th> Title </th>
+                                        <th> Author </th>
+                                        <th> Creation Date </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (Track track in Model.MainTracks)
+                                    {
+                                        <tr>
+                                            <td class="py-1">
+                                                <img style="object-fit:cover;" src="~/assets/images/@(track.User.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")" alt="image">
+                                            </td>
+                                            <td> @(track.Title) </td>
+                                            <td>
+                                                @(track.User.DisplayName)
+                                            </td>
+                                            <td>
+                                                @(track.CreatedAt.ToString("MMMM, dd yyyy"))
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            @Html.PagedListPager((IPagedList) Model.MainTracks,page=>Url.Action("Detail","Genre", new { Id = Model.Genre.Id, page = page, subPage = Model.SubTracks.PageNumber }),
+                        new X.PagedList.Web.Common.PagedListRenderOptions
+                        {
+                        Display = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+                        DisplayPageCountAndCurrentLocation = false,
+                        MaximumPageNumbersToDisplay = 5 })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+
+    @if (Model.SubTracks != null && Model.Genre.SubGenreTracks.Count() > 0)
+    {
+        <div class="row">
+
+
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Sub Genre Tracks</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th> Image </th>
+                                        <th> Title </th>
+                                        <th> Author </th>
+                                        <th> Creation Date </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (Track track in Model.SubTracks)
+                                    {
+                                        <tr>
+                                            <td class="py-1">
+                                                <img style="object-fit:cover;" src="~/assets/images/@(track.User.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")" alt="image">
+                                            </td>
+                                            <td> @(track.Title) </td>
+                                            <td>
+                                                @(track.User.DisplayName)
+                                            </td>
+                                            <td>
+                                                @(track.CreatedAt.ToString("MMMM, dd yyyy"))
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            @Html.PagedListPager((IPagedList) Model.SubTracks,subPage=>Url.Action("Detail","Genre", new {Id = Model.Genre.Id, page = Model.MainTracks.PageNumber, subPage = subPage}),
+                        new X.PagedList.Web.Common.PagedListRenderOptions
+                        {
+                        Display = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+                        DisplayPageCountAndCurrentLocation = false,
+                        MaximumPageNumbersToDisplay = 5 })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+
+  
+</div>
+<!-- content-wrapper ends -->

@@ -21133,3 +21133,195 @@ div.tagsinput {
   flex-grow: 1; }
 
 /*# sourceMappingURL=maps/style.css.map */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 600;
+    transition: 0.3s;
+
+}
+
+.pagination-container {
+    width: 100%;
+}
+
+.pagination li {
+    margin: 0 3px;
+    transition: 0.3s;
+}
+
+    .pagination li.active {
+        margin: 0 6px;
+        border-radius: 50%;
+        background: #202020;
+        max-width: auto;
+        min-width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        padding: 0 6px;
+        color: white;
+        transition: 0.3s;
+        border: solid 2px white;
+        background: #0f1015;
+    }
+
+.pagination a {
+    text-decoration: none;
+    margin: 0 6px;
+    border-radius: 50%;
+    background: #202020;
+    max-width: auto;
+    min-width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0 6px;
+    color: gray;
+    transition: 0.3s;
+    background: #0f1015;
+}
+
+    .pagination a:hover {
+        background: #282828;
+    }
+
+.pagination .disabled a {
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #999;
+    padding: 0 6px;
+    
+}
+
+@media (min-width: 768px) and (max-width: 1359px) {
+
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+        font-family: "Chakra Petch", sans-serif;
+        font-weight: 400;
+        transition: 0.3s;
+    }
+
+        .pagination li {
+            margin: 0 1px;
+            transition: 0.3s;
+        }
+
+            .pagination li.active {
+                margin: 0 4px;
+                border-radius: 50%;
+                background: #202020;
+                max-width: auto;
+                min-width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                padding: 0 2px;
+                color: white;
+                transition: 0.3s;
+                background: #0f1015;
+            }
+
+        .pagination a {
+            text-decoration: none;
+            margin: 0 4px;
+            border-radius: 50%;
+            background: #202020;
+            max-width: auto;
+            min-width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0 2px;
+            color: gray;
+            transition: 0.3s;
+            background: #0f1015;
+        }
+
+        .pagination .disabled a {
+            pointer-events: none;
+            background-color: rgba(0, 0, 0, 0.1);
+            color: #999;
+            padding: 0 1px;
+        }
+}
+
+@media (min-width: 0px) and (max-width: 768px) {
+
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+        font-family: "Chakra Petch", sans-serif;
+        font-weight: 400;
+        transition: 0.3s;
+    }
+
+        .pagination li {
+            margin: 0 1px;
+            transition: 0.3s;
+        }
+
+            .pagination li.active {
+                margin: 0 2px;
+                border-radius: 50%;
+                background: #202020;
+                max-width: auto;
+                min-width: 28px;
+                height: 28px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                padding: 0 2px;
+                color: white;
+                transition: 0.3s;
+                background: #0f1015;
+            }
+
+        .pagination a {
+            text-decoration: none;
+            margin: 0 2px;
+            border-radius: 50%;
+            background: #202020;
+            max-width: auto;
+            min-width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0 2px;
+            color: gray;
+            transition: 0.3s;
+            background: #0f1015;
+        }
+
+        .pagination .disabled a {
+            pointer-events: none;
+            background-color: rgba(0, 0, 0, 0.1);
+            color: #999;
+            padding: 0 1px;
+        }
+}
