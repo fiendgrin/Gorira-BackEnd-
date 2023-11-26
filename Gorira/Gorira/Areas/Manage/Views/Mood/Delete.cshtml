@@ -1,0 +1,82 @@
+﻿@model Mood
+@{
+    ViewData["Title"] = "Delete Mood";
+    List<Mood> moods = ViewBag.Moods;
+    SelectList moodList = new SelectList(moods, nameof(Mood.Id), nameof(Mood.Name));
+}
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title" style="color:#b878f0;">@(Model.Name) </h3>
+        <a asp-area="Manage" asp-controller="Mood" asp-action="Index" class="btn btn-dark">Go back</a>
+    </div>
+
+    <div class="row">
+
+
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+
+
+                                    <th> Name </th>
+                                    <th> (Primary)Track Count </th>
+                                    <th> (Secondary)Track Count </th>
+                                    <th> Plays </th>
+                                    <th> Creation Date </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                <tr>
+
+                                    <td> @(Model.Name) </td>
+                                    <td>
+                                        @(Model.PrimaryMoodTracks != null ? Model.PrimaryMoodTracks.Count() : 0)
+                                    </td>
+                                    <td>
+                                        @(Model.SecondaryMoodTracks != null ? Model.SecondaryMoodTracks.Count() : 0)
+                                    </td>
+                                    <td>@((Model.PrimaryMoodTracks != null ? Model.PrimaryMoodTracks.Sum(t => t.Plays) : 0) + (Model.SecondaryMoodTracks != null ? Model.SecondaryMoodTracks.Sum(t => t.Plays) : 0))</td>
+                                    <td>
+                                        @(Model.CreatedAt.ToString("MMMM, dd yyyy"))
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Move tracks to</h4>
+                    <form method="post" class="forms-sample" asp-area="Manage" asp-controller="Mood" asp-action="DeleteMood" asp-route-Id="@Model.Id">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label for="exampleSelectGender">Mood</label>
+                            <select name="newMoodId" class="form-control" id="exampleSelectGender" asp-items="moodList">
+                            </select>
+                        </div>
+                        <button class="btn btn-primary mr-2">Delete</button>
+                        <a asp-area="Manage" asp-controller="Mood" asp-action="Index" class="btn btn-dark">Go back</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content-wrapper ends -->

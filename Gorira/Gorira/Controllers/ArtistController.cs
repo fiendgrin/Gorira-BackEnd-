@@ -136,7 +136,7 @@ namespace Gorira.Controllers
         }
 
         //3.My Profile
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> MyProfile(int? page)
         {
             AppUser currentUser = await _userManager.Users
@@ -167,7 +167,7 @@ namespace Gorira.Controllers
         }
 
         //4.FollowUser
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> FollowUser(string? Id)
         {
             if (Id == null) return BadRequest();
@@ -214,7 +214,7 @@ namespace Gorira.Controllers
         }
 
         //5.Report User
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> ReportUser(string? Id)
         {
             if (Id == null) return BadRequest();

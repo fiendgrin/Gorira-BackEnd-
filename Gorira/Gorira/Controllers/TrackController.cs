@@ -157,7 +157,7 @@ namespace Gorira.Controllers
         }
 
         //2.Upload
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> Upload()
         {
             ViewBag.Moods = await _context.Moods.Where(m => m.IsDeleted == false).ToListAsync();
@@ -167,7 +167,7 @@ namespace Gorira.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Upload(Track? track, List<string>? TagNames)
         {
@@ -298,7 +298,7 @@ namespace Gorira.Controllers
         }
 
         //3.Play Counter
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> PlayCounter(int? Id)
         {
 
@@ -390,7 +390,7 @@ namespace Gorira.Controllers
         }
 
         //5.My Tracks
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> MyTracks(int? page, string? search)
         {
             if (page <= 0)
@@ -409,7 +409,7 @@ namespace Gorira.Controllers
 
         //6.Track Edit
 
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> Edit(int? Id)
         {
             ViewBag.Moods = await _context.Moods.Where(m => m.IsDeleted == false).ToListAsync();
@@ -428,7 +428,7 @@ namespace Gorira.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Track? track, int? Id, List<string>? TagNames)
         {
@@ -624,7 +624,7 @@ namespace Gorira.Controllers
         }
 
         //7.Track Delete
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> Delete(int? Id)
         {
 
@@ -707,7 +707,7 @@ namespace Gorira.Controllers
         }
 
         //8.Free Download
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> FreeDownload(int? Id)
         {
             if (Id == null) return BadRequest();
@@ -746,7 +746,7 @@ namespace Gorira.Controllers
 
         //9.Post Comment
         [HttpPost]
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> PostComment(int? Id, string? text)
         {

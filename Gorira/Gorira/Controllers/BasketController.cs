@@ -33,7 +33,7 @@ namespace Gorira.Controllers
         }
 
         //2.AddBasket
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> AddBasket(int? Id, bool? isUnlimited)
         {
             if (Id == null) return BadRequest();
@@ -140,7 +140,7 @@ namespace Gorira.Controllers
         }
 
         //3.RemoveBasket
-        [Authorize(Roles ="Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles ="Member")]
         public async Task<IActionResult> RemoveBasket(int? Id)
         {
             if (Id == null) return BadRequest();

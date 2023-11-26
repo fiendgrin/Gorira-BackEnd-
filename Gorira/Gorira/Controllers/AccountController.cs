@@ -246,7 +246,7 @@ namespace Gorira.Controllers
         }
 
         //5.Edit Profile
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> AccountSettings()
         {
             TempData["Tab"] = "Profile";
@@ -292,7 +292,7 @@ namespace Gorira.Controllers
             return View(accountSettingsVM);
         }
         [HttpPost]
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditProfile(EditProfileVM editProfileVM)
         {
@@ -384,7 +384,7 @@ namespace Gorira.Controllers
 
         //6.Change Email
         [HttpPost]
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangeEmail(ChangeEmailVM changeEmailVM)
         {
@@ -475,7 +475,7 @@ namespace Gorira.Controllers
 
         //7.Change UserName
         [HttpPost]
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangeUserName(ChangeUserNameVM changeUserNameVM)
         {
@@ -565,7 +565,7 @@ namespace Gorira.Controllers
 
         //8.Change PhoneNumber
         [HttpPost]
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePhoneNumber(ChangePhoneNumberVM changePhoneNumberVM)
         {
@@ -654,7 +654,7 @@ namespace Gorira.Controllers
 
         //9.Change Password
         [HttpPost]
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordVM changePasswordVM)
         {
@@ -736,7 +736,7 @@ namespace Gorira.Controllers
 
         //10.Edit Social Media
         [HttpPost]
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditSocialMedia(EditSocialMediaVM editSocialMediaVM)
         {

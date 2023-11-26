@@ -80,7 +80,7 @@ namespace Gorira.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Playlist? playlist)
         {
@@ -119,7 +119,7 @@ namespace Gorira.Controllers
         }
 
         //3.AddTrack
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> AddTrack(int? trackId,int? playlistId,bool? reload=false) 
         {
             if (trackId == null) return BadRequest();
@@ -203,7 +203,7 @@ namespace Gorira.Controllers
         }
 
         //5.Edit
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> Edit(int? Id)
         {
             if (Id == null) return BadRequest();
@@ -222,7 +222,7 @@ namespace Gorira.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Playlist? playlist, int? Id) 
         {
@@ -266,7 +266,7 @@ namespace Gorira.Controllers
         }
 
         //6.Delete
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> Delete(int? Id) 
         {
             if (Id == null) return BadRequest();
@@ -321,7 +321,7 @@ namespace Gorira.Controllers
         }
 
         //7.Follow Playlist
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> FollowPlaylist(int? Id) 
         {
 

@@ -2,7 +2,7 @@
 using Gorira.DataAccessLayer;
 using Gorira.Helpers;
 using Gorira.Models;
-using Microsoft.AspNet.SignalR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +10,7 @@ using X.PagedList;
 
 namespace Gorira.Areas.Manage.Controllers
 {
-    [Authorize(Roles ="SuperAdmin, Admin")]
+    [Microsoft.AspNetCore.Authorization.Authorize(Roles ="SuperAdmin, Admin")]
     [Area("Manage")]
     public class GenreController : Controller
     {
@@ -172,8 +172,8 @@ namespace Gorira.Areas.Manage.Controllers
             }
 
             DbGenre.Name = genre.Name;
-            genre.UpdatedBy = User.Identity.Name;
-            genre.UpdatedAt = DateTime.Now;
+            DbGenre.UpdatedBy = User.Identity.Name;
+            DbGenre.UpdatedAt = DateTime.Now;
 
 
             await _context.SaveChangesAsync();

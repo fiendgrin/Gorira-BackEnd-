@@ -27,7 +27,7 @@ namespace Gorira.Controllers
         //2.Remove Cart
         //===============================================
 
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> Index()
         {
             List<CartVM>? cartVMs = new List<CartVM>();
@@ -86,7 +86,7 @@ namespace Gorira.Controllers
         }
 
         //2.Remove Cart
-        [Authorize(Roles = "Member")]
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> RemoveCart(int? Id)
         {
             if (Id == null) return BadRequest();
