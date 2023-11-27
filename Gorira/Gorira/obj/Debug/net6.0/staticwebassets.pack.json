@@ -2353,6 +2353,10 @@
       "PackagePath": "staticwebassets\\manage\\js\\modal-demo.js"
     },
     {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\manage\\js\\modal.js",
+      "PackagePath": "staticwebassets\\manage\\js\\modal.js"
+    },
+    {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\manage\\js\\morris.js",
       "PackagePath": "staticwebassets\\manage\\js\\morris.js"
     },

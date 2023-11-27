@@ -38,7 +38,7 @@
                 <li class="nav-item menu-items">
                     <a class="nav-link" asp-area="Manage" asp-controller="Dashboard" asp-action="Index">
                         <span class="menu-icon">
-                            <i class="mdi mdi-speedometer"></i>
+                            <i style="transform:translateY(1.5px);" class="mdi mdi-speedometer"></i>
                         </span>
                         <span class="menu-title">Dashboard</span>
                     </a>
@@ -48,7 +48,7 @@
                 <li class="nav-item menu-items">
                     <a class="nav-link" asp-area="Manage" asp-controller="Genre" asp-action="Index">
                         <span class="menu-icon">
-                            <i class="mdi mdi-music-note"></i>
+                            <i style="transform:translateY(1.5px);" class="mdi mdi-music-note"></i>
                         </span>
                         <span class="menu-title">Genres</span>
                     </a>
@@ -58,9 +58,19 @@
                 <li class="nav-item menu-items">
                     <a class="nav-link" asp-area="Manage" asp-controller="Mood" asp-action="Index">
                         <span class="menu-icon">
-                            <i class="mdi mdi-emoticon"></i>
+                            <i style="transform:translateY(1.5px);" class="mdi mdi-emoticon"></i>
                         </span>
                         <span class="menu-title">Moods</span>
+                    </a>
+                </li>
+                <!--Single Sidebar Section End-->
+                <!--Single Sidebar Section Start-->
+                <li class="nav-item menu-items">
+                    <a class="nav-link" asp-area="Manage" asp-controller="User" asp-action="Index">
+                        <span class="menu-icon">
+                            <i style="transform:translateY(1.5px);" class="mdi mdi-account"></i>
+                        </span>
+                        <span class="menu-title">Users</span>
                     </a>
                 </li>
                 <!--Single Sidebar Section End-->
@@ -143,6 +153,7 @@
     <script src="~/manage/vendors/jvectormap/jquery-jvectormap.min.js"></script>
     <script src="~/manage/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
     <script src="~/manage/vendors/owl-carousel-2/owl.carousel.min.js"></script>
+
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="~/manage/js/off-canvas.js"></script>
@@ -154,5 +165,10 @@
     <!-- Custom js for this page -->
     <script src="~/manage/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+
+    <script src="~/manage/js/modal.js" asp-append-version="true"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.all.min.js
+"></script>
 </body>
 </html>

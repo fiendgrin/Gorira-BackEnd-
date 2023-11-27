@@ -16,7 +16,6 @@
   <ItemGroup>
     <Folder Include="wwwroot\assets\audio\stems\" />
     <Folder Include="wwwroot\assets\audio\untagged\" />
-    <Folder Include="wwwroot\manage\" />
   </ItemGroup>
 
   <ItemGroup>

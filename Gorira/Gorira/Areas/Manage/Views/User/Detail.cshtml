@@ -1,0 +1,283 @@
+﻿@model UserDetailVM
+@{
+    ViewData["Title"] = Model.AppUser.UserName;
+    TimeSpan? Remaining = Model.AppUser.LockoutEnd - DateTime.Now;
+    double? totalSeconds = Remaining.GetValueOrDefault().TotalSeconds;
+}
+@using X.PagedList
+@using X.PagedList.Mvc
+@using X.PagedList.Mvc.Core;
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title" style="color:#b878f0;">@(Model.AppUser.UserName) </h3>
+        <a asp-area="Manage" asp-controller="User" asp-action="Index" class="btn btn-dark">Go back</a>
+    </div>
+    @if (Model.AppUser.ProfilePicture != null)
+    {
+        <div class="row">
+
+
+            <div class="col-md-6 col-xl-4 grid-margin stretch-card pb-0">
+                <div class="card pb-0">
+                    <div style="width:100%; padding:10px; align-items:center; justify-content:center;" class="d-flex flex-column">
+                        <div class="item">
+                            <img style="width: 400px; height:400px; object-fit:cover; object-position:center; align-self:center; justify-self:center; border:1px solid #b878f0; border-radius:6px;" src="~/assets/images/pfp/@Model.AppUser.ProfilePicture" alt="">
+                        </div>
+                        <h4 class="card-title mt-3 mb-0">Profile Picture</h4>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    }
+
+
+
+    <div class="row">
+
+
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+
+
+                                    <th> Name </th>
+                                    <th> Email </th>
+                                    <th> Track Count </th>
+                                    <th> Plays </th>
+                                    <th> Follower Count </th>
+                                    <th> Roles </th>
+                                    <th>Is Active</th>
+                                    <th>Is Locked Out</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                <tr>
+
+                                    <td> @(Model.AppUser.UserName) </td>
+                                    <td>@Model.AppUser.Email</td>
+                                    <td>
+                                        @(Model.AppUser.Tracks != null ? Model.AppUser.Tracks.Count() : 0)
+                                    </td>
+                                    <td>@(Model.AppUser.Tracks != null ? Model.AppUser.Tracks.Sum(t => t.Plays) : 0)</td>
+                                    <td>
+                                        @(Model.AppUser.Followers != null ? Model.AppUser.Followers.Count() : 0)
+                                    </td>
+                                    <td>@string.Join(",",Model.AppUser.Roles.Select(x=>x))</td>
+                                    <td class="@(Model.AppUser.IsActive ? "text-success" : "text-danger")">@(Model.AppUser.IsActive ? "✓" : "X")</td>
+                                    @if (Remaining == null || totalSeconds <= 0)
+                                    {
+                                        <td>Is <strong class="text-success">NOT</strong> Locked Out</td>
+                                    }
+                                    else
+                                    {
+                                        <td><strong class="text-danger">Is</strong> Locked Out</td>
+
+
+                                    }
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Meta data</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+
+
+                                    <th> DisplayName </th>
+                                    <th> FirstName </th>
+                                    <th> LastName </th>
+                                    <th> Location </th>
+                                    <th> About User </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                <tr>
+                                    <td>
+                                        @(Model.AppUser.DisplayName != null ? Model.AppUser.DisplayName : "")
+                                    </td>
+                                    <td>
+                                        @(Model.AppUser.FirstName != null ? Model.AppUser.FirstName : "")
+                                    </td>
+                                    <td>
+                                        @(Model.AppUser.LastName != null ? Model.AppUser.LastName : "")
+                                    </td>
+                                    <td>
+                                        @(Model.AppUser.Location != null ? Model.AppUser.Location : "")
+                                    </td>
+                                    <td>
+                                        @(Model.AppUser.AboutMe != null ? Model.AppUser.AboutMe : "")
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Links</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+
+
+                                    <th> YouTube </th>
+                                    <th> Instagram </th>
+                                    <th> SoundCloud </th>
+                                    <th> Twitter </th>
+                                    <th> Facebook </th>
+                                    <th> VK </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                <tr>
+                                    <td>
+                                        @(Model.AppUser.YouTube != null ? Model.AppUser.YouTube : "")
+                                    </td>
+                                    <td>
+                                        @(Model.AppUser.Instagram != null ? Model.AppUser.Instagram : "")
+                                    </td>
+                                    <td>
+                                        @(Model.AppUser.SoundCloud != null ? Model.AppUser.SoundCloud : "")
+                                    </td>
+                                    <td>
+                                        @(Model.AppUser.Twitter != null ? Model.AppUser.Twitter : "")
+                                    </td>
+                                    <td>
+                                        @(Model.AppUser.Facebook != null ? Model.AppUser.Facebook : "")
+                                    </td>
+                                    <td>
+                                        @(Model.AppUser.VK != null ? Model.AppUser.VK : "")
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @if (Model.Tracks != null && Model.Tracks.Count() > 0)
+    {
+        <div class="row">
+
+
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Tracks</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th> Image </th>
+                                        <th> Title </th>
+                                        <th> Plays </th>
+                                        <th> Key </th>
+                                        <th> Main Genre </th>
+                                        <th> Sub Genre </th>
+                                        <th> Price </th>
+                                        <th> Unlimited Price </th>
+                                        <th> Bpm </th>
+                                        <th> Creation Date </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (Track track in Model.Tracks)
+                                    {
+                                        <tr>
+                                            <td class="py-1">
+                                                <img style="object-fit:cover;" src="~/assets/images/@(track.User.ProfilePicture == track.Cover ? $"pfp/{track.Cover}": $"covers/{track.Cover}")" alt="image">
+                                            </td>
+                                            <td> @(track.Title) </td>
+                                            <td>
+                                                @(track.Plays)
+                                            </td>
+                                            <td>
+                                                @(track.MusicKey)
+                                            </td>
+                                            <td>
+                                                @(track.MainGenre != null ? track.MainGenre.Name : "")
+                                            </td>
+                                            <td>
+                                                @(track.SubGenre != null ? track.SubGenre.Name : "")
+                                            </td>
+                                            <td>
+                                                @(track.Price) $
+                                            </td>
+                                            <td>
+                                                @(track.UnlimitedPrice != null ? track.UnlimitedPrice : 0) $
+                                            </td>
+                                            <td>
+                                                @(track.Bpm)
+                                            </td>
+                                            <td>
+                                                @(track.CreatedAt.ToString("MMMM, dd yyyy"))
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            @Html.PagedListPager((IPagedList) Model.Tracks,page=>Url.Action("Detail","User", new { Id = Model.AppUser.Id, page = page}),
+                        new X.PagedList.Web.Common.PagedListRenderOptions
+                        {
+                        Display = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+                        DisplayPageCountAndCurrentLocation = false,
+                        MaximumPageNumbersToDisplay = 5 })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+
+
+
+</div>
+<!-- content-wrapper ends -->
