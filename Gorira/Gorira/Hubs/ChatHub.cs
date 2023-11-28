@@ -4,6 +4,7 @@ using Gorira.ViewModels.ChatHubVMs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace Gorira.Hubs
 {
@@ -20,35 +21,49 @@ namespace Gorira.Hubs
             _userManager = userManager;
             _roleManager = roleManager;
         }
-        public async Task SendMessage(string user, string message,string chatId,string pfp)
+        public async Task SendMessage(string user, string message,string chatId,string pfp,string theUsersName)
         {
             int chatIdInt = int.Parse(chatId);
 
             if (_contextAccessor.HttpContext.User.Identity.IsAuthenticated && _contextAccessor.HttpContext.User.IsInRole("Member"))
             {
                 Chat? chat = await _context.Chats.FirstOrDefaultAsync(c => c.Id == chatIdInt);
-
+                string receiveUserId = chat.User1Id == user ? chat.User2Id : chat.User1Id;
                 if (chat != null)
                 {
-                    // Create a ChatLog entry and save the message
+                  
                     ChatLog chatLogEntry = new ChatLog
                     {
                         Message = message,
-                        Messager = await _userManager.FindByIdAsync(user), // Current user sending the message
-                        ChatId = chatIdInt
+                        Messager = await _userManager.FindByIdAsync(user), 
+                        ChatId = chatIdInt,
+                        Seen = false
                     };
 
                     await _context.ChatLogs.AddAsync(chatLogEntry);
                     await _context.SaveChangesAsync();
 
-                    // Send the message only to the other user involved in the chat
-                    await Clients.User(user).SendAsync("ReceiveMessage", message, pfp);
+                    await Clients.User(receiveUserId).SendAsync("ReceiveMessage", message, pfp, theUsersName, chatId);
                 }
             }
 
 
         }
 
+        public async Task MarkMessagesAsSeen(string chatId)
+        {
+            int chatIdInt = int.Parse(chatId);
+            var messagesToUpdate = await _context.ChatLogs
+                .Where(cl => cl.ChatId == chatIdInt && cl.Seen == false)
+                .ToListAsync();
+
+            foreach (var message in messagesToUpdate)
+            {
+                message.Seen = true;
+            }
+
+            await _context.SaveChangesAsync();
+        }
 
 
     }

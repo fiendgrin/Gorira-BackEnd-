@@ -9,6 +9,6 @@ namespace Gorira.Models
         public AppUser Messager { get; set; }
         public int? ChatId { get; set; }
         public Chat? Chat { get; set; }
-
+        public bool Seen { get; set; }
     }
 }

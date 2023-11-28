@@ -274,6 +274,9 @@ namespace Gorira.Migrations
                     b.Property<string>("MessagerId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("Seen")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime");
 
@@ -1329,7 +1332,7 @@ namespace Gorira.Migrations
                         .HasForeignKey("ReporterId");
 
                     b.HasOne("Gorira.Models.AppUser", "Suspect")
-                        .WithMany()
+                        .WithMany("Reports")
                         .HasForeignKey("SuspectId");
 
                     b.Navigation("Reporter");
@@ -1344,11 +1347,11 @@ namespace Gorira.Migrations
                         .HasForeignKey("MainGenreId");
 
                     b.HasOne("Gorira.Models.Mood", "PrimaryMood")
-                        .WithMany()
+                        .WithMany("PrimaryMoodTracks")
                         .HasForeignKey("PrimaryMoodId");
 
                     b.HasOne("Gorira.Models.Mood", "SecondaryMood")
-                        .WithMany()
+                        .WithMany("SecondaryMoodTracks")
                         .HasForeignKey("SecondaryMoodId");
 
                     b.HasOne("Gorira.Models.Genre", "SubGenre")
@@ -1446,6 +1449,8 @@ namespace Gorira.Migrations
 
                     b.Navigation("Follows");
 
+                    b.Navigation("Reports");
+
                     b.Navigation("Tracks");
                 });
 
@@ -1459,6 +1464,13 @@ namespace Gorira.Migrations
                     b.Navigation("MainGenreTracks");
 
                     b.Navigation("SubGenreTracks");
+                });
+
+            modelBuilder.Entity("Gorira.Models.Mood", b =>
+                {
+                    b.Navigation("PrimaryMoodTracks");
+
+                    b.Navigation("SecondaryMoodTracks");
                 });
 
             modelBuilder.Entity("Gorira.Models.Playlist", b =>

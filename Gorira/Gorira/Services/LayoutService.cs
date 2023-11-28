@@ -3,6 +3,7 @@ using Gorira.Interfaces;
 using Gorira.Models;
 using Gorira.ViewModels.BasketVMs;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -77,6 +78,36 @@ namespace Gorira.Services
         {
             Dictionary<string, string> settings = await _context.Settings.ToDictionaryAsync(s => s.Key, s => s.Value);
             return settings;
+        }
+
+        public async Task<int> GetMessageCountAsync()
+        {
+            AppUser? currentUser = await _userManager.Users
+             .FirstOrDefaultAsync(u => u.UserName == _contextAccessor.HttpContext.User.Identity.Name);
+
+            IEnumerable<Chat>? chats = null;
+            if (currentUser != null)
+            {
+                chats = await _context.Chats
+                    .Include(c=>c.ChatLogs.Where(cl=>cl.Seen == false && cl.IsDeleted == false)).ThenInclude(cl=>cl.Messager)
+                    .Where(c=>(c.User1Id ==currentUser.Id || c.User2Id == currentUser.Id) && c.IsDeleted == false).ToListAsync();
+            }
+
+
+            int msgCount = 0;
+
+            if ( chats != null )
+            {
+                foreach (Chat chat in chats)
+                {
+                    if (chat.ChatLogs !=null)
+                    {
+                        msgCount += chat.ChatLogs.Where(cl => cl.Messager.Id != currentUser.Id && cl.Seen == false).Count();
+                    }
+                }
+            }
+
+            return msgCount;
         }
     }
 }

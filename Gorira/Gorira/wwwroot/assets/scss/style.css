@@ -31976,7 +31976,6 @@ header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
 
 #createPlaylistMain .box .uploadForms .tracks .theForm .content .myTable .body .singleTrack .coverAndTitle .title {
     max-width: 900px;
-    
     overflow: hidden;
 }
 
@@ -32006,12 +32005,14 @@ header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
         object-fit: cover !important;
         object-position: center !important;
     }
+
     #createPlaylistMain .box .uploadForms .tracks .theForm .content .myTable .body .singleTrack .coverAndTitle .title .name {
         height: 28px;
         max-width: 400px;
         overflow: hidden !important;
         text-align: center;
     }
+
     #createPlaylistMain .box .uploadForms .tracks .theForm .content .myTable .body .singleTrack .coverAndTitle .cover {
         width: 60px !important;
         height: 60px !important;
@@ -32047,7 +32048,7 @@ header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
             height: 26px;
             max-width: 164px;
             overflow: hidden !important;
-            text-align:center;
+            text-align: center;
         }
 
         #createPlaylistMain .box .uploadForms .tracks .theForm .content .myTable .body .singleTrack .coverAndTitle .title .author {
@@ -32255,4 +32256,117 @@ header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
     #playlistMain :modal {
         width: 70%;
     }
+}
+
+.toast {
+    background-color: rgb(14, 14, 16);
+    border-radius: 5px;
+    height: 50%;
+    opacity: 1;
+    padding: 10px;
+    height: fit-content;
+    transition: 0.5s all;
+    border: none;
+    outline: none;
+    border: 3px solid #5757574d;
+    box-shadow: none !important;
+    opacity: 0.9;
+}
+
+.toast-progress {
+    opacity: 0.8;
+    background-color: #a210f7;
+}
+
+
+
+.isSeen {
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    right: 6px;
+    top: 8px;
+    background-color: #406cfd;
+}
+
+.messangerIsntSeen {
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    right:0;
+    top: 0;
+}
+
+
+@media (min-width: 0px) and (max-width: 1359px) {
+
+    .isSeen {
+        border-radius: 50%;
+        height: 8px;
+        width: 8px;
+        position: absolute;
+        right: 4px;
+        top: 6px;
+        background-color: #406cfd;
+    }
+}
+
+.invis {
+display:none !important;
+}
+
+
+
+.messegeCounter {
+
+    background-color: rgba(162, 16, 247, 1);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    font-size: 12px;
+    font-style: normal;
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 100;
+    line-height: 100%;
+    color: white;
+    padding: 4px;
+    height: 16px;
+    width: 16px;
+    top: 3px;
+    right: 17px;
+    border-radius: 50%;
+}
+
+
+@media (min-width: 0px) and (max-width: 768px) {
+
+    .messegeCounter {
+        height: 12px;
+        width: 12px;
+        right: 11px;
+        padding: 0px;
+        font-size: 10px;
+    }
+}
+
+.seeOlder {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    outline: none;
+    border:none;
+    border-bottom: 2px solid rgb(255, 255, 255,0.1);
+    border-radius: 10px;
+    color: rgb(255, 255, 255,0.1);
+    font-size: 20px;
+    font-style: normal;
+    font-family: "Chakra Petch", sans-serif;
+    font-weight:800;
+    width:100%;
+    line-height:30px;
+    background-color:transparent;
 }

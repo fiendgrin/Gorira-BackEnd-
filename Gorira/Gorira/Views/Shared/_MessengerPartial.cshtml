@@ -1,0 +1,25 @@
+﻿@model MessengerVM
+
+@if (Model.Chats != null)
+{
+    @foreach (Chat chat in Model.Chats.OrderByDescending(c => c.ChatLogs?.OrderByDescending(cl => cl.Id)?.FirstOrDefault()?.CreatedAt))
+    {
+        AppUser appUser = chat.User1Id == Model.CurrentUser.Id ? chat.User2 : chat.User1;
+        <!--Single Messanger Start-->
+        <a style="position:relative; text-decoration:none;" asp-controller="Messenger" asp-action="Index" asp-route-Id="@chat.Id" class="singleMessanger ">
+            @if (chat.ChatLogs != null && chat.ChatLogs.Any(c => c.Messager.Id == appUser.Id && c.Seen == false))
+            {
+                <div class="isSeen"></div>
+                <div class="messangerIsntSeen"></div>
+            }
+            <img class="pfp" src="~/assets/images/pfp/@appUser.ProfilePicture" alt="" />
+            <div class="rightMessanger">
+                <h4 class="name">@appUser.DisplayName</h4>
+                <p class="lastMessage">@(chat.ChatLogs != null ? chat.ChatLogs?.OrderByDescending(cl => cl.Id)?.FirstOrDefault()?.Message : "")</p>
+            </div>
+
+        </a>
+        <!--Single Messanger End-->
+    }
+
+}

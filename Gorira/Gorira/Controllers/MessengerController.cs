@@ -15,10 +15,11 @@ namespace Gorira.Controllers
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly int _messageSize;
 
         public MessengerController(AppDbContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-
+            _messageSize = 20;
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
@@ -28,30 +29,39 @@ namespace Gorira.Controllers
         [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> Index(int? Id)
         {
+            AppUser? currentUser = await _userManager.Users
+                 .Include(u => u.Chats.Where(c => c.IsDeleted == false)).ThenInclude(c => c.ChatLogs.Where(cl => cl.IsDeleted == false))
+               .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
             Chat? chat = null;
             if (Id != null)
             {
                 chat = await _context.Chats
-               .Include(c => c.ChatLogs.Where(cl => cl.IsDeleted == false))
+               .Include(c => c.ChatLogs.Where(cl => cl.IsDeleted == false)).ThenInclude(c=>c.Messager)
                .FirstOrDefaultAsync(c => c.Id == Id);
 
                 if (chat == null) return NotFound();
+
+                if (chat.ChatLogs != null)
+                {
+                    IEnumerable<ChatLog>? unseenChatLogs = chat.ChatLogs.Where(c => c.Seen == false && c.Messager.Id != currentUser.Id);
+
+                    foreach (ChatLog chatlog in unseenChatLogs)
+                    {
+                        chatlog.Seen = true;
+                    }
+                    await _context.SaveChangesAsync();
+                }
             }
 
-            AppUser? currentUser = await _userManager.Users
-                 .Include(u => u.Chats.Where(c => c.IsDeleted == false)).ThenInclude(c => c.ChatLogs.Where(cl => cl.IsDeleted == false))
-               .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
 
-            IEnumerable<Chat>? chats = null;
-            if (User.Identity.IsAuthenticated)
-            {
-                chats = await _context.Chats
-                .Include(c => c.ChatLogs)
+            IEnumerable<Chat>? chats = await _context.Chats
+                .Include(c => c.ChatLogs).ThenInclude(cl=>cl.Messager)
                 .Include(c => c.User2)
                 .Include(c => c.User1)
                 .Where(c => c.User1Id == currentUser.Id || c.User2Id == currentUser.Id).ToListAsync();
-            }
+
+
 
             MessengerVM messengerVM = new MessengerVM
             {
@@ -80,7 +90,7 @@ namespace Gorira.Controllers
 
             Chat? chatCheck = await _context.Chats.FirstOrDefaultAsync(c => (c.User1Id == currentUser.Id && c.User2Id == appUser.Id) || (c.User1Id == appUser.Id && c.User2Id == currentUser.Id));
 
-            if (chatCheck==null)
+            if (chatCheck == null)
             {
                 Chat chat = new Chat
                 {
@@ -98,7 +108,63 @@ namespace Gorira.Controllers
                 return RedirectToAction("Index", new { Id = chatCheck.Id });
             }
 
-          
+
+        }
+
+      
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
+        public async Task<IActionResult> GetUpdatedChatList(int chatId)
+        {
+            AppUser? currentUser = await _userManager.Users
+                 .Include(u => u.Chats.Where(c => c.IsDeleted == false)).ThenInclude(c => c.ChatLogs.Where(cl => cl.IsDeleted == false))
+               .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+       
+
+            IEnumerable<Chat>? chats = await _context.Chats
+                .Include(c => c.ChatLogs).ThenInclude(cl => cl.Messager)
+                .Include(c => c.User2)
+                .Include(c => c.User1)
+                .Where(c => c.User1Id == currentUser.Id || c.User2Id == currentUser.Id).ToListAsync();
+
+            MessengerVM messengerVM = new MessengerVM
+            {
+                Chats = chats,
+                CurrentUser = currentUser,
+                ChatId = chatId,
+            };
+            return PartialView("_MessengerPartial", messengerVM);
+        }
+
+
+        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
+        public async Task<IActionResult> GetMessageCount()
+        {
+            AppUser? currentUser = await _userManager.Users
+            .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            IEnumerable<Chat>? chats = null;
+            if (currentUser != null)
+            {
+                chats = await _context.Chats
+                    .Include(c => c.ChatLogs.Where(cl => cl.Seen == false && cl.IsDeleted == false)).ThenInclude(cl => cl.Messager)
+                    .Where(c => (c.User1Id == currentUser.Id || c.User2Id == currentUser.Id) && c.IsDeleted == false).ToListAsync();
+            }
+
+
+            int msgCount = 0;
+
+            if (chats != null)
+            {
+                foreach (Chat chat in chats)
+                {
+                    if (chat.ChatLogs != null)
+                    {
+                        msgCount += chat.ChatLogs.Where(cl => cl.Messager.Id != currentUser.Id && cl.Seen == false).Count();
+                    }
+                }
+            }
+
+            return PartialView("_MessageCountPartial", msgCount);
         }
     }
 }

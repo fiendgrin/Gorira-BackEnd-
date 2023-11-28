@@ -3,44 +3,32 @@
     ViewData["Title"] = "Messenger";
     Chat? showingChat = null;
     AppUser? userName = null;
+    AppUser? otherUserName = null;
     if (Model.Chats != null)
     {
         showingChat = Model.Chats.FirstOrDefault(c => c.Id == Model.ChatId);
         if (showingChat != null)
         {
-            userName = showingChat.User1Id == Model.CurrentUser.Id ? showingChat.User2 : showingChat.User1;
+            userName = Model.CurrentUser.Id == showingChat.User2Id ? showingChat.User2 : showingChat.User1;
+            otherUserName = Model.CurrentUser.Id == showingChat.User1Id ? showingChat.User2 : showingChat.User1;
         }
     }
+
+
 }
 
 <main id="messangerMain">
     <div class="box">
         <section class="left">
             <div class="topLeft">
-                <h1>Messangers</h1>
+                <h1>Messengers</h1>
             </div>
             <div class="searchUsers">
-                <input class="inputField" type="text" placeholder="Search..." />
+                <input class="inputField searchMessangers" type="text" placeholder="Search..." />
                 <img class="" src="~/assets/images/icons/search.svg" alt="" />
             </div>
             <div class="messangers">
-                @if (Model.Chats != null)
-                {
-                    @foreach (Chat chat in Model.Chats.OrderByDescending(c=>c.ChatLogs.OrderByDescending(cl=>cl.Id).FirstOrDefault().CreatedAt))
-                    {
-                        AppUser appUser = chat.User1Id == Model.CurrentUser.Id ? chat.User2 : chat.User1;
-                        <!--Single Messanger Start-->
-                        <a style="text-decoration:none;" asp-controller="Messenger" asp-action="Index" asp-route-Id="@chat.Id" class="singleMessanger">
-                            <img class="pfp" src="~/assets/images/pfp/@appUser.ProfilePicture" alt="" />
-                            <div class="rightMessanger">
-                                <h4 class="name">@appUser.DisplayName</h4>
-                                <p class="lastMessage">@(chat.ChatLogs.OrderByDescending(cl=>cl.Id).FirstOrDefault().Message)</p>
-                            </div>
-                        </a>
-                        <!--Single Messanger End-->
-                    }
-
-                }
+                @await Html.PartialAsync("_MessengerPartial",Model)
             </div>
         </section>
         <section class="right">
@@ -48,10 +36,10 @@
                 <img class="people"
                      src="~/assets/images/icons/sharingiconImage24px.svg"
                      alt="" />
-                <h1>@(userName != null ? userName.DisplayName : "Message box")</h1>
+                <h1>@(otherUserName != null ? otherUserName.DisplayName : "Message box")</h1>
             </div>
             <div class="bottom">
-                <div class="meaasagingBox" data-chatid="@((Model.ChatId).ToString())" data-userId="@(userName != null ? userName.Id : "")" pfp="@(userName != null ? userName.ProfilePicture : "")">
+                <div class="meaasagingBox" userName="@(userName!=null ? userName.DisplayName : "")" data-chatid="@((Model.ChatId).ToString())" data-userId="@(userName != null ? userName.Id : "")" pfp="@(userName != null ? userName.ProfilePicture : "")">
 
                     @if (showingChat != null && showingChat.ChatLogs != null)
                     {
@@ -59,14 +47,6 @@
                         {
 
                             if (Model.CurrentUser.Id != chatlog.Messager.Id)
-                            {
-                                <!--Single Message Start-->
-                                <div class="singleMessage me">
-                                    <p class="theMessage">@chatlog.Message</p>
-                                </div>
-                                <!--Single Message End-->
-                            }
-                            else
                             {
                                 <!--Single Message Start-->
                                 <div class="singleMessage interlocutor">
@@ -80,16 +60,25 @@
                                 </div>
                                 <!--Single Message End-->
                             }
+                            else
+                            {
+
+                                <!--Single Message Start-->
+                                <div class="singleMessage me">
+                                    <p class="theMessage">@chatlog.Message</p>
+                                </div>
+                                <!--Single Message End-->
+                            }
 
                         }
                     }
 
 
                 </div>
-                <div class="send">
+                <form class="send">
                     <input class="inputField messageInput" type="text" placeholder="Message" />
-                    <a class="sendBtn" src="~/assets/images/icons/search.svg" alt="">send</a>
-                </div>
+                    <button type="submit" class="sendBtn" src="~/assets/images/icons/search.svg" alt="">send</button>
+                </form>
             </div>
         </section>
     </div>
