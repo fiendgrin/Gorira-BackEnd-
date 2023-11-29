@@ -1,0 +1,72 @@
+﻿@model IPagedList<Purchase>
+@{
+    ViewData["Title"] = "Index";
+    int counter = 0;
+}
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+<main id="createPlaylistMain">
+    <div style="min-height:68vh; align-items:flex-start; justify-content:flex-start;" class="box">
+        <h2 class="title">My Purchases</h2>
+        <div method="post" class="uploadForms" enctype="multipart/form-data">
+            @if (Model != null && Model.Count() > 0)
+            {
+                <section class="tracks">
+                    <div style="background-color: transparent; border: none; padding: 0px;" class="theForm">
+                        <div class="content">
+                            <div class="myTable">
+                                <div class="body">
+                                    @foreach (Purchase purchase in Model)
+                                    {
+                                        counter++;
+                                        <!--Single Track start-->
+                                        <div class="singleTrack">
+                                            <div class="number">
+                                                <h5>@counter</h5>
+                                            </div>
+                                            <div class="coverAndTitle">
+                                                <a asp-controller="Track" asp-action="Detail" asp-route-Id="@purchase.TrackId">
+                                                    <img class="cover"
+                                                         src="~/assets/images/@(purchase.Track.User.ProfilePicture == purchase.Track.Cover ? $"pfp/{purchase.Track.Cover}": $"covers/{purchase.Track.Cover}")"
+                                                         alt="" />
+                                                </a>
+                                                <div class="title">
+                                                    <a style="text-decoration:none;" asp-controller="Track" asp-action="Detail" asp-route-Id="@purchase.TrackId">
+                                                        <h4 style="height:24px; line-height:24px; font-size:20px;" class="name">
+                                                            @purchase.Track.Title
+                                                        </h4>
+                                                    </a>
+                                                    <a style="text-decoration:none;" asp-controller="Artist" asp-action="Detail" asp-route-Id="@purchase.Track.UserId">
+                                                        <p style="line-height:14px; height:14px; font-size:12px;" class="author">@purchase.Track.User.DisplayName</p>
+                                                    </a>
+                                                    <p style="line-height:16px; height:16px; font-size:12px;" class="author">@(purchase.IsUnlimited ? "UNLIMITED" : "NON-EXCLUSIVE")</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="settings">
+                                                <a asp-controller="Purchase" asp-action="Download" asp-route-Id="@purchase.Id" class="editBtn downloadPurchased">
+                                                    <img class="btnImg"
+                                                         src="~/assets/images/icons/download.svg"
+                                                         alt="" />
+                                                    <p>Download</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!--Single Track end-->
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            }
+            @Html.PagedListPager((IPagedList) Model,page=>Url.Action("Index", new {page = page,
+            search = @Context.Request.Query["search"], order = @Context.Request.Query["order"]}),
+            new X.PagedList.Web.Common.PagedListRenderOptions
+            {
+            Display = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+            DisplayPageCountAndCurrentLocation = false,
+            MaximumPageNumbersToDisplay = 5 })
+        </div>
+    </div>
+</main>

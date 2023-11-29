@@ -6,7 +6,7 @@
 @using X.PagedList;
 @using X.PagedList.Mvc.Core;
 <main id="profileMain">
-    <div class="box">
+    <div style="min-height:68vh;" class="box">
         <div class="tabs">
             <div class="info tab tabActive">Info</div>
             <div class="tracks tab">Tracks</div>
@@ -149,7 +149,7 @@
                 <h3>Tracks</h3>
                 <a asp-controller="Track" asp-action="Index"><p>See more</p></a>
             </div>
-            @if (Model.Tracks != null)
+            @if (Model.Tracks != null && Model.Tracks.Count > 0)
             {
                 <div class="theTracks">
                     @foreach (Track track in Model.Tracks)
@@ -191,6 +191,13 @@
             Display = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
             DisplayPageCountAndCurrentLocation = false,
             MaximumPageNumbersToDisplay = 5 })
+            }
+            else
+            {
+                <h3 style="text-align:center; width:100%; color:white; font-family: sans-serif; font-size:26px; font-weight:600; height:50vh">
+                    Nothing Here ...
+                    <img style="transform:translateY(8px); height:36px;" src="/assets/images/icons/search.svg">
+                </h3>
             }
         </div>
     </div>

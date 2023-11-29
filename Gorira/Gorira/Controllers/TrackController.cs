@@ -59,13 +59,17 @@ namespace Gorira.Controllers
 
             IEnumerable<Track>? Tracks = await _context.Tracks
                 .Include(t => t.User)
+                .Include(t=>t.TrackTags).ThenInclude(tt=>tt.Tag)
                 .Where(t => t.IsDeleted == false).ToListAsync();
 
 
 
             if (!string.IsNullOrWhiteSpace(search))
             {
-                Tracks = Tracks.Where(t => t.Title.ToUpper().Contains(search.Trim().ToUpper()));
+                Tracks = Tracks.Where(t => t.Title.ToUpper().Contains(search.Trim().ToUpper()) || 
+                t.User.DisplayName.Contains(search.Trim().ToUpper()) || 
+                (t.TrackTags!=null && t.TrackTags.Any(tt => tt.Tag.Name.Trim().ToUpper().Contains(search.Trim().ToUpper())))
+                );
             }
 
 
@@ -722,13 +726,10 @@ namespace Gorira.Controllers
 
             if (taggedAudio != null)
             {
-                // Get the file path on your server
-                string filePath = Path.Combine(_env.WebRootPath, "assets", "audio", "tagged", track.Tagged); ;
+                string filePath = Path.Combine(_env.WebRootPath, "assets", "audio", "tagged", track.Tagged);
 
-                // Ensure the file exists
                 if (System.IO.File.Exists(filePath))
                 {
-                    // Provide the file for download
                     byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
                     return File(fileBytes, "audio/mpeg", $"{track.User.DisplayName} - {track.Title} (Free Gorira).mp3");
                 }

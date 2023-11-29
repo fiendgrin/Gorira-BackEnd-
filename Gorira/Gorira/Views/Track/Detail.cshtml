@@ -13,7 +13,7 @@
             <div class="theTrack">
                 <img class="cover" src="~/assets/images/@(Model.track.User.ProfilePicture == Model.track.Cover ? $"pfp/{Model.track.Cover}": $"covers/{Model.track.Cover}")" alt="" />
                 <h3 class="trackName">@Model.track.Title</h3>
-                <p class="beatMaker">@Model.track.User.DisplayName</p>
+                <a style="text-decoration:none;" asp-controller="Artist" asp-action="Detail" asp-route-Id="@Model.track.UserId"  class="beatMaker">@Model.track.User.DisplayName</a>
                 <div class="trackButtons">
                     @if (Model.track.HasFree)
                     {
@@ -85,11 +85,21 @@
                         <div class="addCartText">
                             <p class="price">Price:</p>
                             <h6 class="thePrice">$@Model.track.Price</h6>
-                        </div>
-                        <button class="addToCart" trackId="@Model.track.Id">
-                            <img src="~/assets/images/icons/cart-full.svg" alt="" /> Add
-                            To Cart
-                        </button>
+                        </div>  
+                     
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+                        {
+                            <button class="addToCart" trackId="@Model.track.Id">
+                                <img src="~/assets/images/icons/cart-full.svg" alt="" /> Add
+                                To Cart
+                            </button>
+                        }else
+                        {
+                            <a asp-action="Login" asp-controller="Account" class="DontAddToCart" trackId="@Model.track.Id">
+                                <img src="~/assets/images/icons/cart-full.svg" alt="" /> Add
+                                To Cart
+                            </a>
+                        }
                     </div>
                 </div>
                 <div class="divider"></div>
@@ -184,7 +194,8 @@
                 <!--Comment Form Partial Start-->
                 <form method="post" class="regular commentField postComment" asp-controller="Track" asp-action="PostComment" asp-route-Id="@Model.track.Id" data-url="@Url.Action("PostComment", "Track", new { Id = Model.track.Id })">
                     @Html.AntiForgeryToken()
-                    <input maxlength="500"
+                    <input autocomplete="off"
+                        maxlength="500"
                            class="inputField commentText"
                            type="text"
                            name="text"

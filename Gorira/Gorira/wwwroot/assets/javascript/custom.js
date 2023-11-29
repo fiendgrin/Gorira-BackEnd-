@@ -136,12 +136,11 @@
 
         let myUrlParts = myCurrentUrl.split("/");
         let myId = myUrlParts[myUrlParts.length - 1];
-        console.log(myId)
-        console.log(myUrlParts)
+   
         let sendBtn = document.querySelector(".sendBtn");
         let messageInput1 = document.querySelector(".messageInput");
         if (myId == '' || myId.toLowerCase() == "messenger" || myId.toLowerCase() == "index") {
-            console.log(myUrlParts)
+          
             sendBtn.classList.add("invis")
             messageInput1.setAttribute("disabled", true)
         }
@@ -149,8 +148,7 @@
         searchMessangers.addEventListener("keyup", (e) => {
             singleMessangers.forEach(sm => {
                 let text = sm.lastElementChild.firstElementChild.textContent;
-                console.log(e.target.value)
-                console.log(text)
+        
                 if (!text.toLowerCase().includes(e.target.value.toLowerCase())) {
                     sm.style.display = "none";
                 } else {
@@ -213,7 +211,7 @@
 
                 markMessagesAsSeen(chatId, function () {
                     let url = '/Messenger/GetUpdatedChatList/' + chatId;
-                    // Fetch the updated chat list
+                 
                     fetch(url)
                         .then(res => res.text())
                         .then(data => {
@@ -304,6 +302,22 @@
         callback();
     }
 
+
+
+    let infoToaster = $('#infoToaster');
+    if (infoToaster.val() != undefined && infoToaster.val().length > 0) {
+        toastr["info"](infoToaster.val());
+    }
+
+    let warningToaster = $('#warningToaster');
+    if (warningToaster.val() != undefined && warningToaster.val().length > 0) {
+        toastr["warning"](warningToaster.val());
+    }
+
+    let successToaster = $('#successToaster');
+    if (successToaster.val() != undefined && successToaster.val().length > 0) {
+        toastr["success"](successToaster.val());
+    }
 
 
 })

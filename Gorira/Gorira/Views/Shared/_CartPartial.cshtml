@@ -72,5 +72,5 @@
         <h6>Total (@Model.Sum(c=>c.BasketVMs.Count)):</h6>
         <h6>$@(Math.Round((decimal)((Model.Sum(c => c.BasketVMs.Sum(b => b.Price))) * 1.01), 2))</h6>
     </div>
-    <a href="" class="checkout"><img class="credit" src="~/assets/images/icons/credit-card.svg" alt="">Checkout</a>
+    <a asp-controller="Purchase" asp-action="Checkout" class="checkout purchaseBtn"><img class="credit" src="~/assets/images/icons/credit-card.svg" alt="">Checkout</a>
 </div>

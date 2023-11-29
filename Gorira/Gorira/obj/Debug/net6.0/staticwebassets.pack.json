@@ -1041,6 +1041,10 @@
       "PackagePath": "staticwebassets\\assets\\images\\icons\\voice-mail.svg"
     },
     {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\icons\\wallet.svg",
+      "PackagePath": "staticwebassets\\assets\\images\\icons\\wallet.svg"
+    },
+    {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\logo\\Logo.png",
       "PackagePath": "staticwebassets\\assets\\images\\logo\\Logo.png"
     },
@@ -1399,6 +1403,10 @@
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\utilities\\_variables.scss",
       "PackagePath": "staticwebassets\\assets\\scss\\utilities\\_variables.scss"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\temp\\files-YunisGorira.zip",
+      "PackagePath": "staticwebassets\\assets\\temp\\files-YunisGorira.zip"
     },
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\manage\\css\\maps\\style.css.map",

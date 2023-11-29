@@ -316,7 +316,6 @@ namespace Gorira.Controllers
                 }
             }
 
-
             return RedirectToAction(nameof(Index));
         }
 

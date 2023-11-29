@@ -115,7 +115,7 @@ namespace Gorira.Controllers
 
             if (appUser.Tracks != null)
             {
-                userTracks = await appUser.Tracks.ToPagedListAsync(page ?? 1, _detailPageSize);
+                userTracks = await appUser.Tracks.OrderByDescending(t=>t.CreatedAt).ToPagedListAsync(page ?? 1, _detailPageSize);
             }
             bool isFollower = false;
             if (currentUser != null && appUser.Followers.Any(u => u.FollowerId == currentUser.Id))
@@ -239,6 +239,8 @@ namespace Gorira.Controllers
                 await _context.Reports.AddAsync(report);
                 await _context.SaveChangesAsync();
             }
+
+            TempData["Info"] = "User has been reported";
 
             return RedirectToAction("Detail", new { Id = Id });
         }

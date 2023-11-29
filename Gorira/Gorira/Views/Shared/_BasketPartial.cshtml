@@ -1,7 +1,11 @@
 ﻿@model IEnumerable<BasketVM> ;
 
 <div class="BasketTopIcons">
-<div class="basketCounter">@Model.Count()</div>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+    {
+        <div class="basketCounter">@Model.Count()</div>
+    }
+
     <img class="basketIcon"
          src="~/assets/images/icons/shopping-cart.svg"
          alt="" />

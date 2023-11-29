@@ -40,6 +40,18 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
+    @if (TempData["Info"] != null)
+    {
+        <input type="hidden" value="@TempData["Info"].ToString()" id="infoToaster" />
+    }
+    @if (TempData["Warning"] != null)
+    {
+        <input type="hidden" value="@TempData["Warning"].ToString()" id="warningToaster" />
+    }
+    @if (TempData["Success"] != null)
+    {
+        <input type="hidden" value="@TempData["Success"].ToString()" id="successToaster" />
+    }
     <!--APlayer-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
     <!--SignalR-->
@@ -53,8 +65,8 @@
         <div class="boxTop">
             <div class="boxContent">
                 <div class="left">
-                    <img class="burger" src="~/assets/images/icons/burger.svg" alt="" />
-                    <a href="">
+                    <img style="cursor:pointer;" class="burger" src="~/assets/images/icons/burger.svg" alt="" />
+                    <a asp-controller="Home" asp-action="Index">
                         <img class="logo" src="~/assets/images/logo/@settings.FirstOrDefault(s=>s.Key == "Logo").Value" alt="" />
                     </a>
                     <form class="mySearchForm">
@@ -86,12 +98,12 @@
                         @if (appUser != null)
                         {
                             <img style="object-fit:cover; object-position:center" class="pfp" src="~/assets/images/pfp/@(appUser.ProfilePicture)" alt="" />
+                            <div class="messegeCounter">@await Html.PartialAsync("_MessageCountPartial",count)</div>
                         }
                         else
                         {
                             <img class="loginIcon" src="~/assets/images/icons/user.svg" alt="">
                         }
-                        <div class="messegeCounter">@await Html.PartialAsync("_MessageCountPartial",count)</div>
                         <img class="chevronAcc"
                              src="~/assets/images/icons/chevron-down.svg"
                              alt="" />
@@ -124,6 +136,13 @@
                                 <a asp-controller="Track" asp-action="MyTracks" class="accountLine">
                                     <img src="~/assets/images/icons/music.svg" alt="" />
                                     <p>My Tracks</p>
+                                </a>
+                                <div class="divider"></div>
+                                <!--Single Line End-->
+                                <!--Single Line start-->
+                                <a asp-controller="Purchase" asp-action="Index" class="accountLine">
+                                    <img src="~/assets/images/icons/wallet.svg" alt="" />
+                                    <p>Purchases</p>
                                 </a>
                                 <div class="divider"></div>
                                 <!--Single Line End-->
@@ -190,7 +209,7 @@
     <footer>
         <div class="box">
             <div class="top">
-                <a href="">
+                <a asp-controller="Home" asp-action="Index">
                     <img class="footerLogo" src="~/assets/images/logo/@settings.FirstOrDefault(s=>s.Key == "Logo").Value" alt="" />
                 </a>
                 <!--Contact Start-->

@@ -26,5 +26,6 @@ namespace Gorira.DataAccessLayer
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Chat> Chats { get; set; }
         public DbSet<ChatLog> ChatLogs { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
     }
 }

@@ -10,8 +10,15 @@
             <h3>Your Feed</h3>
             <a asp-action="Index" asp-controller="Track"><p>See all</p></a>
         </div>
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+        {
+            <h3 style="text-align:center; width:100%; color:white; font-family: sans-serif; font-size:26px; font-weight:600; height:50vh">
+                Nothing Here ...
+                <img style="transform:translateY(8px); height:36px;" src="/assets/images/icons/search.svg">
+            </h3>
+        }
         <div style="display:flex; justify-content:flex-start; align-items:flex-start;" class="posts">
-            @if (Model != null)
+            @if (Model != null && Model.Count > 0)
             {
                 @foreach (Track track in Model)
                 {
@@ -61,7 +68,13 @@
                     </div>
                     <!--Single Post End-->
                 }
-
+            }
+            else
+            {
+                <h3 style="text-align:center; width:100%; color:white; font-family: sans-serif; font-size:26px; font-weight:600; height:50vh">
+                    Nothing Here ...
+                    <img style="transform:translateY(8px); height:36px;" src="/assets/images/icons/search.svg">
+                </h3>
             }
         </div>
         @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", "Feed", new {page = page,}),
