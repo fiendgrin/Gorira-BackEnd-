@@ -46,7 +46,7 @@ namespace Gorira.Controllers
 
             IEnumerable<AppUser>? memberArtists = await _userManager.Users
                 .Include(u => u.Followers.Where(f => f.IsDeleted == false))
-                .Where(u => u.IsActive == true).ToListAsync();
+                .Where(u => u.IsActive == true && u.EmailConfirmed == true).ToListAsync();
 
             foreach (AppUser memberArtist in memberArtists)
             {
@@ -104,7 +104,7 @@ namespace Gorira.Controllers
             AppUser? appUser = await _userManager.Users
                 .Include(u => u.Followers.Where(f => f.IsDeleted == false))
                 .Include(u => u.Tracks.Where(t => t.IsDeleted == false)).ThenInclude(t => t.TrackTags.Where(tt => tt.IsDeleted == false))
-                .FirstOrDefaultAsync(u => u.Id == Id && u.IsActive == true);
+                .FirstOrDefaultAsync(u => u.Id == Id && u.IsActive == true && u.EmailConfirmed == true);
 
             if (appUser == null) return NotFound();
 
@@ -172,7 +172,7 @@ namespace Gorira.Controllers
         {
             if (Id == null) return BadRequest();
 
-            AppUser? appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == Id && u.IsActive == true);
+            AppUser? appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == Id && u.IsActive == true && u.EmailConfirmed == true);
 
             if (appUser == null) return NotFound();
 
@@ -219,7 +219,7 @@ namespace Gorira.Controllers
         {
             if (Id == null) return BadRequest();
 
-            AppUser? appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == Id && u.IsActive == true);
+            AppUser? appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == Id && u.IsActive == true && u.EmailConfirmed == true);
 
             if (appUser == null) return NotFound();
 

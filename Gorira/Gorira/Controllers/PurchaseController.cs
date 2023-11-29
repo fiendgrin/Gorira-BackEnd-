@@ -30,8 +30,15 @@ namespace Gorira.Controllers
         [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
         public async Task<IActionResult> Index(int ? page)
         {
+            if (page <= 0)
+            {
+                return NotFound();
+            }
+
             AppUser appUser = await _userManager.Users
                .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            ViewBag.Counter = page == null ? 0 : (page - 1) * _pageSize;
 
             IPagedList<Purchase>? purchases = await _context.Purchases
                 .Include(p => p.Track).ThenInclude(t=>t.User)

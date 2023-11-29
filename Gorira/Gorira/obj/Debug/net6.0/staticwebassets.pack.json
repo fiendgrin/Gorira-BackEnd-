@@ -1269,6 +1269,10 @@
       "PackagePath": "staticwebassets\\assets\\javascript\\swiper.js"
     },
     {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\toastr.js",
+      "PackagePath": "staticwebassets\\assets\\javascript\\toastr.js"
+    },
+    {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\track.js",
       "PackagePath": "staticwebassets\\assets\\javascript\\track.js"
     },
@@ -1403,10 +1407,6 @@
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\scss\\utilities\\_variables.scss",
       "PackagePath": "staticwebassets\\assets\\scss\\utilities\\_variables.scss"
-    },
-    {
-      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\temp\\files-YunisGorira.zip",
-      "PackagePath": "staticwebassets\\assets\\temp\\files-YunisGorira.zip"
     },
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\manage\\css\\maps\\style.css.map",
@@ -5003,6 +5003,10 @@
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\templates\\EmailConfirm.html",
       "PackagePath": "staticwebassets\\templates\\EmailConfirm.html"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\templates\\ResetPassword.html",
+      "PackagePath": "staticwebassets\\templates\\ResetPassword.html"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.Gorira.Microsoft.AspNetCore.StaticWebAssets.props",

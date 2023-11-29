@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "i3SbCneRwRFb+vCuRokZ+k1lZNe13rpBPXv85QKo/mc=",
+  "Hash": "hVQfl2QnKB1LG2dx2DQpvPPpBQren9DdbMVz+MtRJiI=",
   "Source": "Gorira",
   "BasePath": "_content/Gorira",
   "Mode": "Default",
@@ -5406,6 +5406,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\javascript\\swiper.js"
     },
     {
+      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\toastr.js",
+      "SourceId": "Gorira",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
+      "BasePath": "_content/Gorira",
+      "RelativePath": "assets/javascript/toastr.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\javascript\\toastr.js"
+    },
+    {
       "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\javascript\\track.js",
       "SourceId": "Gorira",
       "SourceType": "Discovered",
@@ -5982,23 +5999,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\scss\\utilities\\_variables.scss"
-    },
-    {
-      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\temp\\files-YunisGorira.zip",
-      "SourceId": "Gorira",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
-      "BasePath": "_content/Gorira",
-      "RelativePath": "assets/temp/files-YunisGorira.zip",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\temp\\files-YunisGorira.zip"
     },
     {
       "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\manage\\css\\maps\\style.css.map",
@@ -21282,6 +21282,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\templates\\EmailConfirm.html"
+    },
+    {
+      "Identity": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\templates\\ResetPassword.html",
+      "SourceId": "Gorira",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\",
+      "BasePath": "_content/Gorira",
+      "RelativePath": "templates/ResetPassword.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\templates\\ResetPassword.html"
     }
   ]
 }
