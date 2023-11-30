@@ -5,12 +5,12 @@
 
         Swal.fire({
             title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            text: "Account's activity status will be deactivated!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Change Account Activity Status!',
+            confirmButtonText: 'Yes, change account activity status!',
             customClass: {
                 popup: 'myCustomModal'
             }
@@ -28,7 +28,7 @@
             .then(data => {
                 Swal.fire({
                     title: 'Changed!',
-                    text: 'Your Account Activity Status has been updated.',
+                    text: 'Account activity status has been updated.',
                     icon: 'success',
                     customClass: {
                         popup: 'myCustomModal'
@@ -68,7 +68,7 @@
             .then((data) => {
                 Swal.fire({
                     title: 'Reset!',
-                    text: 'Your Password has been Reset.',
+                    text: 'Password has been reset.',
                     icon: 'success',
                     customClass: {
                         popup: 'myCustomModal'

@@ -1,0 +1,120 @@
+﻿@model SliderVM
+@{
+    ViewData["Title"] = "Sliders";
+    int counter = 0;
+    int counter2 = 0;
+}
+
+<div class="content-wrapper">
+@if (Model.Sliders != null)
+    {
+        <div class="page-header">
+            <h3 class="page-title" style="color:white;">Sliders</h3>
+            <a asp-area="Manage" asp-controller="Slider" asp-action="Create" class="btn btn-success">+ Create</a>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>№</th>
+                                        <th> Image </th>
+                                        <th style="overflow:auto;"> Text </th>
+                                        <th > Button Text </th>
+                                        <th>Link</th>
+                                        <th> Settings </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (Slider slider in Model.Sliders)
+                                    {
+                                        counter++;
+                                        <tr>
+                                            <td> @(counter) </td>
+                                            <td class="py-1">
+                                                <img style="object-fit:cover;" src="~/assets/images/slider/@(slider.Image)" alt="image">
+                                            </td>
+                                            <td >
+                                                @slider.Text
+                                            </td>
+                                            <td>
+                                                @slider.BtnText
+                                            </td>
+                                            <td>
+                                                @slider.Link
+                                            </td>
+                                            <td style="display:flex; justify-content:space-around;">
+                                                <a asp-area="Manage" asp-controller="Slider" asp-action="Detail" asp-route-Id="@slider.Id" class="btn btn-info btn-fw">Details</a>
+                                                <a asp-area="Manage" asp-controller="Slider" asp-action="Update" asp-route-Id="@slider.Id" class="btn btn-warning btn-fw">Update</a>
+                                                <a asp-area="Manage" asp-controller="Slider" asp-action="Delete" asp-route-Id="@slider.Id" class="btn btn-danger btn-fw">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+    @if (Model.ReviewSliders != null)
+    {
+    <div class="page-header">
+            <h3 class="page-title" style="color:white;">Review Sliders</h3>
+        <a asp-area="Manage" asp-controller="Slider" asp-action="ReviewCreate" class="btn btn-success">+ Create</a>
+    </div>
+        <div class="row">
+
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>№</th>
+                                        <th> Image </th>
+                                        <th> Background Image </th>
+                                        <th style="overflow:auto;"> Text </th>
+                                        <th> Settings </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (ReviewSlider reviewSlider in Model.ReviewSliders)
+                                    {
+                                        counter2++;
+                                        <tr>
+                                            <td> @(counter2) </td>
+                                            <td class="py-1">
+                                                <img style="object-fit:cover;" src="~/assets/images/WhyGorira/@(reviewSlider.Image)" alt="image">
+                                            </td>
+                                            <td class="py-1">
+                                                <img style="object-fit:cover;" src="~/assets/images/gif/@(reviewSlider.BackgroundImage)" alt="image">
+                                            </td>
+                                            <td style="max-width:400px; overflow:hidden;">
+                                                @Html.Raw(reviewSlider.Text)
+                                            </td>
+                                            <td style="display:flex; justify-content:space-around;">
+                                                <a asp-area="Manage" asp-controller="Slider" asp-action="ReviewDetail" asp-route-Id="@reviewSlider.Id" class="btn btn-info btn-fw">Details</a>
+                                                <a asp-area="Manage" asp-controller="Slider" asp-action="ReviewUpdate" asp-route-Id="@reviewSlider.Id" class="btn btn-warning btn-fw">Update</a>
+                                                <a asp-area="Manage" asp-controller="Slider" asp-action="ReviewDelete" asp-route-Id="@reviewSlider.Id" class="btn btn-danger btn-fw">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+<!-- content-wrapper ends -->

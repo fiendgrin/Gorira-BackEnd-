@@ -228,6 +228,7 @@ namespace Gorira.Areas.Manage.Controllers
                 track.UpdatedAt = DateTime.UtcNow;
                 track.UpdatedBy = "System";
             }
+
            IEnumerable<Track> tracksSub = await _context.Tracks.Where(t => t.IsDeleted == false && Id == t.SubGenreId).ToListAsync();
             foreach (Track track in tracksSub)
             {
@@ -235,10 +236,13 @@ namespace Gorira.Areas.Manage.Controllers
                 track.UpdatedAt = DateTime.UtcNow;
                 track.UpdatedBy = "System";
             }
+
             genre.DeletedBy = User.Identity.Name;
             genre.DeletedAt = DateTime.Now;
             genre.IsDeleted = true;
+
             await _context.SaveChangesAsync();
+
             return RedirectToAction("Index", "Genre");
         }
     }

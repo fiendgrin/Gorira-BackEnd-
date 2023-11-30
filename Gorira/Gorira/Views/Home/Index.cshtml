@@ -15,9 +15,9 @@
                 <div class="swiper-slide">
                     <div class="gradient"></div>
 
-                    <a asp-controller="Track" asp-action="Index" class="slide1 slidebtn">@slider.BtnText</a>
-                    <div class="slide slidetext">
-                        <p>@slider.Text</p>
+                    <a asp-controller="@(slider.Link.Split("/")[0])" asp-action="@(slider.Link.Split("/")[1])" class="slide1 slidebtn">@slider.BtnText</a>
+                    <div style="height:max-content;" class="slide slidetext">
+                        <p style="height:max-content; line-height:110%;">@slider.Text</p>
                     </div>
 
                     <img src="~/assets/images/slider/@(slider.Image)" alt="" />
