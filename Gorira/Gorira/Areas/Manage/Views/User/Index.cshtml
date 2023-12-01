@@ -38,7 +38,7 @@
                                         <td>
                                             @(string.Join(",", user.Roles.Select(x => x)))
                                         </td>
-                                        <td>
+                                        <td style="color:@((user.Reports.Count()) == 0 ? "#00d25b" : "#fc424a");">
                                             @user.Reports.Count()
                                         </td>
                                         <td style="display:flex; justify-content:space-around;">

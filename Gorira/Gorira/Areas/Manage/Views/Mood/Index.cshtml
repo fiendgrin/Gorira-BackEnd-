@@ -37,7 +37,7 @@
                                     <tr>
                                         <td> @(counter) </td>
                                         <td> @(mood.Name) </td>
-                                        <td>
+                                        <td style="color:@(((mood.PrimaryMoodTracks != null ? mood.PrimaryMoodTracks.Count() : 0) + (mood.SecondaryMoodTracks != null ? mood.SecondaryMoodTracks.Count() : 0)) > 0 ? "#00d25b" : "#fc424a");">
                                             @((mood.PrimaryMoodTracks != null ? mood.PrimaryMoodTracks.Count() : 0) + (mood.SecondaryMoodTracks != null ? mood.SecondaryMoodTracks.Count() : 0))
                                         </td>
                                         <td>

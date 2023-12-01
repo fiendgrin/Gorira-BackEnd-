@@ -21156,8 +21156,6 @@ div.tagsinput {
 
     .pagination li.active {
         margin: 0 6px;
-        border-radius: 50%;
-        background: #202020;
         max-width: auto;
         min-width: 42px;
         height: 42px;
@@ -21168,15 +21166,16 @@ div.tagsinput {
         padding: 0 6px;
         color: white;
         transition: 0.3s;
-        border: solid 2px white;
+        border-bottom: solid 3px #0090e7;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        background: transparent;
         background: #0f1015;
     }
 
 .pagination a {
     text-decoration: none;
     margin: 0 6px;
-    border-radius: 50%;
-    background: #202020;
     max-width: auto;
     min-width: 42px;
     height: 42px;
@@ -21186,17 +21185,20 @@ div.tagsinput {
     cursor: pointer;
     padding: 0 6px;
     color: gray;
+    border-bottom: solid 3px #6c7293;
     transition: 0.3s;
-    background: #0f1015;
+    background: transparent;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
     .pagination a:hover {
-        background: #282828;
+        background: #0f1015;
+        color: white;
     }
 
 .pagination .disabled a {
     pointer-events: none;
-    background-color: rgba(0, 0, 0, 0.1);
     color: #999;
     padding: 0 6px;
     
@@ -21206,12 +21208,9 @@ div.tagsinput {
 
 
     .pagination {
-        display: flex;
-        justify-content: center;
         list-style: none;
         padding: 0;
         margin-top: 20px;
-        font-family: "Chakra Petch", sans-serif;
         font-weight: 400;
         transition: 0.3s;
     }
@@ -21223,43 +21222,26 @@ div.tagsinput {
 
             .pagination li.active {
                 margin: 0 4px;
-                border-radius: 50%;
-                background: #202020;
                 max-width: auto;
                 min-width: 32px;
                 height: 32px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
                 padding: 0 2px;
-                color: white;
                 transition: 0.3s;
-                background: #0f1015;
             }
 
         .pagination a {
             text-decoration: none;
             margin: 0 4px;
             border-radius: 50%;
-            background: #202020;
             max-width: auto;
             min-width: 32px;
             height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
             padding: 0 2px;
-            color: gray;
             transition: 0.3s;
-            background: #0f1015;
         }
 
         .pagination .disabled a {
             pointer-events: none;
-            background-color: rgba(0, 0, 0, 0.1);
-            color: #999;
             padding: 0 1px;
         }
 }
@@ -21268,12 +21250,9 @@ div.tagsinput {
 
 
     .pagination {
-        display: flex;
-        justify-content: center;
         list-style: none;
         padding: 0;
         margin-top: 20px;
-        font-family: "Chakra Petch", sans-serif;
         font-weight: 400;
         transition: 0.3s;
     }
@@ -21285,37 +21264,22 @@ div.tagsinput {
 
             .pagination li.active {
                 margin: 0 2px;
-                border-radius: 50%;
-                background: #202020;
                 max-width: auto;
                 min-width: 28px;
                 height: 28px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
                 padding: 0 2px;
-                color: white;
                 transition: 0.3s;
-                background: #0f1015;
             }
 
         .pagination a {
             text-decoration: none;
             margin: 0 2px;
-            border-radius: 50%;
             background: #202020;
             max-width: auto;
             min-width: 28px;
             height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
             padding: 0 2px;
-            color: gray;
             transition: 0.3s;
-            background: #0f1015;
         }
 
         .pagination .disabled a {
@@ -21360,4 +21324,13 @@ div.tagsinput {
     .myCustomModal {
         width: 70%;
     }
+}
+
+tbody tr td {
+color:white;
+font-weight:500;
+}
+
+thead tr th {
+    font-weight: 800 !important;
 }

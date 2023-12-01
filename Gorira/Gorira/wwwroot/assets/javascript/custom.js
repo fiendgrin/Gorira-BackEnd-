@@ -4,7 +4,7 @@
     function handleBasketClick(e) {
         e.stopPropagation();
         $('.accountContent').removeClass('active');
-    let chevronAcc = document.querySelector(".chevronAcc");
+        let chevronAcc = document.querySelector(".chevronAcc");
         if (window.innerWidth <= 768) {
             $('.navBar').hide();
         }
@@ -99,8 +99,19 @@
     const hub = new signalR.HubConnectionBuilder()
         .withUrl("/chat")
         .build();
-    function showMessageNotification(message, name) {
+    function showMessageNotification(message, name, pfp) {
         toastr["info"](message, name);
+        var img = document.createElement('img');
+        img.src = `/assets/images/pfp/${pfp}`;
+        img.alt = 'Description of the image';
+        img.width = 38;
+        img.height = 38;
+        img.style.position = "absolute"
+        img.style.left = "8px"
+        img.style.top = "8px"
+        img.style.objectFit = "cover"
+        let toast = document.querySelector("#toast-container .toast-info");
+        toast.appendChild(img)
     }
 
     toastr.options = {
@@ -124,7 +135,6 @@
         console.log("Connection established.");
     }).catch(err => console.error(err.toString()));
 
-    // Check if the URL contains "Messenger" (case-sensitive)
     if (myCurrentUrl.includes("Messenger")) {
         let meaasagingBox = document.querySelector(".meaasagingBox");
         let chatId = meaasagingBox.getAttribute("data-chatid")
@@ -136,23 +146,23 @@
 
         let myUrlParts = myCurrentUrl.split("/");
         let myId = myUrlParts[myUrlParts.length - 1];
-   
+
         let sendBtn = document.querySelector(".sendBtn");
         let messageInput1 = document.querySelector(".messageInput");
         if (myId == '' || myId.toLowerCase() == "messenger" || myId.toLowerCase() == "index") {
-          
+
             sendBtn.classList.add("invis")
             messageInput1.setAttribute("disabled", true)
         }
-        
+
         searchMessangers.addEventListener("keyup", (e) => {
             singleMessangers.forEach(sm => {
                 let text = sm.lastElementChild.firstElementChild.textContent;
-        
+
                 if (!text.toLowerCase().includes(e.target.value.toLowerCase())) {
                     sm.style.display = "none";
                 } else {
-                    sm.style.display = "flex"; 
+                    sm.style.display = "flex";
                 }
             })
 
@@ -211,17 +221,13 @@
 
                 markMessagesAsSeen(chatId, function () {
                     let url = '/Messenger/GetUpdatedChatList/' + chatId;
-                 
+
                     fetch(url)
                         .then(res => res.text())
                         .then(data => {
                             $('.messangers').html(data);
                         });
-                    let urlMsgCount = "/Messenger/GetMessageCount"
-                    fetch(urlMsgCount).then(res => res.text())
-                        .then(data => {
-                            $('.messegeCounter').html(data);
-                        });
+
                 });
             }
             let url = '/Messenger/GetUpdatedChatList/' + chatId
@@ -240,10 +246,8 @@
 
 
 
-
         meaasagingBox.scrollTop =
             meaasagingBox.scrollHeight - meaasagingBox.clientHeight;
-
 
         let left = document.querySelector("#messangerMain .left");
         let people = document.querySelector("#messangerMain .people");
@@ -284,16 +288,16 @@
     }
     hub.on("ReceiveMessage", (message, pfp, theUsersName, chatId1) => {
         if (!myCurrentUrl.includes("Messenger") || (chatId2 != null && chatId1 != chatId2)) {
-            showMessageNotification(message, theUsersName)
+            showMessageNotification(message, theUsersName, pfp)
             var audio = document.getElementById("notificationSound");
             if (audio) {
                 audio.play();
             }
             let urlMsgCount = "/Messenger/GetMessageCount"
             fetch(urlMsgCount).then(res => res.text())
-        .then(data => {
-            $('.messegeCounter').html(data);
-        });
+                .then(data => {
+                    $('.messegeCounter').html(data);
+                });
         }
     });
 

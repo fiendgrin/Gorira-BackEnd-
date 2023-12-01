@@ -32295,7 +32295,7 @@ header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
     height: 100%;
     width: 100%;
     position: absolute;
-    right:0;
+    right: 0;
     top: 0;
 }
 
@@ -32314,15 +32314,13 @@ header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
 }
 
 .invis {
-display:none !important;
+    display: none !important;
 }
 
 
 
 .messegeCounter {
-
     background-color: rgba(162, 16, 247, 1);
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32354,21 +32352,21 @@ display:none !important;
 }
 
 .seeOlder {
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     outline: none;
-    border:none;
+    border: none;
     border-bottom: 2px solid rgb(255, 255, 255,0.1);
     border-radius: 10px;
     color: rgb(255, 255, 255,0.1);
     font-size: 20px;
     font-style: normal;
     font-family: "Chakra Petch", sans-serif;
-    font-weight:800;
-    width:100%;
-    line-height:30px;
-    background-color:transparent;
+    font-weight: 800;
+    width: 100%;
+    line-height: 30px;
+    background-color: transparent;
 }
 
 .DontAddToCart {
@@ -32423,3 +32421,5 @@ display:none !important;
     .haveAccount:hover {
         text-decoration: underline;
     }
+
+

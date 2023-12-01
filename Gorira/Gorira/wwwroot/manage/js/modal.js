@@ -5,7 +5,7 @@
 
         Swal.fire({
             title: 'Are you sure?',
-            text: "Account's activity status will be deactivated!",
+            text: "Account's activity status will be changed!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

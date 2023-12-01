@@ -40,7 +40,7 @@
                                             <img style="object-fit:cover;" src="~/assets/images/genres/@(genre.Image)" alt="image">
                                         </td>
                                         <td> @(genre.Name) </td>
-                                        <td>
+                                        <td style="color:@(((genre.MainGenreTracks != null ? genre.MainGenreTracks.Count() : 0) + (genre.SubGenreTracks != null ? genre.SubGenreTracks.Count() : 0)) > 0 ? "#00d25b" : "#fc424a");">
                                             @((genre.MainGenreTracks != null ? genre.MainGenreTracks.Count() : 0) + (genre.SubGenreTracks != null ? genre.SubGenreTracks.Count() : 0))
                                         </td>
                                         <td>
