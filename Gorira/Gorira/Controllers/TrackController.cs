@@ -59,16 +59,16 @@ namespace Gorira.Controllers
 
             IEnumerable<Track>? Tracks = await _context.Tracks
                 .Include(t => t.User)
-                .Include(t=>t.TrackTags).ThenInclude(tt=>tt.Tag)
+                .Include(t => t.TrackTags).ThenInclude(tt => tt.Tag)
                 .Where(t => t.IsDeleted == false).ToListAsync();
 
 
 
             if (!string.IsNullOrWhiteSpace(search))
             {
-                Tracks = Tracks.Where(t => t.Title.ToUpper().Contains(search.Trim().ToUpper()) || 
-                t.User.DisplayName.Contains(search.Trim().ToUpper()) || 
-                (t.TrackTags!=null && t.TrackTags.Any(tt => tt.Tag.Name.Trim().ToUpper().Contains(search.Trim().ToUpper())))
+                Tracks = Tracks.Where(t => t.Title.ToUpper().Contains(search.Trim().ToUpper()) ||
+                t.User.DisplayName.Contains(search.Trim().ToUpper()) ||
+                (t.TrackTags != null && t.TrackTags.Any(tt => tt.Tag.Name.Trim().ToUpper().Contains(search.Trim().ToUpper())))
                 );
             }
 
@@ -371,7 +371,7 @@ namespace Gorira.Controllers
                     .Include(p => p.User)
                       .Include(p => p.PlaylistFollowers)
                       .Include(p => p.PlaylistTracks)
-                    .Where(p => p.IsDeleted == false && (p.UserId == appUser.Id || p.PlaylistFollowers.Any(pf => pf.UserId == appUser.Id))).ToListAsync();
+                    .Where(p => p.IsDeleted == false && (p.UserId == appUser.Id)).ToListAsync();
             }
 
             IEnumerable<Comment> comments = _context.Comments
@@ -406,7 +406,7 @@ namespace Gorira.Controllers
 
             IPagedList<Track>? tracks = await _context.Tracks
                 .Include(t => t.User)
-                .Where(t => t.IsDeleted == false && t.UserId == appUser.Id).ToPagedListAsync(page ?? 1, _myTrackPageSize);
+                .Where(t => t.IsDeleted == false && t.UserId == appUser.Id).OrderByDescending(c => c.CreatedAt).ToPagedListAsync(page ?? 1, _myTrackPageSize);
 
             return View(tracks);
         }
@@ -577,21 +577,29 @@ namespace Gorira.Controllers
             if (TagNames.Count == 3)
             {
 
-                List<TrackTag> oldTrackTags = await _context.TrackTags.Where(tt => tt.IsDeleted == false && tt.TrackId == Id).ToListAsync();
+                List<TrackTag> oldTrackTags = await _context.TrackTags
+                    .Include(tt => tt.Tag)
+                    .Where(tt => tt.IsDeleted == false && tt.TrackId == Id).ToListAsync();
 
                 foreach (TrackTag oldTrackTag in oldTrackTags)
                 {
-                    oldTrackTag.IsDeleted = true;
+                    if (oldTrackTag.Tag.Name != TagNames[0] && oldTrackTag.Tag.Name != TagNames[1] && oldTrackTag.Tag.Name != TagNames[2])
+                    {
+                        oldTrackTag.IsDeleted = true;
+                        oldTrackTag.DeletedAt = DateTime.Now;
+                        oldTrackTag.DeletedBy = User.Identity.Name;
+                    }
                 }
                 await _context.SaveChangesAsync();
 
                 foreach (string tag in TagNames)
                 {
-                    if (!await _context.Tags.AnyAsync(t => t.Name.Trim().ToLower() == tag.Trim().ToLower() && t.IsDeleted == false))
+                    if (!await _context.Tags.AnyAsync(t => t.Name.Trim().ToLower() == tag.Trim().ToLower()))
                     {
                         Tag newTag = new Tag
                         {
                             Name = tag,
+                            CreatedBy = User.Identity.Name
                         };
 
 
@@ -600,20 +608,22 @@ namespace Gorira.Controllers
                         TrackTag trackTag = new TrackTag
                         {
                             TagId = newTag.Id,
-                            TrackId = track.Id
+                            TrackId = track.Id,
+                            CreatedBy = User.Identity.Name
 
                         };
                         await _context.TrackTags.AddAsync(trackTag);
                         await _context.SaveChangesAsync();
                     }
-                    else
+                    else if (!oldTrackTags.Any(tt => tt.Tag.Name == tag))
                     {
                         Tag existingTag = await _context.Tags.FirstOrDefaultAsync(t => t.IsDeleted == false && t.Name == tag);
 
                         TrackTag trackTag = new TrackTag
                         {
                             TagId = existingTag.Id,
-                            TrackId = track.Id
+                            TrackId = track.Id,
+                            CreatedBy = User.Identity.Name
 
                         };
                         await _context.TrackTags.AddAsync(trackTag);

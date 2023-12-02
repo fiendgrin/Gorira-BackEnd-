@@ -60,7 +60,7 @@ namespace Gorira.Models
         [MaxFileSize(150)]
         public IFormFile? UntaggedFile { get; set; }
         [NotMapped]
-        [FileTypes("application/zip", "application/x-rar-compressed")]
+        [FileTypes("application/x-zip", "application/x-rar-compressed")]
         [MaxFileSize(300,ErrorMessage = "Track Stems File size must be under 300mb")]
         public IFormFile? TrackStemsFile { get; set; }
         [NotMapped]

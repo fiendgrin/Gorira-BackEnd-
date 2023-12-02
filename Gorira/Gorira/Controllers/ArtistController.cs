@@ -103,7 +103,7 @@ namespace Gorira.Controllers
             }
             AppUser? appUser = await _userManager.Users
                 .Include(u => u.Followers.Where(f => f.IsDeleted == false))
-                .Include(u => u.Tracks.Where(t => t.IsDeleted == false)).ThenInclude(t => t.TrackTags.Where(tt => tt.IsDeleted == false))
+                .Include(u => u.Tracks.Where(t => t.IsDeleted == false).OrderByDescending(c => c.CreatedAt)).ThenInclude(t => t.TrackTags.Where(tt => tt.IsDeleted == false))
                 .FirstOrDefaultAsync(u => u.Id == Id && u.IsActive == true && u.EmailConfirmed == true);
 
             if (appUser == null) return NotFound();
@@ -147,7 +147,7 @@ namespace Gorira.Controllers
 
             AppUser? appUser = await _userManager.Users
                  .Include(u => u.Followers)
-              .Include(u => u.Tracks.Where(t => t.IsDeleted == false)).ThenInclude(t => t.TrackTags.Where(tt => tt.IsDeleted == false))
+              .Include(u => u.Tracks.Where(t => t.IsDeleted == false).OrderByDescending(c => c.CreatedAt)).ThenInclude(t => t.TrackTags.Where(tt => tt.IsDeleted == false))
               .FirstOrDefaultAsync(u => u.Id == currentUser.Id && u.IsActive == true);
 
             IPagedList<Track>? userTracks = null;

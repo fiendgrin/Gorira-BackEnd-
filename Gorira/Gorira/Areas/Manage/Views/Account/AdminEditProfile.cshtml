@@ -1,0 +1,45 @@
+﻿@model AdminEditProfileVM
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Edit Profile</h4>
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <form method="post" class="forms-sample">
+                        <div class="form-group">
+                            <label asp-for="FirstName">First Name</label>
+                            <input autocomplete="off" asp-for="FirstName" class="form-control" placeholder="First Name">
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="LastName">Last Name</label>
+                            <input autocomplete="off" asp-for="LastName" class="form-control" placeholder="Last Name">
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CurrentPassword">Current Password</label>
+                            <input autocomplete="off" asp-for="CurrentPassword" class="form-control" placeholder="Current Password">
+                            <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="NewPassword">New Password</label>
+                            <input autocomplete="off" asp-for="NewPassword" class="form-control" placeholder="New Password">
+                            <span asp-validation-for="NewPassword" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ConfirmPassword">Confirm Password</label>
+                            <input autocomplete="off" asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password">
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2">Edit</button>
+                        <a asp-area="Manage" asp-action="Index" asp-controller="Dashboard" class="btn btn-dark">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -35,7 +35,7 @@
         console.log(id)
         let checkedValue = $('input[name=radio]:checked').attr('id');
         console.log(checkedValue);
-        if (checkedValue == "limited") {
+        if (checkedValue == "limited" || checkedValue == null || checkedValue == undefined) {
             url = "/Basket/AddBasket/" + id + "?isUnlimited=false";
         } else {
             url = "/Basket/AddBasket/" + id + "?isUnlimited=true";

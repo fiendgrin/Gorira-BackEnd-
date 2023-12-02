@@ -28,7 +28,7 @@ namespace Gorira.Attributes.ValidationAttributes
             foreach (var file in files)
             {
                 var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
-                if (!_fileTypes.Contains(file.ContentType) && (extension != ".rar"))
+                if (!_fileTypes.Contains(file.ContentType) && (extension != ".rar") && (extension != ".zip"))
                 {
                     return new ValidationResult("File type must be " + string.Join(", ", _fileTypes) );
                 }
