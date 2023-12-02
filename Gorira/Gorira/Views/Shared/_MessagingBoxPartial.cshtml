@@ -1,0 +1,33 @@
+﻿@model MessengerVM
+@if (Model.showingChat != null && Model.showingChat.ChatLogs != null)
+{
+    <input type="hidden" class="lastPageDetect" isLast="@((Model.showingChat.ChatLogs.Count() <= Model.page) ? 1 : 0)" />
+
+    foreach (ChatLog chatlog in Model.showingChat.ChatLogs.OrderByDescending(sc => sc.CreatedAt).Take(Model.page == null ? 20 : (int)Model.page).OrderBy(sc => sc.CreatedAt))
+    {
+        if (Model.CurrentUser.Id != chatlog.Messager.Id)
+        {
+            <!--Single Message Start-->
+            <div class="singleMessage interlocutor">
+                <img class="pfpMsg" src="~/assets/images/pfp/@chatlog.Messager.ProfilePicture" />
+                <div class="interlocutorMessages">
+                    <p class="theMessage">
+                        @chatlog.Message
+                    </p>
+
+                </div>
+            </div>
+            <!--Single Message End-->
+        }
+        else
+        {
+
+            <!--Single Message Start-->
+            <div class="singleMessage me">
+                <p class="theMessage">@chatlog.Message</p>
+            </div>
+            <!--Single Message End-->
+        }
+
+    }
+}

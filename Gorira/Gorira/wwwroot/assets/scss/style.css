@@ -877,7 +877,7 @@ header .boxTop .boxContent .right .accountHolder {
     padding: 4px;
     transition: 0.2s;
     position: relative;
-    border-radius: 20px;
+
 }
 
     header .boxTop .boxContent .right .accountHolder .loginIcon {
@@ -901,6 +901,7 @@ header .boxTop .boxContent .right .accountHolder {
 
     header .boxTop .boxContent .right .accountHolder:hover {
         background-color: rgba(137, 43, 226, 0.3);
+        border-radius: 20px;
     }
 
         header .boxTop .boxContent .right .accountHolder:hover .chevronAcc {
@@ -976,7 +977,6 @@ header .boxTop .boxContent .right .basketHolder {
     padding: 0px;
     transition: 0.2s;
     position: relative;
-    border-radius: 20px;
 }
 
     header .boxTop .boxContent .right .basketHolder .basketCounter {
@@ -31804,7 +31804,6 @@ label {
     cursor: pointer;
     position: relative;
     transition: 0.2s;
-    border-radius: 20px;
 }
 
 .BasketHolder {
@@ -31813,6 +31812,7 @@ label {
 
 header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
     background-color: rgba(137, 43, 226, 0.3);
+    border-radius:20px;
 }
 
 #trackMain .box .content .myTable .body .coverAndTitle .cover {
@@ -32423,3 +32423,11 @@ header .boxTop .boxContent .right .basketHolder .BasketTopIcons:hover {
     }
 
 
+#messangerMain .box .right .bottom .meaasagingBox::-webkit-scrollbar {
+    display: inline-block !important;
+    direction: rtl !important;
+}
+
+#messangerMain .box .right .bottom .meaasagingBox::-webkit-scrollbar-thumb {
+    background-color: rgba(128, 126, 126,0.5) !important;
+}

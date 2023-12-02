@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <!--Single Sidebar Section End-->
-                  <!--Single Sidebar Section Start-->
+                <!--Single Sidebar Section Start-->
                 <li class="nav-item menu-items">
                     <a class="nav-link" asp-area="Manage" asp-controller="Genre" asp-action="Index">
                         <span class="menu-icon">
@@ -64,7 +64,7 @@
                     </a>
                 </li>
                 <!--Single Sidebar Section End-->
-                   <!--Single Sidebar Section Start-->
+                <!--Single Sidebar Section Start-->
                 <li class="nav-item menu-items">
                     <a class="nav-link" asp-area="Manage" asp-controller="Slider" asp-action="Index">
                         <span class="menu-icon">
@@ -114,6 +114,17 @@
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-dark rounded-circle">
+                                            <i class="mdi mdi-settings text-success"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p class="preview-subject mb-1">Settings</p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
                                 <a asp-area="Manage" asp-action="Logout" asp-controller="Account" class="dropdown-item preview-item">
                                     <div class="preview-thumbnail">
                                         <div class="preview-icon bg-dark rounded-circle">

@@ -108,7 +108,8 @@
         img.height = 38;
         img.style.position = "absolute"
         img.style.left = "8px"
-        img.style.top = "8px"
+        img.style.top = "50%"
+        img.style.transform = "translateY(-50%)"
         img.style.objectFit = "cover"
         let toast = document.querySelector("#toast-container .toast-info");
         toast.appendChild(img)
@@ -187,17 +188,19 @@
             sendForm.addEventListener('submit', function (e) {
                 e.preventDefault()
                 let messageInput = document.querySelector(".messageInput");
-                let myMessageDiv = ` <div class="singleMessage me">
+                if (messageInput.value.trim() != "") {
+                    let myMessageDiv = ` <div class="singleMessage me">
                         <p class="theMessage">${messageInput.value}</p>
                     </div>`
-                let chatArea = document.querySelector(".meaasagingBox");
-                let userName2 = meaasagingBox.getAttribute("userName");
-                chatArea.innerHTML += myMessageDiv;
-                SendMessage(userId, messageInput.value, chatId, pfp, userName2);
-                messageInput.value = "";
+                    let chatArea = document.querySelector(".meaasagingBox");
+                    let userName2 = meaasagingBox.getAttribute("userName");
+                    chatArea.innerHTML += myMessageDiv;
+                    SendMessage(userId, messageInput.value, chatId, pfp, userName2);
+                    messageInput.value = "";
 
-                meaasagingBox.scrollTop =
-                    meaasagingBox.scrollHeight - meaasagingBox.clientHeight;
+                    meaasagingBox.scrollTop =
+                        meaasagingBox.scrollHeight - meaasagingBox.clientHeight;
+                }
             })
         }
 
@@ -229,6 +232,15 @@
                         });
 
                 });
+                let url = '/Messenger/GetUpdatedChatList/' + chatId
+
+                fetch(url)
+                    .then(res => res.text())
+                    .then(data => {
+
+                        $('.messangers').html(data);
+
+                    })
             }
             let url = '/Messenger/GetUpdatedChatList/' + chatId
 
@@ -246,8 +258,6 @@
 
 
 
-        meaasagingBox.scrollTop =
-            meaasagingBox.scrollHeight - meaasagingBox.clientHeight;
 
         let left = document.querySelector("#messangerMain .left");
         let people = document.querySelector("#messangerMain .people");
@@ -279,7 +289,51 @@
                 left.style.display = "none";
             }
         });
+
+        let page = 1;
+
+        let lastPageDetect = document.querySelector('.lastPageDetect');
+        let isLast = lastPageDetect.getAttribute("isLast")
+
+
+        meaasagingBox.addEventListener('scroll', function () {
+            if (meaasagingBox.scrollTop < 10 && lastPageDetect.getAttribute("isLast") == 0) {
+                page++;
+                fetch('/messenger/LoadMore/' + chatId + '?page=' + page)
+                    .then(res => res.text())
+                    .then(data => {
+                        $(meaasagingBox).html(data);
+                        meaasagingBox.scrollTop =
+                            meaasagingBox.scrollTop + 20;
+                        lastPageDetect = document.querySelector('.lastPageDetect');
+                        isLast = lastPageDetect.getAttribute("isLast");
+                    })
+            }
+        });
+        if (meaasagingBox.scrollTop === 0) {
+            page++;
+            fetch('/messenger/LoadMore/' + chatId + '?page=' + page)
+                .then(res => res.text())
+                .then(data => {
+                    $(meaasagingBox).html(data);
+                    meaasagingBox.scrollTop =
+                        meaasagingBox.scrollHeight - meaasagingBox.clientHeight;
+                })
+            console.log(page)
+        }
+        meaasagingBox.scrollTop =
+            meaasagingBox.scrollHeight - meaasagingBox.clientHeight;
     }
+
+
+
+
+
+
+
+
+
+
     let meaasagingBox = document.querySelector(".meaasagingBox");
     let chatId2 = null;
     if (meaasagingBox != null) {

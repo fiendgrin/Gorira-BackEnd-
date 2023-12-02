@@ -5,6 +5,7 @@ using Microsoft.AspNet.SignalR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -27,8 +28,14 @@ namespace Gorira.Controllers
 
 
         [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Member")]
-        public async Task<IActionResult> Index(int? Id)
+        public async Task<IActionResult> Index(int? Id,int? page)
         {
+
+            if (page <= 0)
+            {
+                return NotFound();
+            }
+
             AppUser? currentUser = await _userManager.Users
                  .Include(u => u.Chats.Where(c => c.IsDeleted == false)).ThenInclude(c => c.ChatLogs.Where(cl => cl.IsDeleted == false))
                .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
@@ -61,13 +68,28 @@ namespace Gorira.Controllers
                 .Include(c => c.User1)
                 .Where(c => c.User1Id == currentUser.Id || c.User2Id == currentUser.Id).ToListAsync();
 
-
+            Chat? showingChat = null;
+            AppUser? userName = null;
+            AppUser? otherUserName = null;
+            if (chats != null)
+            {
+                showingChat = chats.FirstOrDefault(c => c.Id == Id);
+                if (showingChat != null)
+                {
+                    userName = currentUser.Id == showingChat.User2Id ? showingChat.User2 : showingChat.User1;
+                    otherUserName = currentUser.Id == showingChat.User1Id ? showingChat.User2 : showingChat.User1;
+                }
+            }
 
             MessengerVM messengerVM = new MessengerVM
             {
                 Chats = chats,
                 CurrentUser = currentUser,
                 ChatId = Id,
+                showingChat = showingChat,
+                userName = userName,
+                otherUserName = otherUserName,
+                page = page * _messageSize,
             };
 
             return View(messengerVM);
@@ -165,6 +187,73 @@ namespace Gorira.Controllers
             }
 
             return PartialView("_MessageCountPartial", msgCount);
+        }
+
+        public async Task<IActionResult> LoadMore(int? Id, int? page) 
+        {
+
+            if (page <= 0)
+            {
+                return NotFound();
+            }
+
+            AppUser? currentUser = await _userManager.Users
+                 .Include(u => u.Chats.Where(c => c.IsDeleted == false)).ThenInclude(c => c.ChatLogs.Where(cl => cl.IsDeleted == false))
+               .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+            Chat? chat = null;
+            if (Id != null)
+            {
+                chat = await _context.Chats
+               .Include(c => c.ChatLogs.Where(cl => cl.IsDeleted == false)).ThenInclude(c => c.Messager)
+               .FirstOrDefaultAsync(c => c.Id == Id);
+
+                if (chat == null) return NotFound();
+
+                if (chat.ChatLogs != null)
+                {
+                    IEnumerable<ChatLog>? unseenChatLogs = chat.ChatLogs.Where(c => c.Seen == false && c.Messager.Id != currentUser.Id);
+
+                    foreach (ChatLog chatlog in unseenChatLogs)
+                    {
+                        chatlog.Seen = true;
+                    }
+                    await _context.SaveChangesAsync();
+                }
+            }
+
+
+
+            IEnumerable<Chat>? chats = await _context.Chats
+                .Include(c => c.ChatLogs).ThenInclude(cl => cl.Messager)
+                .Include(c => c.User2)
+                .Include(c => c.User1)
+                .Where(c => c.User1Id == currentUser.Id || c.User2Id == currentUser.Id).ToListAsync();
+
+            Chat? showingChat = null;
+            AppUser? userName = null;
+            AppUser? otherUserName = null;
+            if (chats != null)
+            {
+                showingChat = chats.FirstOrDefault(c => c.Id == Id);
+                if (showingChat != null)
+                {
+                    userName = currentUser.Id == showingChat.User2Id ? showingChat.User2 : showingChat.User1;
+                    otherUserName = currentUser.Id == showingChat.User1Id ? showingChat.User2 : showingChat.User1;
+                }
+            }
+
+            MessengerVM messengerVM = new MessengerVM
+            {
+                Chats = chats,
+                CurrentUser = currentUser,
+                ChatId = Id,
+                showingChat = showingChat,
+                userName = userName,
+                otherUserName = otherUserName,
+                page = page * _messageSize,
+            };
+
+            return PartialView("_MessagingBoxPartial", messengerVM);
         }
     }
 }

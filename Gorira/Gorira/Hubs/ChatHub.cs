@@ -23,27 +23,30 @@ namespace Gorira.Hubs
         }
         public async Task SendMessage(string user, string message,string chatId,string pfp,string theUsersName)
         {
-            int chatIdInt = int.Parse(chatId);
-
-            if (_contextAccessor.HttpContext.User.Identity.IsAuthenticated && _contextAccessor.HttpContext.User.IsInRole("Member"))
+            if (message.Trim() != "")
             {
-                Chat? chat = await _context.Chats.FirstOrDefaultAsync(c => c.Id == chatIdInt);
-                string receiveUserId = chat.User1Id == user ? chat.User2Id : chat.User1Id;
-                if (chat != null)
+                int chatIdInt = int.Parse(chatId);
+
+                if (_contextAccessor.HttpContext.User.Identity.IsAuthenticated && _contextAccessor.HttpContext.User.IsInRole("Member"))
                 {
-                  
-                    ChatLog chatLogEntry = new ChatLog
+                    Chat? chat = await _context.Chats.FirstOrDefaultAsync(c => c.Id == chatIdInt);
+                    string receiveUserId = chat.User1Id == user ? chat.User2Id : chat.User1Id;
+                    if (chat != null)
                     {
-                        Message = message,
-                        Messager = await _userManager.FindByIdAsync(user), 
-                        ChatId = chatIdInt,
-                        Seen = false
-                    };
 
-                    await _context.ChatLogs.AddAsync(chatLogEntry);
-                    await _context.SaveChangesAsync();
+                        ChatLog chatLogEntry = new ChatLog
+                        {
+                            Message = message,
+                            Messager = await _userManager.FindByIdAsync(user),
+                            ChatId = chatIdInt,
+                            Seen = false
+                        };
 
-                    await Clients.User(receiveUserId).SendAsync("ReceiveMessage", message, pfp, theUsersName, chatId);
+                        await _context.ChatLogs.AddAsync(chatLogEntry);
+                        await _context.SaveChangesAsync();
+
+                        await Clients.User(receiveUserId).SendAsync("ReceiveMessage", message, pfp, theUsersName, chatId);
+                    }
                 }
             }
 
@@ -64,8 +67,6 @@ namespace Gorira.Hubs
 
             await _context.SaveChangesAsync();
         }
-
-
     }
 }
 

@@ -1,20 +1,10 @@
 ﻿@model MessengerVM
 @{
     ViewData["Title"] = "Messenger";
-    Chat? showingChat = null;
-    AppUser? userName = null;
-    AppUser? otherUserName = null;
-    if (Model.Chats != null)
-    {
-        showingChat = Model.Chats.FirstOrDefault(c => c.Id == Model.ChatId);
-        if (showingChat != null)
-        {
-            userName = Model.CurrentUser.Id == showingChat.User2Id ? showingChat.User2 : showingChat.User1;
-            otherUserName = Model.CurrentUser.Id == showingChat.User1Id ? showingChat.User2 : showingChat.User1;
-        }
-    }
 
 
+    string tempPage = TempData["Page"]?.ToString() != null ? TempData["Page"]?.ToString()  : "40";
+    int chatPage = int.Parse(tempPage);
 }
 
 <main id="messangerMain">
@@ -36,42 +26,12 @@
                 <img class="people"
                      src="~/assets/images/icons/sharingiconImage24px.svg"
                      alt="" />
-                <h1>@(otherUserName != null ? otherUserName.DisplayName : "Message box")</h1>
+                <h1>@(Model.otherUserName != null ? Model.otherUserName.DisplayName : "Message box")</h1>
             </div>
             <div class="bottom">
-                <div class="meaasagingBox" userName="@(userName!=null ? userName.DisplayName : "")" data-chatid="@((Model.ChatId).ToString())" data-userId="@(userName != null ? userName.Id : "")" pfp="@(userName != null ? userName.ProfilePicture : "")">
+                <div style="overflow:auto !important;" class="meaasagingBox" userName="@(Model.userName!=null ? Model.userName.DisplayName : "")" data-chatid="@((Model.ChatId).ToString())" data-userId="@(Model.userName != null ? Model.userName.Id : "")" pfp="@(Model.userName != null ? Model.userName.ProfilePicture : "")">
 
-                    @if (showingChat != null && showingChat.ChatLogs != null)
-                    {
-                        foreach (ChatLog chatlog in showingChat.ChatLogs)
-                        {
-
-                            if (Model.CurrentUser.Id != chatlog.Messager.Id)
-                            {
-                                <!--Single Message Start-->
-                                <div class="singleMessage interlocutor">
-                                    <img class="pfpMsg" src="~/assets/images/pfp/@chatlog.Messager.ProfilePicture" />
-                                    <div class="interlocutorMessages">
-                                        <p class="theMessage">
-                                            @chatlog.Message
-                                        </p>
-
-                                    </div>
-                                </div>
-                                <!--Single Message End-->
-                            }
-                            else
-                            {
-
-                                <!--Single Message Start-->
-                                <div class="singleMessage me">
-                                    <p class="theMessage">@chatlog.Message</p>
-                                </div>
-                                <!--Single Message End-->
-                            }
-
-                        }
-                    }
+                    @await Html.PartialAsync("_MessagingBoxPartial",Model)
 
 
                 </div>
