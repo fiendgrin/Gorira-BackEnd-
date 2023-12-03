@@ -38,33 +38,46 @@ namespace Gorira.Controllers
         //==========================================
 
         //1.Index
-        public async Task<IActionResult> Index(int? page, string? filter = "all")
+        public async Task<IActionResult> Index(int? page, string? search, string? filter = "all")
         {
             if (page <= 0)
             {
                 return NotFound();
             }
 
-            IPagedList<Playlist> playlists = await _context.Playlists
+            IEnumerable<Playlist> playlistsList = await _context.Playlists
                 .Include(p => p.User)
                 .Include(p => p.PlaylistFollowers.Where(pf => pf.IsDeleted == false))
                 .Include(p => p.PlaylistTracks.Where(pt => pt.IsDeleted == false))
                 .Where(p => p.IsDeleted == false)
-                .OrderByDescending(p => p.CreatedAt).ToPagedListAsync(page ?? 1, _pageSize);
+                .ToListAsync();
 
             AppUser? currentUser = await _userManager.Users
            .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                playlistsList = playlistsList.Where(t => t.Title.ToUpper().Contains(search.Trim().ToUpper()) ||
+                t.User.DisplayName.Trim().ToUpper().Contains(search.Trim().ToUpper()));
+            }
+
+            IPagedList<Playlist>? playlists = null;
 
             if (currentUser != null)
             {
                 playlists = filter switch
                 {
-                    "all" => playlists,
+                    "all" => playlistsList.OrderByDescending(p => p.CreatedAt).ToPagedList(page ?? 1, _pageSize),
 
-                    "my" => playlists.Where(p => p.UserId == currentUser.Id).ToPagedList(page ?? 1, _pageSize),
+                    "my" => playlistsList.Where(p => p.UserId == currentUser.Id).ToPagedList(page ?? 1, _pageSize),
 
-                    "followed" => playlists.Where(p => p.PlaylistFollowers.Any(pf => pf.UserId == currentUser.Id)).ToPagedList(page ?? 1, _pageSize),
-                    _ => playlists,
+                    "followed" => playlistsList.Where(p => p.PlaylistFollowers.Any(pf => pf.UserId == currentUser.Id)).ToPagedList(page ?? 1, _pageSize),
+
+                    "popular" => playlistsList.OrderByDescending(p => p.PlaylistFollowers.Count()).ToPagedList(page ?? 1, _pageSize),
+
+                    "new" => playlistsList.OrderByDescending(p => p.CreatedAt).ToPagedList(page ?? 1, _pageSize),
+
+                    _ => playlistsList.OrderByDescending(p => p.CreatedAt).ToPagedList(page ?? 1, _pageSize),
 
                 };
             }

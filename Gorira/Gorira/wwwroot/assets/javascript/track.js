@@ -12,9 +12,12 @@ const ap = new APlayer({
 });
 
 let playAplayer = document.querySelector("#trackMain #aplayer .aplayer-play");
+let picAplayer = document.querySelector("#trackMain #aplayer .aplayer-pic");
 let trackId = document.querySelector("#trackMain #aplayer").getAttribute("trackId");
 playAplayer.classList.add("trackPlayBtn");
+picAplayer.classList.add("trackPlayBtn");
 playAplayer.setAttribute("trackId", trackId)
+picAplayer.setAttribute("trackId", trackId)
 
 
 let thePrice = document.querySelector("#trackMain .thePrice");

@@ -23,31 +23,43 @@
                     <a asp-controller="Playlist" asp-action="Index">All</a>
                     <a asp-controller="Playlist" asp-action="Index" asp-route-filter="@("my")">My</a>
                     <a asp-controller="Playlist" asp-action="Index" asp-route-filter="@("followed")">Followed</a>
+                      <a asp-controller="Playlist" asp-action="Index" asp-route-filter="@("popular")">Popular</a>
+                    <a asp-controller="Playlist" asp-action="Index" asp-route-filter="@("new")">New</a>
                 </div>
             </div>
             <div class="theTracks">
-                @foreach (Playlist playlist in Model)
+                @if(Model != null && Model.Count > 0)
                 {
-                    <!--Single Card Start-->
-                    <div class="myCard">
-                        <a asp-controller="Playlist" asp-action="Detail" asp-route-Id="@playlist.Id" class="coverHolder">
-                            <img class="cover"
-                                 src="~/assets/images/@(playlist.User.ProfilePicture == playlist.Cover ? $"pfp/{playlist.Cover}": $"playlistCovers/{playlist.Cover}")"
-                                 alt="" />
-                        </a>
-                        <div class="bottomText">
-                            <p class="songCount">@playlist.PlaylistTracks.Count() Tracks</p>
-                            <a class="titleHolder" asp-controller="Playlist" asp-action="Detail" asp-route-Id="@playlist.Id">
-                                <img src="~/assets/images/icons/play-list-5.svg" alt="" />
-                                <h6 class="title">@playlist.Title</h6>
+                    @foreach (Playlist playlist in Model)
+                    {
+                        <!--Single Card Start-->
+                        <div class="myCard">
+                            <a asp-controller="Playlist" asp-action="Detail" asp-route-Id="@playlist.Id" class="coverHolder">
+                                <img class="cover"
+                                     src="~/assets/images/@(playlist.User.ProfilePicture == playlist.Cover ? $"pfp/{playlist.Cover}": $"playlistCovers/{playlist.Cover}")"
+                                     alt="" />
                             </a>
+                            <div class="bottomText">
+                                <p class="songCount">@playlist.PlaylistTracks.Count() Tracks</p>
+                                <a class="titleHolder" asp-controller="Playlist" asp-action="Detail" asp-route-Id="@playlist.Id">
+                                    <img src="~/assets/images/icons/play-list-5.svg" alt="" />
+                                    <h6 class="title">@playlist.Title</h6>
+                                </a>
 
-                            <a asp-controller="Artist" asp-action="Detail" asp-route-Id="@playlist.UserId" class="authorHolder">
-                                <p class="author">@playlist.User.DisplayName</p>
-                            </a>
+                                <a asp-controller="Artist" asp-action="Detail" asp-route-Id="@playlist.UserId" class="authorHolder">
+                                    <p class="author">@playlist.User.DisplayName</p>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <!--Single Card End-->
+                        <!--Single Card End-->
+                    }
+                }else
+                {
+
+                    <h3 style="text-align:center; width:100%; color:white; font-family: sans-serif; font-size:26px; font-weight:600; height:50vh">
+                        Nothing Here ...
+                        <img style="transform:translateY(8px); height:36px;" src="/assets/images/icons/search.svg">
+                    </h3>
                 }
             </div>
             @Html.PagedListPager((IPagedList) Model,page=>Url.Action("Index","Playlis", new {page = page,

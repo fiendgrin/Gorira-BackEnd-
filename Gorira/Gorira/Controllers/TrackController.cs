@@ -67,7 +67,7 @@ namespace Gorira.Controllers
             if (!string.IsNullOrWhiteSpace(search))
             {
                 Tracks = Tracks.Where(t => t.Title.ToUpper().Contains(search.Trim().ToUpper()) ||
-                t.User.DisplayName.Contains(search.Trim().ToUpper()) ||
+                t.User.DisplayName.Trim().ToUpper().Contains(search.Trim().ToUpper()) ||
                 (t.TrackTags != null && t.TrackTags.Any(tt => tt.Tag.Name.Trim().ToUpper().Contains(search.Trim().ToUpper())))
                 );
             }

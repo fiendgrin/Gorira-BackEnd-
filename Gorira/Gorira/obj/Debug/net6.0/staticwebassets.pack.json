@@ -133,6 +133,98 @@
       "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202121728544.zip"
     },
     {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202122444300.zip",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202122444300.zip"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202134632910.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202134632910.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202134938322.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202134938322.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202135222800.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202135222800.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202135459701.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202135459701.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202135948385.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202135948385.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202140400575.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202140400575.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202140702040.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202140702040.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202145551873.zip",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202145551873.zip"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202145900883.zip",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202145900883.zip"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202150215460.zip",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202150215460.zip"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202150454381.zip",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202150454381.zip"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202211310045.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202211310045.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202211651038.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202211651038.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202212147186.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202212147186.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202212519424.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202212519424.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202212804360.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202212804360.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202213115902.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202213115902.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202213517612.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202213517612.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202214132638.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202214132638.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202221230947.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202221230947.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202221444936.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202221444936.rar"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\stems\\20231202221715995.rar",
+      "PackagePath": "staticwebassets\\assets\\audio\\stems\\20231202221715995.rar"
+    },
+    {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231114212502701.mp3",
       "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231114212502701.mp3"
     },
@@ -317,6 +409,102 @@
       "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202121728529.mp3"
     },
     {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202122444275.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202122444275.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202134632897.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202134632897.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202134938306.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202134938306.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202135222775.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202135222775.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202135459671.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202135459671.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202135948368.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202135948368.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202140400560.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202140400560.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202140702025.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202140702025.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202145551855.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202145551855.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202145900864.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202145900864.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202150215434.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202150215434.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202150454353.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202150454353.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202150824220.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202150824220.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202211310003.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202211310003.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202211651020.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202211651020.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202212147160.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202212147160.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202212519373.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202212519373.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202212804326.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202212804326.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202213115888.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202213115888.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202213517570.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202213517570.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202214132603.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202214132603.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202221230933.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202221230933.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202221444919.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202221444919.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tagged\\20231202221715977.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\tagged\\20231202221715977.mp3"
+    },
+    {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\tracks\\Future - WAIT FOR U (Instrumental) ft. Drake, Tems.mp3",
       "PackagePath": "staticwebassets\\assets\\audio\\tracks\\Future - WAIT FOR U (Instrumental) ft. Drake, Tems.mp3"
     },
@@ -479,6 +667,102 @@
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202121728537.mp3",
       "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202121728537.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202122444289.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202122444289.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202134632905.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202134632905.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202134938313.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202134938313.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202135222784.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202135222784.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202135459680.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202135459680.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202135948378.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202135948378.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202140400568.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202140400568.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202140702033.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202140702033.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202145551864.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202145551864.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202145900875.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202145900875.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202150215448.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202150215448.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202150454366.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202150454366.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202150824229.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202150824229.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202211310027.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202211310027.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202211651025.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202211651025.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202212147165.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202212147165.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202212519378.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202212519378.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202212804355.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202212804355.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202213115895.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202213115895.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202213517606.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202213517606.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202214132628.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202214132628.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202221230938.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202221230938.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202221444929.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202221444929.mp3"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\audio\\untagged\\20231202221715984.mp3",
+      "PackagePath": "staticwebassets\\assets\\audio\\untagged\\20231202221715984.mp3"
     },
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\bootstrap\\css\\bootstrap-grid.css",
@@ -807,6 +1091,102 @@
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202121728525.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202121728525.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202122444269.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202122444269.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202134632889.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202134632889.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202134938303.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202134938303.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202135222773.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202135222773.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202135459667.png",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202135459667.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202135948366.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202135948366.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202140400558.png",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202140400558.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202140702022.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202140702022.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202145551848.png",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202145551848.png"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202145900862.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202145900862.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202150215432.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202150215432.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202150454350.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202150454350.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202150824218.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202150824218.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202211309960.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202211309960.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202211651018.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202211651018.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202212147158.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202212147158.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202212519369.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202212519369.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202212804321.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202212804321.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202213115887.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202213115887.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202213517569.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202213517569.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202214132601.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202214132601.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202221230930.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202221230930.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202221444917.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202221444917.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\20231202221715974.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\covers\\20231202221715974.jpg"
     },
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\covers\\21.jpg",
@@ -1303,6 +1683,18 @@
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\playlistCovers\\20231202113237025.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\playlistCovers\\20231202113237025.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\playlistCovers\\20231202140900964.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\playlistCovers\\20231202140900964.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\playlistCovers\\20231202150950703.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\playlistCovers\\20231202150950703.jpg"
+    },
+    {
+      "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\playlistCovers\\20231202214558513.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\playlistCovers\\20231202214558513.jpg"
     },
     {
       "Id": "C:\\Users\\yunis\\source\\repos\\Gorira\\Gorira\\wwwroot\\assets\\images\\playlistCovers\\raindrops.jpg",
