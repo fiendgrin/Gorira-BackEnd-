@@ -1,0 +1,581 @@
+#myPlaylistMain {
+  background-color: $back-color-web;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .divider {
+    height: 1px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.144);
+  }
+  .box {
+    @include container();
+    padding: 80px 30px 40px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+    .tabs {
+      display: none;
+    }
+    .left {
+      padding: 20px;
+      border: 2px solid rgb(80, 80, 80);
+      border-radius: 6px;
+      background-color: $top-color-web;
+      width: 300px;
+      box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45),
+        25px 0 20px -20px rgba(0, 0, 0, 0.45),
+        0px 25px 20px -20px rgba(0, 0, 0, 0.45),
+        -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      .theTrack {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+        gap: 12px;
+        .cover {
+          width: 206px;
+          height: 206px;
+          object-fit: cover;
+          object-position: center;
+          border: 1px solid grey;
+        }
+        .playlistName {
+          @include text(22px, 600, 100%);
+          width: 80%;
+          text-align: center;
+        }
+        .beatMaker {
+          @include text(18px, 400, 100%);
+          width: 80%;
+          text-align: center;
+          color: #c7c7c7c7;
+        }
+        .accountButtons {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 20px;
+          width: 100%;
+
+          .edit {
+            @include niceButton(100%, 42px);
+            background-color: $lightestGrey-color-web;
+            &:hover {
+              background-color: $lightGrey-color-web;
+            }
+          }
+        }
+      }
+      .sectionDefault {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        gap: 14px;
+        h6 {
+          @include text(16px, 400, 100%);
+          color: rgb(136, 136, 136);
+        }
+      }
+      .stats {
+        .statLine {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          h5 {
+            @include text(16px, 700, 100%);
+            color: rgb(224, 224, 224);
+          }
+          .number {
+            @include text(16px, 500, 100%);
+            color: rgb(224, 224, 224);
+          }
+        }
+      }
+      .aboutTrack {
+        .aboutTrackLine {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          .text {
+            @include text(14px, 400, 120%);
+            color: rgb(224, 224, 224);
+            max-height: 200px;
+            overflow: auto;
+          }
+        }
+      }
+      .tags {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        h6 {
+          display: block;
+          width: 100%;
+        }
+        .tag {
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          background-color: rgb(51, 51, 51);
+          border: 1px solid #c7c7c7c7;
+          border-radius: 20px;
+          @include text(16px, 600, 12px);
+          color: rgb(182, 182, 182);
+          padding: 6px;
+        }
+      }
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 964px;
+      #aplayer {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@include for-type(tablet) {
+  #myPlaylistMain {
+    background-color: $back-color-web;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .divider {
+      height: 1px;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.144);
+    }
+    .box {
+      padding: 80px 10px 40px 10px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: space-between;
+      flex-direction: column;
+      width: 768px;
+      gap: 40px;
+      .tabs {
+        display: flex;
+        gap: 20px;
+        border-radius: 6px;
+        width: 100%;
+        transition: 0.3s;
+
+        .tab {
+          cursor: pointer;
+          background-color: $top-color-web;
+          width: 100%;
+          border: 2px solid rgb(80, 80, 80);
+          border-radius: 10px;
+          padding: 10px;
+          @include text(32px, 800, 100%);
+          color: rgba(255, 255, 255, 0.3);
+          text-align: center;
+          transition: 0.3s;
+        }
+        .tabActive {
+          transition: 0.3s;
+          border-color: $purple-color-web;
+          color: white;
+        }
+      }
+      .left {
+        transition: 0.3s;
+        padding: 20px;
+        border: 2px solid rgb(80, 80, 80);
+        border-radius: 6px;
+        background-color: $top-color-web;
+        width: 748px;
+        box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45),
+          25px 0 20px -20px rgba(0, 0, 0, 0.45),
+          0px 25px 20px -20px rgba(0, 0, 0, 0.45),
+          -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 18px;
+        position: relative;
+        .theTrack {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          margin-top: 10px;
+          gap: 12px;
+          .cover {
+            width: 206px;
+            height: 206px;
+            object-fit: cover;
+            object-position: center;
+            border: 1px solid grey;
+          }
+          .playlistName {
+            @include text(22px, 600, 100%);
+            width: 80%;
+            text-align: center;
+          }
+          .beatMaker {
+            @include text(18px, 400, 100%);
+            width: 80%;
+            text-align: center;
+            color: #c7c7c7c7;
+          }
+          .accountButtons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            
+            .edit {
+              background-color: $lightestGrey-color-web;
+              &:hover {
+                background-color: $lightGrey-color-web;
+              }
+            }
+          }
+        }
+        .sectionDefault {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          width: 100%;
+          gap: 14px;
+          h6 {
+            @include text(16px, 400, 100%);
+            color: rgb(136, 136, 136);
+          }
+        }
+        .stats {
+          .statLine {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            h5 {
+              @include text(16px, 700, 100%);
+              color: rgb(224, 224, 224);
+            }
+            .number {
+              @include text(16px, 500, 100%);
+              color: rgb(224, 224, 224);
+            }
+          }
+        }
+        .aboutTrack {
+          .aboutTrackLine {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            .text {
+              @include text(14px, 400, 120%);
+              color: rgb(224, 224, 224);
+              max-height: 200px;
+              overflow: auto;
+            }
+          }
+        }
+        .tags {
+          width: 100%;
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          flex-direction: row;
+          flex-wrap: wrap;
+          h6 {
+            display: block;
+            width: 100%;
+          }
+          .tag {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgb(51, 51, 51);
+            border: 1px solid #c7c7c7c7;
+            border-radius: 20px;
+            @include text(16px, 600, 12px);
+            color: rgb(182, 182, 182);
+            padding: 6px;
+          }
+        }
+      }
+      .right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 748px;
+        #aplayer {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@include for-type(mobile) {
+  #myPlaylistMain {
+    background-color: $back-color-web;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .divider {
+      height: 1px;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.144);
+    }
+    .box {
+      padding: 40px 0px 40px 0px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: space-between;
+      flex-direction: column;
+      width: 380px;
+      gap: 20px;
+      .tabs {
+        display: flex;
+        gap: 20px;
+        border-radius: 6px;
+        width: 100%;
+        transition: 0.3s;
+
+        .tab {
+          cursor: pointer;
+          background-color: $top-color-web;
+          width: 100%;
+          border: 2px solid rgb(80, 80, 80);
+          border-radius: 10px;
+          padding: 10px;
+          @include text(32px, 800, 100%);
+          color: rgba(255, 255, 255, 0.3);
+          text-align: center;
+          transition: 0.3s;
+        }
+        .tabActive {
+          transition: 0.3s;
+          border-color: $purple-color-web;
+          color: white;
+        }
+      }
+      .left {
+        transition: 0.3s;
+
+        padding: 20px;
+        border: 2px solid rgb(80, 80, 80);
+        border-radius: 6px;
+        background-color: $top-color-web;
+        width: 380px;
+        box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45),
+          25px 0 20px -20px rgba(0, 0, 0, 0.45),
+          0px 25px 20px -20px rgba(0, 0, 0, 0.45),
+          -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 18px;
+        position: relative;
+        .theTrack {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          margin-top: 10px;
+          gap: 12px;
+          .cover {
+            width: 206px;
+            height: 206px;
+            object-fit: cover;
+            object-position: center;
+            border: 1px solid grey;
+          }
+          .playlistName {
+            @include text(22px, 600, 100%);
+            width: 80%;
+            text-align: center;
+          }
+          .beatMaker {
+            @include text(18px, 400, 100%);
+            width: 80%;
+            text-align: center;
+            color: #c7c7c7c7;
+          }
+          .accountButtons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+           
+            .edit {
+              background-color: $lightestGrey-color-web;
+              &:hover {
+                background-color: $lightGrey-color-web;
+              }
+            }
+          }
+        }
+        .sectionDefault {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          width: 100%;
+          gap: 14px;
+          h6 {
+            @include text(16px, 400, 100%);
+            color: rgb(136, 136, 136);
+          }
+        }
+        .stats {
+          .statLine {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            h5 {
+              @include text(16px, 700, 100%);
+              color: rgb(224, 224, 224);
+            }
+            .number {
+              @include text(16px, 500, 100%);
+              color: rgb(224, 224, 224);
+            }
+          }
+        }
+        .aboutTrack {
+          .aboutTrackLine {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            .text {
+              @include text(14px, 400, 120%);
+              color: rgb(224, 224, 224);
+              max-height: 200px;
+              overflow: auto;
+            }
+          }
+        }
+        .tags {
+          width: 100%;
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          flex-direction: row;
+          flex-wrap: wrap;
+          h6 {
+            display: block;
+            width: 100%;
+          }
+          .tag {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgb(51, 51, 51);
+            border: 1px solid #c7c7c7c7;
+            border-radius: 20px;
+            @include text(16px, 600, 12px);
+            color: rgb(182, 182, 182);
+            padding: 6px;
+          }
+        }
+      }
+      .right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 380px;
+        #aplayer {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+#myPlaylistMain {
+  #aplayer {
+    background: $back-color-web;
+    box-shadow: 5px 5px 0 0 rgba(162, 16, 247, 1),
+      10px 10px 0 0 rgba(162, 16, 247, 0.6),
+      15px 15px 0 0 rgba(162, 16, 247, 0.4),
+      20px 20px 0 0 rgba(162, 16, 247, 0.2),
+      25px 25px 0 0 rgba(162, 16, 247, 0.1);
+  }
+
+  #aplayer .aplayer-icon {
+    color: $back-color-web; /* Replace #fff with your desired icon color */
+  }
+
+  #aplayer .aplayer-bar-wrap .aplayer-bar {
+    background: #fff; /* Replace #fff with your desired progress bar color */
+  }
+
+  /* Change the color of the song title and artist name */
+  #aplayer .aplayer-info .aplayer-title {
+    color: White; /* Replace #ff0000 with your desired text color */
+    @include text(16px, 600, 100%);
+  }
+
+  .aplayer-list-title {
+    @include text(14px, 600, 32px);
+    color: $purple-color-web; /* Replace #ff0000 with your desired text color */
+  }
+  #aplayer .aplayer-info .aplayer-author {
+    @include text(14px, 600, 100%);
+
+    color: rgb(
+      112,
+      112,
+      112
+    ); /* Replace #ff0000 with your desired text color */
+  }
+
+  .aplayer-list-author {
+    @include text(14px, 400, 32px);
+
+    color: rgb(
+      112,
+      112,
+      112
+    ); /* Replace #ff0000 with your desired text color */
+  }
+  #aplayer .aplayer-volume-wrap .aplayer-volume-icon svg path:hover {
+    color: #fff; /* Replace #ff0000 with your desired hover color */
+  }
+
+  /* Change the hover color of the loop icon */
+  #aplayer .aplayer-icon-loop:hover {
+    color: #fff; /* Replace #00ff00 with your desired hover color */
+  }
+}

@@ -1,0 +1,913 @@
+#myProfileMain {
+  background-color: $back-color-web;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .divider {
+    height: 1px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.144);
+  }
+  .box {
+    @include container();
+    padding: 80px 30px 40px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+    .tabs {
+      display: none;
+    }
+    .left {
+      padding: 20px;
+      border: 2px solid rgb(80, 80, 80);
+      border-radius: 6px;
+      background-color: $top-color-web;
+      width: 300px;
+      box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45),
+        25px 0 20px -20px rgba(0, 0, 0, 0.45),
+        0px 25px 20px -20px rgba(0, 0, 0, 0.45),
+        -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      .reportHolder {
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        img {
+          height: 40px;
+          padding: 6px;
+          border-radius: 50px;
+          cursor: pointer;
+          transition: 0.2s;
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.144);
+          }
+        }
+      }
+      .reportContent {
+        position: absolute;
+        right: 20px;
+        top: 51px;
+        padding: 10px 0px;
+        width: 80px;
+        background-color: $back-color-web;
+        border: 1px solid grey;
+        display: none;
+        .report {
+          display: flex;
+          text-decoration: none;
+          @include text(16px, 300, 20px);
+          justify-content: center;
+          width: 100%;
+          cursor: pointer;
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.288);
+          }
+        }
+      }
+      .account {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 20px;
+        gap: 20px;
+        .pfp {
+          width: 206px;
+          height: 206px;
+          object-fit: cover;
+          object-position: center;
+          border: 1px solid grey;
+        }
+        .profileName {
+          @include text(22px, 600, 100%);
+          width: 80%;
+          text-align: center;
+        }
+        .accountButtons {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 20px;
+          width: 100%;
+
+          .edit {
+            @include niceButton(100%, 42px);
+            background-color: $lightestGrey-color-web;
+            &:hover {
+              background-color: $lightGrey-color-web;
+            }
+          }
+        }
+      }
+      .sectionDefault {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        gap: 14px;
+        h6 {
+          @include text(16px, 400, 100%);
+          color: rgb(136, 136, 136);
+        }
+      }
+      .stats {
+        .statLine {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          h5 {
+            @include text(16px, 700, 100%);
+            color: rgb(224, 224, 224);
+          }
+          .numberElement {
+            @include text(16px, 500, 100%);
+            color: rgb(224, 224, 224);
+          }
+        }
+      }
+      .aboutMe {
+        .aboutMeLine {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          .text {
+            @include text(14px, 400, 120%);
+            color: rgb(224, 224, 224);
+            max-height: 200px;
+            overflow: auto;
+          }
+        }
+      }
+      .findMeOn {
+        .link {
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          cursor: pointer;
+          opacity: 0.7;
+          h4 {
+            @include text(16px, 400, 120%);
+          }
+          img {
+            height: 26px;
+          }
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      width: 964px;
+      .topText {
+        width: 964px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        h3 {
+          @include text(34px, 600, 100%);
+        }
+        a {
+          text-decoration: none;
+          p {
+            @include text(18px, 600, 100%);
+            transition: 0.3s;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      .theTracks {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 20px;
+        gap: 44px;
+        .myCard {
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+            0 3px 6px rgba(0, 0, 0, 0.23);
+          border-radius: $border-radius-default;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          padding: 21px;
+          transition: 0.3s;
+          position: relative;
+          height: 398px;
+          width: 292px;
+          height: fit-content;
+
+          .play,
+          .pause {
+            position: absolute;
+            z-index: 1;
+            cursor: pointer;
+            top: 116.5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.404);
+            border-radius: 50%;
+            opacity: 0;
+            transition: 0.2s;
+            &:hover {
+              background-color: rgba(0, 0, 0, 0.747);
+            }
+          }
+          .pause {
+            display: none;
+          }
+          a {
+            .cover {
+              object-fit: cover;
+              object-position: center;
+              height: 250px;
+              width: 250px;
+              margin-bottom: 20px;
+              border-radius: $border-radius-default;
+              box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+                rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+                rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+            }
+          }
+          .bottomText {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            .top {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 6px;
+              .price {
+                @include text(18px, 600, 100%);
+                color: $blue-color-web;
+              }
+              .tempo {
+                display: flex;
+                @include text(18px, 600, 100%);
+                align-items: center;
+                justify-content: center;
+                color: #b4b3b3;
+              }
+            }
+            a {
+              text-decoration: none;
+              .title {
+                margin-top: 4px;
+                width: 250px;
+                @include text(20px, 800, 28px);
+                height: 28px;
+                overflow: hidden;
+              }
+            }
+            a {
+              text-decoration: none;
+              .artist {
+                margin-top: 4px;
+                @include text(16px, 300, 24px);
+                color: #b4b3b3;
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+          &:hover {
+            background-color: $lightGrey-color-web;
+            .play,
+            .pause {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include for-type(tablet) {
+  #myProfileMain {
+    background-color: $back-color-web;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .divider {
+      height: 1px;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.144);
+    }
+    .box {
+      padding: 80px 10px 40px 10px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: space-between;
+      flex-direction: column;
+      width: 768px;
+      gap: 40px;
+      .tabs {
+        display: flex;
+        gap: 20px;
+        border-radius: 6px;
+        width: 100%;
+        transition: 0.3s;
+
+        .tab {
+          cursor: pointer;
+          background-color: $top-color-web;
+          width: 100%;
+          border: 2px solid rgb(80, 80, 80);
+          border-radius: 10px;
+          padding: 10px;
+          @include text(32px, 800, 100%);
+          color: rgba(255, 255, 255, 0.3);
+          text-align: center;
+          transition: 0.3s;
+        }
+        .tabActive {
+          transition: 0.3s;
+          border-color: $purple-color-web;
+          color: white;
+        }
+      }
+      .left {
+        transition: 0.3s;
+
+        padding: 20px;
+        border: 2px solid rgb(80, 80, 80);
+        border-radius: 6px;
+        background-color: $top-color-web;
+        width: 748px;
+        box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45),
+          25px 0 20px -20px rgba(0, 0, 0, 0.45),
+          0px 25px 20px -20px rgba(0, 0, 0, 0.45),
+          -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 18px;
+        position: relative;
+        .reportHolder {
+          position: absolute;
+          right: 20px;
+          top: 10px;
+          img {
+            height: 36px;
+            padding: 6px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.2s;
+            &:hover {
+              background-color: rgba(255, 255, 255, 0.144);
+            }
+          }
+        }
+        .reportContent {
+          position: absolute;
+          right: 20px;
+          top: 48px;
+          padding: 10px 0px;
+          width: 80px;
+          background-color: $back-color-web;
+          border: 1px solid grey;
+          display: none;
+          .report {
+            display: flex;
+            text-decoration: none;
+            @include text(16px, 300, 20px);
+            justify-content: center;
+            width: 100%;
+            cursor: pointer;
+            &:hover {
+              background-color: rgba(255, 255, 255, 0.288);
+            }
+          }
+        }
+        .account {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          margin-top: 20px;
+          gap: 20px;
+          .pfp {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            object-position: center;
+            border: 1px solid grey;
+          }
+          .profileName {
+            @include text(18px, 600, 100%);
+            width: 80%;
+            text-align: center;
+          }
+          .accountButtons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+
+            .edit {
+              background-color: $lightestGrey-color-web;
+              &:hover {
+                background-color: $lightGrey-color-web;
+              }
+            }
+          }
+        }
+        .sectionDefault {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          width: 100%;
+          gap: 14px;
+          h6 {
+            @include text(16px, 400, 100%);
+            color: rgb(136, 136, 136);
+          }
+        }
+        .stats {
+          .statLine {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            h5 {
+              @include text(16px, 700, 100%);
+              color: rgb(224, 224, 224);
+            }
+            .numberElement {
+              @include text(16px, 500, 100%);
+              color: rgb(224, 224, 224);
+            }
+          }
+        }
+        .aboutMe {
+          .aboutMeLine {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            .text {
+              @include text(14px, 400, 120%);
+              color: rgb(224, 224, 224);
+              max-height: 200px;
+              overflow: auto;
+            }
+          }
+        }
+        .findMeOn {
+          display: flex;
+          flex-direction: row;
+          width: fit-content;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          h6 {
+            display: block;
+            width: 100%;
+          }
+          .link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0.7;
+            gap: 10px;
+            h4 {
+              @include text(16px, 400, 120%);
+            }
+            img {
+              height: 26px;
+            }
+            &:hover {
+              opacity: 1;
+            }
+          }
+        }
+      }
+      .right {
+        transition: 0.3s;
+
+        display: none;
+        flex-direction: column;
+        width: 748px;
+        .topText {
+          width: 748px;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          h3 {
+            @include text(30px, 600, 100%);
+          }
+          a {
+            text-decoration: none;
+            p {
+              @include text(16px, 600, 100%);
+              transition: 0.3s;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+        .theTracks {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          flex-wrap: wrap;
+          width: 100%;
+          margin-top: 20px;
+          gap: 44px;
+          .myCard {
+            width: 220px;
+            padding: 17px;
+
+            .play,
+            .pause {
+              top: 85px;
+              width: 44px;
+              padding: 8px;
+              opacity: 1;
+            }
+            a {
+              .cover {
+                object-fit: cover;
+                object-position: center;
+                height: 180px;
+                width: 180px;
+                margin-bottom: 15px;
+              }
+            }
+            .bottomText {
+              .top {
+                gap: 3px;
+                .price {
+                  @include text(14px, 600, 100%);
+                  color: $blue-color-web;
+                }
+                .tempo {
+                  @include text(14px, 600, 100%);
+                  color: #b4b3b3;
+                }
+              }
+              a {
+                .title {
+                  margin-top: 2px;
+                  width: 180px;
+                  @include text(16px, 800, 24px);
+                  height: 24px;
+                  overflow: hidden;
+                }
+              }
+              a {
+                .artist {
+                  margin-top: 0px;
+                  @include text(12px, 300, 20px);
+                  color: #b4b3b3;
+                  &:hover {
+                    text-decoration: underline;
+                  }
+                }
+              }
+            }
+            &:hover {
+              background-color: $lightGrey-color-web;
+              .play,
+              .pause {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include for-type(mobile) {
+  #myProfileMain {
+    background-color: $back-color-web;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .divider {
+      height: 1px;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.144);
+    }
+    .box {
+      padding: 40px 0px 40px 0px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: space-between;
+      flex-direction: column;
+      width: 380px;
+      gap: 20px;
+      .tabs {
+        display: flex;
+        gap: 20px;
+        border-radius: 6px;
+        width: 100%;
+        transition: 0.3s;
+
+        .tab {
+          cursor: pointer;
+          background-color: $top-color-web;
+          width: 100%;
+          border: 2px solid rgb(80, 80, 80);
+          border-radius: 10px;
+          padding: 10px;
+          @include text(32px, 800, 100%);
+          color: rgba(255, 255, 255, 0.3);
+          text-align: center;
+          transition: 0.3s;
+        }
+        .tabActive {
+          transition: 0.3s;
+          border-color: $purple-color-web;
+          color: white;
+        }
+      }
+      .left {
+        transition: 0.3s;
+
+        padding: 20px;
+        border: 2px solid rgb(80, 80, 80);
+        border-radius: 6px;
+        background-color: $top-color-web;
+        width: 380px;
+        box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45),
+          25px 0 20px -20px rgba(0, 0, 0, 0.45),
+          0px 25px 20px -20px rgba(0, 0, 0, 0.45),
+          -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 18px;
+        position: relative;
+        .reportHolder {
+          position: absolute;
+          right: 20px;
+          top: 10px;
+          img {
+            height: 36px;
+            padding: 6px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.2s;
+            &:hover {
+              background-color: rgba(255, 255, 255, 0.144);
+            }
+          }
+        }
+        .reportContent {
+          position: absolute;
+          right: 20px;
+          top: 48px;
+          padding: 10px 0px;
+          width: 80px;
+          background-color: $back-color-web;
+          border: 1px solid grey;
+          display: none;
+          .report {
+            display: flex;
+            text-decoration: none;
+            @include text(16px, 300, 20px);
+            justify-content: center;
+            width: 100%;
+            cursor: pointer;
+            &:hover {
+              background-color: rgba(255, 255, 255, 0.288);
+            }
+          }
+        }
+        .account {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          margin-top: 10px;
+          gap: 20px;
+          .pfp {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            object-position: center;
+            border: 1px solid grey;
+          }
+          .profileName {
+            @include text(18px, 600, 100%);
+            width: 80%;
+            text-align: center;
+          }
+          .accountButtons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+
+            .edit {
+              background-color: $lightestGrey-color-web;
+              &:hover {
+                background-color: $lightGrey-color-web;
+              }
+            }
+          }
+        }
+        .sectionDefault {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          width: 100%;
+          gap: 14px;
+          h6 {
+            @include text(16px, 400, 100%);
+            color: rgb(136, 136, 136);
+          }
+        }
+        .stats {
+          .statLine {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            h5 {
+              @include text(16px, 700, 100%);
+              color: rgb(224, 224, 224);
+            }
+            .numberElement {
+              @include text(16px, 500, 100%);
+              color: rgb(224, 224, 224);
+            }
+          }
+        }
+        .aboutMe {
+          .aboutMeLine {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            .text {
+              @include text(14px, 400, 120%);
+              color: rgb(224, 224, 224);
+              max-height: 200px;
+              overflow: auto;
+            }
+          }
+        }
+        .findMeOn {
+          display: flex;
+          flex-direction: row;
+          width: fit-content;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          h6 {
+            display: block;
+            width: 100%;
+          }
+          .link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0.7;
+            gap: 10px;
+            width: 100%;
+            h4 {
+              @include text(16px, 400, 100%);
+            }
+            img {
+              height: 26px;
+            }
+            &:hover {
+              opacity: 1;
+            }
+          }
+        }
+      }
+      .right {
+        transition: 0.3s;
+
+        display: none;
+        flex-direction: column;
+        width: 380px;
+        .topText {
+          width: 380px;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          h3 {
+            @include text(28px, 600, 100%);
+          }
+          a {
+            text-decoration: none;
+            p {
+              @include text(16px, 600, 100%);
+              transition: 0.3s;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+        .theTracks {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          flex-wrap: wrap;
+          width: 100%;
+          margin-top: 20px;
+          gap: 20px;
+          .myCard {
+            width: 380px;
+            border-radius: $border-radius-default;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 22px;
+            transition: 0.3s;
+            position: relative;
+
+            .play,
+            .pause {
+              top: 116.5px;
+              width: 60px;
+              padding: 10px;
+            }
+            a {
+              .cover {
+                object-fit: cover;
+                object-position: center;
+                height: 250px;
+                width: 336px;
+                margin-bottom: 20px;
+                border-radius: $border-radius-default;
+                box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+                  rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+                  rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+              }
+            }
+            .bottomText {
+              .top {
+                gap: 3px;
+                .price {
+                  @include text(14px, 600, 100%);
+                  color: $blue-color-web;
+                }
+                .tempo {
+                  @include text(14px, 600, 100%);
+                  color: #b4b3b3;
+                }
+              }
+              a {
+                .title {
+                  margin-top: 2px;
+                  width: 250px;
+                  @include text(16px, 800, 24px);
+                  height: 24px;
+                  overflow: hidden;
+                }
+              }
+              a {
+                .artist {
+                  margin-top: 0px;
+                  @include text(12px, 300, 20px);
+                  color: #b4b3b3;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

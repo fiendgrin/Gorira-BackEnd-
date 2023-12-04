@@ -1,0 +1,609 @@
+#cartMain {
+  background-color: $back-color-web;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .box {
+    @include container();
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    padding: 80px 30px 40px 30px;
+    .divider {
+      height: 1px;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.144);
+    }
+    .topText {
+      width: 1300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      h3 {
+        @include text(40px, 600, 100%);
+      }
+      a {
+        text-decoration: none;
+        p {
+          @include text(18px, 600, 100%);
+          transition: 0.3s;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    .content {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 20px;
+      .left {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 40px;
+        background-color: $back-color-web;
+        .singleArtist {
+          border-radius: 6px;
+          box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+            rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+            rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+          width: 100%;
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 10px;
+          padding: 20px;
+          border: 1px solid $lightestGrey-color-web;
+
+          .top {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .PfpAndName {
+              display: flex;
+              gap: 10px;
+              align-items: center;
+              .pfp {
+                border-radius: 50%;
+                height: 50px;
+                width: 50px;
+                object-fit: cover;
+                object-position: center;
+                border: 1px solid $lightestGrey-color-web;
+              }
+              h4 {
+                @include text(22px, 600, 100%);
+                color: rgb(124, 124, 124);
+              }
+            }
+            .singleArtistSum {
+              display: flex;
+              gap: 10px;
+              align-items: center;
+              @include text(22px, 600, 100%);
+              color: rgb(124, 124, 124);
+            }
+          }
+          .beats {
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.45) inset;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-direction: column;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid $lightestGrey-color-web;
+            gap: 20px;
+
+            .singleBeat {
+              width: 100%;
+              height: 80px;
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              gap: 20px;
+              .cover {
+                height: 80px;
+                width: 80px;
+                object-fit: cover;
+                object-position: center;
+                border-radius: 6px;
+              }
+              .beatInfo {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                flex-direction: column;
+                width: 100%;
+                .beatTitleAndPrice {
+                  width: 100%;
+                  height: 40px;
+                  display: flex;
+                  align-items: flex-start;
+                  justify-content: space-between;
+                  .beatTitle {
+                    @include text(26px, 600, 28px);
+                    height: 30px;
+                    width: 590px;
+                    overflow: hidden;
+                  }
+                  .beatPrice {
+                    @include text(22px, 600, 28px);
+                    height: 30px;
+                    text-align: center;
+                    color: $blue-color-web;
+                  }
+                }
+                .licenseAndX {
+                  width: 100%;
+                  height: 40px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  .x {
+                    rotate: 45deg;
+                    opacity: 0.5;
+                    height: 28px;
+                    width: 28px;
+                  }
+                  .license {
+                    @include text(18px, 400, 30px);
+                    color: rgb(124, 124, 124);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .right {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 420px;
+        background-color: $top-color-web;
+        padding: 16px;
+        border: 1px solid $lightestGrey-color-web;
+        border-radius: 6px;
+        gap: 16px;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+          rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        .line {
+          width: 100%;
+          @include text(16px, 800, 100%);
+          color: rgb(124, 124, 124);
+          display: flex;
+          justify-content: space-between;
+        }
+        .total {
+          @include text(20px, 800, 100%);
+        }
+        .checkout {
+          @include niceButton(100%, 40px);
+        }
+      }
+    }
+  }
+}
+
+@include for-type(tablet) {
+  #cartMain {
+    background-color: $back-color-web;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .box {
+      width: 768px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+      padding: 60px 10px 30px 10px;
+      .divider {
+        height: 1px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.144);
+      }
+      .topText {
+        width: 748px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        h3 {
+          @include text(32px, 600, 100%);
+        }
+        a {
+          text-decoration: none;
+          p {
+            @include text(16px, 600, 100%);
+            transition: 0.3s;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      .content {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        .left {
+          width: 528px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 20px;
+          background-color: $back-color-web;
+          .singleArtist {
+            border-radius: 6px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+              rgba(0, 0, 0, 0.12) 0px -12px 30px,
+              rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px,
+              rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+            border: 1px solid $lightestGrey-color-web;
+
+            .top {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              .PfpAndName {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                .pfp {
+                  border-radius: 50%;
+                  height: 40px;
+                  width: 40px;
+                  object-fit: cover;
+                  object-position: center;
+                  border: 1px solid $lightestGrey-color-web;
+                }
+                h4 {
+                  @include text(18px, 600, 100%);
+                  color: rgb(124, 124, 124);
+                }
+              }
+              .singleArtistSum {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                @include text(18px, 600, 100%);
+                color: rgb(124, 124, 124);
+              }
+            }
+            .beats {
+              box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.45) inset;
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              flex-direction: column;
+              padding: 20px;
+              border-radius: 6px;
+              border: 1px solid $lightestGrey-color-web;
+              gap: 10px;
+
+              .singleBeat {
+                width: 100%;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 10px;
+                .cover {
+                  height: 60px;
+                  width: 60px;
+                  object-fit: cover;
+                  object-position: center;
+                  border-radius: 6px;
+                }
+                .beatInfo {
+                  display: flex;
+                  align-items: center;
+                  justify-content: flex-start;
+                  flex-direction: column;
+                  width: 100%;
+                  .beatTitleAndPrice {
+                    width: 100%;
+                    height: 30px;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: space-between;
+                    .beatTitle {
+                      @include text(18px, 600, 20px);
+                      height: 22px;
+                      width: 300px;
+                      overflow: hidden;
+                    }
+                    .beatPrice {
+                      @include text(16px, 600, 20px);
+                      height: 22px;
+                      text-align: center;
+                      color: $blue-color-web;
+                    }
+                  }
+                  .licenseAndX {
+                    width: 100%;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .x {
+                      rotate: 45deg;
+                      opacity: 0.5;
+                      height: 24px;
+                      width: 24px;
+                    }
+                    .license {
+                      @include text(14px, 400, 20px);
+                      color: rgb(124, 124, 124);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .right {
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          width: 200px;
+          background-color: $top-color-web;
+          padding: 8px;
+          border: 1px solid $lightestGrey-color-web;
+          border-radius: 6px;
+          gap: 16px;
+          box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+            rgba(0, 0, 0, 0.23) 0px 6px 6px;
+          .line {
+            width: 100%;
+            @include text(12px, 400, 100%);
+            color: rgb(124, 124, 124);
+            display: flex;
+            justify-content: space-between;
+          }
+          .total {
+            @include text(14px, 400, 100%);
+          }
+          .checkout {
+            @include niceButton(100%, 36px);
+            .credit {
+              height: 22px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include for-type(mobile) {
+  #cartMain {
+    background-color: $back-color-web;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .box {
+      width: 380px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+      padding: 40px 0px 20px 0px;
+      .divider {
+        height: 1px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.144);
+      }
+      .topText {
+        width: 380px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        h3 {
+          @include text(28px, 600, 100%);
+        }
+        a {
+          text-decoration: none;
+          p {
+            @include text(16px, 600, 100%);
+            transition: 0.3s;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      .content {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+        .left {
+          width: 380px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 20px;
+          background-color: $back-color-web;
+          .singleArtist {
+            border-radius: 6px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+              rgba(0, 0, 0, 0.12) 0px -12px 30px,
+              rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px,
+              rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 4px;
+            padding: 8px;
+            border: 1px solid $lightestGrey-color-web;
+
+            .top {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              .PfpAndName {
+                display: flex;
+                gap: 6px;
+                align-items: center;
+                .pfp {
+                  border-radius: 50%;
+                  height: 30px;
+                  width: 30px;
+                  object-fit: cover;
+                  object-position: center;
+                  border: 1px solid $lightestGrey-color-web;
+                }
+                h4 {
+                  @include text(14px, 400, 100%);
+                  color: rgb(124, 124, 124);
+                }
+              }
+              .singleArtistSum {
+                display: flex;
+                gap: 6px;
+                align-items: center;
+                @include text(14px, 400, 100%);
+                color: rgb(124, 124, 124);
+              }
+            }
+            .beats {
+              box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.45) inset;
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              flex-direction: column;
+              padding: 6px;
+              border-radius: 6px;
+              border: 1px solid $lightestGrey-color-web;
+              gap: 8px;
+
+              .singleBeat {
+                width: 100%;
+                height: 56px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 10px;
+                .cover {
+                  height: 56px;
+                  width: 56px;
+                  object-fit: cover;
+                  object-position: center;
+                  border-radius: 6px;
+                }
+                .beatInfo {
+                  display: flex;
+                  align-items: center;
+                  justify-content: flex-start;
+                  flex-direction: column;
+                  width: 100%;
+                  .beatTitleAndPrice {
+                    width: 100%;
+                    height: 28px;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: space-between;
+                    .beatTitle {
+                      @include text(16px, 400, 20px);
+                      height: 22px;
+                      width: 200px;
+                      overflow: hidden;
+                    }
+                    .beatPrice {
+                      @include text(14px, 400, 20px);
+                      height: 22px;
+                      text-align: center;
+                      color: $blue-color-web;
+                    }
+                  }
+                  .licenseAndX {
+                    width: 100%;
+                    height: 28px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .x {
+                      rotate: 45deg;
+                      opacity: 0.5;
+                      height: 20px;
+                      width: 20px;
+                    }
+                    .license {
+                      @include text(12px, 200, 10px);
+                      color: rgb(124, 124, 124);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .right {
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          width: 100%;
+          background-color: $top-color-web;
+          padding: 8px;
+          border: 1px solid $lightestGrey-color-web;
+          border-radius: 6px;
+          gap: 10px;
+          box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+            rgba(0, 0, 0, 0.23) 0px 6px 6px;
+          .line {
+            width: 100%;
+            @include text(12px, 400, 100%);
+            color: rgb(124, 124, 124);
+            display: flex;
+            justify-content: space-between;
+          }
+          .total {
+            @include text(14px, 400, 100%);
+          }
+          .checkout {
+            @include niceButton(100%, 28px);
+            .credit {
+              height: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

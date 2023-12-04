@@ -1,0 +1,320 @@
+#musiciansMain {
+  background-color: $back-color-web;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .box {
+    @include container();
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 80px 30px 40px 30px;
+    .topText {
+      width: 1300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      h3 {
+        @include text(40px, 600, 100%);
+      }
+      .filter {
+        @include text(18px, 600, 100%);
+        position: relative;
+        img {
+          transition: 0.3s;
+          height: 42px;
+          &:hover {
+            background-color: $lightGrey-color-web;
+          }
+          border-radius: 20px;
+          padding: 4px;
+        }
+        align-self: flex-end;
+        cursor: pointer;
+        .filterHolder {
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+            0 3px 6px rgba(0, 0, 0, 0.23);
+          position: absolute;
+          display: none;
+          flex-direction: column;
+          padding: 4px 2px;
+          gap: 4px;
+          right: 0;
+          background-color: $top-color-web;
+          border: 1px solid gray;
+          a {
+            @include text(20px, 400, 100%);
+            width: 80px;
+            text-decoration: none;
+            &:hover {
+              background-color: $lightGrey-color-web;
+            }
+          }
+        }
+      }
+    }
+    .musicians {
+      width: 1300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      row-gap: 30px;
+      .musicianCard {
+        text-decoration: none;
+        border: 2px solid rgb(80, 80, 80);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        transition: 0.3s;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+        gap: 10px;
+        width: 317.5px;
+        border-radius: 10px;
+        &:hover {
+          background-color: $lightGrey-color-web;
+        }
+
+        .pfp {
+          object-fit: cover;
+          object-position: center;
+          height: 285px;
+          width: 285px;
+          border-radius: 50%;
+          border: 1px solid grey;
+        }
+
+        .name {
+          @include text(24px, 600, 100%);
+          width: 100%;
+          overflow: hidden;
+          text-align: center;
+          transition: 0.3s;
+        }
+
+        .location {
+          @include text(20px, 400, 100%);
+          color: rgb(150, 150, 150);
+          width: 100%;
+          overflow: hidden;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@include for-type(tablet) {
+  #musiciansMain {
+    .box {
+      width: 768px;
+      gap: 20px;
+      padding: 80px 10px 40px 10px;
+      .topText {
+        width: 748px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        h3 {
+          @include text(32px, 600, 100%);
+        }
+        .filter {
+          @include text(16px, 600, 100%);
+          position: relative;
+          img {
+            transition: 0.3s;
+            height: 42px;
+            &:hover {
+              background-color: $lightGrey-color-web;
+            }
+            border-radius: 20px;
+            padding: 4px;
+          }
+          align-self: flex-end;
+          cursor: pointer;
+          .filterHolder {
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+              0 3px 6px rgba(0, 0, 0, 0.23);
+            position: absolute;
+            display: none;
+            flex-direction: column;
+            padding: 4px 2px;
+            gap: 4px;
+            right: 0;
+            background-color: $top-color-web;
+            border: 1px solid gray;
+            a {
+              @include text(20px, 400, 100%);
+              width: 80px;
+              text-decoration: none;
+              &:hover {
+                background-color: $lightGrey-color-web;
+              }
+            }
+          }
+        }
+      }
+      .musicians {
+        width: 748px;
+        gap: 14px;
+        row-gap: 20px;
+        .musicianCard {
+          text-decoration: none;
+          border: 2px solid rgb(80, 80, 80);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+            0 3px 6px rgba(0, 0, 0, 0.23);
+          transition: 0.3s;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: column;
+          padding: 20px;
+          gap: 10px;
+          width: 240px;
+          border-radius: 10px;
+          &:hover {
+            background-color: $lightGrey-color-web;
+          }
+
+          .pfp {
+            object-fit: cover;
+            object-position: center;
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            border: 1px solid grey;
+          }
+
+          .name {
+            @include text(24px, 600, 100%);
+            width: 100%;
+            overflow: hidden;
+            text-align: center;
+            transition: 0.3s;
+          }
+
+          .location {
+            @include text(20px, 400, 100%);
+            color: rgb(150, 150, 150);
+            width: 100%;
+            overflow: hidden;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include for-type(mobile) {
+  #musiciansMain {
+    .box {
+      width: 380px;
+      gap: 10px;
+      padding: 30px 0px 20px 0px;
+      .topText {
+        width: 380px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        h3 {
+          @include text(32px, 600, 100%);
+        }
+        .filter {
+          @include text(16px, 600, 100%);
+          position: relative;
+          img {
+            transition: 0.3s;
+            height: 38px;
+            &:hover {
+              background-color: $lightGrey-color-web;
+            }
+            border-radius: 20px;
+            padding: 4px;
+          }
+          align-self: flex-end;
+          cursor: pointer;
+          .filterHolder {
+            z-index: 3;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+              0 3px 6px rgba(0, 0, 0, 0.23);
+            position: absolute;
+            display: none;
+            flex-direction: column;
+            padding: 4px 2px;
+            gap: 4px;
+            right: 0;
+            background-color: $top-color-web;
+            border: 1px solid gray;
+            a {
+              @include text(20px, 400, 100%);
+              width: 80px;
+              text-decoration: none;
+              &:hover {
+                background-color: $lightGrey-color-web;
+              }
+            }
+          }
+        }
+      }
+      .musicians {
+        width: 380px;
+        row-gap: 10px;
+        .musicianCard {
+          text-decoration: none;
+          border: 2px solid rgb(80, 80, 80);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+            0 3px 6px rgba(0, 0, 0, 0.23);
+          transition: 0.3s;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: row;
+          padding: 10px;
+          gap: 10px;
+          width: 380px;
+          border-radius: 10px;
+          position: relative;
+          &:hover {
+            background-color: $lightGrey-color-web;
+          }
+
+          .pfp {
+            transition: 0.3s;
+            object-fit: cover;
+            object-position: center;
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            border: 1px solid grey;
+          }
+
+          .name {
+            @include text(24px, 600, 100%);
+            width: 100%;
+            overflow: hidden;
+            text-align: start;
+
+            transition: 0.3s;
+          }
+
+          .location {
+            @include text(20px, 400, 100%);
+            color: rgb(150, 150, 150);
+            width: max-content;
+            overflow: hidden;
+            text-align: start;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+          }
+        }
+      }
+    }
+  }
+}
