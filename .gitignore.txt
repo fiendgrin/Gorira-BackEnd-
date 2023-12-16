@@ -1,0 +1,3 @@
+Gorira/Gorira/appsettings.json
+Gorira/Gorira/web.config
+Gorira/Gorira/Controllers/AccountController.cs

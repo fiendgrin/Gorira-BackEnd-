@@ -42,7 +42,7 @@ namespace Gorira.Controllers
 
             IPagedList<Purchase>? purchases = await _context.Purchases
                 .Include(p => p.Track).ThenInclude(t=>t.User)
-                .Where(p => p.UserId == appUser.Id && p.IsDeleted == false && (p.Track != null && p.Track.IsDeleted == false)).ToPagedListAsync(page ?? 1, _pageSize);
+                .Where(p => p.UserId == appUser.Id && p.IsDeleted == false && (p.Track != null && p.Track.IsDeleted == false)).OrderByDescending(p=>p.CreatedAt).ToPagedListAsync(page ?? 1, _pageSize);
 
             return View(purchases);
         }

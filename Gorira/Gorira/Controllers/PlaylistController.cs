@@ -81,6 +81,10 @@ namespace Gorira.Controllers
 
                 };
             }
+            else 
+            {
+                playlists = playlistsList.OrderByDescending(p => p.CreatedAt).ToPagedList(page ?? 1, _pageSize);
+            }
 
             return View(playlists);
         }
