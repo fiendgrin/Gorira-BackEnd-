@@ -31,6 +31,7 @@ I was the sole developer behind this project.
   - ASP.NET MVC :black_medium_small_square: 
   - Entity Framework (EF) Core :black_medium_small_square: 
   - SignalR :black_medium_small_square: 
+  - X PagedList :black_medium_small_square:
   - Microsoft SQL Server :black_medium_small_square: 
 
 * Front-End Web Development :art: 
